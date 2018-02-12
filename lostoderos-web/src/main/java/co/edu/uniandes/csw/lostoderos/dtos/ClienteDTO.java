@@ -25,7 +25,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
 
 /**
  * ServicioDTO Objeto de transferencia de datos de la entidad de Servicio. Los DTO contienen las
- * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
+ * representaciones de los JSON que se transfieren entre el cliente y el servidor.
  * <p>
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
@@ -66,11 +66,13 @@ public class ClienteDTO extends UsuarioDTO
 	 */
 	public ClienteDTO( )
 	{
+            super();
 	}
         
         /**
 	 * @return El ID de la entidad Cliente
 	 */
+        @Override
         public Long getId() 
         {
                 return id;
@@ -79,6 +81,7 @@ public class ClienteDTO extends UsuarioDTO
         /**
 	 * @param id El nuevo ID
 	 */
+        @Override
         public void setId(Long id) 
         {
                 this.id = id;
