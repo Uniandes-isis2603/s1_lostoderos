@@ -69,19 +69,6 @@ public class ClienteDTO extends UsuarioDTO
 	}
         
         /**
-	 * Constructor para transformar un Entity a un DTO
-	 *
-	 * @param clienteEntity La entidad de Todero a partir de la cual se construye el objeto
-	 */
-	public ClienteDTO( ClienteEntity clienteEntity )
-	{
-                this.id = clienteEntity.getId();
-                this.fecha_nacimiento = clienteEntity.getFecha_nacimiento();
-                this.direccion = clienteEntity.getDireccion();
-                this.forma_pago = clienteEntity.getForma_pago();
-	}
-        
-        /**
 	 * @return El ID de la entidad Cliente
 	 */
         public Long getId() 
@@ -144,19 +131,4 @@ public class ClienteDTO extends UsuarioDTO
         {
                 this.direccion = direccion;
         }
-        
-        /**
-	 * Convertir DTO a Entity
-	 *
-	 * @return Un Entity con los valores del DTO
-	 */
-	public ClienteEntity toEntity( )
-	{
-		ClienteEntity entity = new ClienteEntity( );
-		entity.setId( this.id );
-		entity.setDireccion(this.direccion);
-                entity.setFecha_nacimiento(this.fecha_nacimiento);
-                entity.setForma_pago(this.forma_pago);
-		return entity;
-	}
 }
