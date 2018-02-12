@@ -11,7 +11,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  */
 public class FacturaDTO {
     private Long ID;
-    private String concepto;
+    private String producto;
     private Integer total;
     private Integer subtotal;
 
@@ -24,7 +24,7 @@ public class FacturaDTO {
     }
 
     public String getConcepto() {
-        return concepto;
+        return producto;
     }
 
     public Integer getTotal() {
@@ -39,8 +39,8 @@ public class FacturaDTO {
         this.ID = ID;
     }
 
-    public void setConcepto(String concepto) {
-        this.concepto = concepto;
+    public void setConcepto(String producto) {
+        this.producto = producto;
     }
 
     public void setTotal(Integer total) {
