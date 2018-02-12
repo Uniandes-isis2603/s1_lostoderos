@@ -9,6 +9,17 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *
  * @author na.morenoe
  */
-public class PersonaJuridicaDetailDTO {
+public class PersonaJuridicaDetailDTO extends PersonaJuridicaDTO {
+
+    /**
+    * Constructor por defecto
+    */
+    public PersonaJuridicaDetailDTO() {
+        
+        super();
+        
+    }
+    
+    
     
 }
