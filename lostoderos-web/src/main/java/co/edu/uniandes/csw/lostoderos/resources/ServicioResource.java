@@ -134,7 +134,7 @@ public class ServicioResource
 	 * <h1>PUT /api/servicios/{id} : Actualizar una entidad de Servicio con el id dado.</h1>
 	 * <pre>Cuerpo de petición: JSON {@link ServicioDetailDTO}.
 	 *
-	 * Actualiza la entidad de Servicio con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
+	 * Actualiza la entidad de Cliente con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
 	 *
 	 * Codigos de respuesta:
 	 * <code style="color: mediumseagreen; background-color: #eaffe0;">
@@ -144,14 +144,10 @@ public class ServicioResource
 	 * </code>
 	 * </pre>
 	 *
-	 * @param id Identificador de la entidad de Servicio que se desea actualizar.Este debe ser una cadena de dígitos.
-	 * @param detailDTO {@link ServicioDetailDTO} La entidad de Servicio que se desea guardar.
-	 * @return JSON {@link ServicioDetailDTO} - La entidad de Servicio guardada.
-<<<<<<< HEAD
-	 * @throws BusinessLogicException {@link mappers.BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la entidad de Servicio porque ya existe una con ese nombre.
-=======
-	 * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera al no poder actualizar la entidad de Servicio porque ya existe una con ese nombre.
->>>>>>> c276f0087e5a9a811916f21671a1b37c230ebcc6
+	 * @param id Identificador de la entidad de Cliente que se desea actualizar.Este debe ser una cadena de dígitos.
+	 * @param detailDTO {@link ServicioDetailDTO} La entidad de Cliente que se desea guardar.
+	 * @return JSON {@link ServiciosDetailDTO} - La entidad de Cliente guardada.
+	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la entidad de Servicio porque ya existe una con ese nombre.
 	 */
 	@PUT
 	@Path( "{id: \\d+}" )
