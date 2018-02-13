@@ -26,7 +26,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
 /**
  * ServicioDTO Objeto de transferencia de datos de la entidad de Factura. Los DTO contienen las
  * representaciones de los JSON que se transfieren entre el cliente y el servidor.
- * <p>
+ *
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
@@ -37,7 +37,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *   }
  * </pre>
  * Por ejemplo una entidad de Factura se representa asi:<br>
- * <p>
+ * 
  * <pre>
  *
  *   {
@@ -105,7 +105,7 @@ public class FacturaDTO {
         this.total = total;
     }
 /**
-	 * @param subototal El nuevo subtotal de la entidad Todero
+	 * @param subtotal El nuevo subtotal de la entidad Todero
 	 */
     public void setSubtotal(Integer subtotal) {
         this.subtotal = subtotal;
