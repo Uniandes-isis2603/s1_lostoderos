@@ -36,7 +36,7 @@ import javax.ws.rs.*;
 
 @Path("solicitudes")
 @Produces("application/json")
-@consumes("application/json")
+@Consumes("application/json")
 @RequestScoped
 public class SolicitudResource {
     
