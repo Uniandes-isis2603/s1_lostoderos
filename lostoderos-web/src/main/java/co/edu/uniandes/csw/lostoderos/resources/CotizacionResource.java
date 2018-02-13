@@ -35,7 +35,7 @@ import javax.ws.rs.*;
  */
 @Path("cotizaciones")
 @Produces("application/json")
-@consumes("application/json")
+@Consumes("application/json")
 @RequestScoped
 public class CotizacionResource {
     
