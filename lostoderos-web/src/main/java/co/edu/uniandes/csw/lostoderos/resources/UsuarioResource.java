@@ -53,7 +53,7 @@ import javax.ws.rs.Produces;
  * Produces/Consumes: indica que los servicios definidos en este recurso reciben y devuelven objetos en formato JSON
  * RequestScoped: Inicia una transacción desde el llamado de cada método (servicio).
  * </pre>
- *
+ * </p>
  * @author s.naranjop1
  * @version 1.0
  */
@@ -80,7 +80,7 @@ public class UsuarioResource
 	 * 412 Precodition Failed: Ya existe la entidad de Usuario.
 	 * </code>
 	 * </pre>
-	 *
+	 * </p>
 	 * @param usuario {@link UsuarioDetailDTO} - La entidad de Usuario que se desea guardar.
 	 * @return JSON {@link UsuarioDetailDTO}  - La entidad de Usuario guardada con el atributo id autogenerado.
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de Usuario.
@@ -100,7 +100,7 @@ public class UsuarioResource
 	 * <code style="color: mediumseagreen; background-color: #eaffe0;">
 	 * 200 OK Devuelve todas las entidades de Usuario de la aplicacion.</code>
 	 * </pre>
-	 *
+	 * </p>
 	 * @return JSONArray {@link UsuarioDetailDTO} - Las entidades de Usuario encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
 	 */
 	@GET
@@ -122,7 +122,7 @@ public class UsuarioResource
 	 * 404 Not Found No existe una entidad de Usuario con el id dado.
 	 * </code>
 	 * </pre>
-	 *
+	 * </p>
 	 * @param id Identificador de la entidad de Usuario que se esta buscando. Este debe ser una cadena de dígitos.
 	 * @return JSON {@link UsuarioDetailDTO} - La entidad de Usuario buscada
 	 */
@@ -171,7 +171,7 @@ public class UsuarioResource
 	 * 404 Not Found. No existe una entidad de Usuario con el id dado.
 	 * </code>
 	 * </pre>
-	 *
+	 * </p>
 	 * @param id Identificador de la entidad de Usuario que se desea borrar. Este debe ser una cadena de dígitos.
 	 */
 	@DELETE
