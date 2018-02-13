@@ -47,6 +47,10 @@ public class CalificacionDTO {
      * comentario asociado a la calificacion del servicio
      */
     private String comentario;
+    /**
+     * numero de identificacion de la calificacion
+     */
+    private Integer id;
     
     /**
      * Constructor vacio
@@ -95,6 +99,20 @@ public class CalificacionDTO {
      */
     public void setTipoServicio(String tipoServicio){
         this.tipoServicio = tipoServicio;
+    }
+    /**
+     * 
+     * @return la identificacion de la calificacion 
+     */
+    public Integer getId(){
+        return id;
+    }
+    /**
+     * 
+     * @param id identificacion nueva de la calificacion
+     */
+    public void setId(Integer id){
+        this.id = id;
     }
     
 }
