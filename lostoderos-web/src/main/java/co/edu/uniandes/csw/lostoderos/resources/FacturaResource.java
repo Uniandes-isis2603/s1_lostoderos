@@ -125,7 +125,7 @@ public class FacturaResource {
      * @param id Identificador de la factura que se desea actualizar.Este debe ser una cadena de dígitos.
      * @param factura {@link FacturaDetailDTO} La factura que se desea guardar.
      * @return JSON {@link FacturaDetailDTO} - La factura guardada.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la ciudad porque ya existe una con ese nombre.
+     * @throws BusinessLogicException {@link mappers.BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la ciudad porque ya existe una con ese nombre.
      */
     @PUT
 	@Path( "{id: \\d+}" )
