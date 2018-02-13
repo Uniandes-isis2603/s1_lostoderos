@@ -38,7 +38,6 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *  }
  * </pre>
  * Por ejemplo, una entidad de Contratista se representa así: <br>
- * <p>
  * <pre>
  *  {
  *      "id": 91364,

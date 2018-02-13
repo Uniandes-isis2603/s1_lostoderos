@@ -56,15 +56,15 @@ public class FacturaResource {
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creó la nueva ciudad .
+     * 200 OK Creó la nueva factura .
      * </code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 412 Precodition Failed: Ya existe la ciudad.
+     * 412 Precodition Failed: Ya existe la factura.
      * </code>
      * </pre>
-     * @param factura {@link FacturaDetailDTO} - La factura que se desea guardar.
+     * @param dto {@link FacturaDetailDTO} - La factura que se desea guardar.
      * @return JSON {@link FacturaDetailDTO}  - La factura guardada con el atributo id autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la ciudad.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la factura.
      */
     @POST
 	public FacturaDetailDTO createPago( FacturaDetailDTO dto ) 
@@ -94,14 +94,14 @@ public class FacturaResource {
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve la ciudad correspondiente al id.
+     * 200 OK Devuelve la factura correspondiente al id.
      * </code> 
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found No existe una ciudad con el id dado.
+     * 404 Not Found No factura una factura con el id dado.
      * </code> 
      * </pre>
-     * @param id Identificador de la ciudad que se esta buscando. Este debe ser una cadena de dígitos.
-     * @return JSON {@link FacturaDetailDTO} - La ciudad buscada
+     * @param id Identificador de la factura que se esta buscando. Este debe ser una cadena de dígitos.
+     * @return JSON {@link FacturaDetailDTO} - La factura buscada
      */
            @GET
 	@Path( "{id: \\d+}" )
@@ -117,15 +117,15 @@ public class FacturaResource {
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Actualiza la ciudad con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
+     * 200 OK Actualiza la factura con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe una ciudad con el id dado.
+     * 404 Not Found. No existe una factura con el id dado.
      * </code> 
      * </pre>
      * @param id Identificador de la factura que se desea actualizar.Este debe ser una cadena de dígitos.
      * @param factura {@link FacturaDetailDTO} La factura que se desea guardar.
      * @return JSON {@link FacturaDetailDTO} - La factura guardada.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la ciudad porque ya existe una con ese nombre.
+     * @throws BusinessLogicException {@link mappers.BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la factura porque ya existe una con ese nombre.
      */
     @PUT
 	@Path( "{id: \\d+}" )
@@ -141,9 +141,9 @@ public class FacturaResource {
      * 
      * Códigos de respuesta:<br>
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Elimina la ciudad correspondiente al id dado.</code>
+     * 200 OK Elimina la factura correspondiente al id dado.</code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe una ciudad con el id dado.
+     * 404 Not Found. No existe una factura con el id dado.
      * </code>
      * </pre>
      * @param id Identificador de la factura que se desea borrar. Este debe ser una cadena de dígitos.

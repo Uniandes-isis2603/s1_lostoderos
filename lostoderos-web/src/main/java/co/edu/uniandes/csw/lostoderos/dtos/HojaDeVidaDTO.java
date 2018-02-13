@@ -40,7 +40,6 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *  }
  * </pre>
  * Por ejemplo, una entidad de HojaDeVida se representa así: <br>
- * <p>
  * <pre>
  *  {
  *      "id": 9910,

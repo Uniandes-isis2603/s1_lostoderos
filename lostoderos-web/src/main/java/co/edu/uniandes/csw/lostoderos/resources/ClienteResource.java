@@ -82,7 +82,7 @@ public class ClienteResource
 	 *
 	 * @param cliente {@link ClienteDetailDTO} - La entidad de Cliente que se desea guardar.
 	 * @return JSON {@link ClienteDetailDTO}  - La entidad de Cliente guardada con el atributo id autogenerado.
-	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de Cliente.
+	 * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existe la entidad de Cliente.
 	 */
 	@POST
 	public ClienteDetailDTO createUusario( ClienteDetailDTO cliente ) throws BusinessLogicException
@@ -149,7 +149,7 @@ public class ClienteResource
 	 * @param id Identificador de la entidad de Cliente que se desea actualizar.Este debe ser una cadena de dígitos.
 	 * @param detailDTO {@link ClienteDetailDTO} La entidad de Cliente que se desea guardar.
 	 * @return JSON {@link ClienteDetailDTO} - La entidad de Cliente guardada.
-	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la entidad de Cliente porque ya existe una con ese nombre.
+	 * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera al no poder actualizar la entidad de Cliente porque ya existe una con ese nombre.
 	 */
 	@PUT
 	@Path( "{id: \\d+}" )

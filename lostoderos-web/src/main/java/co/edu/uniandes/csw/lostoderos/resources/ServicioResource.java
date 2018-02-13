@@ -80,7 +80,7 @@ public class ServicioResource
 	 *
 	 * @param servicio {@link ServicioDetailDTO} - La entidad de Servicio que se desea guardar.
 	 * @return JSON {@link ServicioDetailDTO}  - La entidad de Servicio guardada con el atributo id autogenerado.
-	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de Servicio.
+	 * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existe la entidad de Servicio.
 	 */
 	@POST
 	public ServicioDetailDTO createUusario( ServicioDetailDTO servicio ) throws BusinessLogicException
@@ -147,7 +147,11 @@ public class ServicioResource
 	 * @param id Identificador de la entidad de Servicio que se desea actualizar.Este debe ser una cadena de dígitos.
 	 * @param detailDTO {@link ServicioDetailDTO} La entidad de Servicio que se desea guardar.
 	 * @return JSON {@link ServicioDetailDTO} - La entidad de Servicio guardada.
+<<<<<<< HEAD
 	 * @throws BusinessLogicException {@link mappers.BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la entidad de Servicio porque ya existe una con ese nombre.
+=======
+	 * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera al no poder actualizar la entidad de Servicio porque ya existe una con ese nombre.
+>>>>>>> c276f0087e5a9a811916f21671a1b37c230ebcc6
 	 */
 	@PUT
 	@Path( "{id: \\d+}" )

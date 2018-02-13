@@ -57,11 +57,11 @@ public class PagoResource {
      * 412 Precodition Failed: Ya existe la ciudad.
      * </code>
      * </pre>
-     * @param city {@link PagoDetailDTO} - El pago que se desea guardar.
+     * @param dto {@link PagoDetailDTO} - El pago que se desea guardar.
      * @return JSON {@link PagoDetailDTO}  - El pago guardado con el atributo id autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la ciudad.
+     
      */
-    
+    //@throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya esta el pago.
     @POST
 	public PagoDetailDTO createPago( PagoDetailDTO dto ) 
 	{
@@ -74,7 +74,7 @@ public class PagoResource {
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve todas las ciudades de la aplicacion.</code> 
+     * 200 OK Devuelve todos los pagos de la aplicacion.</code> 
      * </pre>
      * @return JSONArray {@link PagoDetailDTO} - Los pagos encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
@@ -90,10 +90,10 @@ public class PagoResource {
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve la ciudad correspondiente al id.
+     * 200 OK Devuelve el correspondiente al id.
      * </code> 
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found No existe una ciudad con el id dado.
+     * 404 Not Found No existe el pago con el id dado.
      * </code> 
      * </pre>
      * @param id Identificador de la ciudad que se esta buscando. Este debe ser una cadena de dígitos.
@@ -118,11 +118,13 @@ public class PagoResource {
      * 404 Not Found. No existe una ciudad con el id dado.
      * </code> 
      * </pre>
-     * @param id Identificador de la factura que se desea actualizar.Este debe ser una cadena de dígitos.
-     * @param factura {@link PagoDetailDTO} La factura que se desea guardar.
-     * @return JSON {@link PagoDetailDTO} - La factura guardada.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la ciudad porque ya existe una con ese nombre.
+     * @param id Identificador del pago que se desea actualizar.Este debe ser una cadena de dígitos.
+     * @param pago {@link PagoDetailDTO} del pago  que se desea guardar.
+     * @return JSON {@link PagoDetailDTO} - del pago  guardado.
+
      */
+        //@throws BusinessLogicException {@link mappers.BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar del pago  porque ya existe uno con ese nombre.
+     
     @PUT
 	@Path( "{id: \\d+}" )
 	public PagoDetailDTO updatePago( @PathParam( "id" ) Long id, PagoDetailDTO pago ) 
@@ -141,7 +143,7 @@ public class PagoResource {
      * 404 Not Found. No existe una ciudad con el id dado.
      * </code>
      * </pre>
-     * @param id Identificador de el pago que se desea borrar. Este debe ser una cadena de dígitos.
+     * @param id Identificador del pago que se desea borrar. Este debe ser una cadena de dígitos.
      */
 @DELETE
 	@Path( "{id: \\d+}" )
