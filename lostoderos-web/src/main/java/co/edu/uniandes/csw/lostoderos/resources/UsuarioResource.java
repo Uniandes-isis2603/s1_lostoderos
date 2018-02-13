@@ -82,7 +82,7 @@ public class UsuarioResource
 	 *
 	 * @param usuario {@link UsuarioDetailDTO} - La entidad de Usuario que se desea guardar.
 	 * @return JSON {@link UsuarioDetailDTO}  - La entidad de Usuario guardada con el atributo id autogenerado.
-	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de Usuario.
+	 * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existe la entidad de Usuario.
 	 */
 	@POST
 	public UsuarioDetailDTO createUusario( UsuarioDetailDTO usuario ) throws BusinessLogicException
@@ -149,7 +149,7 @@ public class UsuarioResource
 	 * @param id Identificador de la entidad de Usuario que se desea actualizar.Este debe ser una cadena de dígitos.
 	 * @param detailDTO {@link UsuarioDetailDTO} La entidad de Usuario que se desea guardar.
 	 * @return JSON {@link UsuarioDetailDTO} - La entidad de Usuario guardada.
-	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la entidad de Usuario porque ya existe una con ese nombre.
+	 * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera al no poder actualizar la entidad de Usuario porque ya existe una con ese nombre.
 	 */
 	@PUT
 	@Path( "{id: \\d+}" )

@@ -19,7 +19,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  * }
  * </pre>
  Por ejemplo una entidad de Calificacion se representa asi:<br>
- * <p>
+ * </p>
  * <pre>
  *
  *   {
