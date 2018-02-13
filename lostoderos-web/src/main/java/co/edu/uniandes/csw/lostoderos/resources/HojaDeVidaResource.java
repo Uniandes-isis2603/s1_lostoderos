@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.resources;
-
+import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 
 import co.edu.uniandes.csw.lostoderos.dtos.HojaDeVidaDetailDTO;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
@@ -46,7 +46,7 @@ import javax.ws.rs.Produces;
 public class HojaDeVidaResource {
     
     /**
-     * <h1>POST /api/hojasdevida : Crear una hoja de vida.<h1>
+     * <h1>POST /api/hojasdevida : Crear una hoja de vida.</h1>
      * 
      * <pre> Cuerpo de petición: JSON {@link HojaDeVidaDetailDTO}.
      * 
@@ -61,7 +61,7 @@ public class HojaDeVidaResource {
      * </pre>
      * @param hoja {@link HojaDeVidaDetailDTO} - La entidad de Hoja de Vida que se desea guardar.
      * @return JSON {@link HojaDeVidaDetailDTO} - La entidad de Hoja de Vida que se guarda con el id generado automáticamente.
-     * @throws BusinessLogicException {@link HojaDeVidaDetailDTO} - Error de lógica que se genera cuando ya existe la entidad de Hoja de Vida.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de Hoja de Vida.
      */
     @POST
     public HojaDeVidaDetailDTO createHojaDeVida(HojaDeVidaDetailDTO hoja) throws BusinessLogicException{
@@ -107,7 +107,7 @@ public class HojaDeVidaResource {
     }
     
     /**
-     * <h1>PUT /api/hojasdevida/{id} : Actualizar la hoja de vida con el id dado. <h1>
+     * <h1>PUT /api/hojasdevida/{id} : Actualizar la hoja de vida con el id dado. </h1>
      * <pre>Cuerpo de petición: JSON {@link HojaDeVidaDetailDTO}.
      * 
      * Actualiza la hoja de vida con el id recibido en la URL con la información que se recibe en el cuerpo de la petición.
@@ -115,13 +115,14 @@ public class HojaDeVidaResource {
      * Códigos de respuesta: 
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Actualiza la hoja de vida con el id dadocon la información enviadacomo parámetro. Retorna un objeto idéntico.</code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
      *  404 Not Found. No existe una hoja de vida con el id dado.
      * </code> 
      * </pre>
      * @param id Id de la hoja de vida que se desea actualizar. Este debe ser una cadena de números.
      * @param hoja {@link HojaDeVidaDetailDTO} La hoja de vida que se desea guardar.
      * @return  JSON {@link HojaDeVidaDetailDTO} - La hoja de vida guardada.
-     * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera ya que no existe una hoja de vida con ese nombre. 
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera ya que no existe una hoja de vida con ese nombre. 
      */
     @PUT
     @Path("(id: \\d+)")
@@ -135,6 +136,7 @@ public class HojaDeVidaResource {
      * <pre>Borra la hoja de vida con el id asociado recibido en la URL.
      * 
      * Códigos de respuesta: <br>
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Elimina la hoja de vida correspondiente al id dado.</code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
      * 404 Not Found. No existe una hoja de vida con el id dado.

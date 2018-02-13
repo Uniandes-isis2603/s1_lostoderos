@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.ContratistaDetailDTO;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -79,7 +80,7 @@ public class ContratistaResource {
      * 
      * @param contratista {@link ContratistaDetailDTO} - El contratista que se desea guardar.
      * @return JSON {@link ContratistaDetailDTO} - El contratista guardado con el atributo id cuando ya existe el contratista.
-     * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica cuando se intenta crear un contratista que ya existe.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica cuando se intenta crear un contratista que ya existe.
      */
     @POST
     public ContratistaDetailDTO createContratista(ContratistaDetailDTO contratista) throws BusinessLogicException{
@@ -139,7 +140,7 @@ public class ContratistaResource {
      * </code> 
      * </pre>
      * @param id Identificador del contratista que se desea actualizar.Este debe ser una cadena de dígitos.
-     * @param city {@link ContratistaDetailDTO} La ciudad que se desea guardar.
+     * @param contratista {@link ContratistaDetailDTO} El contratista que se desea guardar.
      * @return JSON {@link ContratistaDetailDTO} - El contratista guardada.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica al intentar actualizar un contratista que no existe.
      */
