@@ -15,6 +15,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *  "numEstrellas": number
  *  "comentario": String
  *  "tipoServicio": String
+ *  "id": number
  * }
  * </pre>
  Por ejemplo una entidad de Calificacion se representa asi:<br>
@@ -25,6 +26,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *      "numEstrellas": 3,
  *      "comentario": "Llego despues de la hora programada",
  *      "tipoServicio": "plomeria"
+ *      "id": "4563"
  *   }
  *
  * </pre>
@@ -50,7 +52,7 @@ public class CalificacionDTO {
     /**
      * numero de identificacion de la calificacion
      */
-    private Integer id;
+    private long id;
     
     /**
      * Constructor vacio
@@ -104,14 +106,14 @@ public class CalificacionDTO {
      * 
      * @return la identificacion de la calificacion 
      */
-    public Integer getId(){
+    public long getId(){
         return id;
     }
     /**
      * 
      * @param id identificacion nueva de la calificacion
      */
-    public void setId(Integer id){
+    public void setId(long id){
         this.id = id;
     }
     
