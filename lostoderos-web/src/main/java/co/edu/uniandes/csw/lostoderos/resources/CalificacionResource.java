@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.lostoderos.resources;
 import co.edu.uniandes.csw.lostoderos.dtos.CalificacionDetailDTO;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -24,7 +25,6 @@ import javax.ws.rs.Produces;
  * </pre>
  * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
  * este recurso tiene la ruta "calificacion".</i>
- * <p>
  * <h2>Anotaciones </h2>
  * <pre>
  * Path: indica la dirección después de "api" para acceder al recurso
@@ -45,7 +45,6 @@ public class CalificacionResource {
     
     /**
 	 * <h1>POST /api/toderos : Crear una entidad de calificacion.</h1>
-	 * <p>
 	 * <pre>Cuerpo de petición: JSON {@link CalificacionDetailDTO}.
 	 *
 	 * Crea una nueva entidad de calificacion con la informacion que se recibe en el cuerpo
@@ -73,7 +72,6 @@ public class CalificacionResource {
         
         /**
 	 * <h1>GET /api/calificaciones : Obtener todas las entidades de de Calificacion.</h1>
-	 * <p>
 	 * <pre>Busca y devuelve todas las entidades de Calificacion que existen en la aplicacion.
 	 *
 	 * Codigos de respuesta:

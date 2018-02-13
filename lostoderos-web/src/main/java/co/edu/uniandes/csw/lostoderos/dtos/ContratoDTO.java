@@ -9,7 +9,6 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  * ContratoDTO Objeto de transferencia de datos de la entidad de
  * contrato. Los DTO contienen las representaciones de los JSON que se
  * transfieren entre el cliente y el servidor. 
- * <p>
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  * {
@@ -17,7 +16,6 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  * }
  * </pre>
  Por ejemplo una entidad de contrato se representa asi:<br>
- * <p>
  * <pre>
  *
  *   {

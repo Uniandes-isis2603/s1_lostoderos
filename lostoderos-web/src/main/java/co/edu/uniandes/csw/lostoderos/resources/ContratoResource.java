@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.ContratoDetailDTO;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -25,7 +26,6 @@ import javax.ws.rs.Produces;
  * </pre>
  * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
  * este recurso tiene la ruta "contrato".</i>
- * <p>
  * <h2>Anotaciones </h2>
  * <pre>
  * Path: indica la dirección después de "api" para acceder al recurso
@@ -45,7 +45,6 @@ public class ContratoResource {
     
     /**
 	 * <h1>POST /api/toderos : Crear una entidad de contrato.</h1>
-	 * <p>
 	 * <pre>Cuerpo de petición: JSON {@link ContratoDetailDTO}.
 	 *
 	 * Crea una nueva entidad de contrato con la informacion que se recibe en el cuerpo
@@ -73,7 +72,6 @@ public class ContratoResource {
         
         /**
 	 * <h1>GET /api/contratos : Obtener todas las entidades de de contrato.</h1>
-	 * <p>
 	 * <pre>Busca y devuelve todas las entidades de contrato que existen en la aplicacion.
 	 *
 	 * Codigos de respuesta:

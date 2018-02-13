@@ -46,7 +46,6 @@ import javax.ws.rs.Produces;
  * </pre>
  * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
  * este recurso tiene la ruta "toderos".</i>
- * <p>
  * <h2>Anotaciones </h2>
  * <pre>
  * Path: indica la dirección después de "api" para acceder al recurso
@@ -66,7 +65,6 @@ public class ToderoResource
 
 	/**
 	 * <h1>POST /api/toderos : Crear una entidad de Todero.</h1>
-	 * <p>
 	 * <pre>Cuerpo de petición: JSON {@link ToderoDetailDTO}.
 	 *
 	 * Crea una nueva entidad de Todero con la informacion que se recibe en el cuerpo
@@ -94,7 +92,6 @@ public class ToderoResource
 
 	/**
 	 * <h1>GET /api/toderos : Obtener todas las entidadese de Todero.</h1>
-	 * <p>
 	 * <pre>Busca y devuelve todas las entidades de Todero que existen en la aplicacion.
 	 *
 	 * Codigos de respuesta:
@@ -112,7 +109,6 @@ public class ToderoResource
 
 	/**
 	 * <h1>GET /api/toderos/{id} : Obtener una entidad de Todero por id.</h1>
-	 * <p>
 	 * <pre>Busca la entidad de Todero con el id asociado recibido en la URL y la devuelve.
 	 *
 	 * Codigos de respuesta:
@@ -162,7 +158,6 @@ public class ToderoResource
 
 	/**
 	 * <h1>DELETE /api/toderos/{id} : Borrar una entidad de Todero por id.</h1>
-	 * <p>
 	 * <pre>Borra la entidad de Todero con el id asociado recibido en la URL.
 	 *
 	 * Códigos de respuesta:<br>

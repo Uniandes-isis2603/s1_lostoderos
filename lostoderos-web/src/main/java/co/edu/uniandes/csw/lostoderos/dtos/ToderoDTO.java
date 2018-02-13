@@ -28,7 +28,6 @@ import co.edu.uniandes.csw.lostoderos.entities.ToderoEntity;
 /**
  * ToderoDTO Objeto de transferencia de datos de la entidad de Todero. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
- * <p>
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
@@ -38,7 +37,6 @@ import co.edu.uniandes.csw.lostoderos.entities.ToderoEntity;
  *   }
  * </pre>
  * Por ejemplo una entidad de Todero se representa asi:<br>
- * <p>
  * <pre>
  *
  *   {
