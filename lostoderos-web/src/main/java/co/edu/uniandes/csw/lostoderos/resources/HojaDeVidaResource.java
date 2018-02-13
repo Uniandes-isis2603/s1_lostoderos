@@ -85,66 +85,66 @@ public class HojaDeVidaResource {
     }
     
     /**
-     * <h1> GET /api/hojasdevida/{nombre} : Obtener hoja de vida por nombre de contratista. </h1>
+     * <h1> GET /api/hojasdevida/{id} : Obtener hoja de vida por id de contratista. </h1>
      * 
-     * <pre> Busca la hoja de vida con el nombre asociado recibido en la URL y la devuelve.
+     * <pre> Busca la hoja de vida con el id asociado recibido en la URL y la devuelve.
      * 
      * Códigos de respuesta:
      * <code style="color:mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve la hoja de vida correspondiente al nombre.
+     * 200 OK Devuelve la hoja de vida correspondiente al id.
      * </code>
      *  <code style="color: #c7254e; background-color: #f9f2f4;">
      * 404 Not Found No existe una hoja de vida con el nombre dado.
      * </code>
      * </pre>
-     * @param nombre Nombre de la hoja de vida que se está buscando. Este debe ser una cadena de caracteres.
+     * @param id Id de la hoja de vida que se está buscando. Este debe ser una cadena de números.
      * @return JSON {@link HojaDeVidaDetailDTO} - La hoja de vida buscada.
      */
     @GET
-    @Path("{nombre: \\d+}")
-    public HojaDeVidaDetailDTO getHojaDeVida(@PathParam("nombre") String nombre){
+    @Path("{id: \\d+}")
+    public HojaDeVidaDetailDTO getHojaDeVida(@PathParam("id") Long id){
         return null;
     }
     
     /**
-     * <h1>PUT /api/hojasdevida/{nombre} : Actualizar la hoja de vida con el nombre dado. <h1>
+     * <h1>PUT /api/hojasdevida/{id} : Actualizar la hoja de vida con el id dado. <h1>
      * <pre>Cuerpo de petición: JSON {@link HojaDeVidaDetailDTO}.
      * 
-     * Actualiza la hoja de vida con el nombre recibido en la URL con la información que se recibe en el cuerpo de la petición.
+     * Actualiza la hoja de vida con el id recibido en la URL con la información que se recibe en el cuerpo de la petición.
      * 
      * Códigos de respuesta: 
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Actualiza la hoja de vida con el nombre dadocon la información enviadacomo parámetro. Retorna un objeto idéntico.</code>
-     *  404 Not Found. No existe una hoja de vida con el nombre dado.
+     * 200 OK Actualiza la hoja de vida con el id dadocon la información enviadacomo parámetro. Retorna un objeto idéntico.</code>
+     *  404 Not Found. No existe una hoja de vida con el id dado.
      * </code> 
      * </pre>
-     * @param nombre Nombre de la hoja de vida que se desea actualizar. Este debe ser una cadena de caracteres.
+     * @param id Id de la hoja de vida que se desea actualizar. Este debe ser una cadena de números.
      * @param hoja {@link HojaDeVidaDetailDTO} La hoja de vida que se desea guardar.
      * @return  JSON {@link HojaDeVidaDetailDTO} - La hoja de vida guardada.
      * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera ya que no existe una hoja de vida con ese nombre. 
      */
     @PUT
-    @Path("(nombre: \\d+)")
-    public HojaDeVidaDetailDTO updateHojaDeVida(@PathParam("nombre") String nombre,HojaDeVidaDetailDTO hoja)throws BusinessLogicException{
+    @Path("(id: \\d+)")
+    public HojaDeVidaDetailDTO updateHojaDeVida(@PathParam("id") Long id,HojaDeVidaDetailDTO hoja)throws BusinessLogicException{
         return hoja;
     }
    
     /**
-     * <h1>DELETE /api/cities/{nombre} : Borrar hoja de vida por el nombre. </h1>
+     * <h1>DELETE /api/cities/{id} : Borrar hoja de vida por el id. </h1>
      * 
-     * <pre>Borra la ciudad con el id asociado recibido en la URL.
+     * <pre>Borra la hoja de vida con el id asociado recibido en la URL.
      * 
      * Códigos de respuesta: <br>
-     * 200 OK Elimina la hoja de vida correspondiente al nombre dado.</code>
+     * 200 OK Elimina la hoja de vida correspondiente al id dado.</code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe una hoja de vida con el nombre dado.
+     * 404 Not Found. No existe una hoja de vida con el id dado.
      * </code>
      * </pre>
-     * @param nombre Nombre de la hoja de vida que se desea borrar. Este debe ser una cadena de caracteres.
+     * @param id Id de la hoja de vida que se desea borrar. Este debe ser una cadena de números.
      */
     @DELETE
-    @Path("(nombre:\\d+)")
-    public void deleteHojaDeVida(@PathParam("nombre") String nombre){
+    @Path("(id:\\d+)")
+    public void deleteHojaDeVida(@PathParam("nombre") Long id){
         //Void
     }
 }

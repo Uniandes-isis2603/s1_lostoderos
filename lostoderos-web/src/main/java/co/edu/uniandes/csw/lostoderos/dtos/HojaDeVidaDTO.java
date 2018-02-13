@@ -30,6 +30,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *  {
+ *      "id": number,
  *      "nombre": string,
  *      "edad": number,
  *      "especialidad": string,
@@ -42,7 +43,8 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  * <p>
  * <pre>
  *  {
- *       "nombre": "Sergio Yepes",
+ *      "id": 9910,
+ *      "nombre": "Sergio Yepes",
  *      "edad": 24,
  *      "especialidad": "Electricidad",
  *      "empleos": "Codensa",
@@ -53,6 +55,8 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  * @author sa.yepes
  */
 public class HojaDeVidaDTO {
+    
+    private Long id;
     
    private String nombre;
    
@@ -71,6 +75,21 @@ public class HojaDeVidaDTO {
     */
    public HojaDeVidaDTO(){
        
+   }
+   
+   /**
+    * Retorna el id de la hoja de vida.
+    * @return Id de la hoja de vida.
+    */
+   public Long getId(){
+       return id;
+   }
+   
+   /**
+    * @param id Id de la hoja de vida.
+    */
+   public void setLong(Long id){
+       this.id=id;
    }
    
    /**
