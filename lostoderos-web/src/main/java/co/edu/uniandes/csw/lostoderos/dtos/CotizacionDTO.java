@@ -6,7 +6,29 @@
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 /**
- *
+ *  * DTO Objeto de transferencia de datos de la entidad de Cotizacion. Los DTO contienen las
+ * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ * 
+ * {
+ * "id": Long,
+ * "servicio": String,
+ * "descripcion": String,
+ * "valor": Integer
+ * }
+ * </pre> La solicitud se representa asi:
+ * 
+ * <pre>
+ *  {
+ *  "id": 201405258,
+ *  "servicio": "electricidad",
+ *  "descripcion": "Arreglo de toedos los bombillos de la casa",
+ *  "valor": 75100
+ * }
+ * 
+ * 
  * @author m.saravia
  */
 public class CotizacionDTO  {
