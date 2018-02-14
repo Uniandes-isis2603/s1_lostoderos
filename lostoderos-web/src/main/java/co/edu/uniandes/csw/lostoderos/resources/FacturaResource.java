@@ -10,8 +10,7 @@ package co.edu.uniandes.csw.lostoderos.resources;
  * @author s.rangel
  */
 import co.edu.uniandes.csw.lostoderos.dtos.FacturaDetailDTO;
-import co.edu.uniandes.csw.lostoderos.dtos.PagoDTO;
-import co.edu.uniandes.csw.lostoderos.dtos.PagoDetailDTO;
+import co.edu.uniandes.csw.lostoderos.dtos.FacturaDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -23,6 +22,9 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
+import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
+
 
 /**
  * <pre>Clase que implementa el recurso "facturas".
@@ -67,7 +69,7 @@ public class FacturaResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la factura.
      */
     @POST
-	public FacturaDetailDTO createPago( FacturaDetailDTO dto ) 
+	public FacturaDetailDTO createFactura( FacturaDetailDTO dto ) throws BusinessLogicException 
 	{
 		return dto;
 	}
@@ -83,7 +85,7 @@ public class FacturaResource {
      * @return JSONArray {@link FacturaDetailDTO} - Las facturas encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-	public List<PagoDTO> getPago( )
+	public List<FacturaDTO> getFactura( )
 	{
 		return new ArrayList<>( );
 	}
@@ -105,7 +107,7 @@ public class FacturaResource {
      */
            @GET
 	@Path( "{id: \\d+}" )
-	public FacturaDetailDTO getPago( @PathParam( "id" ) Long id )
+	public FacturaDetailDTO getFactura( @PathParam( "id" ) Long id )
 	{
 		return null;
 	}
@@ -125,11 +127,11 @@ public class FacturaResource {
      * @param id Identificador de la factura que se desea actualizar.Este debe ser una cadena de dígitos.
      * @param factura {@link FacturaDetailDTO} La factura que se desea guardar.
      * @return JSON {@link FacturaDetailDTO} - La factura guardada.
-     * @throws BusinessLogicException {@link mappers.BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la factura porque ya existe una con ese nombre.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la factura porque ya existe una con ese nombre.
      */
     @PUT
 	@Path( "{id: \\d+}" )
-	public FacturaDetailDTO updatePago( @PathParam( "id" ) Long id, FacturaDetailDTO factura ) 
+	public FacturaDetailDTO updateFactura( @PathParam( "id" ) Long id, FacturaDetailDTO factura ) throws BusinessLogicException 
 	{
 		return factura;
 	}

@@ -18,6 +18,9 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
+import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
+
 
 /**
  * <pre>Clase que implementa el recurso "pagos".
@@ -59,11 +62,11 @@ public class PagoResource {
      * </pre>
      * @param dto {@link PagoDetailDTO} - El pago que se desea guardar.
      * @return JSON {@link PagoDetailDTO}  - El pago guardado con el atributo id autogenerado.
-     
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya esta el pago.
+
      */
-    //@throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya esta el pago.
     @POST
-	public PagoDetailDTO createPago( PagoDetailDTO dto ) 
+	public PagoDetailDTO createPago( PagoDetailDTO dto ) throws BusinessLogicException 
 	{
 		return dto;
 	}
@@ -121,13 +124,13 @@ public class PagoResource {
      * @param id Identificador del pago que se desea actualizar.Este debe ser una cadena de dígitos.
      * @param pago {@link PagoDetailDTO} del pago  que se desea guardar.
      * @return JSON {@link PagoDetailDTO} - del pago  guardado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar del pago  porque ya existe uno con ese nombre.
 
      */
-        //@throws BusinessLogicException {@link mappers.BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar del pago  porque ya existe uno con ese nombre.
      
     @PUT
 	@Path( "{id: \\d+}" )
-	public PagoDetailDTO updatePago( @PathParam( "id" ) Long id, PagoDetailDTO pago ) 
+	public PagoDetailDTO updatePago( @PathParam( "id" ) Long id, PagoDetailDTO pago ) throws BusinessLogicException 
 	{
 		return pago;
 	}

@@ -32,11 +32,21 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  */
 public class FacturaDetailDTO extends FacturaDTO{
 
-
+     private PagoDetailDTO pago;
      public FacturaDetailDTO( )
 	{
 		super( );
 	}
+
+    public PagoDetailDTO getPago() {
+        return pago;
+    }
+
+    public void setPago(PagoDetailDTO pago) {
+        this.pago = pago;
+    }
+     
     
+     
   
 }
