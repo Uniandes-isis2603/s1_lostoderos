@@ -26,7 +26,6 @@ package co.edu.uniandes.csw.lostoderos.dtos;
 /**
  * ServicioDTO Objeto de transferencia de datos de la entidad de Servicio. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
- * <p>
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
@@ -37,9 +36,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *      "correo":String
  *   }
  * </pre>
- * </p>
  * Por ejemplo una entidad de Servicio se representa asi:<br>
- * <p>
  * <pre>
  *
  *   {
@@ -51,7 +48,6 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *   }
  *
  * </pre>
- * </p>
  * @author s.naranjop1
  */
 public class UsuarioDTO
