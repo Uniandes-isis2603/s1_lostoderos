@@ -36,6 +36,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *      "descripcion": string
  *   }
  * </pre>
+ * </p>
  * Por ejemplo una entidad de Servicio se representa asi:<br>
  * <p>
  * <pre>
@@ -48,7 +49,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *   }
  *
  * </pre>
- *
+ * </p>
  * @author s.naranjop1
  */
 public class ServicioDTO 
