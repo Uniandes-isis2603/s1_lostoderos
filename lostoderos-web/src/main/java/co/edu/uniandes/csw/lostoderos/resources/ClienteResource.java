@@ -46,14 +46,12 @@ import javax.ws.rs.Produces;
  * </pre>
  * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
  * este recurso tiene la ruta "clientes".</i>
- * <p>
  * <h2>Anotaciones </h2>
  * <pre>
  * Path: indica la dirección después de "api" para acceder al recurso
  * Produces/Consumes: indica que los servicios definidos en este recurso reciben y devuelven objetos en formato JSON
  * RequestScoped: Inicia una transacción desde el llamado de cada método (servicio).
  * </pre>
- * </p>
  * @author s.naranjop1
  * @version 1.0
  */
@@ -65,8 +63,7 @@ public class ClienteResource
 {
     /**
 	 * <h1>POST /api/clientes : Crear una entidad de Cliente.</h1>
-	 * <p>
-	 * <pre>Cuerpo de petición: JSON {@link UusarioDetailDTO}.
+	 * <pre>Cuerpo de petición: JSON {@link ClienteDetailDTO}.
 	 *
 	 * Crea una nueva entidad de Cliente con la informacion que se recibe en el cuerpo
 	 * de la petición y se regresa un objeto identico con un id auto-generado
@@ -80,7 +77,6 @@ public class ClienteResource
 	 * 412 Precodition Failed: Ya existe la entidad de Cliente.
 	 * </code>
 	 * </pre>
-	 * </p>
 	 * @param cliente {@link ClienteDetailDTO} - La entidad de Cliente que se desea guardar.
 	 * @return JSON {@link ClienteDetailDTO}  - La entidad de Cliente guardada con el atributo id autogenerado.
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de Cliente.
@@ -93,14 +89,12 @@ public class ClienteResource
         
         /**
 	 * <h1>GET /api/clientes : Obtener todas las entidadese de Cliente.</h1>
-	 * <p>
 	 * <pre>Busca y devuelve todas las entidades de Cliente que existen en la aplicacion.
 	 *
 	 * Codigos de respuesta:
 	 * <code style="color: mediumseagreen; background-color: #eaffe0;">
 	 * 200 OK Devuelve todas las entidades de Cliente de la aplicacion.</code>
 	 * </pre>
-	 * </p>
 	 * @return JSONArray {@link ClienteDetailDTO} - Las entidades de Cliente encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
 	 */
 	@GET
@@ -111,7 +105,6 @@ public class ClienteResource
         
         /**
 	 * <h1>GET /api/os/{id} : Obtener una entidad de Cliente por id.</h1>
-	 * <p>
 	 * <pre>Busca la entidad de Cliente con el id asociado recibido en la URL y la devuelve.
 	 *
 	 * Codigos de respuesta:
@@ -122,7 +115,6 @@ public class ClienteResource
 	 * 404 Not Found No existe una entidad de Cliente con el id dado.
 	 * </code>
 	 * </pre>
-	 * </p>
 	 * @param id Identificador de la entidad de Cliente que se esta buscando. Este debe ser una cadena de dígitos.
 	 * @return JSON {@link ClienteDetailDTO} - La entidad de Cliente buscada
 	 */
@@ -161,7 +153,6 @@ public class ClienteResource
 
 	/**
 	 * <h1>DELETE /api/clientes/{id} : Borrar una entidad de Cliente por id.</h1>
-	 * <p>
 	 * <pre>Borra la entidad de Cliente con el id asociado recibido en la URL.
 	 *
 	 * Códigos de respuesta:<br>
@@ -171,7 +162,6 @@ public class ClienteResource
 	 * 404 Not Found. No existe una entidad de Cliente con el id dado.
 	 * </code>
 	 * </pre>
-	 * </p>
 	 * @param id Identificador de la entidad de Cliente que se desea borrar. Este debe ser una cadena de dígitos.
 	 */
 	@DELETE

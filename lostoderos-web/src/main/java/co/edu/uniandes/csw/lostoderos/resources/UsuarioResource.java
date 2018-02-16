@@ -46,14 +46,12 @@ import javax.ws.rs.Produces;
  * </pre>
  * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
  * este recurso tiene la ruta "usuarios".</i>
- * <p>
  * <h2>Anotaciones </h2>
  * <pre>
  * Path: indica la dirección después de "api" para acceder al recurso
  * Produces/Consumes: indica que los servicios definidos en este recurso reciben y devuelven objetos en formato JSON
- * RequestScoped: Inicia una transacción desde el llamado de cada método (servicio).
+ * RequestScoped: Inicia una transacción desde el llamado de cada método (usuario).
  * </pre>
- * </p>
  * @author s.naranjop1
  * @version 1.0
  */
@@ -65,8 +63,7 @@ public class UsuarioResource
 {
     /**
 	 * <h1>POST /api/usuarios : Crear una entidad de Usuario.</h1>
-	 * <p>
-	 * <pre>Cuerpo de petición: JSON {@link UusarioDetailDTO}.
+	 * <pre>Cuerpo de petición: JSON {@link UsuarioDetailDTO}.
 	 *
 	 * Crea una nueva entidad de Usuario con la informacion que se recibe en el cuerpo
 	 * de la petición y se regresa un objeto identico con un id auto-generado
@@ -80,7 +77,6 @@ public class UsuarioResource
 	 * 412 Precodition Failed: Ya existe la entidad de Usuario.
 	 * </code>
 	 * </pre>
-	 * </p>
 	 * @param usuario {@link UsuarioDetailDTO} - La entidad de Usuario que se desea guardar.
 	 * @return JSON {@link UsuarioDetailDTO}  - La entidad de Usuario guardada con el atributo id autogenerado.
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de Usuario.
@@ -93,14 +89,12 @@ public class UsuarioResource
         
         /**
 	 * <h1>GET /api/usuarios : Obtener todas las entidadese de Usuario.</h1>
-	 * <p>
 	 * <pre>Busca y devuelve todas las entidades de Usuario que existen en la aplicacion.
 	 *
 	 * Codigos de respuesta:
 	 * <code style="color: mediumseagreen; background-color: #eaffe0;">
 	 * 200 OK Devuelve todas las entidades de Usuario de la aplicacion.</code>
 	 * </pre>
-	 * </p>
 	 * @return JSONArray {@link UsuarioDetailDTO} - Las entidades de Usuario encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
 	 */
 	@GET
@@ -111,7 +105,6 @@ public class UsuarioResource
         
         /**
 	 * <h1>GET /api/os/{id} : Obtener una entidad de Usuario por id.</h1>
-	 * <p>
 	 * <pre>Busca la entidad de Usuario con el id asociado recibido en la URL y la devuelve.
 	 *
 	 * Codigos de respuesta:
@@ -122,7 +115,6 @@ public class UsuarioResource
 	 * 404 Not Found No existe una entidad de Usuario con el id dado.
 	 * </code>
 	 * </pre>
-	 * </p>
 	 * @param id Identificador de la entidad de Usuario que se esta buscando. Este debe ser una cadena de dígitos.
 	 * @return JSON {@link UsuarioDetailDTO} - La entidad de Usuario buscada
 	 */
@@ -161,7 +153,6 @@ public class UsuarioResource
 
 	/**
 	 * <h1>DELETE /api/usuarios/{id} : Borrar una entidad de Usuario por id.</h1>
-	 * <p>
 	 * <pre>Borra la entidad de Usuario con el id asociado recibido en la URL.
 	 *
 	 * Códigos de respuesta:<br>
@@ -171,7 +162,6 @@ public class UsuarioResource
 	 * 404 Not Found. No existe una entidad de Usuario con el id dado.
 	 * </code>
 	 * </pre>
-	 * </p>
 	 * @param id Identificador de la entidad de Usuario que se desea borrar. Este debe ser una cadena de dígitos.
 	 */
 	@DELETE
