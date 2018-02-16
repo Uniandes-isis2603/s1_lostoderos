@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.CotizacionEntity;
+
 /**
  *  * DTO Objeto de transferencia de datos de la entidad de Cotizacion. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
@@ -55,8 +57,18 @@ public class CotizacionDTO  {
      */
     private Integer valor;
 
-    //constructor
-    public CotizacionDTO() {
+    //constructores
+    public CotizacionDTO(CotizacionEntity cotizacionEntity) {
+        
+                this.id = cotizacionEntity.getId( );
+		this.descripcion = cotizacionEntity.getDescripcion();
+		this.servicio = cotizacionEntity.getServicio( );
+                this.valor = cotizacionEntity.getValor();
+        
+    }
+    
+    public CotizacionDTO(){
+        
     }
 
     /**
@@ -128,6 +140,15 @@ public class CotizacionDTO  {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public CotizacionEntity toEntity(){
+        
+                CotizacionEntity entity = new CotizacionEntity( );
+		entity.setId( this.id );
+		entity.setDescripcion(this.descripcion);
+		entity.setServicio(this.servicio);
+                entity.setValor(this.valor);
+		return entity;
+    }
     
     
 }
