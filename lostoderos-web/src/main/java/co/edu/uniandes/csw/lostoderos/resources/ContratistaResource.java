@@ -88,7 +88,7 @@ public class ContratistaResource {
     }
     
      /**
-     * <h1>GET /api/cities : Obtener todas los contratistas.</h1>
+     * <h1>GET /api/contratistas : Obtener todas los contratistas.</h1>
      * 
      * <pre>Busca y devuelve todas los contratistas que existen en la aplicacion.
      * 
@@ -99,7 +99,7 @@ public class ContratistaResource {
      * @return JSONArray {@link ContratistaDetailDTO} - Los contratistas encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<ContratistaDetailDTO> getCities() {
+    public List<ContratistaDetailDTO> getContratistas() {
         return new ArrayList<>();
     }
     
