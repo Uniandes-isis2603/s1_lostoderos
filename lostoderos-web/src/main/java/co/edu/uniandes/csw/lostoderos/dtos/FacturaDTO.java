@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
 /**
  * ServicioDTO Objeto de transferencia de datos de la entidad de Factura. Los DTO contienen las
  * representaciones de los JSON que se transfieren entre el cliente y el servidor.
@@ -62,6 +63,21 @@ public class FacturaDTO {
     public FacturaDTO() {
       
     }
+    /**
+	 * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+	 * la entidad que viene de argumento.
+	 *
+	 * @param facturaEntity: Es la entidad que se va a convertir a DTO
+	 */
+    /** public FacturaDTO( FacturaEntity facturaEntity )
+	{
+		this.ID = facturaEntity.getId();
+		this.producto = facturaEntity.getProducto();
+		this.subtotal = facturaEntity.getSubtotal();
+                this.total = facturaEntity.getTotal();
+
+	}
+    */
   /**
 	 * @return el ID de la entidad Cliente
 	 */
@@ -95,7 +111,7 @@ public class FacturaDTO {
 /**
 	 * @param producto El nuevo producto medio de la entidad Todero
 	 */
-    public void setConcepto(String producto) {
+    public void setProducto(String producto) {
         this.producto = producto;
     }
 /**
@@ -111,8 +127,22 @@ public class FacturaDTO {
         this.subtotal = subtotal;
     }
 
-    
-    
+      /**
+	 * Convertir DTO a Entity
+	 *
+	 * @return Un Entity con los valores del DTO
+	 */
+    /**
+	public FacturaEntity toEntity( )
+	{
+		FacturaEntity entity = new FacturaEntity( );
+		entity.setId(this.ID );
+		entity.setProducto(this.producto );
+		entity.setSubtotal(this.subtotal );
+		entity.setTotal(this.total);
+		return entity;
+	}
+    */
    
     
 }
