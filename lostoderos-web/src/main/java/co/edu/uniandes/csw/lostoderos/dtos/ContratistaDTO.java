@@ -62,7 +62,7 @@ public class ContratistaDTO {
      * Constructor por defecto.
      */
     public ContratistaDTO(){
-        
+        super();
     }
     
     /**
