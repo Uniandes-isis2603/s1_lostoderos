@@ -23,7 +23,6 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
-import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
 /**
  * ServicioDTO Objeto de transferencia de datos de la entidad de Factura. Los DTO contienen las
  * representaciones de los JSON que se transfieren entre el cliente y el servidor.
