@@ -39,7 +39,7 @@ public class ContratoDTO {
      */
     
     public ContratoDTO(){
-        
+         super();
     }
     /**
      * 
