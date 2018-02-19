@@ -28,6 +28,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
+
 /**
  * ServicioDTO Objeto de transferencia de datos de la entidad de Pago. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
@@ -83,7 +85,27 @@ public class PagoDTO {
     public void setID(Long ID) {
         this.ID = ID;
     }
+    
+    /**
+	 * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+	 * la entidad que viene de argumento.
+	 *
+	 * @param pagoEntity: Es la entidad que se va a convertir a DTO
+	 */
+   /**  public PagoDTO( PagoEntity pagoEntity )
+	{
+		this.ID = pagoEntity.getId( );
+		this.codigoTarjeta = pagoEntity.getCodigoTarjeta();
+		this.comprobantePagoMedio = pagoEntity.getComprobantePagoMedio();
+                this.comprobantePagoTotal = pagoEntity.getComprobantePagoTotal();
+		this.descripcion = pagoEntity.getDescripcion();
+		this.fechaTarjeta = pagoEntity.getFechaTarjeta();
+		this.numTarjeta = pagoEntity.getNumTarjeta();
+
+	}
+        * 
 /**
+ * 
 	 * @param numTarjeta El nuevo numero de tarjeta de la entidad Todero
 	 */
     public void setNumTarjeta(String numTarjeta) {
@@ -166,4 +188,22 @@ public class PagoDTO {
     public Boolean getComprobantePagoTotal() {
         return comprobantePagoTotal;
     }
+   /**
+	 * Convertir DTO a Entity
+	 *
+	 * @return Un Entity con los valores del DTO
+	 */
+	/**public PagoEntity toEntity( )
+	{
+		PagoEntity entity = new PagoEntity( );
+		entity.setId(this.ID );
+		entity.setCodigoTarjeta(this.codigoTarjeta );
+		entity.setComprobantePagoMedio(this.comprobantePagoMedio );
+		entity.setComprobantePagoTotal(this.comprobantePagoTotal );
+		entity.setDescripcion(this.descripcion );
+                entity.setFechaTarjeta(this.fechaTarjeta );
+                entity.setNumTarjeta(this.numTarjeta ); 
+		return entity;
+	}
+        *  */
 }
