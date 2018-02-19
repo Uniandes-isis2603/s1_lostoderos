@@ -49,7 +49,7 @@ public class PersonaJuridicaResource {
 	 * <p>
 	 * <pre>Cuerpo de petición: JSON {@link PersonaJuridicaDetailDTO}.
 	 *
-	 * Crea una nueva entidad de Todero con la informacion que se recibe en el cuerpo
+	 * Crea una nueva entidad de PersonaJuridica con la informacion que se recibe en el cuerpo
 	 * de la petición y se regresa un objeto identico con un id auto-generado
 	 * por la base de datos.
 	 *
