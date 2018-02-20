@@ -28,7 +28,7 @@ import co.edu.uniandes.csw.lostoderos.entities.CotizacionEntity;
  *  "servicio": "electricidad",
  *  "descripcion": "Arreglo de toedos los bombillos de la casa",
  *  "valor": 75100
- * }
+ * }</pre> 
  * 
  * 
  * @author m.saravia
@@ -105,7 +105,7 @@ public class CotizacionDTO  {
     
     /**
      * establece la descripcion dada
-     * @param descripcion 
+     * @param descripcion descripcion que se desea cambiar
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
@@ -113,7 +113,7 @@ public class CotizacionDTO  {
 
     /**
      * establece el id nuaevo
-     * @param id 
+     * @param id id que se desa cambiar
      */
     public void setId(Long id) {
         this.id = id;
@@ -121,7 +121,7 @@ public class CotizacionDTO  {
 
     /**
      * establece el servicio a tomar
-     * @param servicio 
+     * @param servicio servicio a cambiar
      */
     public void setServicio(String servicio) {
         this.servicio = servicio;
@@ -129,7 +129,7 @@ public class CotizacionDTO  {
 
     /**
      * establece el valor de la cotizacion
-     * @param valor 
+     * @param valor valor a cambiar
      */
     public void setValor(Integer valor) {
         this.valor = valor;

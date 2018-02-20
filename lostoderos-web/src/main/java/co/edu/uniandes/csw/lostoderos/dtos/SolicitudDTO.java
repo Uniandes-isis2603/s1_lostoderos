@@ -44,11 +44,6 @@ public class SolicitudDTO {
     private String requerimientos;
     
     /**
-     * informacion del pago a realizar
-     */
-    private PagoDTO info_pago;
-    
-    /**
      * calificacion que tiene el todero
      */
     private Integer calificacion;
@@ -110,13 +105,6 @@ public class SolicitudDTO {
         return id;
     }
 
-    /**
-     * 
-     * @return informacion del pago
-     */
-    public PagoDTO getInfo_pago() {
-        return info_pago;
-    }
 
     /**
      * 
@@ -136,7 +124,7 @@ public class SolicitudDTO {
 
     /**
      * establece la calificacion
-     * @param calificacion 
+     * @param calificacion calificacion que se desea
      */
     public void setCalificacion(Integer calificacion) {
         this.calificacion = calificacion;
@@ -144,7 +132,7 @@ public class SolicitudDTO {
 
     /**
      * establece la cantidad de contratistas
-     * @param cantidad_contratistas 
+     * @param cantidad_contratistas numero de contratistas que se desean
      */
     public void setCantidad_contratistas(Integer cantidad_contratistas) {
         this.cantidad_contratistas = cantidad_contratistas;
@@ -152,7 +140,7 @@ public class SolicitudDTO {
 
     /**
      * establece el codigo de seguridad
-     * @param cod_seguridad 
+     * @param cod_seguridad codigo que se desea
      */
     public void setCod_seguridad(Integer cod_seguridad) {
         this.cod_seguridad = cod_seguridad;
@@ -160,7 +148,7 @@ public class SolicitudDTO {
 
     /**
      * establece la descripcion
-     * @param descripcion 
+     * @param descripcion descripcion que se desea
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
@@ -168,7 +156,7 @@ public class SolicitudDTO {
 
     /**
      * establece la fecha de inicio
-     * @param fecha_inicio 
+     * @param fecha_inicio fecha que se desea
      */
     public void setFecha_inicio(String fecha_inicio) {
         this.fecha_inicio = fecha_inicio;
@@ -176,18 +164,10 @@ public class SolicitudDTO {
 
     /**
      * establece el id
-     * @param id 
+     * @param id que necesite
      */
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    /**
-     * establece la informacion del pago
-     * @param info_pago 
-     */
-    public void setInfo_pago(PagoDTO info_pago) {
-        this.info_pago = info_pago;
     }
 
     /**
@@ -200,7 +180,7 @@ public class SolicitudDTO {
 
     /**
      * establece el tipo de servicio
-     * @param tipo_servicio 
+     * @param tipo_servicio servicio que se desea
      */
     public void setTipo_servicio(Integer tipo_servicio) {
         this.tipo_servicio = tipo_servicio;

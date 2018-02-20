@@ -16,6 +16,27 @@ public class SolicitudDetailDTO extends SolicitudDTO{
         super();
     }
     
+    /**
+     * pago de la solicitud
+     */
+    private PagoDTO info_pago;
+
+    /**
+     * el pago que se desee
+     * @return info_pago
+     */
+    public PagoDTO getInfo_pago() {
+        return info_pago;
+    }
+
+    /**
+     * pago a cambiar
+     * @param info_pago pago que se desea
+     */
+    public void setInfo_pago(PagoDTO info_pago) {
+        this.info_pago = info_pago;
+    }
+    
     
     
 }
