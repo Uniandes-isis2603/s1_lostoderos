@@ -99,7 +99,7 @@ public class CalificacionPersistenceTest {
      *
      */
     private void clearData() {
-        em.createQuery("delete from EditorialEntity").executeUpdate();
+        em.createQuery("delete from CalificacionEntity").executeUpdate();
     }
 
     /**

@@ -98,7 +98,7 @@ public class ContratoPersistenceTest {
      *
      */
     private void clearData() {
-        em.createQuery("delete from EditorialEntity").executeUpdate();
+        em.createQuery("delete from ContratoEntity").executeUpdate();
     }
 
     /**
