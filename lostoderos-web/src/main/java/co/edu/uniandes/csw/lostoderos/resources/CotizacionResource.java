@@ -127,7 +127,7 @@ public class CotizacionResource {
 	 */
     @PUT
     @Path( "{id: \\d+}" )
-    public CotizacionDetailDTO updateCOtizacion(@PathParam( "id") Long id, CotizacionDetailDTO cotizacion)throws BusinessLogicException{
+    public CotizacionDetailDTO updateCotizacion(@PathParam( "id") Long id, CotizacionDetailDTO cotizacion)throws BusinessLogicException{
         
         return cotizacion;
     }
