@@ -23,7 +23,7 @@ import javax.persistence.TypedQuery;
 public class FacturaPersistence {
          private static final Logger LOGGER = Logger.getLogger(FacturaPersistence.class.getName());
 
-    @PersistenceContext(unitName = "ToderoPU")
+    @PersistenceContext(unitName = "LosToderosPU")
     protected EntityManager em;
 
     public FacturaEntity find(Long id) {
