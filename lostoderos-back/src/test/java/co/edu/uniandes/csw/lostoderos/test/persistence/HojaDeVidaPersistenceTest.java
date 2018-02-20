@@ -146,7 +146,7 @@ public class HojaDeVidaPersistenceTest {
      *
      */
     @Test
-    public void createEditorialTest() {
+    public void createHojaDeVidaTest() {
         PodamFactory factory = new PodamFactoryImpl();
         HojaDeVidaEntity newEntity = factory.manufacturePojo(HojaDeVidaEntity.class);
         HojaDeVidaEntity result = hojaDeVidaPersistence.create(newEntity);

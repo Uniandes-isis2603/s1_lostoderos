@@ -39,7 +39,7 @@ public class ContratistaPersistence {
     
     private static final Logger LOGGER = Logger.getLogger(ContratistaEntity.class.getName());
     
-    @PersistenceContext(unitName="LosToderosUP")
+    @PersistenceContext(unitName="LosToderosPU")
     protected EntityManager em;
     
      public ContratistaEntity find(Long id) {

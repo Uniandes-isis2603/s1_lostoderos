@@ -127,7 +127,7 @@ public class ContratistaPersistenceTest {
      *
      */
     @Test
-    public void createEditorialTest() {
+    public void createContratistaTest() {
         PodamFactory factory = new PodamFactoryImpl();
         ContratistaEntity newEntity = factory.manufacturePojo(ContratistaEntity.class);
         ContratistaEntity result = contratistaPersistence.create(newEntity);
