@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.lostoderos.test.persistence;
 
-import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
-import co.edu.uniandes.csw.lostoderos.persistence.ServicioPersistence;
+import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
+import co.edu.uniandes.csw.lostoderos.persistence.ClientePersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -29,9 +29,9 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author s.naranjop1
  */
 @RunWith(Arquillian.class)
-public class ServicioPersistenceTest 
+public class ClientePersistenceTest
 {
-   /**
+    /**
      *
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
      * embebido. El jar contiene las clases de Editorial, el descriptor de la
@@ -41,8 +41,8 @@ public class ServicioPersistenceTest
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(ServicioEntity.class.getPackage())
-                .addPackage(ServicioPersistence.class.getPackage())
+                .addPackage(ClienteEntity.class.getPackage())
+                .addPackage(ClientePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -52,7 +52,7 @@ public class ServicioPersistenceTest
      * se van a probar.
      */
     @Inject
-    private ServicioPersistence servicioPersistence;
+    private ClientePersistence clientePersistence;
 
     /**
      * Contexto de Persistencia que se va a utilizar para acceder a la Base de
@@ -96,13 +96,13 @@ public class ServicioPersistenceTest
      *
      */
     private void clearData() {
-        em.createQuery("delete from ServicioEntity").executeUpdate();
+        em.createQuery("delete from ClienteEntity").executeUpdate();
     }
 
     /**
      * lista que tiene los datos de prueba
      */
-    private List<ServicioEntity> data = new ArrayList<ServicioEntity>();
+    private List<ClienteEntity> data = new ArrayList<ClienteEntity>();
     
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
@@ -114,7 +114,7 @@ public class ServicioPersistenceTest
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             
-            ServicioEntity entity = factory.manufacturePojo(ServicioEntity.class);
+            ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
 
             em.persist(entity);
             
@@ -128,12 +128,12 @@ public class ServicioPersistenceTest
      *
      */
     @Test
-    public void createServicioTest() {
+    public void createClienteTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
-        ServicioEntity result = servicioPersistence.create(newEntity);
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        ClienteEntity result = clientePersistence.create(newEntity);
         Assert.assertNotNull(result);
-        ServicioEntity entity = em.find(ServicioEntity.class, result.getId());
+        ClienteEntity entity = em.find(ClienteEntity.class, result.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
-    } 
+    }
 }

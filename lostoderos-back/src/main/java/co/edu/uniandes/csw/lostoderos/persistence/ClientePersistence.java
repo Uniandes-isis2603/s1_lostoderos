@@ -26,12 +26,14 @@ package co.edu.uniandes.csw.lostoderos.persistence;
 import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  * @author s.naranjop1
  */
+@Stateless
 public class ClientePersistence 
 {
     private static final Logger LOGGER = Logger.getLogger(ClientePersistence.class.getName());

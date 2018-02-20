@@ -5,33 +5,32 @@
  */
 package co.edu.uniandes.csw.lostoderos.test.persistence;
 
-import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
-import co.edu.uniandes.csw.lostoderos.persistence.ServicioPersistence;
+import co.edu.uniandes.csw.lostoderos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.lostoderos.persistence.UsuarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
+import junit.framework.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
-
 /**
  *
  * @author s.naranjop1
  */
 @RunWith(Arquillian.class)
-public class ServicioPersistenceTest 
+public class UsuarioPersistenceTest 
 {
-   /**
+     /**
      *
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
      * embebido. El jar contiene las clases de Editorial, el descriptor de la
@@ -41,8 +40,8 @@ public class ServicioPersistenceTest
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(ServicioEntity.class.getPackage())
-                .addPackage(ServicioPersistence.class.getPackage())
+                .addPackage(UsuarioEntity.class.getPackage())
+                .addPackage(UsuarioPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -52,7 +51,7 @@ public class ServicioPersistenceTest
      * se van a probar.
      */
     @Inject
-    private ServicioPersistence servicioPersistence;
+    private UsuarioPersistence usuarioPersistence;
 
     /**
      * Contexto de Persistencia que se va a utilizar para acceder a la Base de
@@ -96,13 +95,13 @@ public class ServicioPersistenceTest
      *
      */
     private void clearData() {
-        em.createQuery("delete from ServicioEntity").executeUpdate();
+        em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
 
     /**
      * lista que tiene los datos de prueba
      */
-    private List<ServicioEntity> data = new ArrayList<ServicioEntity>();
+    private List<UsuarioEntity> data = new ArrayList<UsuarioEntity>();
     
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
@@ -114,7 +113,7 @@ public class ServicioPersistenceTest
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             
-            ServicioEntity entity = factory.manufacturePojo(ServicioEntity.class);
+            UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
 
             em.persist(entity);
             
@@ -128,12 +127,12 @@ public class ServicioPersistenceTest
      *
      */
     @Test
-    public void createServicioTest() {
+    public void createUsuarioTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
-        ServicioEntity result = servicioPersistence.create(newEntity);
+        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
+        UsuarioEntity result = usuarioPersistence.create(newEntity);
         Assert.assertNotNull(result);
-        ServicioEntity entity = em.find(ServicioEntity.class, result.getId());
+        UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
-    } 
+    }    
 }
