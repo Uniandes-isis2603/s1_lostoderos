@@ -42,7 +42,7 @@ public class SolicitudResource {
    /**
 	 * <h1>POST /api/solicitudes : Crear una entidad de Solicitud.</h1>
 	 * 
-	 * <pre>Cuerpo de petición: JSON {@link UusarioDetailDTO}.
+	 * <pre>Cuerpo de petición: JSON {@link SolicitudDetailDTO}.
 	 *
 	 * Crea una nueva entidad de Solicitud con la informacion que se recibe en el cuerpo
 	 * de la petición y se regresa un objeto identico con un id auto-generado
@@ -122,7 +122,7 @@ public class SolicitudResource {
 	 * </pre>
 	 *
 	 * @param id Identificador de la entidad de Solicitud que se desea actualizar.Este debe ser una cadena de dígitos.
-	 * @param detailDTO {@link SolicitudDetailDTO} La entidad de Solicitud que se desea guardar.
+	 * @param solicitud {@link SolicitudDetailDTO} La entidad de Solicitud que se desea guardar.
 	 * @return JSON {@link SolicitudDetailDTO} - La entidad de Solicitud guardada.
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la entidad de Solicitud porque ya existe una con ese nombre.
 	 */

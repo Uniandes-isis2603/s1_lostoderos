@@ -41,7 +41,7 @@ public class CotizacionResource {
     /**
 	 * <h1>POST /api/cotizaciones : Crear una entidad de Cotizacion.</h1>
 	 * 
-	 * <pre>Cuerpo de petición: JSON {@link UusarioDetailDTO}.
+	 * <pre>Cuerpo de petición: JSON {@link CotizacionDetailDTO}.
 	 *
 	 * Crea una nueva entidad de Cotizacion con la informacion que se recibe en el cuerpo
 	 * de la petición y se regresa un objeto identico con un id auto-generado
@@ -121,7 +121,7 @@ public class CotizacionResource {
 	 * </pre>
 	 *
 	 * @param id Identificador de la entidad de Cotizacion que se desea actualizar.Este debe ser una cadena de dígitos.
-	 * @param detailDTO {@link CotizacionDetailDTO} La entidad de Cotizacion que se desea guardar.
+	 * @param cotizacion {@link CotizacionDetailDTO} La entidad de Cotizacion que se desea guardar.
 	 * @return JSON {@link CotizacionDetailDTO} - La entidad de Cotizacion guardada.
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la entidad de Cotizacion porque ya existe una con ese nombre.
 	 */
