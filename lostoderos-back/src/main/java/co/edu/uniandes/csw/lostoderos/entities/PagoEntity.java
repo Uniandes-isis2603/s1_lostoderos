@@ -25,9 +25,7 @@ public class PagoEntity extends BaseEntity implements Serializable{
 	 */
     public PagoEntity() {
     }
-/**
-	 * @param ID El nuevo ID de la entidad Todero
-	 */
+
   
 /**
 	 * @param numTarjeta El nuevo numero de tarjeta de la entidad Todero

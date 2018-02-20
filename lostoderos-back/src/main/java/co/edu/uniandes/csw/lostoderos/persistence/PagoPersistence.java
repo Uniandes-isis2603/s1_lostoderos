@@ -23,7 +23,7 @@ import javax.persistence.TypedQuery;
 public class PagoPersistence {
      private static final Logger LOGGER = Logger.getLogger(PagoPersistence.class.getName());
 
-    @PersistenceContext(unitName = "ToderoPU")
+    @PersistenceContext(unitName = "LosToderosPU")
     protected EntityManager em;
 
     public PagoEntity find(Long id) {
