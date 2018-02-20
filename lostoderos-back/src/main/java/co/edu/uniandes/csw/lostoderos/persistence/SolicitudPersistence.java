@@ -33,9 +33,9 @@ public class SolicitudPersistence {
 	 */
 	public SolicitudEntity create( SolicitudEntity entity )
 	{
-		LOGGER.info( "Creando una nueva entidad de losToderos" );
+		LOGGER.info( "Creando una nueva solicitud de losToderos" );
 		em.persist( entity );
-		LOGGER.info( "Creando una entidad de losToderos" );
+		LOGGER.info( "Creando una solicitud de losToderos" );
 		return entity;
 	}
 
@@ -46,7 +46,7 @@ public class SolicitudPersistence {
 	 * @return null si no existe ninguna entidad losToderos con el nombre del argumento. Si
 	 * existe alguna devuelve la primera.
 	 */
-	public SolicitudEntity findByName( String name )
+	/*public SolicitudEntity findByName( String name )
 	{
 		LOGGER.log( Level.INFO, "Consultando entidades de Solucitudes por nombre ", name );
 
@@ -64,27 +64,31 @@ public class SolicitudPersistence {
 		{
 			return sameName.get( 0 );
 		}
-	}
+	}*/
 
-	public List<SolicitudEntity> findAll( )
+	/*public List<SolicitudEntity> findAll( )
 	{
 		LOGGER.info( "Consultando todas las entidades de losToderos" );
 		TypedQuery<SolicitudEntity> query = em.createQuery( "select u from SolicitudEntity u", SolicitudEntity.class );
 		return query.getResultList( );
-	}
+	}*/
 
 	public SolicitudEntity find( Long id )
 	{
+                LOGGER.log(Level.INFO, "Consultando una solicitud con id={0}",id);
 		return em.find( SolicitudEntity.class, id );
 	}
 
 	public SolicitudEntity update( SolicitudEntity entity )
 	{
+                LOGGER.log(Level.INFO, "Consultando una solicitud con id={0}",entity.getId());
 		return em.merge( entity );
 	}
 
-	public void delete( SolicitudEntity entity )
+	public void delete( Long id )
 	{
+                LOGGER.log(Level.INFO, "Consultando una solicitud con id={0}",id);
+                SolicitudEntity entity= em.find(SolicitudEntity.class, id);
 		em.remove( entity );
 	}
     

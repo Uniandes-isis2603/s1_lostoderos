@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 
 /**
@@ -39,52 +40,29 @@ public class CotizacionPersistence {
 		return entity;
 	}
 
-	/**
-	 * Busca si hay alguna entidad de losToderos con el nombre que se envía de argumento
-	 *
-	 * @param name: Nombre de la entidad de losToderos que se está buscando
-	 * @return null si no existe ninguna entidad losToderos con el nombre del argumento. Si
-	 * existe alguna devuelve la primera.
-	 */
-	public CotizacionEntity findByName( String name )
-	{
-		LOGGER.log( Level.INFO, "Consultando entidades de Cotizaciones por nombre ", name );
-
-		// Se crea un query para buscar entidades de Solicitud con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
-		TypedQuery<CotizacionEntity> query = em.createQuery( "Select e From CotizacionEntity e where e.name = :name", CotizacionEntity.class );
-		// Se remplaza el placeholder ":name" con el valor del argumento
-		query = query.setParameter( "name", name );
-		// Se invoca el query se obtiene la lista resultado
-		List<CotizacionEntity> sameName = query.getResultList( );
-		if( sameName.isEmpty( ) )
-		{
-			return null;
-		}
-		else
-		{
-			return sameName.get( 0 );
-		}
-	}
-
 	public List<CotizacionEntity> findAll( )
 	{
-		LOGGER.info( "Consultando todas las entidades de losToderos" );
-		TypedQuery<CotizacionEntity> query = em.createQuery( "select u from SolicitudEntity u", CotizacionEntity.class );
+		LOGGER.info( "Consultando todas las cotizaciones de losToderos" );
+		Query  query = em.createQuery( "select u from CotizacionEntity u" );
 		return query.getResultList( );
 	}
 
 	public CotizacionEntity find( Long id )
 	{
+                LOGGER.log(Level.INFO, "Consultando una cotizacion con id={0}",id);
 		return em.find( CotizacionEntity.class, id );
 	}
 
 	public CotizacionEntity update( CotizacionEntity entity )
 	{
+                LOGGER.log(Level.INFO, "Consultando una cotizacion con id={0}",entity.getId());
 		return em.merge( entity );
 	}
 
-	public void delete( CotizacionEntity entity )
+	public void delete( Long id )
 	{
+                LOGGER.log(Level.INFO, "Consultando una cotizacion con id={0}",id);
+                CotizacionEntity entity= em.find(CotizacionEntity.class, id);
 		em.remove( entity );
 	}
     
