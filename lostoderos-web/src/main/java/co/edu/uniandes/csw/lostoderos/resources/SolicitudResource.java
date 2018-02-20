@@ -22,7 +22,6 @@ import javax.ws.rs.*;
  * </pre>
  * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
  * este recurso tiene la ruta "solicitudes".</i>
- * <p>
  * <h2>Anotaciones </h2>
  * <pre>
  * Path: indica la dirección después de "api" para acceder al recurso
@@ -42,7 +41,7 @@ public class SolicitudResource {
     
    /**
 	 * <h1>POST /api/solicitudes : Crear una entidad de Solicitud.</h1>
-	 * <p>
+	 * 
 	 * <pre>Cuerpo de petición: JSON {@link UusarioDetailDTO}.
 	 *
 	 * Crea una nueva entidad de Solicitud con la informacion que se recibe en el cuerpo
@@ -69,7 +68,7 @@ public class SolicitudResource {
     
     /**
 	 * <h1>GET /api/solicitud : Obtener todas las entidadese de Solicitud.</h1>
-	 * <p>
+	 * 
 	 * <pre>Busca y devuelve todas las entidades de Solicitud que existen en la aplicacion.
 	 *
 	 * Codigos de respuesta:
@@ -87,7 +86,7 @@ public class SolicitudResource {
     
     /**
 	 * <h1>GET /api/os/{id} : Obtener una entidad de Solicitud por id.</h1>
-	 * <p>
+	 * 
 	 * <pre>Busca la entidad de Solicitud con el id asociado recibido en la URL y la devuelve.
 	 *
 	 * Codigos de respuesta:
@@ -136,7 +135,7 @@ public class SolicitudResource {
     
     /**
 	 * <h1>DELETE /api/solicitudes/{id} : Borrar una entidad de Solicitud por id.</h1>
-	 * <p>
+	 * 
 	 * <pre>Borra la entidad de Solicitud con el id asociado recibido en la URL.
 	 *
 	 * Códigos de respuesta:<br>

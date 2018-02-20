@@ -22,7 +22,6 @@ import javax.ws.rs.*;
  * </pre>
  * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
  * este recurso tiene la ruta "cotizaciones".</i>
- * <p>
  * <h2>Anotaciones </h2>
  * <pre>
  * Path: indica la dirección después de "api" para acceder al recurso
@@ -41,7 +40,7 @@ public class CotizacionResource {
     
     /**
 	 * <h1>POST /api/cotizaciones : Crear una entidad de Cotizacion.</h1>
-	 * <p>
+	 * 
 	 * <pre>Cuerpo de petición: JSON {@link UusarioDetailDTO}.
 	 *
 	 * Crea una nueva entidad de Cotizacion con la informacion que se recibe en el cuerpo
@@ -68,7 +67,7 @@ public class CotizacionResource {
     
     /**
 	 * <h1>GET /api/cotizacion : Obtener todas las entidadese de Cotizacion.</h1>
-	 * <p>
+	 * 
 	 * <pre>Busca y devuelve todas las entidades de Cotizacion que existen en la aplicacion.
 	 *
 	 * Codigos de respuesta:
@@ -86,7 +85,7 @@ public class CotizacionResource {
     
     /**
 	 * <h1>GET /api/os/{id} : Obtener una entidad de Cotizacion por id.</h1>
-	 * <p>
+	 * 
 	 * <pre>Busca la entidad de Cotizacion con el id asociado recibido en la URL y la devuelve.
 	 *
 	 * Codigos de respuesta:
@@ -135,7 +134,7 @@ public class CotizacionResource {
     
     /**
 	 * <h1>DELETE /api/cotizaciones/{id} : Borrar una entidad de Cotizacion por id.</h1>
-	 * <p>
+	
 	 * <pre>Borra la entidad de Cotizacion con el id asociado recibido en la URL.
 	 *
 	 * Códigos de respuesta:<br>
