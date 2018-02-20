@@ -50,8 +50,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  */
 public class ClienteDTO extends UsuarioDTO
 {
-        private Long id;
-        
+    
         private String fecha_nacimiento;
         
         private String forma_pago;
@@ -65,24 +64,6 @@ public class ClienteDTO extends UsuarioDTO
 	{
             super();
 	}
-        
-        /**
-	 * @return El ID de la entidad Cliente
-	 */
-        @Override
-        public Long getId() 
-        {
-                return id;
-        }
-
-        /**
-	 * @param id El nuevo ID
-	 */
-        @Override
-        public void setId(Long id) 
-        {
-                this.id = id;
-        }
 
         /**
 	 * @return La fecha de nacimiento de la entidad Cliente

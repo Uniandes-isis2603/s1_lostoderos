@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.UsuarioEntity;
 import java.util.List;
 
 /**
@@ -54,4 +55,16 @@ public class UsuarioDetailDTO extends UsuarioDTO
         {
                 this.servicios = servicios;
         }
+        
+        /**
+	 * Transformar un DTO a un Entity
+	 *
+	 * @return La entidad construida a partir del DTO.
+	 */
+	@Override
+	public UsuarioEntity toEntity( )
+	{
+		UsuarioEntity usuarioEntity = super.toEntity( );
+		return usuarioEntity;
+	}
 }

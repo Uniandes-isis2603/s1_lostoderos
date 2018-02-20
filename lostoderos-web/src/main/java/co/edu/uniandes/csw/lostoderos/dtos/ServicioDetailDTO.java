@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import java.util.List;
 
 /**
@@ -52,4 +53,16 @@ public class ServicioDetailDTO extends ServicioDTO
         {
                 this.contratistas = contratistas;
         }
+        
+        /**
+	 * Transformar un DTO a un Entity
+	 *
+	 * @return La entidad construida a partir del DTO.
+	 */
+	@Override
+	public ServicioEntity toEntity( )
+	{
+		ServicioEntity servicioEntity = super.toEntity( );
+		return servicioEntity;
+	}
 }

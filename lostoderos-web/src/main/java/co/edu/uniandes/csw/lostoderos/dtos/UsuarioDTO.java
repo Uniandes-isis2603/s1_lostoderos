@@ -23,6 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.UsuarioEntity;
+
 /**
  * ServicioDTO Objeto de transferencia de datos de la entidad de Servicio. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
@@ -148,4 +150,20 @@ public class UsuarioDTO
         {
                 this.correo = correo;
         }
+        
+        /**
+	 * Convertir DTO a Entity
+	 *
+	 * @return Un Entity con los valores del DTO
+	 */
+	public UsuarioEntity toEntity( )
+	{
+		UsuarioEntity entity = new UsuarioEntity( );
+		entity.setId( this.id );
+		entity.setNombre(this.nombre);
+                entity.setUsuario(this.usuario);
+                entity.setContraseña(this.contraseña);
+                entity.setCorreo(this.correo);
+		return entity;
+	}
 }
