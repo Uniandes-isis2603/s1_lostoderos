@@ -37,7 +37,7 @@ public class SolicitudPersistenceTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(SolicitudEntity.class.getPackage())
-                .addPackage(SolicitudEntity.class.getPackage())
+                .addPackage(SolicitudPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
