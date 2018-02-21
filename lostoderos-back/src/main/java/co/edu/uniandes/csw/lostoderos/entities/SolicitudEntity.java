@@ -52,6 +52,13 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
      */
     private Integer cantidad_contratistas;
     
+    /**
+     * informacion del pago
+     */
+    private PagoEntity info_pago;
+
+    
+    
     //constructor
     public SolicitudEntity() {
         
@@ -111,6 +118,22 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
      */
     public Integer getTipo_servicio() {
         return tipo_servicio;
+    }
+    
+    /**
+     * pago que se realiza para la solicitud
+     * @return pago a realizar
+     */
+    public PagoEntity getInfo_pago() {
+        return info_pago;
+    }
+
+    /**
+     * cambia la informacion de pago por la que se desea
+     * @param info_pago informacion que se desea cambiar
+     */
+    public void setInfo_pago(PagoEntity info_pago) {
+        this.info_pago = info_pago;
     }
 
     /**
