@@ -28,7 +28,6 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
-import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
 
 /**
  * ServicioDTO Objeto de transferencia de datos de la entidad de Pago. Los DTO contienen las

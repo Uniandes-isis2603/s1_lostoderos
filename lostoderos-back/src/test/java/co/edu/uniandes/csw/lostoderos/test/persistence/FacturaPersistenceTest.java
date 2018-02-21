@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.lostoderos.test.persistence;
 
 import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
 import co.edu.uniandes.csw.lostoderos.persistence.FacturaPersistence;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,7 +18,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import static org.junit.Assert.assertNotNull;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -35,6 +37,8 @@ public class FacturaPersistenceTest {
      */
     @Inject
     private FacturaPersistence facturaPersistence;
+    
+    
     @PersistenceContext
     private EntityManager em;
   /**
@@ -44,6 +48,60 @@ public class FacturaPersistenceTest {
     @Inject
     UserTransaction utx;
     
+    
+    /**
+     * Configuración inicial de la prueba.
+     *
+     *
+     */
+    @Before
+    public void configTest() {
+        try {
+            utx.begin();
+            em.joinTransaction();
+            clearData();
+            insertData();
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+      /**
+     * Limpia las tablas que están implicadas en la prueba.
+     *
+     *
+     */
+    private void clearData() {
+        em.createQuery("delete from EditorialEntity").executeUpdate();
+    }
+
+    /**
+     * lista que tiene los datos de prueba
+     */
+    private List<FacturaEntity> data = new ArrayList<FacturaEntity>();
+
+    /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     *
+     *
+     */
+    private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+            
+            FacturaEntity entity = factory.manufacturePojo(FacturaEntity.class);
+
+            em.persist(entity);
+            
+            data.add(entity);
+        }
+    }
     /**
      *
      * @return
@@ -67,5 +125,17 @@ public class FacturaPersistenceTest {
         FacturaEntity entity = em.find(FacturaEntity.class, result.getId());
 
         org.junit.Assert.assertEquals(newEntity.getName(), entity.getName());
+    }
+    @Test
+    public void createFacturaTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
+        FacturaEntity result = facturaPersistence.create(newEntity);
+
+        Assert.assertNotNull(result);
+
+        FacturaEntity entity = em.find(FacturaEntity.class, result.getId());
+
+        Assert.assertEquals(newEntity.getName(), entity.getName());
     }
 }

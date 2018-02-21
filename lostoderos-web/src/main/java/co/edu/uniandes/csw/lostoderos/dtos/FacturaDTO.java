@@ -54,6 +54,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
 public class FacturaDTO {
     private Long ID;
     private String producto;
+    private String formaPago;
     private Integer total;
     private Integer subtotal;
   /**
@@ -124,6 +125,15 @@ public class FacturaDTO {
 	 */
     public void setSubtotal(Integer subtotal) {
         this.subtotal = subtotal;
+    }
+    
+
+    public String getFormaPago() {
+        return formaPago;
+    }
+
+    public void setFormaPago(String formaPago) {
+        this.formaPago = formaPago;
     }
 
       /**
