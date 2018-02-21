@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 /**
- * PersonaJuridicalDTO Objeto de transferencia de datos de la entidad de PersonaJuridica. Los DTO contienen las
+ * PersonaJuridicaDTO Objeto de transferencia de datos de la entidad de PersonaJuridica. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
  * 
  * <p>
@@ -17,23 +17,31 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *      "NIT": String,
  *   }
  * </pre>
- * Por ejemplo una entidad de Servicio se representa asi:<br>
+ * Por ejemplo una entidad de PersonaJuridica se representa asi:<br>
  * <p>
  * <pre>
  *
  *   {
  *      "id": 15453,
- *      "NIT": "1022434817",
+ *      "NIT": "900642461-4",
  *   }
  *
  * </pre>
  * 
  * @author na.morenoe
  */
-public class PersonaJuridicaDTO {
+public class PersonaJuridicaDTO extends ClienteDTO{
     
     private long ID;
     private String NIT;
+    
+        /**
+	 * Constructor por defecto
+	 */
+        public PersonaJuridicaDTO() {
+            
+            super();
+    }
 
     public long getID() {
         return ID;
@@ -56,13 +64,6 @@ public class PersonaJuridicaDTO {
     public void setNIT(String NIT) {
         this.NIT = NIT;
     }
-
-    /**
-	 * Constructor por defecto
-	 */
-        public PersonaJuridicaDTO() {
-    }
-    
     
 }
 
