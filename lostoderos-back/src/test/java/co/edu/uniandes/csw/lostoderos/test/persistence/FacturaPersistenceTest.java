@@ -166,7 +166,7 @@ public class FacturaPersistenceTest {
      * 
      */
     @Test
-    public void deleteBlogTest() {
+    public void deleteFacturaTest() {
         FacturaEntity entity = data.get(0);
         facturaPersistence.delete(entity.getId());
         FacturaEntity deleted = em.find(FacturaEntity.class, entity.getId());
