@@ -44,7 +44,7 @@ public class CalificacionResource {
 
     
     /**
-	 * <h1>POST /api/toderos : Crear una entidad de calificacion.</h1>
+	 * <h1>POST /api/calificaciones : Crear una entidad de calificacion.</h1>
 	 * <pre>Cuerpo de petición: JSON {@link CalificacionDetailDTO}.
 	 *
 	 * Crea una nueva entidad de calificacion con la informacion que se recibe en el cuerpo
