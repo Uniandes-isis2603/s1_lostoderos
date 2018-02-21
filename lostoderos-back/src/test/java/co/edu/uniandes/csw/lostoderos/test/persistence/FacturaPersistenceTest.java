@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -94,14 +94,13 @@ public class FacturaPersistenceTest {
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            
             FacturaEntity entity = factory.manufacturePojo(FacturaEntity.class);
 
             em.persist(entity);
-            
             data.add(entity);
         }
     }
+
     /**
      *
      * @return
@@ -167,7 +166,7 @@ public class FacturaPersistenceTest {
      * 
      */
     @Test
-    public void deleteFacturaTest() {
+    public void deleteBlogTest() {
         FacturaEntity entity = data.get(0);
         facturaPersistence.delete(entity.getId());
         FacturaEntity deleted = em.find(FacturaEntity.class, entity.getId());
