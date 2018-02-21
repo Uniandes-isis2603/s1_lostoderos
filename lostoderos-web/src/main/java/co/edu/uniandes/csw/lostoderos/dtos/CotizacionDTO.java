@@ -20,7 +20,7 @@ import co.edu.uniandes.csw.lostoderos.entities.CotizacionEntity;
  * "descripcion": String,
  * "valor": Integer
  * }
- * </pre> La solicitud se representa asi:
+ * </pre> La cotizacion se representa asi:
  * 
  * <pre>
  *  {
