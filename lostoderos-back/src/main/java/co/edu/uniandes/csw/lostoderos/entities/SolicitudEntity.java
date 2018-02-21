@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -55,6 +57,8 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
     /**
      * informacion del pago
      */
+    @PodamExclude
+    @OneToOne
     private PagoEntity info_pago;
 
     
