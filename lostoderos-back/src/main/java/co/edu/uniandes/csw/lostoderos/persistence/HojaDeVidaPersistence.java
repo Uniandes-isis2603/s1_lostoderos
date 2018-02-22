@@ -24,11 +24,13 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.persistence;
 
 import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -52,6 +54,21 @@ public class HojaDeVidaPersistence {
         em.persist(entity);
         LOGGER.info("Hoja de vida creado");
         return entity;
+    }
+    
+     /**
+     * Devuelve todas las hojas de vida de la base de datos.
+     *
+     * @return una lista con todas las hojas de vida que encuentre en la base de
+     * datos, "select u from HojaDeVidaEntity u" es como un "select * from
+     * HojaDeVidaEntity;" - "SELECT * FROM table_name" en SQL.
+     */
+    public List<HojaDeVidaEntity> findAll() {
+        LOGGER.info("Consultando todas las hojas de vida");
+        // Se crea un query para buscar todas las hojas de vida en la base de datos.
+        TypedQuery query = em.createQuery("select u from HojaDeVidaEntity u", HojaDeVidaEntity.class);
+        // Note que en el query se hace uso del método getResultList() que obtiene una lista de hojas de vida.
+        return query.getResultList();
     }
     
     public HojaDeVidaEntity update(HojaDeVidaEntity entity){
