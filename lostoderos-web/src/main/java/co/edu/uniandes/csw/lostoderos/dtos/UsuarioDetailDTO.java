@@ -30,12 +30,65 @@ import java.util.List;
  * Clase que extiende de {@link UsuarioDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
  * contenido del usuario vaya a la documentacion de {@link UsuarioDTO}
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": number,
+ *      "nombre": string,
+ *      "usuario": string,
+ *      "contraseña": string,
+ *      "correo": string,
+ *      "servicios": 
+ *      [
+ *         {
+ *           "id": number,
+ *           "nombre": string,
+ *           "reputacion": string,
+ *           "disponibilidad": boolean
+ *         },
+ *         {
+ *           "id": number,
+ *           "nombre": string,
+ *           "reputacion": string,
+ *           "disponibilidad": boolean
+ *         }
+ *      ]
+ *   }
+ * </pre>
+ * Por ejemplo una entidad de Servicio se representa asi:<br>
+ * <pre>
+ *
+ *   {
+ *      "id": 91852,
+ *      "nombre": "Juan Perez",
+ *      "usuario": "Jperez",
+ *      "contraseña": "enero1999",
+ *      "correo": "Jperez@gmail.com",
+ *      "servicios": 
+ *      [
+ *         {
+ *           "id": 91852,
+ *           "nombre": "Plomería",
+ *           "categorias": "agua y tuberias",
+ *           "descripción": "Aqui va una descripcion detallada del servicio"
+ *         },
+ *         {
+ *           "id": 91853,
+ *           "nombre": "Mantenimiento sistema electrico",
+ *           "categorias": "Electricidad",
+ *           "descripción": "Aqui va una descripcion detallada del servicio"
+ *         }
+ *      ]
+ *   }
+ *
+ * </pre>
  * @author s.naranjop1
  */
 public class UsuarioDetailDTO extends UsuarioDTO
 {
     
-        private List servicios;
+        private List<ServicioDTO> servicios;
         
         /**
 	 * Constructor por defecto

@@ -35,7 +35,7 @@ import co.edu.uniandes.csw.lostoderos.entities.UsuarioEntity;
  *      "nombre": string,
  *      "usuario": string,
  *      "contraseña": string,
- *      "correo":String
+ *      "correo": string
  *   }
  * </pre>
  * Por ejemplo una entidad de Servicio se representa asi:<br>

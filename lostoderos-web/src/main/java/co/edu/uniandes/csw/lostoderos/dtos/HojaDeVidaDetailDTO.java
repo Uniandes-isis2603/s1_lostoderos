@@ -23,6 +23,8 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
+
 /**
  *Clase que extiende de {@link HojaDeVidaDTO} para manejar la transformación
  * entre los objetos JSON y las Entidades de la base de datos. Para conocer el
@@ -37,4 +39,24 @@ public class HojaDeVidaDetailDTO extends HojaDeVidaDTO {
     public HojaDeVidaDetailDTO(){
         
     }
+    /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param entity La entidad de hoja de vida a partir de la cual se construye el objeto
+     */
+    public HojaDeVidaDetailDTO(HojaDeVidaEntity entity) {
+        super(entity);
+    }
+
+    /**
+     * Transformar un DTO a un Entity
+     *
+     * @return  La entidad construida a partir del DTO.
+     */
+    @Override
+    public HojaDeVidaEntity toEntity() {
+        HojaDeVidaEntity hojaDeVidaE = super.toEntity();
+        return hojaDeVidaE;
+    }
+    
 }

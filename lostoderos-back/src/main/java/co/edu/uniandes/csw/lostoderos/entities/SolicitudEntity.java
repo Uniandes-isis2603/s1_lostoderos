@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -51,6 +53,15 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
      * numero de contratistas que se requieren
      */
     private Integer cantidad_contratistas;
+    
+    /**
+     * informacion del pago
+     */
+    @PodamExclude
+    @OneToOne
+    private PagoEntity info_pago;
+
+    
     
     //constructor
     public SolicitudEntity() {
@@ -111,6 +122,22 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
      */
     public Integer getTipo_servicio() {
         return tipo_servicio;
+    }
+    
+    /**
+     * pago que se realiza para la solicitud
+     * @return pago a realizar
+     */
+    public PagoEntity getInfo_pago() {
+        return info_pago;
+    }
+
+    /**
+     * cambia la informacion de pago por la que se desea
+     * @param info_pago informacion que se desea cambiar
+     */
+    public void setInfo_pago(PagoEntity info_pago) {
+        this.info_pago = info_pago;
     }
 
     /**

@@ -21,10 +21,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package co.edu.uniandes.csw.lostoderos.test.persistence;
+package co.edu.uniandes.csw.lostoderos.test.logic;
 
-import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
-import co.edu.uniandes.csw.lostoderos.persistence.ClientePersistence;
+import co.edu.uniandes.csw.lostoderos.ejb.UsuarioLogic;
+import co.edu.uniandes.csw.lostoderos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.lostoderos.persistence.UsuarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -47,55 +49,39 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author s.naranjop1
  */
 @RunWith(Arquillian.class)
-public class ClientePersistenceTest
+public class UsuarioLogicTest 
 {
-    /**
-     *
-     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de Editorial, el descriptor de la
-     * base de datos y el archivo beans.xml para resolver la inyección de
-     * dependencias.
-     */
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(ClienteEntity.class.getPackage())
-                .addPackage(ClientePersistence.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
-    
-    /**
-     * Inyección de la dependencia a la clase ContratistaPersistence cuyos métodos
-     * se van a probar.
-     */
-    @Inject
-    private ClientePersistence clientePersistence;
+    private PodamFactory factory = new PodamFactoryImpl();
 
-    /**
-     * Contexto de Persistencia que se va a utilizar para acceder a la Base de
-     * datos por fuera de los métodos que se están probando.
-     */
+    @Inject
+    private UsuarioLogic usuarioLogic;
+
     @PersistenceContext
     private EntityManager em;
 
-    /**
-     * Variable para martcar las transacciones del em anterior cuando se
-     * crean/borran datos para las pruebas.
-     */
     @Inject
-    UserTransaction utx;
-    
+    private UserTransaction utx;
+
+    private List<UsuarioEntity> data = new ArrayList<UsuarioEntity>();
+
+    @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(UsuarioEntity.class.getPackage())
+                .addPackage(UsuarioLogic.class.getPackage())
+                .addPackage(UsuarioPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    }
+
     /**
      * Configuración inicial de la prueba.
-     *
      *
      */
     @Before
     public void configTest() {
         try {
             utx.begin();
-            em.joinTransaction();
             clearData();
             insertData();
             utx.commit();
@@ -108,32 +94,25 @@ public class ClientePersistenceTest
             }
         }
     }
+
     /**
      * Limpia las tablas que están implicadas en la prueba.
      *
-     *
      */
     private void clearData() {
-        em.createQuery("delete from ClienteEntity").executeUpdate();
+        em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
 
-    /**
-     * lista que tiene los datos de prueba
-     */
-    private List<ClienteEntity> data = new ArrayList<ClienteEntity>();
-    
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      *
-     *
      */
     private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             
-            ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
-
+            UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
+            
             em.persist(entity);
             
             data.add(entity);
@@ -141,63 +120,64 @@ public class ClientePersistenceTest
     }
 
     /**
-     * Prueba para crear un Contratista.
+     * Prueba para crear un Usuario
      *
-     *
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      */
     @Test
-    public void createClienteTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
-        ClienteEntity result = clientePersistence.create(newEntity);
+    public void createUsuarioTest() throws BusinessLogicException {
+        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
+        UsuarioEntity result = usuarioLogic.create(newEntity);
         Assert.assertNotNull(result);
-        ClienteEntity entity = em.find(ClienteEntity.class, result.getId());
+        UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }
-    
+
     /**
-     * Prueba para eliminar un Cliente
+     * Prueba para consultar un Usuario
      *
      * 
      */
     @Test
-    public void deleteClienteTest() {
-        ClienteEntity entity = data.get(0);
-        clientePersistence.delete(entity.getId());
-        ClienteEntity deleted = em.find(ClienteEntity.class, entity.getId());
+    public void getUsuarioTest() {
+        UsuarioEntity entity = data.get(0);
+        UsuarioEntity resultEntity =usuarioLogic.getById(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getName(), resultEntity.getName());
+    }
+
+    /**
+     * Prueba para eliminar un Usuario
+     *
+     * 
+     */
+    @Test
+    public void deleteUsuarioTest() throws BusinessLogicException {
+        UsuarioEntity entity = data.get(0);
+        usuarioLogic.delete(entity.getId());
+        UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
+
     /**
-     * Prueba para actualizar un Cliente.
+     * Prueba para actualizar un Usuario
      *
      * 
      */
     @Test
-    public void updateClienteTest() {
-        ClienteEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+    public void updateUsuarioTest() throws BusinessLogicException {
+        UsuarioEntity entity = data.get(0);
+        UsuarioEntity pojoEntity = factory.manufacturePojo(UsuarioEntity.class);
 
-        newEntity.setId(entity.getId());
+        pojoEntity.setId(entity.getId());
 
-        clientePersistence.update(newEntity);
+        usuarioLogic.update(pojoEntity);
 
-        ClienteEntity resp = em.find(ClienteEntity.class, entity.getId());
+        UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
-    }
-    
-    /**
-     * Prueba para consultar un Cliente.
-     *
-     * 
-     */
-    @Test
-    public void getClienteTest() {
-        ClienteEntity entity = data.get(0);
-        ClienteEntity newEntity = clientePersistence.find(entity.getId());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
-    }
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getName(), resp.getName());
+    }   
 }

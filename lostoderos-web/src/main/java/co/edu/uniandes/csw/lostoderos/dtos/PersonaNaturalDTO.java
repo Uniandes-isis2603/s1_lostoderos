@@ -17,7 +17,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *      "Cedula": String,
  *   }
  * </pre>
- * Por ejemplo una entidad de Servicio se representa asi:<br>
+ * Por ejemplo una entidad de PersonaNatural se representa asi:<br>
  * <p>
  * <pre>
  *
@@ -31,10 +31,18 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  * @author na.morenoe
  */
 
-public class PersonaNaturalDTO {
+public class PersonaNaturalDTO extends ClienteDTO {
     
     private long ID;
     private String Cedula;
+    
+        /**
+	 * Constructor por defecto
+	 */
+        public PersonaNaturalDTO() {
+            
+            super();
+    }
 
     public long getID() {
         return ID;
@@ -52,10 +60,4 @@ public class PersonaNaturalDTO {
         this.Cedula = NIT;
     }
 
-    /**
-	 * Constructor por defecto
-	 */
-        public PersonaNaturalDTO() {
-    }
-    
 }

@@ -29,6 +29,81 @@ import java.util.List;
  * Clase que extiende de {@link ClienteDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
  * contenido del cliente vaya a la documentacion de {@link ClienteDTO}
+ * 
+ * * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": number,
+ *      "nombre": string,
+ *      "usuario": string,
+ *      "contraseña": string,
+ *      "correo": string,
+ *      "fecha_nacimiento" string,
+ *      "forma_pago" number,
+ *      "direccion": string,
+ *      "solicitudes":
+ *      [
+ *         {
+ *           "id": Long,
+ *           "requermiemientos": String,
+ *           "tipo_servicio": String,
+ *           "calificacion": Integer,
+ *           "cantidad_contratistas": Integer,
+ *           "cod_seguridad": Integer,
+ *           "descripcion": String,
+ *           "fecha_inicio": String
+ *         },
+ *         {
+ *           "id": Long,
+ *           "requermiemientos": String,
+ *           "tipo_servicio": String,
+ *           "calificacion": Integer,
+ *           "cantidad_contratistas": Integer,
+ *           "cod_seguridad": Integer,
+ *           "descripcion": String,
+ *           "fecha_inicio": String
+ *         }
+ *      ]
+ *   }
+ * </pre>
+ * Por ejemplo una entidad de Servicio se representa asi:<br>
+ * <pre>
+ *
+ *   {
+ *      "id": 91852,
+ *      "nombre": "Juan Perez",
+ *      "usuario": "Jperez",
+ *      "contraseña": "enero1999",
+ *      "correo":"Jperez@gmail.com"
+ *      "fecha_nacimiento" "14/01/1999",
+ *      "forma_pago" 1,
+ *      "direccion": "Carrera 5 #62-08"
+ *      "solicitudes":
+ *      [
+ *         {
+ *           "id": 3859,
+ *           "requerimientos": "Cambiar la tuberia de la casa",
+ *           "tipo_servicio": "Plomería",
+ *           "calificacion": 7,
+ *           "cantidad_contratistas": 1,
+ *           "cod_seguridad": 358,
+ *           "descripcion": "Se daño la tubería en la casa y se desea cambiarla",
+ *           "fecha_inicio": "15/02/2018"
+ *         },
+ *         {
+ *           "id": 3654,
+ *           "requerimientos": "Cambiar los bombillos de la casa",
+ *           "tipo_servicio": "Electricidad",
+ *           "calificacion": 6,
+ *           "cantidad_contratistas": 1,
+ *           "cod_seguridad": 324,
+ *           "descripcion": "Se fundieron los bombillos en la casa y se desea cambiarlos",
+ *           "fecha_inicio": "15/01/2018"
+ *         }
+ *      ]
+ *   }
+ *
+ * </pre>
  * @author s.naranjop1
  */
 public class ClienteDetailDTO extends ClienteDTO 

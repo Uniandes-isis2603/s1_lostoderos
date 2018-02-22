@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.lostoderos.persistence;
 import co.edu.uniandes.csw.lostoderos.entities.PersonaNaturalEntity;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -15,6 +16,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author na.morenoe
  */
+@Stateless
 public class PersonaNaturalPersistence {
     
     private static final Logger LOGGER = Logger.getLogger(PersonaNaturalPersistence.class.getName());
