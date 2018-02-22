@@ -36,6 +36,8 @@ public class ServicioDetailDTO extends ServicioDTO
 {
         private List contratistas;
     
+        private SolicitudDTO solicitud;
+        
         /**
 	 * Constructor por defecto
 	 */
@@ -52,6 +54,16 @@ public class ServicioDetailDTO extends ServicioDTO
         public void setContratistas(List contratistas) 
         {
                 this.contratistas = contratistas;
+        }
+        
+        public SolicitudDTO getSolicitud() 
+        {
+                return solicitud;
+        }
+
+        public void setSolicitud(SolicitudDTO solicitud) 
+        {
+                this.solicitud = solicitud;
         }
         
         /**
