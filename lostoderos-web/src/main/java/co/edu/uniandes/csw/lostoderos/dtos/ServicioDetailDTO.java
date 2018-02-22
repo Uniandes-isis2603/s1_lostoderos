@@ -30,12 +30,63 @@ import java.util.List;
  * Clase que extiende de {@link ServicioDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
  * contenido del servicio vaya a la documentacion de {@link ServicioDTO}
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": number,
+ *      "nombre": string,
+ *      "categorias": string,
+ *      "descripcion": string,
+ *      "contratistas": 
+ *      [
+ *         {
+ *           "id": number,
+ *           "nombre": string,
+ *           "categorias": string,
+ *           "descripción": string
+ *         },
+ *         {
+ *           "id": number,
+ *           "nombre": string,
+ *           "categorias": string,
+ *           "descripción": string
+ *         }
+ *      ]
+ *   }
+ * </pre>
+ * Por ejemplo una entidad de Servicio se representa asi:<br>
+ * <pre>
+ *
+ *   {
+ *      "id": 91852,
+ *      "nombre": "Plomería",
+ *      "categorias": "agua y tuberias",
+ *      "descripción": "Aqui va una descripcion detallada del servicio",
+ *      "contratistas": 
+ *      [
+ *         {
+ *           "id": 91364,
+ *           "nombre": "Sergio Yepes",
+ *           "reputacion": "Muy buena",
+ *           "disponibilidad" : true
+ *         },
+ *         {
+ *           "id": 91359,
+ *           "nombre": "Sergio Naranjo",
+ *           "reputacion": "Muy buena",
+ *           "disponibilidad" : true
+ *         }
+ *      ]
+ *   }
+ *
+ * </pre>
  * @author s.naranjop1
  */
 public class ServicioDetailDTO extends ServicioDTO
 {
         private List contratistas;
-    
+        
         /**
 	 * Constructor por defecto
 	 */

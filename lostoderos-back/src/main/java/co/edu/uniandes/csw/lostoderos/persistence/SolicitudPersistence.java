@@ -65,13 +65,17 @@ public class SolicitudPersistence {
 			return sameName.get( 0 );
 		}
 	}*/
-
-	/*public List<SolicitudEntity> findAll( )
+        
+        /**
+         * se traen todas la entidades de Solicitud
+         * @return lista de solicitudes
+         */
+	public List<SolicitudEntity> findAll( )
 	{
 		LOGGER.info( "Consultando todas las entidades de losToderos" );
 		TypedQuery<SolicitudEntity> query = em.createQuery( "select u from SolicitudEntity u", SolicitudEntity.class );
 		return query.getResultList( );
-	}*/
+	}
 
 	public SolicitudEntity find( Long id )
 	{

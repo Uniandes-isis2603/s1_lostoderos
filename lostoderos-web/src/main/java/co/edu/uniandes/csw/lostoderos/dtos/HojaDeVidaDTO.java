@@ -23,6 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
+
 /**
  * HojaDeVidaDTO Objeto de transferencia de datos de la entidad de HojaDeVida. 
  * Los DTO contienen las representaciones de los JSON que se transfieren entre
@@ -68,6 +70,22 @@ public class HojaDeVidaDTO {
    private String experiencia;
    
    private String referencia;
+   
+   /**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     *
+     * @param hojaDeVida: Es la entidad que se va a convertir a DTO
+     */
+    public HojaDeVidaDTO(HojaDeVidaEntity hojaDeVida) {
+        this.id = hojaDeVida.getId();
+        this.nombre = hojaDeVida.getNombre();
+        this.edad = hojaDeVida.getEdad();
+        this.especialidad=hojaDeVida.getEspecialidad();
+        this.empleos=hojaDeVida.getEmpleos();
+        this.experiencia=hojaDeVida.getExperiencia();
+        this.referencia=hojaDeVida.getReferencias();
+    }
    
    /**
     * Constructor por defecto
@@ -180,5 +198,21 @@ public class HojaDeVidaDTO {
    public void setReferencia(String referencia){
        this.referencia=referencia;
    }
-
+   
+   /**
+     * Convertir DTO a Entity
+     *
+     * @return Un Entity con los valores del DTO
+     */
+    public HojaDeVidaEntity toEntity() {
+        HojaDeVidaEntity entity = new HojaDeVidaEntity();
+        entity.setId(this.id);
+        entity.setNombre(nombre);
+        entity.setEdad(this.edad);
+        entity.setEmpleos(this.empleos);
+        entity.setEspecialidad(this.especialidad);
+        entity.setExperiencia(this.experiencia);
+        entity.setReferencias(this.referencia);
+        return entity;
+    }
 }

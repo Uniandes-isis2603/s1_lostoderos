@@ -7,6 +7,38 @@ package co.edu.uniandes.csw.lostoderos.dtos;
 
 /**
  *
+ * SolicitudDTO Objeto de transferencia de datos de la entidad de
+ * solicitud. Los DTO contienen las representaciones de los JSON que se
+ * transfieren entre el cliente y el servidor. 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ * {
+ *  "id": Long,
+ *  "requermiemientos": String,
+ *  "tipo_servicio": String,
+ *  "calificacion": Integer,
+ *  "cantidad_contratistas": Integer,
+ *  "cod_seguridad": Integer,
+ *  "descripcion": String,
+ *  "fecha_inicio": String
+ *  
+ * }
+ * </pre>
+ Por ejemplo una entidad de solicitud se representa asi:<br>
+ * <pre>
+ *
+ *   {
+ *      "id": 3654,
+ *      "requerimientos": "Cambiar los bombillos de la casa",
+ *      "tipo_servicio": "Electricidad",
+ *      "calificacion": 6,
+ *      "cantidad_contratistas": 1,
+ *      "cod_seguridad": 324,
+ *      "descripcion": "Se fundieron los bombillos en la casa y se desea cambiarlos",
+ *      "fecha_inicio": "15/01/2018"
+ *   }
+ *
+ * </pre>
  * @author m.saravia
  */
 public class SolicitudDTO {
@@ -26,7 +58,7 @@ public class SolicitudDTO {
     /**
      * id de la solicitud
      */
-    private Integer id;
+    private Long id;
     
     /**
      * descripcion del la solicitud
@@ -101,7 +133,7 @@ public class SolicitudDTO {
      * 
      * @return id
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -166,13 +198,13 @@ public class SolicitudDTO {
      * establece el id
      * @param id que necesite
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     /**
      * establece los requerimientos
-     * @param requerimientos 
+     * @param requerimientos requerimientos deseados 
      */
     public void setRequerimientos(String requerimientos) {
         this.requerimientos = requerimientos;

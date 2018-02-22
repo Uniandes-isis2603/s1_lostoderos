@@ -1,8 +1,26 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+MIT License
+
+Copyright (c) 2017 Universidad de los Andes - ISIS2603
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
 package co.edu.uniandes.csw.lostoderos.test.persistence;
 
 import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
@@ -136,4 +154,50 @@ public class ServicioPersistenceTest
         ServicioEntity entity = em.find(ServicioEntity.class, result.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
     } 
+    
+    /**
+     * Prueba para eliminar un Servicio
+     *
+     * 
+     */
+    @Test
+    public void deleteServicioTest() {
+        ServicioEntity entity = data.get(0);
+        servicioPersistence.delete(entity.getId());
+        ServicioEntity deleted = em.find(ServicioEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+    /**
+     * Prueba para actualizar un Servicio.
+     *
+     * 
+     */
+    @Test
+    public void updateServicioTest() {
+        ServicioEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        servicioPersistence.update(newEntity);
+
+        ServicioEntity resp = em.find(ServicioEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getName(), resp.getName());
+    }
+    
+    /**
+     * Prueba para consultar un Servicio.
+     *
+     * 
+     */
+    @Test
+    public void getServicioTest() {
+        ServicioEntity entity = data.get(0);
+        ServicioEntity newEntity = servicioPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
 }

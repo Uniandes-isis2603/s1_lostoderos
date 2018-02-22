@@ -31,8 +31,13 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *   {
  *      "id": number,
  *      "nombre": string,
- *      "categorias": string,
- *      "descripcion": string
+ *      "usuario": string,
+ *      "contraseña": string,
+ *      "correo": string,
+ *      "fecha_nacimiento" string,
+ *      "forma_pago" number,
+ *      "direccion": string
+ * 
  *   }
  * </pre>
  * Por ejemplo una entidad de Servicio se representa asi:<br>
@@ -40,9 +45,13 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *
  *   {
  *      "id": 91852,
- *      "nombre": "Plomería",
- *      "categorias": "agua y tuberias",
- *      "descripción": "Aqui va una descripcion detallada del servicio"
+ *      "nombre": "Juan Perez",
+ *      "usuario": "Jperez",
+ *      "contraseña": "enero1999",
+ *      "correo":"Jperez@gmail.com"
+ *      "fecha_nacimiento" "14/01/1999",
+ *      "forma_pago" 1,
+ *      "direccion": "Carrera 5 #62-08"
  *   }
  *
  * </pre>
