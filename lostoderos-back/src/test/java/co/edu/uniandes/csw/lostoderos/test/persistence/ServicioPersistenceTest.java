@@ -136,4 +136,50 @@ public class ServicioPersistenceTest
         ServicioEntity entity = em.find(ServicioEntity.class, result.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
     } 
+    
+    /**
+     * Prueba para eliminar un Servicio
+     *
+     * 
+     */
+    @Test
+    public void deleteServicioTest() {
+        ServicioEntity entity = data.get(0);
+        servicioPersistence.delete(entity.getId());
+        ServicioEntity deleted = em.find(ServicioEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+    /**
+     * Prueba para actualizar un Servicio.
+     *
+     * 
+     */
+    @Test
+    public void updateServicioTest() {
+        ServicioEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        servicioPersistence.update(newEntity);
+
+        ServicioEntity resp = em.find(ServicioEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getName(), resp.getName());
+    }
+    
+    /**
+     * Prueba para consultar un Servicio.
+     *
+     * 
+     */
+    @Test
+    public void getServicioTest() {
+        ServicioEntity entity = data.get(0);
+        ServicioEntity newEntity = servicioPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
 }

@@ -33,7 +33,7 @@ public class UsuarioPersistenceTest
      /**
      *
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de Editorial, el descriptor de la
+     * embebido. El jar contiene las clases de Usuario, el descriptor de la
      * base de datos y el archivo beans.xml para resolver la inyección de
      * dependencias.
      */
@@ -122,7 +122,7 @@ public class UsuarioPersistenceTest
     }
 
     /**
-     * Prueba para crear un Contratista.
+     * Prueba para crear un Usuario
      *
      *
      */
@@ -135,4 +135,50 @@ public class UsuarioPersistenceTest
         UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }    
+    
+    /**
+     * Prueba para eliminar un Usuario
+     *
+     * 
+     */
+    @Test
+    public void deleteUsuarioTest() {
+        UsuarioEntity entity = data.get(0);
+        usuarioPersistence.delete(entity.getId());
+        UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+    /**
+     * Prueba para actualizar un Usuario.
+     *
+     * 
+     */
+    @Test
+    public void updateUsuarioTest() {
+        UsuarioEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        usuarioPersistence.update(newEntity);
+
+        UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getName(), resp.getName());
+    }
+    
+    /**
+     * Prueba para consultar un Usuario.
+     *
+     * 
+     */
+    @Test
+    public void getUsuarioTest() {
+        UsuarioEntity entity = data.get(0);
+        UsuarioEntity newEntity = usuarioPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
 }
