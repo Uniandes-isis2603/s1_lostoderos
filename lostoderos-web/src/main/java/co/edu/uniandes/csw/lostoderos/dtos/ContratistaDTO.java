@@ -23,6 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
+
 /**
  * ContratistaDTO Objeto de transferencia de datos de la entidad de Contratista.
  * Los DTO contienen las representaciones de los JSON que se transfieren entre
@@ -63,6 +65,20 @@ public class ContratistaDTO {
      */
     public ContratistaDTO(){
         super();
+    }
+    
+     /**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     *
+     * @param contratista: Es la entidad que se va a convertir a DTO
+     */
+    public ContratistaDTO(ContratistaEntity contratista) {
+        this.id = contratista.getId();
+        this.nombre=contratista.getNombre();
+        this.reputacion=contratista.getReputacion();
+        this.disponibilidad=contratista.getDisponibilidad();
+
     }
     
     /**
@@ -124,4 +140,18 @@ public class ContratistaDTO {
     public void setDisponibilidad(Boolean disponibilidad){
         this.disponibilidad=disponibilidad;
     }  
+    
+    /**
+     * Convertir DTO a Entity
+     *
+     * @return Un Entity con los valores del DTO
+     */
+    public ContratistaEntity toEntity() {
+        ContratistaEntity entity = new ContratistaEntity();
+        entity.setId(this.id);
+        entity.setNombre(this.nombre);
+        entity.setReputacion(this.reputacion);
+        entity.setDisponibilidad(this.disponibilidad);
+        return entity;
+    }
 }

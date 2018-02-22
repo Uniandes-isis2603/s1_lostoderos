@@ -23,6 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
+
 /**
  * Clase que extiende de {@link ContratistaDTO} para manejar la transformación 
  * entre los objetos JSON y las Entidades de la base da datos. Para conocer el
@@ -35,5 +37,25 @@ public class ContratistaDetailDTO extends ContratistaDTO{
      */
     public ContratistaDetailDTO(){
         
+    }
+    
+    /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param entity La entidad de contratista a partir de la cual se construye el objeto
+     */
+    public ContratistaDetailDTO(ContratistaEntity entity) {
+        super(entity);
+    }
+    
+    /**
+     * Transformar un DTO a un Entity
+     *
+     * @return  La entidad construida a partir del DTO.
+     */
+    @Override
+    public ContratistaEntity toEntity() {
+        ContratistaEntity contratista = super.toEntity();
+        return contratista;
     }
 }

@@ -36,7 +36,7 @@ public class ContratistaEntity extends BaseEntity implements Serializable{
     
     private String reputacion;
     
-    private String disponibilidad;
+    private Boolean disponibilidad;
 
     /**
      * Obtiene el atributo nombre.
@@ -77,7 +77,7 @@ public class ContratistaEntity extends BaseEntity implements Serializable{
      * 
      * @return La disponibilidad.
      */
-    public String getDisponibilidad() {
+    public Boolean getDisponibilidad() {
         return disponibilidad;
     }
 
@@ -85,7 +85,7 @@ public class ContratistaEntity extends BaseEntity implements Serializable{
      * Establece el atributo disponibilidad.
      * @param disponibilidad Disponibilidad a establecer.
      */
-    public void setDisponibilidad(String disponibilidad) {
+    public void setDisponibilidad(Boolean disponibilidad) {
         this.disponibilidad = disponibilidad;
     }
 }
