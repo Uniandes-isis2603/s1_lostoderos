@@ -23,6 +23,9 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
+import java.util.ArrayList;
+
 /**
  * Clase que extiende de {@link PagoDetailDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
@@ -36,6 +39,14 @@ public class PagoDetailDTO extends PagoDTO {
 		super(  );
 	}
     
+    /**
+     * Crea un objeto AuthorDetailDTO a partir de un objeto AuthorEntity
+     * incluyendo los atributos de AuthorDTO.
+     *
+     * @param entity Entidad AuthorEntity desde la cual se va a crear el nuevo
+     * objeto.
+     *
+     */
     
 
 }

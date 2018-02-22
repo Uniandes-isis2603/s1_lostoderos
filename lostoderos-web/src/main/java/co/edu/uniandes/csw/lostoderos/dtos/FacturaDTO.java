@@ -23,6 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
+
 /**
  * ServicioDTO Objeto de transferencia de datos de la entidad de Factura. Los DTO contienen las
  * representaciones de los JSON que se transfieren entre el cliente y el servidor.
@@ -69,7 +71,7 @@ public class FacturaDTO {
 	 *
 	 * @param facturaEntity: Es la entidad que se va a convertir a DTO
 	 */
-    /** public FacturaDTO( FacturaEntity facturaEntity )
+     public FacturaDTO( FacturaEntity facturaEntity )
 	{
 		this.ID = facturaEntity.getId();
 		this.producto = facturaEntity.getProducto();
@@ -77,7 +79,7 @@ public class FacturaDTO {
                 this.total = facturaEntity.getTotal();
 
 	}
-    */
+    
   /**
 	 * @return el ID de la entidad Cliente
 	 */
@@ -141,7 +143,7 @@ public class FacturaDTO {
 	 *
 	 * @return Un Entity con los valores del DTO
 	 */
-    /**
+    
 	public FacturaEntity toEntity( )
 	{
 		FacturaEntity entity = new FacturaEntity( );
@@ -151,7 +153,7 @@ public class FacturaDTO {
 		entity.setTotal(this.total);
 		return entity;
 	}
-    */
+    
    
     
 }

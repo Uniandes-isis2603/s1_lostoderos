@@ -28,6 +28,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
+
 
 /**
  * ServicioDTO Objeto de transferencia de datos de la entidad de Pago. Los DTO contienen las
@@ -91,7 +93,7 @@ public class PagoDTO {
 	 *
 	 * @param pagoEntity: Es la entidad que se va a convertir a DTO
 	 */
-   /**  public PagoDTO( PagoEntity pagoEntity )
+  /**  public PagoDTO(PagoEntity pagoEntity )
 	{
 		this.ID = pagoEntity.getId( );
 		this.codigoTarjeta = pagoEntity.getCodigoTarjeta();
@@ -102,7 +104,7 @@ public class PagoDTO {
 		this.numTarjeta = pagoEntity.getNumTarjeta();
 
 	}
-        * 
+       */ 
 /**
  * 
 	 * @param numTarjeta El nuevo numero de tarjeta de la entidad Todero
