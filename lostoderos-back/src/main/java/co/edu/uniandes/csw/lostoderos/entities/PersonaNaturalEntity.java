@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author na.morenoe
  */
+@Entity
 public class PersonaNaturalEntity extends BaseEntity implements Serializable{
     
     private String cedula;
