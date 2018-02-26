@@ -24,14 +24,104 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
+import java.util.List;
 
 /**
  * Clase que extiende de {@link ContratistaDTO} para manejar la transformación 
  * entre los objetos JSON y las Entidades de la base da datos. Para conocer el
  * contenido de la ciudad vaya a la documentación de {@link ContratistaDTO}
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *  {
+ *      "id":number,
+ *      "nombre": string,
+ *      "reputacion": string,
+ *      "disponibilidad": string,
+ *      "hojaVida":
+ *      {
+ *          "id": number,
+ *          "nombre": string,
+ *          "edad": number,
+ *          "especialidad": string,
+ *          "empleos": string,
+ *          "experiencia": string,
+ *          "referencias": string
+ *      },
+ *      "contrato":
+ *      {
+ *          "id": number
+ *      },
+ *      "servicios":
+ *      [
+ *          {
+ *              "id": number,
+ *              "nombre", string,
+ *              "reputacion", string,
+ *              "disponibilidad": string
+ *          }
+ *      ],
+ *      "solicitudes":
+ *      [
+ *          {
+ *              "id": number,
+ *              "cod_seguridad": number,
+ *              "tipo_Servicio": number,
+ *              "descripcion": string,
+ *              "fecha_inicio": string,
+ *              "requerimientos": string,
+ *              "factura":
+ *              {
+ *                  "id": number,
+ *                  "subtotal": number,
+ *                  "total": number,
+ *                  "formaPago": String,
+ *                  "pago":
+ *                  {
+ *                      "id": number,
+ *                      "numTarjeta": string,
+ *                      "codigoTarjeta": string,
+ *                      "fechaTarjeta": string,
+ *                      "descripcion": string,
+ *                      "comprobantePagoMedio": boolean,
+ *                      "comprobantePagoTotal": boolean
+ *                  }
+ *              }
+ *          }
+ *      ],
+ *      "calificaciones": 
+ *      [
+ *          {
+ *              "numEstrellas": number,
+ *              "comentario": string,
+ *              "tipoServicio": string,
+ *              "cliente":
+ *              {
+ *                  "id": number,
+ *                  "fechaNacimiento": string,
+ *                  "forma_pago": string,
+ *                  "direccion": string,
+ *                  "solicitudes":[]
+ *              }
+ *          }
+ *      ]
+ *      
+ *  }
+ * </pre>
  * @author sa.yepes
  */
 public class ContratistaDetailDTO extends ContratistaDTO{
+    
+    private List<ServicioDTO> servicios;
+    
+    private List<SolicitudDTO> solicitudes;
+            
+    private HojaDeVidaDTO hojaVida;
+    
+    private List<CalificacionDTO> calificaciones;
+    
+    private ContratoDTO contrato;
+    
     /**
      * Constructor por defecto.
      */
@@ -57,5 +147,75 @@ public class ContratistaDetailDTO extends ContratistaDTO{
     public ContratistaEntity toEntity() {
         ContratistaEntity contratista = super.toEntity();
         return contratista;
+    }
+
+    /**
+     * @return the servicios
+     */
+    public List<ServicioDTO> getServicios() {
+        return servicios;
+    }
+
+    /**
+     * @param servicios the servicios to set
+     */
+    public void setServicios(List<ServicioDTO> servicios) {
+        this.servicios = servicios;
+    }
+
+    /**
+     * @return the solicitudes
+     */
+    public List<SolicitudDTO> getSolicitudes() {
+        return solicitudes;
+    }
+
+    /**
+     * @param solicitudes the solicitudes to set
+     */
+    public void setSolicitudes(List<SolicitudDTO> solicitudes) {
+        this.solicitudes = solicitudes;
+    }
+
+    /**
+     * @return the hojaVida
+     */
+    public HojaDeVidaDTO getHojaVida() {
+        return hojaVida;
+    }
+
+    /**
+     * @param hojaVida the hojaVida to set
+     */
+    public void setHojaVida(HojaDeVidaDTO hojaVida) {
+        this.hojaVida = hojaVida;
+    }
+
+    /**
+     * @return the calificaciones
+     */
+    public List<CalificacionDTO> getCalificaciones() {
+        return calificaciones;
+    }
+
+    /**
+     * @param calificaciones the calificaciones to set
+     */
+    public void setCalificaciones(List<CalificacionDTO> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+
+    /**
+     * @return the contrato
+     */
+    public ContratoDTO getContrato() {
+        return contrato;
+    }
+
+    /**
+     * @param contrato the contrato to set
+     */
+    public void setContrato(ContratoDTO contrato) {
+        this.contrato = contrato;
     }
 }
