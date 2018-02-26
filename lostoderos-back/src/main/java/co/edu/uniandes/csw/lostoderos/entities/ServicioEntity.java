@@ -24,7 +24,12 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -36,6 +41,14 @@ public class ServicioEntity extends BaseEntity implements Serializable
     private String nombre;
     private String categorias;
     private String descripcion;
+    
+    @PodamExclude
+    @ManyToOne
+    private UsuarioEntity usuario;
+    
+    @PodamExclude
+    @ManyToMany( mappedBy = "servicios")
+    private List<ContratistaEntity> contratistas = new ArrayList<ContratistaEntity>();
 
     public String getNombre() 
     {
@@ -65,6 +78,26 @@ public class ServicioEntity extends BaseEntity implements Serializable
     public void setDescripcion(String descripcion) 
     {
         this.descripcion = descripcion;
+    }
+
+    public UsuarioEntity getUsuario() 
+    {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) 
+    {
+        this.usuario = usuario;
+    }
+
+    public List<ContratistaEntity> getContratistas() 
+    {
+        return contratistas;
+    }
+
+    public void setContratistas(List<ContratistaEntity> contratistas) 
+    {
+        this.contratistas = contratistas;
     }
 
     

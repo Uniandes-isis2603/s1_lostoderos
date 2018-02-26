@@ -31,6 +31,39 @@ import java.util.ArrayList;
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
  * contenido del cliente vaya a la documentacion de {@link PagoDetailDTO}
  * @author s.rangel
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": Integer,
+ *      "codigoTarjeta": String,
+ *      "comprobantePagoMedio": Boolean,
+ *      "comprobantePagoTotal": Boolean
+ *      "descripcion": String,
+ *      "fechaTarjeta": String,
+ *      "numTarjeta": String
+ *     
+ *         
+ *      
+ * 
+ *   }
+ * </pre>
+ * Por ejemplo una entidad de Servicio se representa asi:<br>
+ * 
+ * <pre>
+ *
+ *   {
+ *      "id": 12390813,
+ *      "codigoTarjeta": 123,
+ *      "comprobantePagoMedio": true,
+ *      "comprobantePagoTotal": false,
+ *      "descripcion": un pago correspondiente a tal servicio,
+ *      "fechaTarjeta": 10/09/2018,
+ *      "numTarjeta": 123456629723
+ * 
+ *   }
+ *
+ * </pre>
+ *
  */
 public class PagoDetailDTO extends PagoDTO {
     
@@ -39,14 +72,17 @@ public class PagoDetailDTO extends PagoDTO {
 		super(  );
 	}
     
-    /**
-     * Crea un objeto AuthorDetailDTO a partir de un objeto AuthorEntity
-     * incluyendo los atributos de AuthorDTO.
-     *
-     * @param entity Entidad AuthorEntity desde la cual se va a crear el nuevo
-     * objeto.
-     *
-     */
+   /**
+	 * Transformar un DTO a un Entity
+	 *
+	 * @return La entidad construida a partir del DTO.
+	 */
+	@Override
+	public PagoEntity toEntity( )
+	{
+		PagoEntity pagoEntity = super.toEntity( );
+		return pagoEntity;
+	}
     
 
 }

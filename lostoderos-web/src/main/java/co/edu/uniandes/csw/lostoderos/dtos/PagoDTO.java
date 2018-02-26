@@ -68,7 +68,7 @@ import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
  * @author s.rangel
  */
 public class PagoDTO {
-    private Long ID;
+    private Long id;
     private String numTarjeta;
     private String codigoTarjeta;
     private String fechaTarjeta;
@@ -84,7 +84,7 @@ public class PagoDTO {
 	 * @param ID El nuevo ID de la entidad Todero
 	 */
     public void setID(Long ID) {
-        this.ID = ID;
+        this.id = ID;
     }
     
     /**
@@ -151,7 +151,7 @@ public class PagoDTO {
 	 * @return El ID de la entidad Pago
 	 */
     public Long getID() {
-        return ID;
+        return id;
     }
 /**
 	 * @return El numero de la tarjeta de la entidad Pago
@@ -194,17 +194,16 @@ public class PagoDTO {
 	 *
 	 * @return Un Entity con los valores del DTO
 	 */
-	/**public PagoEntity toEntity( )
+	public PagoEntity toEntity( )
 	{
 		PagoEntity entity = new PagoEntity( );
-		entity.setId(this.ID );
-		entity.setCodigoTarjeta(this.codigoTarjeta );
-		entity.setComprobantePagoMedio(this.comprobantePagoMedio );
-		entity.setComprobantePagoTotal(this.comprobantePagoTotal );
-		entity.setDescripcion(this.descripcion );
-                entity.setFechaTarjeta(this.fechaTarjeta );
-                entity.setNumTarjeta(this.numTarjeta ); 
+		entity.setId( this.id);
+                entity.setComprobantePagoMedio(this.comprobantePagoMedio);
+                entity.setComprobantePagoTotal(this.comprobantePagoTotal);
+                entity.setDescripcion(this.descripcion);
+                entity.setFechaTarjeta(this.fechaTarjeta);
+                entity.setCodigoTarjeta(this.codigoTarjeta);
+             
 		return entity;
 	}
-        *  */
 }

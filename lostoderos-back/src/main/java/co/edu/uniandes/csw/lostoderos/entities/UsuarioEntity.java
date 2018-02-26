@@ -24,7 +24,11 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -37,6 +41,10 @@ public class UsuarioEntity extends BaseEntity implements Serializable
     private String usuario;
     private String contraseña;
     private String correo;
+    
+    @PodamExclude
+    @OneToMany( mappedBy = "usuario")
+    private List <ServicioEntity> servicios = new ArrayList<ServicioEntity>();
 
     public String getNombre() 
     {
@@ -76,6 +84,16 @@ public class UsuarioEntity extends BaseEntity implements Serializable
     public void setCorreo(String correo) 
     {
         this.correo = correo;
+    }    
+
+    public List <ServicioEntity> getServicios() 
+    {
+        return servicios;
+    }
+
+    public void setServicios(List <ServicioEntity> servicios) 
+    {
+        this.servicios = servicios;
     }
     
     

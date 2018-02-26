@@ -13,24 +13,43 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
-import org.junit.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
+
 /**
  *
- * @author Santiago
+ * @author s.rangel
  */
 @RunWith(Arquillian.class)
 public class FacturaPersistenceTest {
 
+     /**
+     *
+     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
+     * embebido. El jar contiene las clases de Editorial, el descriptor de la
+     * base de datos y el archivo beans.xml para resolver la inyección de
+     * dependencias.
+     */
+    @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(FacturaEntity.class.getPackage())
+                .addPackage(FacturaPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    }
+  
+    
+    
      /**
      * Inyección de la dependencia a la clase FacturaPersistence cuyos métodos
      * se van a probar.
@@ -94,27 +113,15 @@ public class FacturaPersistenceTest {
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
+            
             FacturaEntity entity = factory.manufacturePojo(FacturaEntity.class);
 
             em.persist(entity);
+            
             data.add(entity);
         }
     }
-
-    /**
-     *
-     * @return
-     */
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(FacturaEntity.class.getPackage())
-                .addPackage(FacturaPersistence.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
-  
-    
+   
     
     @Test
     public void createFacturaTest() {
@@ -172,7 +179,7 @@ public class FacturaPersistenceTest {
         FacturaEntity deleted = em.find(FacturaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-
+  
     /**
      * Prueba para actualizar una factura.
      *
@@ -180,13 +187,13 @@ public class FacturaPersistenceTest {
      */
     @Test
     public void updateFacturaTest() {
-        FacturaEntity entity = data.get(0);
+         FacturaEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
 
         newEntity.setId(entity.getId());
 
-       facturaPersistence.update(newEntity);
+        facturaPersistence.update(newEntity);
 
         FacturaEntity resp = em.find(FacturaEntity.class, entity.getId());
 
