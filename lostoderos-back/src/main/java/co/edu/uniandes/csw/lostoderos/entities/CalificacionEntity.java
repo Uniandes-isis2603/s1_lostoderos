@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -29,6 +30,12 @@ public class CalificacionEntity extends BaseEntity implements Serializable {
      * comentario asociado a la calificacion del servicio
      */
     private String comentario;
+    
+    @ManyToOne
+    private ContratistaEntity contratista;
+    
+    @ManyToOne
+    private ClienteEntity cliente;
 
     /**
      * @return the numEstrellas

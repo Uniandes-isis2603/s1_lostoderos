@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -15,7 +16,22 @@ import javax.persistence.Entity;
 @Entity
 public class ContratoEntity extends BaseEntity implements Serializable {
   
-    
+     @OneToOne(mappedBy = "contrato")
+     private ContratistaEntity contratista;
+
+    /**
+     * @return the contratista
+     */
+    public ContratistaEntity getContratista() {
+        return contratista;
+    }
+
+    /**
+     * @param contratista the contratista to set
+     */
+    public void setContratista(ContratistaEntity contratista) {
+        this.contratista = contratista;
+    }
     
     
     
