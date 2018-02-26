@@ -54,14 +54,32 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
      */
     private Integer cantidad_contratistas;
     
+    
+
+    @PodamExclude
+    @OneToOne
+    private ServicioEntity servicio;
+    
     /**
-     * informacion del pago
+     * 
      */
     @PodamExclude
     @OneToOne
-    private PagoEntity info_pago;
-
+    private FacturaEntity factura;
     
+    /**
+     * 
+     */
+    @PodamExclude
+    @OneToOne
+    private CotizacionEntity cotizacion;
+    
+    /**
+     * 
+     */
+    @PodamExclude
+    @OneToOne
+    private ContratistaEntity cotratista;
     
     //constructor
     public SolicitudEntity() {
@@ -123,22 +141,6 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
     public Integer getTipo_servicio() {
         return tipo_servicio;
     }
-    
-    /**
-     * pago que se realiza para la solicitud
-     * @return pago a realizar
-     */
-    public PagoEntity getInfo_pago() {
-        return info_pago;
-    }
-
-    /**
-     * cambia la informacion de pago por la que se desea
-     * @param info_pago informacion que se desea cambiar
-     */
-    public void setInfo_pago(PagoEntity info_pago) {
-        this.info_pago = info_pago;
-    }
 
     /**
      * establece la calificacion
@@ -194,6 +196,40 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
      */
     public void setTipo_servicio(Integer tipo_servicio) {
         this.tipo_servicio = tipo_servicio;
+    }
+    public ServicioEntity getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(ServicioEntity servicio) {
+        this.servicio = servicio;
+    }
+
+    public FacturaEntity getFactura() {
+        return factura;
+    }
+
+    public void setFactura(FacturaEntity factura) {
+        this.factura = factura;
+    }
+
+    public CotizacionEntity getCotizacion() {
+        return cotizacion;
+    }
+
+    public void setCotizacion(CotizacionEntity cotizacion) {
+        this.cotizacion = cotizacion;
+    }
+
+    public ContratistaEntity getCotratista() {
+        return cotratista;
+    }
+
+    /**
+     * 
+     */
+    public void setCotratista(ContratistaEntity cotratista) {
+        this.cotratista = cotratista;
     }
 
     @Override
