@@ -27,7 +27,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -42,7 +42,7 @@ public class ServicioEntity extends BaseEntity implements Serializable
     private String descripcion;
     
     @PodamExclude
-    @OneToMany
+    @ManyToOne
     private UsuarioEntity usuario;
     
     @ManyToMany

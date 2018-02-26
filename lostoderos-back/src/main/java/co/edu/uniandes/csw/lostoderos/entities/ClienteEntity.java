@@ -44,6 +44,10 @@ public class ClienteEntity extends BaseEntity implements Serializable
     @OneToMany( mappedBy = "cliente")
     private List <SolicitudEntity> solicitudes;
     
+    @PodamExclude
+    @OneToMany( mappedBy = "cliente")
+    private List <CalificacionEntity> calificaciones;
+    
     public String getFecha_nacimiento() 
     {
         return fecha_nacimiento;
@@ -82,6 +86,16 @@ public class ClienteEntity extends BaseEntity implements Serializable
     public void setSolicitudes(List <SolicitudEntity> solicitudes) 
     {
         this.solicitudes = solicitudes;
+    }
+
+    public List <CalificacionEntity> getCalificaciones() 
+    {
+        return calificaciones;
+    }
+
+    public void setCalificaciones(List <CalificacionEntity> calificaciones) 
+    {
+        this.calificaciones = calificaciones;
     }
     
     
