@@ -23,6 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
+
 
 /**
  * Clase que extiende de {@link FacturaDetailDTO} para manejar la transformacion entre
@@ -32,30 +34,23 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
- * private Long ID;
-    private String producto;
-    private String formaPago;
-    private Integer total;
-    private Integer subtotal;
- *      "id": Long,
- *      "producto": String,
- *      "categorias": string,
- *      "descripcion": string,
- *      "contratistas": 
- *      [
+ * 
+ *      "id": number,
+ *      "producto": string,
+ *      "formaPago": string,
+ *      "total": number,
+ *      "subTotal": number,
+ *      "pago": 
+ *      
  *         {
- *           "id": number,
- *           "nombre": string,
- *           "categorias": string,
- *           "descripción": string
- *         },
- *         {
- *           "id": number,
- *           "nombre": string,
- *           "categorias": string,
- *           "descripción": string
+ *           "id": Integer,
+ *           "codigoTarjeta": String,
+ *           "comprobantePagoMedio": Boolean,
+ *           "comprobantePagoTotal": Boolean
+ *           "descripcion": String,
+ *           "fechaTarjeta": String,
+ *           "numTarjeta": String,
  *         }
- *      ]
  *   }
  * </pre>
  * Por ejemplo una entidad de Servicio se representa asi:<br>
@@ -63,24 +58,23 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  *
  *   {
  *      "id": 91852,
- *      "nombre": "Plomería",
- *      "categorias": "agua y tuberias",
- *      "descripción": "Aqui va una descripcion detallada del servicio",
- *      "contratistas": 
- *      [
+ *      "producto": "Plomería",
+ *      "formaPago": "efectivo",
+ *      "total": "300000",
+ *      "subTotal": "304000",
+ *      "pago": 
+ *      
  *         {
- *           "id": 91364,
- *           "nombre": "Sergio Yepes",
- *           "reputacion": "Muy buena",
- *           "disponibilidad" : true
- *         },
- *         {
- *           "id": 91359,
- *           "nombre": "Sergio Naranjo",
- *           "reputacion": "Muy buena",
- *           "disponibilidad" : true
+ *      "id": 12390813,
+ *      "codigoTarjeta": 123,
+ *      "comprobantePagoMedio": true,
+ *      "comprobantePagoTotal": false,
+ *      "descripcion": un pago correspondiente a tal servicio,
+ *      "fechaTarjeta": 10/09/2018,
+ *      "numTarjeta": 123456629723,
+ * 
  *         }
- *      ]
+ *      
  *   }
  */
 public class FacturaDetailDTO extends FacturaDTO{
@@ -100,6 +94,17 @@ public class FacturaDetailDTO extends FacturaDTO{
     }
      
     
-     
+      /**
+	 * Transformar un DTO a un Entity
+	 *
+	 * @return La entidad construida a partir del DTO.
+	 */
+	@Override
+	public FacturaEntity toEntity( )
+	{
+		FacturaEntity pagoEntity = super.toEntity( );
+		return pagoEntity;
+	}
+    
   
 }
