@@ -1,4 +1,5 @@
 /*
+
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -11,31 +12,96 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  */
 public class SolicitudDetailDTO extends SolicitudDTO{
 
+    
+    /**
+     * 
+     */
+    private ServicioDTO servicio;
+    
+    /**
+     * 
+     */
+    private FacturaDTO factura;
+    
+    /**
+     * 
+     */
+    private CotizacionDTO cotizacion;
+    
+    /**
+     * 
+     */
+    private ContratistaDTO contratista;
     public SolicitudDetailDTO() {
         
         super();
     }
     
     /**
-     * pago de la solicitud
+     * 
+     * @return 
      */
-    private PagoDTO info_pago;
-
+    public ServicioDTO getServicio() {
+        return servicio;
+    }
+    
     /**
-     * el pago que se desee
-     * @return info_pago
+     * 
+     * @param servicio 
      */
-    public PagoDTO getInfo_pago() {
-        return info_pago;
+    public void setServicio(ServicioDTO servicio) {
+        this.servicio = servicio;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public FacturaDTO getFactura() {
+        return factura;
+    }
+    
+    /**
+     * 
+     * @param factura 
+     */
+    public void setFactura(FacturaDTO factura) {
+        this.factura = factura;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public CotizacionDTO getCotizacion() {
+        return cotizacion;
     }
 
     /**
-     * pago a cambiar
-     * @param info_pago pago que se desea
+     * 
+     * @param cotizacion 
      */
-    public void setInfo_pago(PagoDTO info_pago) {
-        this.info_pago = info_pago;
+    public void setCotizacion(CotizacionDTO cotizacion) {
+        this.cotizacion = cotizacion;
     }
+
+    /**
+     * 
+     * @return 
+     */
+    public ContratistaDTO getContratista() {
+        return contratista;
+    }
+
+    /**
+     * 
+     * @param contratista 
+     */
+    public void setContratista(ContratistaDTO contratista) {
+        this.contratista = contratista;
+    }
+
+   
     
     
     
