@@ -140,6 +140,54 @@ public class ContratoPersistenceTest {
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }
     
+    /**
+     * Prueba para eliminar un contrato
+     *
+     * 
+     */
+    @Test
+    public void deleteContratoTest() {
+        ContratoEntity entity = data.get(0);
+        contratoPersistence.delete(entity.getId());
+        ContratoEntity deleted = em.find(ContratoEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+     /**
+     * Prueba para actualizar un Contrato.
+     *
+     * 
+     */
+    @Test
+    public void updateContratoTest() {
+        ContratoEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        ContratoEntity newEntity = factory.manufacturePojo(ContratoEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        contratoPersistence.update(newEntity);
+
+        ContratoEntity resp = em.find(ContratoEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getName(), resp.getName());
+    }
+    
+    /**
+     * Prueba para consultar un Contrato.
+     *
+     * 
+     */
+    @Test
+    public void getContratoTest() {
+        ContratoEntity entity = data.get(0);
+        ContratoEntity newEntity = contratoPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
+    
+    
+    
     
     
     

@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.lostoderos.test.persistence;
 
 import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
-import co.edu.uniandes.csw.lostoderos.entities.ContratoEntity;
 import co.edu.uniandes.csw.lostoderos.persistence.CalificacionPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -105,7 +104,7 @@ public class CalificacionPersistenceTest {
     /**
      * lista que tiene los datos de prueba
      */
-    private List<ContratoEntity> data = new ArrayList<ContratoEntity>();
+    private List<CalificacionEntity> data = new ArrayList<CalificacionEntity>();
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
@@ -117,7 +116,7 @@ public class CalificacionPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             
-            ContratoEntity entity = factory.manufacturePojo(ContratoEntity.class);
+            CalificacionEntity entity = factory.manufacturePojo(CalificacionEntity.class);
 
             em.persist(entity);
             
@@ -139,6 +138,52 @@ public class CalificacionPersistenceTest {
         CalificacionEntity entity = em.find(CalificacionEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getName(), entity.getName());
+    }
+    
+    /**
+     * Prueba para eliminar una calificacion
+     *
+     * 
+     */
+    @Test
+    public void deleteCalificacionTest() {
+        CalificacionEntity entity = data.get(0);
+        calificacionPersistence.delete(entity.getId());
+        CalificacionEntity deleted = em.find(CalificacionEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+     /**
+     * Prueba para actualizar un Caificacion.
+     *
+     * 
+     */
+    @Test
+    public void updateCalificacionTest() {
+        CalificacionEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        calificacionPersistence.update(newEntity);
+
+        CalificacionEntity resp = em.find(CalificacionEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getName(), resp.getName());
+    }
+    
+    /**
+     * Prueba para consultar una Calificacion.
+     *
+     * 
+     */
+    @Test
+    public void getCalificacionTest() {
+        CalificacionEntity entity = data.get(0);
+        CalificacionEntity newEntity = calificacionPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
     }
     
 }
