@@ -44,7 +44,7 @@ public class SolicitudPersistenceTest {
     
     /**
      * Inyección de la dependencia a la clase SolicitudPersistence cuyos métodos
-     * se van a probar.
+     * se van a probar
      */
     @Inject
     private SolicitudPersistence solicitudPersistence;
@@ -135,6 +135,47 @@ public class SolicitudPersistenceTest {
 
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }
+    
+    /**
+     *
+     */
+    @Test
+    public void getSolicitudTest(){
+        SolicitudEntity entity = data.get(0);
+        SolicitudEntity newEntity = solicitudPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
+    
+    /**
+     * 
+     */
+    @Test
+    public void deleteSolicitudTest(){
+        
+        SolicitudEntity entity = data.get(0);
+        solicitudPersistence.delete(entity.getId());
+        SolicitudEntity deleted = em.find(SolicitudEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+    @Test
+    public void updateSolicitudTest(){
+        
+        SolicitudEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        SolicitudEntity newEntity = factory.manufacturePojo(SolicitudEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        solicitudPersistence.update(newEntity);
+
+        SolicitudEntity resp = em.find(SolicitudEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getName(), resp.getName());
+    }
+    
+    
     
       
     
