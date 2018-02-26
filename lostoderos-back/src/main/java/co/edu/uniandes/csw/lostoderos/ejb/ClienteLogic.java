@@ -46,7 +46,7 @@ public class ClienteLogic
     }
     
     /**
-     * consulta la cotizacion con el id deseado
+     * consulta el cliente con el id deseado
      * @param id identificador que se desea consultar
      * @return entidad con el id deseado
      */

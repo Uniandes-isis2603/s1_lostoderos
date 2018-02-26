@@ -46,7 +46,7 @@ public class ServicioLogic
     }
     
     /**
-     * consulta la cotizacion con el id deseado
+     * consulta el servicio con el id deseado
      * @param id identificador que se desea consultar
      * @return entidad con el id deseado
      */
