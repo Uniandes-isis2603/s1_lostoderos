@@ -29,6 +29,59 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
  * contenido del cliente vaya a la documentacion de {@link FacturaDetailDTO}
  * @author s.rangel
+ *  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ * private Long ID;
+    private String producto;
+    private String formaPago;
+    private Integer total;
+    private Integer subtotal;
+ *      "id": Long,
+ *      "producto": String,
+ *      "categorias": string,
+ *      "descripcion": string,
+ *      "contratistas": 
+ *      [
+ *         {
+ *           "id": number,
+ *           "nombre": string,
+ *           "categorias": string,
+ *           "descripción": string
+ *         },
+ *         {
+ *           "id": number,
+ *           "nombre": string,
+ *           "categorias": string,
+ *           "descripción": string
+ *         }
+ *      ]
+ *   }
+ * </pre>
+ * Por ejemplo una entidad de Servicio se representa asi:<br>
+ * <pre>
+ *
+ *   {
+ *      "id": 91852,
+ *      "nombre": "Plomería",
+ *      "categorias": "agua y tuberias",
+ *      "descripción": "Aqui va una descripcion detallada del servicio",
+ *      "contratistas": 
+ *      [
+ *         {
+ *           "id": 91364,
+ *           "nombre": "Sergio Yepes",
+ *           "reputacion": "Muy buena",
+ *           "disponibilidad" : true
+ *         },
+ *         {
+ *           "id": 91359,
+ *           "nombre": "Sergio Naranjo",
+ *           "reputacion": "Muy buena",
+ *           "disponibilidad" : true
+ *         }
+ *      ]
+ *   }
  */
 public class FacturaDetailDTO extends FacturaDTO{
 
