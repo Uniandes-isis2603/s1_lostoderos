@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -43,7 +44,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable
     
     @PodamExclude
     @OneToMany( mappedBy = "usuario")
-    private List <ServicioEntity> servicios;
+    private List <ServicioEntity> servicios = new ArrayList<ServicioEntity>();
 
     public String getNombre() 
     {

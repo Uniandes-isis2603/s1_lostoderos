@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -45,8 +46,9 @@ public class ServicioEntity extends BaseEntity implements Serializable
     @ManyToOne
     private UsuarioEntity usuario;
     
-    @ManyToMany
-    private List<ContratistaEntity> contratistas;
+    @PodamExclude
+    @ManyToMany( mappedBy = "servicios")
+    private List<ContratistaEntity> contratistas = new ArrayList<ContratistaEntity>();
 
     public String getNombre() 
     {
