@@ -135,4 +135,50 @@ public class ContratistaPersistenceTest {
         ContratistaEntity entity = em.find(ContratistaEntity.class, result.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }
+    
+    /**
+     * Prueba para eliminar un contratista
+     *
+     * 
+     */
+    @Test
+    public void deleteContratistaTest() {
+        ContratistaEntity entity = data.get(0);
+        contratistaPersistence.delete(entity.getId());
+        ContratistaEntity deleted = em.find(ContratistaEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+    /**
+     * Prueba para actualizar un contratista.
+     *
+     * 
+     */
+    @Test
+    public void updateContratistaTest() {
+        ContratistaEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        ContratistaEntity newEntity = factory.manufacturePojo(ContratistaEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        contratistaPersistence.update(newEntity);
+
+        ContratistaEntity resp = em.find(ContratistaEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getName(), resp.getName());
+    }
+    
+    /**
+     * Prueba para consultar un contratista.
+     *
+     * 
+     */
+    @Test
+    public void getContratistaTest() {
+        ContratistaEntity entity = data.get(0);
+        ContratistaEntity newEntity = contratistaPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
 }

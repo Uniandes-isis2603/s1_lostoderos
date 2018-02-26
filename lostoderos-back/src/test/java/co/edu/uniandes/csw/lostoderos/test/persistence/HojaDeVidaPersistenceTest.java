@@ -157,4 +157,50 @@ public class HojaDeVidaPersistenceTest {
 
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }
+    
+    /**
+     * Prueba para eliminar una hoja de vida
+     *
+     * 
+     */
+    @Test
+    public void deleteHojaDeVidaTest() {
+        HojaDeVidaEntity entity = data.get(0);
+       hojaDeVidaPersistence.delete(entity.getId());
+        HojaDeVidaEntity deleted = em.find(HojaDeVidaEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+    /**
+     * Prueba para actualizar una hoja de vida.
+     *
+     * 
+     */
+    @Test
+    public void updateHojaDeVidaTest() {
+        HojaDeVidaEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        HojaDeVidaEntity newEntity = factory.manufacturePojo(HojaDeVidaEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        hojaDeVidaPersistence.update(newEntity);
+
+        HojaDeVidaEntity resp = em.find(HojaDeVidaEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getName(), resp.getName());
+    }
+    
+     /**
+     * Prueba para consultar una hoja de vida.
+     *
+     * 
+     */
+    @Test
+    public void getHojaDeVidaTest() {
+        HojaDeVidaEntity entity = data.get(0);
+        HojaDeVidaEntity newEntity = hojaDeVidaPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
 }
