@@ -24,7 +24,11 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -36,7 +40,15 @@ public class ClienteEntity extends BaseEntity implements Serializable
     private String fecha_nacimiento;
     private String forma_pago;
     private String direccion;
-
+    
+    @PodamExclude
+    @OneToMany( mappedBy = "cliente")
+    private List <SolicitudEntity> solicitudes = new ArrayList<SolicitudEntity>();
+    
+    @PodamExclude
+    @OneToMany( mappedBy = "cliente")
+    private List <CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
+    
     public String getFecha_nacimiento() 
     {
         return fecha_nacimiento;
@@ -65,6 +77,26 @@ public class ClienteEntity extends BaseEntity implements Serializable
     public void setDireccion(String direccion) 
     {
         this.direccion = direccion;
+    }
+
+    public List <SolicitudEntity> getSolicitudes() 
+    {
+        return solicitudes;
+    }
+
+    public void setSolicitudes(List <SolicitudEntity> solicitudes) 
+    {
+        this.solicitudes = solicitudes;
+    }
+
+    public List <CalificacionEntity> getCalificaciones() 
+    {
+        return calificaciones;
+    }
+
+    public void setCalificaciones(List <CalificacionEntity> calificaciones) 
+    {
+        this.calificaciones = calificaciones;
     }
     
     
