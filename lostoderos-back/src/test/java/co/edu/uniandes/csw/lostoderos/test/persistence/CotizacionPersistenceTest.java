@@ -133,7 +133,45 @@ public class CotizacionPersistenceTest {
 
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }
-   
+    
+    /**
+     * 
+     */
+    @Test
+    public void getCotizacionTest(){
+        CotizacionEntity entity = data.get(0);
+        CotizacionEntity newEntity = cotizacionPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
+    
+    /**
+     * 
+     */
+    @Test
+    public void deleteCotizacionTest(){
+        
+        CotizacionEntity entity = data.get(0);
+        cotizacionPersistence.delete(entity.getId());
+        CotizacionEntity deleted = em.find(CotizacionEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+    @Test
+    public void updateCotizacionTest(){
+        
+        CotizacionEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        CotizacionEntity newEntity = factory.manufacturePojo(CotizacionEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        cotizacionPersistence.update(newEntity);
+
+        CotizacionEntity resp = em.find(CotizacionEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getName(), resp.getName());
+    }
 
     
 }

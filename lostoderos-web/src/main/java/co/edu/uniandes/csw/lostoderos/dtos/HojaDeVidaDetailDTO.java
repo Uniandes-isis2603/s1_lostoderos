@@ -29,6 +29,18 @@ import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
  *Clase que extiende de {@link HojaDeVidaDTO} para manejar la transformación
  * entre los objetos JSON y las Entidades de la base de datos. Para conocer el
  * contenido de la hoja de vida vaya a la documentación de {@link HojaDeVidaDTO}
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *  {
+ *      "id": nombre,
+ *      "nombre": string,
+ *      "edad": number,
+ *      "especialidad": string,
+ *      "empleos": string,
+ *      "experiencia": string,
+ *      "referencias": string
+ *  }
+ * </pre>
  * @author sa.yepes
  */
 public class HojaDeVidaDetailDTO extends HojaDeVidaDTO {

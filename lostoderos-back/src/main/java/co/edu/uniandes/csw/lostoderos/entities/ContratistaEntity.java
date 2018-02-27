@@ -24,7 +24,13 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -37,6 +43,25 @@ public class ContratistaEntity extends BaseEntity implements Serializable{
     private String reputacion;
     
     private Boolean disponibilidad;
+    
+    @OneToOne
+    private ContratoEntity contrato;
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "contratista")
+    private List<CalificacionEntity> calificaciones = new ArrayList<>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "contratista")
+    private List<SolicitudEntity> solicitudes = new ArrayList<>();
+    
+    @PodamExclude
+    @ManyToMany
+    private List<ServicioEntity> servicios = new ArrayList<ServicioEntity>();
+    
+    @OneToOne 
+    private HojaDeVidaEntity hojaVida;
+    
 
     /**
      * Obtiene el atributo nombre.
@@ -87,5 +112,75 @@ public class ContratistaEntity extends BaseEntity implements Serializable{
      */
     public void setDisponibilidad(Boolean disponibilidad) {
         this.disponibilidad = disponibilidad;
+    }
+
+    /**
+     * @return the contrato
+     */
+    public ContratoEntity getContrato() {
+        return contrato;
+    }
+
+    /**
+     * @param contrato the contrato to set
+     */
+    public void setContrato(ContratoEntity contrato) {
+        this.contrato = contrato;
+    }
+
+    /**
+     * @return the calificaciones
+     */
+    public List<CalificacionEntity> getCalificaciones() {
+        return calificaciones;
+    }
+
+    /**
+     * @param calificaciones the calificaciones to set
+     */
+    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+
+    /**
+     * @return the solicitudes
+     */
+    public List<SolicitudEntity> getSolicitudes() {
+        return solicitudes;
+    }
+
+    /**
+     * @param solicitudes the solicitudes to set
+     */
+    public void setSolicitudes(List<SolicitudEntity> solicitudes) {
+        this.solicitudes = solicitudes;
+    }
+
+    /**
+     * @return the servicios
+     */
+    public List<ServicioEntity> getServicios() {
+        return servicios;
+    }
+
+    /**
+     * @param servicios the servicios to set
+     */
+    public void setServicios(List<ServicioEntity> servicios) {
+        this.servicios = servicios;
+    }
+
+    /**
+     * @return the hojaVida
+     */
+    public HojaDeVidaEntity getHojaVida() {
+        return hojaVida;
+    }
+
+    /**
+     * @param hojaVida the hojaVida to set
+     */
+    public void setHojaVida(HojaDeVidaEntity hojaVida) {
+        this.hojaVida = hojaVida;
     }
 }

@@ -38,7 +38,7 @@ import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
  *      "especialidad": string,
  *      "empleos": string,
  *      "experiencia": string,
- *      "referencia": string
+ *      "referencias": string
  *  }
  * </pre>
  * Por ejemplo, una entidad de HojaDeVida se representa así: <br>
@@ -50,7 +50,7 @@ import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
  *      "especialidad": "Electricidad",
  *      "empleos": "Codensa",
  *      "experiencia": "Levantamiento de equipos eléctricos",
- *      "referencia": "Pedro Gonzalez. tel: 3204045618"
+ *      "referencias": "Pedro Gonzalez. tel: 3204045618"
  *  }
  * </pre>
  * @author sa.yepes
@@ -69,7 +69,7 @@ public class HojaDeVidaDTO {
    
    private String experiencia;
    
-   private String referencia;
+   private String referencias;
    
    /**
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
@@ -84,7 +84,7 @@ public class HojaDeVidaDTO {
         this.especialidad=hojaDeVida.getEspecialidad();
         this.empleos=hojaDeVida.getEmpleos();
         this.experiencia=hojaDeVida.getExperiencia();
-        this.referencia=hojaDeVida.getReferencias();
+        this.referencias=hojaDeVida.getReferencias();
     }
    
    /**
@@ -188,15 +188,15 @@ public class HojaDeVidaDTO {
     * Retorna la referencia de la persona asociada a la hoja de vida.
     * @return Experiencia de la persona asociada a la hoja de vida.
     */
-   public String getReferencia(){
-       return referencia;
+   public String getReferencias(){
+       return referencias;
    }
    
    /**
     * @param referencia La nueva referencia.
     */
-   public void setReferencia(String referencia){
-       this.referencia=referencia;
+   public void setReferencias(String referencias){
+       this.referencias=referencias;
    }
    
    /**
@@ -212,7 +212,7 @@ public class HojaDeVidaDTO {
         entity.setEmpleos(this.empleos);
         entity.setEspecialidad(this.especialidad);
         entity.setExperiencia(this.experiencia);
-        entity.setReferencias(this.referencia);
+        entity.setReferencias(this.referencias);
         return entity;
     }
 }

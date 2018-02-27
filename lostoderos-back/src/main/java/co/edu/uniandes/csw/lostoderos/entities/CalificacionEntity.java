@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -29,6 +31,15 @@ public class CalificacionEntity extends BaseEntity implements Serializable {
      * comentario asociado a la calificacion del servicio
      */
     private String comentario;
+    
+    @ManyToOne
+    private ContratistaEntity contratista;
+    
+    @ManyToOne
+    private ClienteEntity cliente;
+    
+    @OneToOne(mappedBy = "calificacion")
+    private SolicitudEntity solicitud;
 
     /**
      * @return the numEstrellas
@@ -70,6 +81,48 @@ public class CalificacionEntity extends BaseEntity implements Serializable {
      */
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    /**
+     * @return the contratista
+     */
+    public ContratistaEntity getContratista() {
+        return contratista;
+    }
+
+    /**
+     * @param contratista the contratista to set
+     */
+    public void setContratista(ContratistaEntity contratista) {
+        this.contratista = contratista;
+    }
+
+    /**
+     * @return the cliente
+     */
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
+    /**
+     * @return the solicitud
+     */
+    public SolicitudEntity getSolicitud() {
+        return solicitud;
+    }
+
+    /**
+     * @param solicitud the solicitud to set
+     */
+    public void setSolicitud(SolicitudEntity solicitud) {
+        this.solicitud = solicitud;
     }
     
     

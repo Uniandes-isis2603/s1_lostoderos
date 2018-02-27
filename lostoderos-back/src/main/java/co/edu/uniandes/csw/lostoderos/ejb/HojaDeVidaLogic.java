@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.lostoderos.ejb;
 
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.HojaDeVidaPersistence;
@@ -27,44 +28,34 @@ public class HojaDeVidaLogic {
     private HojaDeVidaPersistence persistence;
     
     @Inject
-    private ContratistaLogic contratista;
+    private ContratistaLogic contratistaLogic;
+    
+    
+    
     
     /**
      * Crea una hoja de vida en la persistencia.
      * @param entity la entidad que representa la hoja de vida.
+     * @param contratistaId Identificador del contratista padre de la nueva HojaDeVida.
      * @return La entidad de la hoja de vida luego de persistirla.
-     * @throws BusinessLogicException Si la editorial a persistir ya existe.
+     * @throws BusinessLogicException Si la hoja de vida a persistir ya existe.
      */
-    public HojaDeVidaEntity createHojaDeVida(HojaDeVidaEntity entity)throws BusinessLogicException{
+    public HojaDeVidaEntity createHojaDeVida(Long contratistaId,HojaDeVidaEntity entity)throws BusinessLogicException{
          LOGGER.info("Inicia proceso de creación de hoja de vida");
         // Invoca la persistencia para crear la hoja de vida
-        
+        ContratistaEntity contratista = contratistaLogic.getContratista(contratistaId);
+        entity.setContratista(contratista);
         LOGGER.info("Termina proceso de creación de hoja de vida");
         return persistence.create(entity);
-    }
-    
-     /**
-     *
-     * Obtener todas las hojas de vida existentes en la base de datos.
-     *
-     * @return una lista de hojas de vida.
-     */
-    public List<HojaDeVidaEntity> getHojasDeVida() {
-        LOGGER.info("Inicia proceso de consultar todas las hojas de vida");
-        // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
-        List<HojaDeVidaEntity> hojasDeVida = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todas las hojas de vida");
-        return hojasDeVida;
     }
     
     /**
      *
      * Obtener una hojas de vida por medio de su id.
-     *
      * @param id: id de la hoja de vida para ser buscada.
-     * @return la hoja de vida solicitada por medio de su id.
+     * @return la hoja de vida asociada al contratista.
      */
-    public HojaDeVidaEntity getEditorialHojaDeVida(Long id) {
+    public HojaDeVidaEntity getHojaDeVida(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar hoja de vida con id={0}", id);
         // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
         HojaDeVidaEntity hojaDeVida = persistence.find(id);
@@ -103,5 +94,4 @@ public class HojaDeVidaLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar una hoja de vida con id={0}", id);
         persistence.delete(id);    
     }
-    
 }
