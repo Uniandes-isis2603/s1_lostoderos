@@ -39,21 +39,6 @@ import java.util.List;
  *      "usuario": string,
  *      "contraseña": string,
  *      "correo": string,
- *      "servicios": 
- *      [
- *         {
- *           "id": number,
- *           "nombre": string,
- *           "reputacion": string,
- *           "disponibilidad": boolean
- *         },
- *         {
- *           "id": number,
- *           "nombre": string,
- *           "reputacion": string,
- *           "disponibilidad": boolean
- *         }
- *      ]
  *   }
  * </pre>
  * Por ejemplo una entidad de Servicio se representa asi:<br>
@@ -64,22 +49,7 @@ import java.util.List;
  *      "nombre": "Juan Perez",
  *      "usuario": "Jperez",
  *      "contraseña": "enero1999",
- *      "correo": "Jperez@gmail.com",
- *      "servicios": 
- *      [
- *         {
- *           "id": 91852,
- *           "nombre": "Plomería",
- *           "categorias": "agua y tuberias",
- *           "descripción": "Aqui va una descripcion detallada del servicio"
- *         },
- *         {
- *           "id": 91853,
- *           "nombre": "Mantenimiento sistema electrico",
- *           "categorias": "Electricidad",
- *           "descripción": "Aqui va una descripcion detallada del servicio"
- *         }
- *      ]
+ *      "correo": "Jperez@gmail.com"
  *   }
  *
  * </pre>
@@ -87,8 +57,6 @@ import java.util.List;
  */
 public class UsuarioDetailDTO extends UsuarioDTO
 {
-    
-        private List<ServicioDTO> servicios;
         
         /**
 	 * Constructor por defecto
@@ -98,16 +66,6 @@ public class UsuarioDetailDTO extends UsuarioDTO
 	{
                 super();
         }   
-        
-        public List getServicios()
-        {
-                return servicios;
-        }
-
-        public void setServicios(List servicios) 
-        {
-                this.servicios = servicios;
-        }
         
         /**
 	 * Transformar un DTO a un Entity
