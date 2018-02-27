@@ -54,15 +54,13 @@ public class FacturaLogic {
      * @throws BusinessLogicException Si la factura a persistir ya existe.
      */
     public FacturaEntity createFactura(FacturaEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de editorial");
-        // Verifica la regla de negocio que dice que no puede haber dos facturas con el mismo nombre
-        if (persistence.findByName(entity.getName()) != null) {
-            throw new BusinessLogicException("Ya existe una Editorial con el nombre \"" + entity.getName() + "\"");
-        }
-        // Invoca la persistencia para crear la factura
-
-        LOGGER.info("Termina proceso de creación de factura");
-        return persistence.create(entity);
+          LOGGER.info("Inicio de creación de la entidad factura");
+        if(persistence.find(entity.getId()) != null)
+            throw new BusinessLogicException("Ya existe una entidad de factura con el id \""+entity.getId()+"\"");
+        
+        persistence.create(entity);
+        LOGGER.info("Creacion exitosa");
+        return entity;
     }
 
     /**
@@ -106,16 +104,11 @@ public class FacturaLogic {
      * ejemplo el nombre.
      * @return la factura con los cambios actualizados en la base de datos.
      */
-    public FacturaEntity updateFactura(Long id, FacturaEntity entity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar factura con id={0}", id);
-        // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
-         FacturaEntity factura = persistence.find(id);
-         if (factura == null) {    
-            LOGGER.log(Level.SEVERE, "La factura con el id {0} no existe", id);
-        }
-        FacturaEntity newEntity = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar factura con id={0}", entity.getId());
-        return newEntity;
+    public FacturaEntity updateFactura(FacturaEntity entity) throws BusinessLogicException {
+          if(persistence.find(entity.getId()) == null)
+            throw new BusinessLogicException("No existe una entidad de Servicio con el id \""+entity.getId()+"\"");
+        
+        return persistence.update(entity);
     }
 
     /**

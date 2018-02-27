@@ -20,13 +20,7 @@ public class PagoEntity extends BaseEntity implements Serializable{
     private String descripcion;
     private Boolean comprobantePagoMedio;
     private Boolean comprobantePagoTotal;
-  /**
-	 * Constructor por defecto
-	 */
-    public PagoEntity() {
-    }
 
-  
 /**
 	 * @param numTarjeta El nuevo numero de tarjeta de la entidad Todero
 	 */
