@@ -35,7 +35,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author s.naranjop1
  */
 @Entity
-public class ClienteEntity extends BaseEntity implements Serializable
+public class ClienteEntity extends UsuarioEntity implements Serializable
 {
     private String fecha_nacimiento;
     private String forma_pago;

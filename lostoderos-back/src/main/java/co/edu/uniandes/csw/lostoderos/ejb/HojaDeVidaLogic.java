@@ -40,11 +40,9 @@ public class HojaDeVidaLogic {
      * @return La entidad de la hoja de vida luego de persistirla.
      * @throws BusinessLogicException Si la hoja de vida a persistir ya existe.
      */
-    public HojaDeVidaEntity createHojaDeVida(Long contratistaId,HojaDeVidaEntity entity)throws BusinessLogicException{
+    public HojaDeVidaEntity createHojaDeVida(HojaDeVidaEntity entity)throws BusinessLogicException{
          LOGGER.info("Inicia proceso de creación de hoja de vida");
         // Invoca la persistencia para crear la hoja de vida
-        ContratistaEntity contratista = contratistaLogic.getContratista(contratistaId);
-        entity.setContratista(contratista);
         LOGGER.info("Termina proceso de creación de hoja de vida");
         return persistence.create(entity);
     }
