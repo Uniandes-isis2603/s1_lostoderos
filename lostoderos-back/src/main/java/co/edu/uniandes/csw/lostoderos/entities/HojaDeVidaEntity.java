@@ -47,10 +47,6 @@ public class HojaDeVidaEntity extends BaseEntity implements Serializable{
     private String experiencia;
     
     private String referencias;
-    
-    @PodamExclude
-    @OneToOne (mappedBy="hojaVida")
-    private ContratistaEntity contratista;
 
     /**
      * @return the nombre
@@ -134,20 +130,6 @@ public class HojaDeVidaEntity extends BaseEntity implements Serializable{
      */
     public void setReferencias(String referencias) {
         this.referencias = referencias;
-    }
-
-    /**
-     * @return the contratista
-     */
-    public ContratistaEntity getContratista() {
-        return contratista;
-    }
-
-    /**
-     * @param contratista the contratista to set
-     */
-    public void setContratista(ContratistaEntity contratista) {
-        this.contratista = contratista;
     }
     
 }
