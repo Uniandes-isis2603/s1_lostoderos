@@ -70,7 +70,7 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
      * 
      */
     @ManyToOne
-    private ContratistaEntity cotratista;
+    private ContratistaEntity contratista;
     
     /**
      * 
@@ -224,16 +224,16 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
         this.cotizacion = cotizacion;
     }
 
-    public ContratistaEntity getCotratista() {
-        return cotratista;
+    public ContratistaEntity getContratista() {
+        return contratista;
     }
 
     /**
      * 
-     * @param contratista 
+     * @param contratista contratista que se desea
      */
-    public void setCotratista(ContratistaEntity cotratista) {
-        this.cotratista = cotratista;
+    public void setContratista(ContratistaEntity contratista) {
+        this.contratista = contratista;
     }
     
     public ClienteEntity getCliente() {
