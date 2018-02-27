@@ -8,7 +8,8 @@ package co.edu.uniandes.csw.lostoderos.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
-import uk.co.jemos.podam.common.PodamExclude;
+import javax.persistence.ManyToOne;
+
 
 /**
  *
@@ -43,43 +44,45 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
      * requerimientos para la solicitud
      */
     private String requerimientos;
-    
-    /**
-     * calificacion que tiene el todero
-     */
-    private Integer calificacion;
-    
+        
     /**
      * numero de contratistas que se requieren
      */
     private Integer cantidad_contratistas;
     
     
-
-    @PodamExclude
     @OneToOne
     private ServicioEntity servicio;
     
     /**
      * 
      */
-    @PodamExclude
     @OneToOne
     private FacturaEntity factura;
     
     /**
      * 
      */
-    @PodamExclude
     @OneToOne
     private CotizacionEntity cotizacion;
     
     /**
      * 
      */
-    @PodamExclude
-    @OneToOne
+    @ManyToOne
     private ContratistaEntity cotratista;
+    
+    /**
+     * 
+     */
+    @ManyToOne
+    private ClienteEntity cliente;
+
+    /**
+     * 
+     */
+    @OneToOne
+    private CalificacionEntity calificacion;
     
     //constructor
     public SolicitudEntity() {
@@ -90,7 +93,7 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
      * 
      * @return calificacion
      */
-    public Integer getCalificacion() {
+    public CalificacionEntity getCalificacion() {
         return calificacion;
     }
 
@@ -146,7 +149,7 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
      * establece la calificacion
      * @param calificacion 
      */
-    public void setCalificacion(Integer calificacion) {
+    public void setCalificacion(CalificacionEntity calificacion) {
         this.calificacion = calificacion;
     }
 
@@ -227,11 +230,21 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
 
     /**
      * 
+     * @param contratista 
      */
     public void setCotratista(ContratistaEntity cotratista) {
         this.cotratista = cotratista;
     }
-
+    
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+    
+    
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }    
+    
     @Override
     public String toString() {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
