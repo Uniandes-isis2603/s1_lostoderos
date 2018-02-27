@@ -59,7 +59,7 @@ public class ContratistaEntity extends BaseEntity implements Serializable{
     @ManyToMany
     private List<ServicioEntity> servicios = new ArrayList<ServicioEntity>();
     
-    @OneToOne 
+    @OneToOne
     private HojaDeVidaEntity hojaVida;
     
 
