@@ -24,11 +24,13 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.persistence;
 
 import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -52,6 +54,21 @@ public class ContratistaPersistence {
         em.persist(entity);
         LOGGER.info("Contratista creado");
         return entity;
+    }
+    
+     /**
+     * Devuelve todas los contratistas de la base de datos.
+     *
+     * @return una lista con todas los contratistas que encuentre en la base de
+     * datos, "select u from ContratistaEntity u" es como un "select * from
+     * ContratistaEntity;" - "SELECT * FROM table_name" en SQL.
+     */
+    public List<ContratistaEntity> findAll() {
+        LOGGER.info("Consultando todas los contratistas");
+        // Se crea un query para buscar todos los contratistas en la base de datos.
+        TypedQuery query = em.createQuery("select u from ContratistaEntity u", ContratistaEntity.class);
+        // Note que en el query se hace uso del método getResultList() que obtiene una lista de contratistas.
+        return query.getResultList();
     }
     
     public ContratistaEntity update(ContratistaEntity entity) {

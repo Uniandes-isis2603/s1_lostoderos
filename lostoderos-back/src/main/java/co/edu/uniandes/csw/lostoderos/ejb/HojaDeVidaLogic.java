@@ -26,14 +26,12 @@ public class HojaDeVidaLogic {
     @Inject
     private HojaDeVidaPersistence persistence;
     
-    @Inject
-    private ContratistaLogic contratista;
     
     /**
      * Crea una hoja de vida en la persistencia.
      * @param entity la entidad que representa la hoja de vida.
      * @return La entidad de la hoja de vida luego de persistirla.
-     * @throws BusinessLogicException Si la editorial a persistir ya existe.
+     * @throws BusinessLogicException Si la hoja de vida a persistir ya existe.
      */
     public HojaDeVidaEntity createHojaDeVida(HojaDeVidaEntity entity)throws BusinessLogicException{
          LOGGER.info("Inicia proceso de creación de hoja de vida");
@@ -64,7 +62,7 @@ public class HojaDeVidaLogic {
      * @param id: id de la hoja de vida para ser buscada.
      * @return la hoja de vida solicitada por medio de su id.
      */
-    public HojaDeVidaEntity getEditorialHojaDeVida(Long id) {
+    public HojaDeVidaEntity getHojaDeVida(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar hoja de vida con id={0}", id);
         // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
         HojaDeVidaEntity hojaDeVida = persistence.find(id);

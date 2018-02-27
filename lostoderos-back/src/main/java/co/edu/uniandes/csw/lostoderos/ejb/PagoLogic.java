@@ -52,15 +52,13 @@ public class PagoLogic {
      * @throws BusinessLogicException Si el pago a persistir ya existe.
      */
     public PagoEntity createPago(PagoEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de pago");
-        // Verifica la regla de negocio que dice que no puede haber dos facturas con el mismo nombre
-        if (persistence.findByName(entity.getName()) != null) {
-            throw new BusinessLogicException("Ya existe un pago con el nombre \"" + entity.getName() + "\"");
-        }
-        // Invoca la persistencia para crear la factura
-
-        LOGGER.info("Termina proceso de creación de pago");
-        return persistence.create(entity);
+        LOGGER.info("Inicio de creación de la entidad pago");
+        if(persistence.find(entity.getId()) != null)
+            throw new BusinessLogicException("Ya existe una entidad de pago con el id \""+entity.getId()+"\"");
+        
+        persistence.create(entity);
+        LOGGER.info("Creacion exitosa");
+        return entity;
     }
 
     /**
@@ -104,16 +102,11 @@ public class PagoLogic {
      * ejemplo el nombre.
      * @return pago con los cambios actualizados en la base de datos.
      */
-    public PagoEntity updatePago(Long id, PagoEntity entity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar pago con id={0}", id);
-        // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
-         PagoEntity pago = persistence.find(id);
-         if (pago == null) {    
-            LOGGER.log(Level.SEVERE, "El pago con el id {0} no existe", id);
-        }
-        PagoEntity newEntity = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar pago con id={0}", entity.getId());
-        return newEntity;
+    public PagoEntity updatePago(PagoEntity entity) throws BusinessLogicException {
+           if(persistence.find(entity.getId()) == null)
+            throw new BusinessLogicException("No existe una entidad de pago con el id \""+entity.getId()+"\"");
+        
+        return persistence.update(entity);
     }
 
     /**

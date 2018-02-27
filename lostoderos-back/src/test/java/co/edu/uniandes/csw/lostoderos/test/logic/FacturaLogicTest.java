@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.lostoderos.test.persistence;
+package co.edu.uniandes.csw.lostoderos.test.logic;
 
+
+import co.edu.uniandes.csw.lostoderos.ejb.FacturaLogic;
 import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
+import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.FacturaPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,60 +27,43 @@ import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-
 /**
  *
  * @author s.rangel
  */
 @RunWith(Arquillian.class)
-public class FacturaPersistenceTest {
+public class FacturaLogicTest {
+    private PodamFactory factory = new PodamFactoryImpl();
 
-     /**
-     *
-     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de Editorial, el descriptor de la
-     * base de datos y el archivo beans.xml para resolver la inyección de
-     * dependencias.
-     */
+    @Inject
+    private FacturaLogic facturaLogic;
+
+    @PersistenceContext
+    private EntityManager em;
+
+    @Inject
+    private UserTransaction utx;
+
+    private List<FacturaEntity> data = new ArrayList<FacturaEntity>();
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(FacturaEntity.class.getPackage())
+                .addPackage(FacturaLogic.class.getPackage())
                 .addPackage(FacturaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-  
-    
-    
-     /**
-     * Inyección de la dependencia a la clase FacturaPersistence cuyos métodos
-     * se van a probar.
-     */
-    @Inject
-    private FacturaPersistence facturaPersistence;
-    
-    
-    @PersistenceContext
-    private EntityManager em;
-  /**
-     * Variable para martcar las transacciones del em anterior cuando se
-     * crean/borran datos para las pruebas.
-     */
-    @Inject
-    UserTransaction utx;
-    
-    
+
     /**
      * Configuración inicial de la prueba.
-     *
      *
      */
     @Before
     public void configTest() {
         try {
             utx.begin();
-            em.joinTransaction();
             clearData();
             insertData();
             utx.commit();
@@ -90,113 +76,90 @@ public class FacturaPersistenceTest {
             }
         }
     }
-      /**
+
+    /**
      * Limpia las tablas que están implicadas en la prueba.
-     *
      *
      */
     private void clearData() {
-        em.createQuery("delete from EditorialEntity").executeUpdate();
+        em.createQuery("delete from FacturaEntity").executeUpdate();
     }
-
-    /**
-     * lista que tiene los datos de prueba
-     */
-    private List<FacturaEntity> data = new ArrayList<FacturaEntity>();
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      *
-     *
      */
     private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             
             FacturaEntity entity = factory.manufacturePojo(FacturaEntity.class);
-
+            
             em.persist(entity);
             
             data.add(entity);
         }
     }
-   
-    
-    @Test
-    public void createFacturaTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
-        FacturaEntity result = facturaPersistence.create(newEntity);
 
-        Assert.assertNotNull(result);
-
-        FacturaEntity entity = em.find(FacturaEntity.class, result.getId());
-
-        Assert.assertEquals(newEntity.getName(), entity.getName());
-    }
-        /**
-     * Prueba para consultar la lista de facturas.
+    /**
+     * Prueba para crear una factura
      *
-     * 
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      */
     @Test
-    public void getFacturasTest() {
-        List<FacturaEntity> list = facturaPersistence.findAll();
-        Assert.assertEquals(data.size(), list.size());
-        for (FacturaEntity ent : list) {
-            boolean found = false;
-            for (FacturaEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            Assert.assertTrue(found);
-        }
+    public void createFacturaTest() throws BusinessLogicException {
+        FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
+        FacturaEntity result = facturaLogic.createFactura(newEntity);
+        Assert.assertNotNull(result);
+        FacturaEntity entity = em.find(FacturaEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getName(), entity.getName());
     }
- /**
-     * Prueba para consultar una factura.
+
+    /**
+     * Prueba para consultar una Factura
      *
      * 
      */
     @Test
     public void getFacturaTest() {
         FacturaEntity entity = data.get(0);
-        FacturaEntity newEntity = facturaPersistence.find(entity.getId());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
+        FacturaEntity resultEntity =facturaLogic.getFactura(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getName(), resultEntity.getName());
     }
 
     /**
-     * Prueba para eliminar una factura.
+     * Prueba para eliminar una factura
      *
      * 
      */
     @Test
-    public void deleteFacturaTest() {
+    public void deleteFacturaTest() throws BusinessLogicException {
         FacturaEntity entity = data.get(0);
-        facturaPersistence.delete(entity.getId());
+        facturaLogic.deleteFactura(entity.getId());
         FacturaEntity deleted = em.find(FacturaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-  
+
     /**
-     * Prueba para actualizar una factura.
+     * Prueba para actualizar un Servicio
      *
      * 
      */
     @Test
-    public void updateFacturaTest() {
+    public void updateFacturaTest() throws BusinessLogicException {
         FacturaEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
+        FacturaEntity pojoEntity = factory.manufacturePojo(FacturaEntity.class);
 
-        newEntity.setId(entity.getId());
+        pojoEntity.setId(entity.getId());
 
-        facturaPersistence.update(newEntity);
+        facturaLogic.updateFactura(pojoEntity);
 
         FacturaEntity resp = em.find(FacturaEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getName(), resp.getName());
     }
 }

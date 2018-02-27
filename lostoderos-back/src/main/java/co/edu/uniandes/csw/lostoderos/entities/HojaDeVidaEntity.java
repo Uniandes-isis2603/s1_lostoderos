@@ -26,6 +26,7 @@ package co.edu.uniandes.csw.lostoderos.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -47,6 +48,7 @@ public class HojaDeVidaEntity extends BaseEntity implements Serializable{
     
     private String referencias;
     
+    @PodamExclude
     @OneToOne (mappedBy="hojaVida")
     private ContratistaEntity contratista;
 
