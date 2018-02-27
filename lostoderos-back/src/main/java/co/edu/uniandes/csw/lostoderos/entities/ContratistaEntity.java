@@ -24,11 +24,13 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -45,14 +47,17 @@ public class ContratistaEntity extends BaseEntity implements Serializable{
     @OneToOne
     private ContratoEntity contrato;
     
+    @PodamExclude
     @OneToMany(mappedBy = "contratista")
-    private List<CalificacionEntity> calificaciones;
+    private List<CalificacionEntity> calificaciones = new ArrayList<>();
     
+    @PodamExclude
     @OneToMany(mappedBy = "contratista")
-    private List<SolicitudEntity> solicitudes;
+    private List<SolicitudEntity> solicitudes = new ArrayList<>();
     
+    @PodamExclude
     @ManyToMany
-    private List<ServicioEntity> servicios;
+    private List<ServicioEntity> servicios = new ArrayList<ServicioEntity>();
     
     @OneToOne 
     private HojaDeVidaEntity hojaVida;

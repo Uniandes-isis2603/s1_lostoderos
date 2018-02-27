@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.lostoderos.ejb;
 
 import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
+import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.ContratistaPersistence;
 import java.util.List;
@@ -24,6 +25,9 @@ public class ContratistaLogic {
  
     @Inject
     private ContratistaPersistence persistence;
+    
+    @Inject
+    private HojaDeVidaLogic hojaVidaLogic;
     
     /**
      * Crea un contratista en la persistencia.
@@ -94,39 +98,9 @@ public class ContratistaLogic {
      * @param id: id del contratista a borrar
  
      */
-    public void deletContratista(Long id) throws BusinessLogicException {
+    public void deleteContratista(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar una hoja de vida con id={0}", id);
         persistence.delete(id);    
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+      
 }
