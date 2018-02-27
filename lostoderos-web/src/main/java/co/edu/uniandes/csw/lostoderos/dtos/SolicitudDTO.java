@@ -76,25 +76,12 @@ public class SolicitudDTO {
     private String requerimientos;
     
     /**
-     * calificacion que tiene el todero
-     */
-    private Integer calificacion;
-    
-    /**
      * numero de contratistas que se requieren
      */
     private Integer cantidad_contratistas;
     
     //constructor
     public SolicitudDTO() {
-    }
-
-    /**
-     * 
-     * @return calificacion
-     */
-    public Integer getCalificacion() {
-        return calificacion;
     }
 
     /**
@@ -152,14 +139,6 @@ public class SolicitudDTO {
      */
     public Integer getTipo_servicio() {
         return tipo_servicio;
-    }
-
-    /**
-     * establece la calificacion
-     * @param calificacion calificacion que se desea
-     */
-    public void setCalificacion(Integer calificacion) {
-        this.calificacion = calificacion;
     }
 
     /**

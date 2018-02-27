@@ -32,6 +32,19 @@ public class SolicitudDetailDTO extends SolicitudDTO{
      * 
      */
     private ContratistaDTO contratista;
+    
+    /**
+     * 
+     */
+    private CalificacionDTO calificacion;
+    
+    /**
+     * 
+     */
+    private ClienteDTO cliente;
+
+    
+    
     public SolicitudDetailDTO() {
         
         super();
@@ -100,9 +113,21 @@ public class SolicitudDetailDTO extends SolicitudDTO{
     public void setContratista(ContratistaDTO contratista) {
         this.contratista = contratista;
     }
+    
+    public CalificacionDTO getCalificacion() {
+        return calificacion;
+    }
 
-   
-    
-    
-    
+    public void setCalificacion(CalificacionDTO calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public ClienteDTO getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteDTO cliente) {
+        this.cliente = cliente;
+    }
+
 }
