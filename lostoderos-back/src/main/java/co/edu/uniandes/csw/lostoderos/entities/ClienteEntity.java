@@ -26,6 +26,7 @@ package co.edu.uniandes.csw.lostoderos.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -42,11 +43,11 @@ public class ClienteEntity extends UsuarioEntity implements Serializable
     private String direccion;
     
     @PodamExclude
-    @OneToMany( mappedBy = "cliente")
+    @OneToMany( mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List <SolicitudEntity> solicitudes = new ArrayList<SolicitudEntity>();
     
     @PodamExclude
-    @OneToMany( mappedBy = "cliente")
+    @OneToMany( mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List <CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
     
     public String getFecha_nacimiento() 
