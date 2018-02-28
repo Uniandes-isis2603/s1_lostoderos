@@ -24,7 +24,6 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.UsuarioEntity;
-import java.util.List;
 
 /**
  * Clase que extiende de {@link UsuarioDTO} para manejar la transformacion entre
@@ -66,6 +65,16 @@ public class UsuarioDetailDTO extends UsuarioDTO
 	{
                 super();
         }   
+        
+        /**
+	 * Constructor para transformar un Entity a un DTO
+	 *
+	 * @param entity La entidad de Usuario a partir de la cual se construye el objeto
+	 */
+	public UsuarioDetailDTO( UsuarioEntity entity )
+	{
+		super( entity );
+	}
         
         /**
 	 * Transformar un DTO a un Entity

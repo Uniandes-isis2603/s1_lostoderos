@@ -67,6 +67,20 @@ public class ServicioDTO
 	{
 	}
 
+        /**
+	 * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+	 * la entidad que viene de argumento.
+	 *
+	 * @param servicioEntity: Es la entidad que se va a convertir a DTO
+	 */
+	public ServicioDTO( ServicioEntity servicioEntity )
+	{
+		this.id = servicioEntity.getId( );
+		this.nombre = servicioEntity.getNombre();
+                this.categorias = servicioEntity.getCategorias();
+                this.descripcion = servicioEntity.getDescripcion();
+	}
+        
 	/**
 	 * @return El ID de la entidad Servicio
 	 */
