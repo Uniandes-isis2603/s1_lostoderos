@@ -110,7 +110,7 @@ public class HojaDeVidaResource {
     @Path("{id: \\d+}")
     public HojaDeVidaDetailDTO getHojaDeVida(@PathParam("id") Long id){
         HojaDeVidaEntity entity = hojaVidaLogic.getHojaDeVida(id);
-        if(entity==nul){
+        if(entity==null){
             
         }
         return null;
