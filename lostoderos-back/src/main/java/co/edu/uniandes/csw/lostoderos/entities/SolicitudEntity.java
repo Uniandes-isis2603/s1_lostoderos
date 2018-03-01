@@ -74,14 +74,14 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
      * 
      */
     @PodamExclude
-    @ManyToOne (cascade=CascadeType.PERSIST)
+    @ManyToOne
     private ContratistaEntity contratista;
     
     /**
      * 
      */
     @PodamExclude
-    @ManyToOne (cascade=CascadeType.PERSIST)
+    @ManyToOne 
     private ClienteEntity cliente;
 
     /**
