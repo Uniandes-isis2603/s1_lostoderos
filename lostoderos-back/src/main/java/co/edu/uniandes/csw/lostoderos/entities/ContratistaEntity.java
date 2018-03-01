@@ -48,7 +48,7 @@ public class ContratistaEntity extends UsuarioEntity implements Serializable{
     private Boolean disponibilidad;
     
     @PodamExclude
-    @OneToOne(cascade=CascadeType.PERSIST)
+    @OneToOne
     private ContratoEntity contrato;
     
     @PodamExclude

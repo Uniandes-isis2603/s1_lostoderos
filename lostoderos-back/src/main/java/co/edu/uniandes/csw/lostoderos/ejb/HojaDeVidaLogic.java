@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.lostoderos.ejb;
 
-import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.HojaDeVidaPersistence;
@@ -27,10 +26,21 @@ public class HojaDeVidaLogic {
     @Inject
     private HojaDeVidaPersistence persistence;
     
+    
+    /**
+     * Devuelve todas las hojas de vida que hay en la base de datos.
+     * @return Lista de entidades de tipo hoja de vida.
+     */
+    public List<HojaDeVidaEntity> getHojasDeVida() {
+        LOGGER.info("Inicia proceso de consultar todas las hoajs  de vida");
+        List<HojaDeVidaEntity> books = persistence.findAll();
+        LOGGER.info("Termina proceso de consultar todos las hojas de vida");
+        return books;
+    }
+    
     /**
      * Crea una hoja de vida en la persistencia.
      * @param entity la entidad que representa la hoja de vida.
-     * @param contratistaId Identificador del contratista padre de la nueva HojaDeVida.
      * @return La entidad de la hoja de vida luego de persistirla.
      * @throws BusinessLogicException Si la hoja de vida a persistir ya existe.
      */

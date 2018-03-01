@@ -26,6 +26,7 @@ import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 
 import co.edu.uniandes.csw.lostoderos.dtos.HojaDeVidaDetailDTO;
 import co.edu.uniandes.csw.lostoderos.ejb.HojaDeVidaLogic;
+import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +71,7 @@ public class HojaDeVidaResource {
      */
     @POST
     public HojaDeVidaDetailDTO createHojaDeVida(HojaDeVidaDetailDTO hoja) throws BusinessLogicException{
-        return hoja;
+        return new HojaDeVidaDetailDTO(hojaVidaLogic.createHojaDeVida(hoja.toEntity()));
     } 
     
     /**
@@ -86,7 +87,7 @@ public class HojaDeVidaResource {
      */
     @GET
     public List<HojaDeVidaDetailDTO> getHojasDeVida(){
-        return new ArrayList<>();
+        return listBookEntity2DetailDTO(hojaVidaLogic.getHojasDeVida());
     }
     
     /**
@@ -108,6 +109,10 @@ public class HojaDeVidaResource {
     @GET
     @Path("{id: \\d+}")
     public HojaDeVidaDetailDTO getHojaDeVida(@PathParam("id") Long id){
+        HojaDeVidaEntity entity = hojaVidaLogic.getHojaDeVida(id);
+        if(entity==nul){
+            
+        }
         return null;
     }
     
@@ -153,5 +158,13 @@ public class HojaDeVidaResource {
     @Path("(id:\\d+)")
     public void deleteHojaDeVida(@PathParam("nombre") Long id){
         //Void
+    }
+    
+    private List<HojaDeVidaDetailDTO> listBookEntity2DetailDTO(List<HojaDeVidaEntity> entityList) {
+        List<HojaDeVidaDetailDTO> list = new ArrayList<>();
+        for (HojaDeVidaEntity entity : entityList) {
+            list.add(new HojaDeVidaDetailDTO(entity));
+        }
+        return list;
     }
 }
