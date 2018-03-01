@@ -49,7 +49,7 @@ public class HojaDeVidaDetailDTO extends HojaDeVidaDTO {
      * Constructor por defecto
      */
     public HojaDeVidaDetailDTO(){
-        
+        super();
     }
     /**
      * Constructor para transformar un Entity a un DTO

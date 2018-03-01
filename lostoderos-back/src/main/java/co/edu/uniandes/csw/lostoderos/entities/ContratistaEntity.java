@@ -26,7 +26,10 @@ package co.edu.uniandes.csw.lostoderos.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -37,48 +40,32 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author sa.yepes
  */
 @Entity
-public class ContratistaEntity extends BaseEntity implements Serializable{
-    private String nombre;
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class ContratistaEntity extends UsuarioEntity implements Serializable{
     
     private String reputacion;
     
     private Boolean disponibilidad;
     
-    @OneToOne
+    @PodamExclude
+    @OneToOne(cascade=CascadeType.PERSIST)
     private ContratoEntity contrato;
     
     @PodamExclude
-    @OneToMany(mappedBy = "contratista")
+    @OneToMany(mappedBy = "contratista", cascade=CascadeType.PERSIST)
     private List<CalificacionEntity> calificaciones = new ArrayList<>();
     
     @PodamExclude
-    @OneToMany(mappedBy = "contratista")
+    @OneToMany(mappedBy = "contratista", cascade=CascadeType.PERSIST)
     private List<SolicitudEntity> solicitudes = new ArrayList<>();
     
     @PodamExclude
     @ManyToMany
     private List<ServicioEntity> servicios = new ArrayList<ServicioEntity>();
     
-    @OneToOne
+    @PodamExclude
+    @OneToOne(cascade=CascadeType.PERSIST)
     private HojaDeVidaEntity hojaVida;
-    
-
-    /**
-     * Obtiene el atributo nombre.
-     * 
-     * @return El nombre
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * Establece el atributo nombre
-     * @param nombre Nombre a establecer
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     /**
      * Obtiene el atributo reputación.

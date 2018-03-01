@@ -27,12 +27,6 @@ public class HojaDeVidaLogic {
     @Inject
     private HojaDeVidaPersistence persistence;
     
-    @Inject
-    private ContratistaLogic contratistaLogic;
-    
-    
-    
-    
     /**
      * Crea una hoja de vida en la persistencia.
      * @param entity la entidad que representa la hoja de vida.

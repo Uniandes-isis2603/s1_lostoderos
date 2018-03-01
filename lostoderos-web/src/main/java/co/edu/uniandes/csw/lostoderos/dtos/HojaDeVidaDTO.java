@@ -75,16 +75,18 @@ public class HojaDeVidaDTO {
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento.
      *
-     * @param hojaDeVida: Es la entidad que se va a convertir a DTO
+     * @param hojaVida: Es la entidad que se va a convertir a DTO
      */
-    public HojaDeVidaDTO(HojaDeVidaEntity hojaDeVida) {
-        this.id = hojaDeVida.getId();
-        this.nombre = hojaDeVida.getNombre();
-        this.edad = hojaDeVida.getEdad();
-        this.especialidad=hojaDeVida.getEspecialidad();
-        this.empleos=hojaDeVida.getEmpleos();
-        this.experiencia=hojaDeVida.getExperiencia();
-        this.referencias=hojaDeVida.getReferencias();
+    public HojaDeVidaDTO(HojaDeVidaEntity hojaVida) {
+        if(hojaVida!=null){
+        this.id = hojaVida.getId();
+        this.nombre = hojaVida.getNombre();
+        this.edad = hojaVida.getEdad();
+        this.especialidad=hojaVida.getEspecialidad();
+        this.empleos=hojaVida.getEmpleos();
+        this.experiencia=hojaVida.getExperiencia();
+        this.referencias=hojaVida.getReferencias(); 
+        }     
     }
    
    /**
