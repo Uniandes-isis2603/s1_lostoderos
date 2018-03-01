@@ -24,6 +24,10 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
+import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
+import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
+import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -146,6 +150,23 @@ public class ContratistaDetailDTO extends ContratistaDTO{
     @Override
     public ContratistaEntity toEntity() {
         ContratistaEntity contratista = super.toEntity();
+        if(this.getSolicitudes()!=null){
+            List<SolicitudEntity> solicitudesEntity= new ArrayList<>();
+            for(SolicitudDTO s:getSolicitudes()){
+                solicitudesEntity.add(s.toEntity());
+            }
+            contratista.setSolicitudes(solicitudesEntity);
+        }
+        if(this.getServicios()!=null){
+            List<ServicioEntity> serviciosEntity= new ArrayList<>();
+            for(ServicioDTO s:getServicios()){
+                serviciosEntity.add(s.toEntity());
+            }
+            contratista.setServicios(serviciosEntity);
+        }
+        if(this.getHojaVida()!=null){
+            contratista.setHojaVida(this.hojaVida.toEntity());
+        }
         return contratista;
     }
 

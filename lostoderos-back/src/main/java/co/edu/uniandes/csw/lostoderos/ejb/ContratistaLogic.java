@@ -5,10 +5,13 @@
  */
 package co.edu.uniandes.csw.lostoderos.ejb;
 
+import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
+import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.ContratistaPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +32,18 @@ public class ContratistaLogic {
     @Inject
     private HojaDeVidaLogic hojaVidaLogic;
     
+    @Inject
+    private SolicitudLogic solicitudLogic;
+    
+    @Inject
+    private ServicioLogic servicioLogic;
+    
+    @Inject
+    private CalificacionLogic calificacionLogic;
+    
+    @Inject
+    private ContratoLogic contratoLogic;
+    
     /**
      * Crea un contratista en la persistencia.
      * @param entity la entidad que representa el contratista.
@@ -44,18 +59,65 @@ public class ContratistaLogic {
     }
     
      /**
+     * Obtener todos los contratistas en la base de datos.
      *
-     * Obtener todas las hojas de vida existentes en la base de datos.
-     *
-     * @return una lista de hojas de vida.
+     * @return una lista de contratistas.
      */
-    public List<ContratistaEntity> getHojasDeVida() {
-        LOGGER.info("Inicia proceso de consultar todas las hojas de vida");
+    public List<ContratistaEntity> getContratistas() {
+        LOGGER.info("Inicia proceso de consultar todos los contratistas");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
         List<ContratistaEntity> contratistas = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todas las hojas de vida");
+        LOGGER.info("Termina proceso de consultar todos los contratistas");
         return contratistas;
     }
+    
+    /**
+     * Obtiene una colección de instancias de ServicioEntity asociadas a una
+     * instancia de Contratista.
+     * @param id Identificador de la instancia de Contratista
+     * @return Colección de instancias de ServicioEntity asociadas a las
+     * instancias de Contratista
+     */
+    public List<ServicioEntity> listServicios(Long id){
+        
+        LOGGER.info("Inicia proceso de consultar todos los servicios del contratista");
+        List<ServicioEntity> list = getContratista(id).getServicios();
+        LOGGER.info("Termina proceso de consultar todos los servicios del contratista");
+        return list;
+    }
+   
+    /**
+     * Obtiene una instanciación de ServicioEntity asociada a una instancia de
+     * Contratista.
+     * @param contratistaId Identificador del contratista.
+     * @param servicioId Identificador de la instancia de Servicio.
+     * @return  La entidad del servicio asociada al contratista.
+     */
+    public ServicioEntity getServicio(Long contratistaId, Long servicioId){
+        LOGGER.info("Inicia proceso de consultar un servicio del contratista");
+        List<ServicioEntity> list = getContratista(contratistaId).getServicios();
+        ServicioEntity servicioEntity = new ServicioEntity();
+        servicioEntity.setId(servicioId);
+        int index = list.indexOf(servicioEntity);
+        if(index>0){
+            LOGGER.info("Termina proceso de consultar un servicio del contratista");
+            return list.get(index);
+        }
+        return null;
+    }
+    
+    
+    public ServicioEntity addServicio(Long servicioId,Long contratistaId){
+        LOGGER.info("Inicia proceso de agregar un servicio al contratista");
+        ContratistaEntity contratista = getContratista(contratistaId);
+        ServicioEntity servicio = new ServicioEntity();
+        servicio.setId(servicioId);
+        contratista.getServicios().add(servicio);
+        
+        return getServicio(contratistaId, servicioId);
+    }
+    
+    
     
     /**
      * contratista por medio de su id.

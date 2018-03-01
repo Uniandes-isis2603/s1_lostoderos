@@ -32,10 +32,10 @@ public class HojaDeVidaLogic {
      * @return Lista de entidades de tipo hoja de vida.
      */
     public List<HojaDeVidaEntity> getHojasDeVida() {
-        LOGGER.info("Inicia proceso de consultar todas las hoajs  de vida");
-        List<HojaDeVidaEntity> books = persistence.findAll();
+        LOGGER.info("Inicia proceso de consultar todas las hojas  de vida");
+        List<HojaDeVidaEntity> hojasDeVida = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todos las hojas de vida");
-        return books;
+        return hojasDeVida;
     }
     
     /**
