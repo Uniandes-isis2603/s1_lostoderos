@@ -127,7 +127,7 @@ public class ContratoPersistenceTest {
 /**
      * Prueba para crear un contrato
      */
-        @Test
+    @Test
     public void createContratoTest() {
         PodamFactory factory = new PodamFactoryImpl();
         ContratoEntity newEntity = factory.manufacturePojo(ContratoEntity.class);

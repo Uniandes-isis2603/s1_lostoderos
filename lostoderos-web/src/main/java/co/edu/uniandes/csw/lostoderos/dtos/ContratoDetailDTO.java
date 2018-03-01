@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
+
+import co.edu.uniandes.csw.lostoderos.entities.ContratoEntity;
+
 /**
  * Clase que extiende de {@link ContratoDTO} para manejar la transformacion 
  * entre los objetos JSON y las Entidades de la base de datos. Para conocer el
@@ -43,12 +46,46 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  */
 public class ContratoDetailDTO extends ContratoDTO {
     
+    private ContratistaDTO contratista;
+    
     
     
 /**
  * Constructor vacio
  */
 public ContratoDetailDTO(){
-    
-}    
+    super();
+}
+
+public ContratoDetailDTO(ContratoEntity entity){
+   super(entity);
+   if(entity.getContratista()!= null){
+       this.contratista = new ContratistaDTO(entity.getContratista());
+   }
+   else{
+       entity.setContratista(null);
+   }
+}
+public ContratoEntity toEntity(){
+    ContratoEntity entity = new ContratoEntity();
+    if(this.getContratista()!= null){
+        entity.setContratista(this.contratista.toEntity());
+    }
+    return entity;
+}
+
+    /**
+     * @return the contratista
+     */
+    public ContratistaDTO getContratista() {
+        return contratista;
+    }
+
+    /**
+     * @param contratista the contratista to set
+     */
+    public void setContratista(ContratistaDTO contratista) {
+        this.contratista = contratista;
+    }
+        
 }

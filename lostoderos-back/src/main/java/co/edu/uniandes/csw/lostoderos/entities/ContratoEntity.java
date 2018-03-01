@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -16,7 +17,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class ContratoEntity extends BaseEntity implements Serializable {
   
-     @OneToOne(mappedBy = "contrato")
+     @OneToOne(mappedBy = "contrato", cascade = CascadeType.PERSIST)
      private ContratistaEntity contratista;
 
     /**

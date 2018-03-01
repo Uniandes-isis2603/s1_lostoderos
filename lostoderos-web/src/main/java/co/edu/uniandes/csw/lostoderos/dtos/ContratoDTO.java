@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.ContratoEntity;
+
 /**
  * ContratoDTO Objeto de transferencia de datos de la entidad de
  * contrato. Los DTO contienen las representaciones de los JSON que se
@@ -40,6 +42,17 @@ public class ContratoDTO {
     
     public ContratoDTO(){
          super();
+    }
+    public ContratoDTO(ContratoEntity entity){
+        if(entity != null){
+          this.id = entity.getId();
+        }
+        
+    }
+    public ContratoEntity toEntity(){
+        ContratoEntity entity = new ContratoEntity();
+        entity.setId(this.id);
+        return entity;
     }
     /**
      * 

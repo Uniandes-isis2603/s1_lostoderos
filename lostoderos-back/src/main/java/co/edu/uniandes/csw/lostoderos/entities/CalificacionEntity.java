@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -32,14 +33,14 @@ public class CalificacionEntity extends BaseEntity implements Serializable {
      */
     private String comentario;
     
+    @PodamExclude
     @ManyToOne
     private ContratistaEntity contratista;
     
+    @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
-    
-    @OneToOne(mappedBy = "calificacion")
-    private SolicitudEntity solicitud;
+   
 
     /**
      * @return the numEstrellas
@@ -111,19 +112,6 @@ public class CalificacionEntity extends BaseEntity implements Serializable {
         this.cliente = cliente;
     }
 
-    /**
-     * @return the solicitud
-     */
-    public SolicitudEntity getSolicitud() {
-        return solicitud;
-    }
-
-    /**
-     * @param solicitud the solicitud to set
-     */
-    public void setSolicitud(SolicitudEntity solicitud) {
-        this.solicitud = solicitud;
-    }
     
     
     

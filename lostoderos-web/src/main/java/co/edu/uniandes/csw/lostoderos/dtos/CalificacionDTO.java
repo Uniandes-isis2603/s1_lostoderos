@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
+
+import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
+
 /**
  * CalificacionDTO Objeto de transferencia de datos de la entidad de
  * calificacion. Los DTO contienen las representaciones de los JSON que se
@@ -57,6 +60,25 @@ public class CalificacionDTO {
      */
     public CalificacionDTO(){
         
+    }
+    
+    public CalificacionDTO(CalificacionEntity entity){
+        if(entity!= null){
+        this.id = entity.getId();
+        this.comentario = entity.getComentario();
+        this.numEstrellas = entity.getNumEstrellas();
+        this.tipoServicio = entity.getTipoServicio();
+       }
+    }
+    
+    public CalificacionEntity toEntity(){
+        CalificacionEntity entity = new CalificacionEntity();
+        entity.setId(this.id);
+        entity.setComentario(this.comentario);
+        entity.setNumEstrellas(this.numEstrellas);
+        entity.setTipoServicio(this.tipoServicio);
+                
+        return entity;        
     }
     /**
      * 

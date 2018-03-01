@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
+
+import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
+
 /**
  * Clase que extiende de {@link CalificacionDTO} para manejar la transformacion
  * entre los objetos JSON y las Entidades de la base de datos. Para conocer el
@@ -48,11 +51,74 @@ package co.edu.uniandes.csw.lostoderos.dtos;
  * @author s.blancoc
  */
 public class CalificacionDetailDTO extends CalificacionDTO {
+    
+    private ContratistaDTO contratista;
+    
+    private ClienteDTO cliente;
+    
     /**
      * Cnstructor vacio
      */
     public CalificacionDetailDTO(){
-        
+        super();
+    }
+    public CalificacionDetailDTO(CalificacionEntity entity){
+        super(entity);
+        if (entity.getContratista() != null) {
+            this.contratista = new ContratistaDTO(entity.getContratista());
+        } else {
+            entity.setContratista(null);
+        }
+        if (entity.getCliente() != null) {
+            this.cliente = new ClienteDTO(entity.getCliente());
+            }
+        else{
+            entity.setCliente(null);
+        }
+    }
+    
+     /**
+     * Transformar el DTO a una entidad
+     * @return La entidad que representa la calificacion.
+     */
+    public CalificacionEntity toEntity() {
+        CalificacionEntity entity = super.toEntity();
+        if (this.getCliente() != null) {
+            entity.setCliente(this.getCliente().toEntity());
+        }
+        if (this.getContratista() != null) {
+            entity.setContratista(this.getContratista().toEntity());
+        }
+        return entity;
+    }
+    
+
+    /**
+     * @return the contratista
+     */
+    public ContratistaDTO getContratista() {
+        return contratista;
+    }
+
+    /**
+     * @param contratista the contratista to set
+     */
+    public void setContratista(ContratistaDTO contratista) {
+        this.contratista = contratista;
+    }
+
+    /**
+     * @return the cliente
+     */
+    public ClienteDTO getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(ClienteDTO cliente) {
+        this.cliente = cliente;
     }
     
 }
