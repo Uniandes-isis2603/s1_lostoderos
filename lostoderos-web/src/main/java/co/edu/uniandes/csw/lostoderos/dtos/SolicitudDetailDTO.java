@@ -6,6 +6,8 @@
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
+
 /**
  *
  * @author m.saravia
@@ -48,6 +50,29 @@ public class SolicitudDetailDTO extends SolicitudDTO{
     public SolicitudDetailDTO() {
         
         super();
+    }
+    
+    public SolicitudDetailDTO(SolicitudEntity entity){
+        
+        super(entity);
+        if(entity.getCalificacion()!= null )
+            this.calificacion= new CalificacionDTO(entity.getCalificacion());
+        
+        if(entity.getCliente()!= null)
+            this.cliente= new ClienteDTO(entity.getCliente());
+        
+        if(entity.getContratista() != null)
+            this.contratista= new ContratistaDTO(entity.getContratista());
+        
+        if(entity.getCotizacion()!= null)
+            this.cotizacion= new CotizacionDTO(entity.getCotizacion());
+        
+        if(entity.getFactura()!= null)
+            this.factura= new FacturaDTO(entity.getFactura());
+        
+        if(entity.getServicio()!= null)
+            this.servicio= new ServicioDTO(entity.getServicio());
+        
     }
     
     /**
@@ -129,5 +154,38 @@ public class SolicitudDetailDTO extends SolicitudDTO{
     public void setCliente(ClienteDTO cliente) {
         this.cliente = cliente;
     }
+
+    @Override
+    public String toString() {
+        return "SolicitudDetailDTO{" + "servicio=" + servicio + ", factura=" + factura + ", cotizacion=" + cotizacion + ", contratista=" + contratista + ", calificacion=" + calificacion + ", cliente=" + cliente + '}';
+    }
+
+    @Override
+    public SolicitudEntity toEntity() {
+      //To change body of generated methods, choose Tools | Templates.
+      SolicitudEntity solicitud= super.toEntity();
+      if(this.calificacion != null)
+          solicitud.setCalificacion(calificacion.toEntity());
+      
+      if(this.cliente!= null)
+          solicitud.setCliente(cliente.toEntity());
+      
+      if(this.contratista != null)
+          solicitud.setContratista(contratista.toEntity());
+      
+      if(this.cotizacion != null)
+          solicitud.setCotizacion(cotizacion.toEntity());
+      
+      if(this.factura != null)
+          solicitud.setFactura(factura.toEntity());
+      
+      if(this.servicio != null)
+          solicitud.setServicio(servicio.toEntity());
+      
+      
+      
+    }
+    
+    
 
 }
