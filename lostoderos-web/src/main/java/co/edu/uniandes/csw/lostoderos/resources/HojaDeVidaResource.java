@@ -25,11 +25,13 @@ package co.edu.uniandes.csw.lostoderos.resources;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 
 import co.edu.uniandes.csw.lostoderos.dtos.HojaDeVidaDetailDTO;
+import co.edu.uniandes.csw.lostoderos.ejb.HojaDeVidaLogic;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -44,6 +46,9 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class HojaDeVidaResource {
+    
+    @Inject
+    HojaDeVidaLogic hojaVidaLogic;
     
     /**
      * <h1>POST /api/hojasdevida : Crear una hoja de vida.</h1>
