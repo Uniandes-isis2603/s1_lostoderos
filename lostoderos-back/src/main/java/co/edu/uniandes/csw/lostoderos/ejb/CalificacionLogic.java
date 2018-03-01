@@ -6,8 +6,12 @@
 package co.edu.uniandes.csw.lostoderos.ejb;
 
 import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
+import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
+
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.CalificacionPersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -28,21 +32,33 @@ public class CalificacionLogic {
      */
     private CalificacionPersistence persistence;
     
+    @Inject
+    private ContratistaLogic contratistaLogic;
+    
+    @Inject
+    private ClienteLogic clienteLogic;
+    
     /**
      * metodo que crea la entidad de calificacion
      * @param entity entidad que se desea crear
+     * @param clienteid id del cliente
+     * @param contratistaid id del contratista
      * @return entidad creada
      * @throws BusinessLogicException si la entidad a crea ya existe
      */
-    public CalificacionEntity create(CalificacionEntity entity)throws BusinessLogicException{
+    public CalificacionEntity create(CalificacionEntity entity, long clienteid, long contratistaid)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Calificacion");
-        if(persistence.find(entity.getId()) != null)
+        if(persistence.find(entity.getId()) != null){
             throw new BusinessLogicException("Ya existe una entidad de calificacion con el id \""+entity.getId()+"\"");
+        }
+        ClienteEntity cliente = clienteLogic.getById(clienteid);
+        entity.setCliente(cliente);
         
-        persistence.create(entity);
-        LOGGER.info("Creacion exitosa");
-        return entity;
+        ContratistaEntity contratista = contratistaLogic.getContratista(contratistaid);
+        entity.setContratista(contratista);
+        
+        return persistence.create(entity);
     }
     
         /**
@@ -80,6 +96,47 @@ public class CalificacionLogic {
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Borrado exitoso", id);
     }
+    
+        /**
+     * Obtiene la lista de los registros de calificaciones que pertenecen a un contratista.
+     *
+     * @param contratistaid id del contratista el cual es padre de las calificaciones.
+     * @return Colección de objetos de CalificacionEntity.
+     * @throws BusinessLogicException Error cuando el contratista no tiene calificaciones.
+     */
+    public List<CalificacionEntity> getCalificacionesContratista(Long contratistaid) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de consultar todas las calificaciones");
+        ContratistaEntity entity = contratistaLogic.getContratista(contratistaid);
+            if (entity.getCalificaciones() == null) {
+            throw new BusinessLogicException("El contratista que consulta aún no tiene calificaciones");
+        }
+            if (entity.getCalificaciones().isEmpty()) {
+            throw new BusinessLogicException("El contratista que consulta aún no tiene calificaciones");
+        }
+        return entity.getCalificaciones();
+        
+    }
+    
+   /**
+     * Obtiene la lista de los registros de calificaciones que pertenecen a un cliente.
+     *
+     * @param clienteid id del cliente el cual es padre de las calificaciones.
+     * @return Colección de objetos de CalificacionEntity.
+     * @throws BusinessLogicException Error cuando el cliente no tiene calificaciones.
+     */
+    public List<CalificacionEntity> getCalificacionesCliente(Long clienteid) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de consultar todas las calificaciones");
+        ClienteEntity entity = clienteLogic.getById(clienteid);
+            if (entity.getCalificaciones() == null) {
+            throw new BusinessLogicException("El cliente que consulta aún no tiene calificaciones");
+        }
+            if (entity.getCalificaciones().isEmpty()) {
+            throw new BusinessLogicException("El cliente que consulta aún no tiene calificaciones");
+        }
+        return entity.getCalificaciones();
+        
+    }
+}
 
     
     
@@ -87,4 +144,4 @@ public class CalificacionLogic {
     
     
     
-}
+
