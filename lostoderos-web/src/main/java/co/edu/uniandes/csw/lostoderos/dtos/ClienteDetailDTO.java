@@ -126,7 +126,7 @@ public class ClienteDetailDTO extends ClienteDTO
 	 *
 	 * @param entity La entidad de Cliente a partir de la cual se construye el objeto
 	 */
-	public ServicioDetailDTO( ServicioEntity entity )
+	public ClienteDetailDTO( ClienteEntity entity )
 	{
 		super( entity );
                 if(entity != null)
