@@ -95,6 +95,16 @@ public class ServicioDetailDTO extends ServicioDTO
             super();
 	}
         
+        /**
+	 * Constructor para transformar un Entity a un DTO
+	 *
+	 * @param entity La entidad de Servicio a partir de la cual se construye el objeto
+	 */
+	public ServicioDetailDTO( ServicioEntity entity )
+	{
+		super( entity );
+	}
+        
         public List getContratistas()
         {
                 return contratistas;

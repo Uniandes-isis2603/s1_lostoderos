@@ -72,6 +72,21 @@ public class UsuarioDTO
 	}
         
         /**
+	 * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+	 * la entidad que viene de argumento.
+	 *
+	 * @param usuarioEntity: Es la entidad que se va a convertir a DTO
+	 */
+	public UsuarioDTO( UsuarioEntity usuarioEntity )
+	{
+		this.id = usuarioEntity.getId( );
+		this.nombre = usuarioEntity.getNombre();
+                this.usuario = usuarioEntity.getUsuario();
+                this.contraseña = usuarioEntity.getContraseña();
+                this.correo = usuarioEntity.getCorreo();
+	}
+        
+        /**
 	 * @return El ID de la entidad Usuario
 	 */
         public Long getId() 

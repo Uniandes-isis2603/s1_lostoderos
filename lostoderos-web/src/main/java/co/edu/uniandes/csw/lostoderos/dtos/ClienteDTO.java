@@ -73,7 +73,7 @@ public class ClienteDTO extends UsuarioDTO
 	{
             super();
 	}
-
+        
         /**
 	 * @return La fecha de nacimiento de la entidad Cliente
 	 */
