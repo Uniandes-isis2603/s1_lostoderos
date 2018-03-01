@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
+
 /**
  *
  * SolicitudDTO Objeto de transferencia de datos de la entidad de
@@ -82,6 +84,18 @@ public class SolicitudDTO {
     
     //constructor
     public SolicitudDTO() {
+    }
+    
+    public SolicitudDTO(SolicitudEntity entity){
+        if (entity != null){
+            this.cantidad_contratistas= entity.getCantidad_contratistas();
+            this.cod_seguridad= entity.getCod_seguridad();
+            this.descripcion= entity.getDescripcion();
+            this.fecha_inicio= entity.getFecha_inicio();
+            this.id= entity.getId();
+            this.requerimientos= entity.getRequerimientos();
+            this.tipo_servicio= entity.getTipo_servicio();
+        }
     }
 
     /**
@@ -200,6 +214,21 @@ public class SolicitudDTO {
     @Override
     public String toString() {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public SolicitudEntity toEntity(){
+        
+        SolicitudEntity entity= new SolicitudEntity();
+        
+        entity.setCantidad_contratistas(cantidad_contratistas);
+        entity.setCod_seguridad(cod_seguridad);
+        entity.setDescripcion(descripcion);
+        entity.setFecha_inicio(fecha_inicio);
+        entity.setId(id);
+        entity.setRequerimientos(requerimientos);
+        entity.setTipo_servicio(tipo_servicio);
+        
+        return entity;
     }
     
     

@@ -57,21 +57,33 @@ public class SolicitudDetailDTO extends SolicitudDTO{
         super(entity);
         if(entity.getCalificacion()!= null )
             this.calificacion= new CalificacionDTO(entity.getCalificacion());
+        else
+            entity.setCalificacion(null);
         
         if(entity.getCliente()!= null)
             this.cliente= new ClienteDTO(entity.getCliente());
+        else
+            entity.setCliente(null);
         
         if(entity.getContratista() != null)
             this.contratista= new ContratistaDTO(entity.getContratista());
+        else
+            entity.setContratista(null);
         
         if(entity.getCotizacion()!= null)
             this.cotizacion= new CotizacionDTO(entity.getCotizacion());
+        else
+            entity.setCotizacion(null);
         
         if(entity.getFactura()!= null)
             this.factura= new FacturaDTO(entity.getFactura());
+        else
+            entity.setFactura(null);
         
         if(entity.getServicio()!= null)
             this.servicio= new ServicioDTO(entity.getServicio());
+        else
+            entity.setServicio(null);
         
     }
     
@@ -182,7 +194,7 @@ public class SolicitudDetailDTO extends SolicitudDTO{
       if(this.servicio != null)
           solicitud.setServicio(servicio.toEntity());
       
-      
+      return solicitud;
       
     }
     
