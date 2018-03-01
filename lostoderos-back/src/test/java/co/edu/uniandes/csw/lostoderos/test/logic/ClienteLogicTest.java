@@ -104,7 +104,7 @@ public class ClienteLogicTest
     /**
      * Prueba para crear un Cliente
      *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @Test
     public void createClienteTest() throws BusinessLogicException {
@@ -134,6 +134,7 @@ public class ClienteLogicTest
      * Prueba para eliminar un Cliente
      *
      * 
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @Test
     public void deleteClienteTest() throws BusinessLogicException {
@@ -147,6 +148,7 @@ public class ClienteLogicTest
      * Prueba para actualizar un Cliente
      *
      * 
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @Test
     public void updateClienteTest() throws BusinessLogicException {

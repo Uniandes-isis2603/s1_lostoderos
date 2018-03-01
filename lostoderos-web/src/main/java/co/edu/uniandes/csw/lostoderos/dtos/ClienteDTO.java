@@ -23,6 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
+
 /**
  * ServicioDTO Objeto de transferencia de datos de la entidad de Servicio. Los DTO contienen las
  * representaciones de los JSON que se transfieren entre el cliente y el servidor.
@@ -75,6 +77,23 @@ public class ClienteDTO extends UsuarioDTO
 	}
         
         /**
+	 * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+	 * la entidad que viene de argumento.
+	 *
+	 * @param clienteEntity: Es la entidad que se va a convertir a DTO
+	 */
+	public ClienteDTO( ClienteEntity clienteEntity )
+	{
+		super();
+                if(clienteEntity != null)
+                {
+                    this.direccion = clienteEntity.getDireccion();
+                    this.fecha_nacimiento = clienteEntity.getDireccion();
+                    this.forma_pago = clienteEntity.getForma_pago();
+                }
+	}
+        
+        /**
 	 * @return La fecha de nacimiento de la entidad Cliente
 	 */
         public String getFecha_nacimiento() 
@@ -121,4 +140,22 @@ public class ClienteDTO extends UsuarioDTO
         {
                 this.direccion = direccion;
         }
+        
+        /**
+	 * Convertir DTO a Entity
+	 *
+	 * @return Un Entity con los valores del DTO
+	 */
+	public ClienteEntity toEntity( )
+	{
+                super.toEntity();
+		ClienteEntity entity = new ClienteEntity( );
+                if(entity != null)
+                {
+                    entity.setFecha_nacimiento(this.fecha_nacimiento);
+                    entity.setDireccion(this.direccion);
+                    entity.setForma_pago(this.forma_pago);
+                }
+                return entity;
+	}
 }

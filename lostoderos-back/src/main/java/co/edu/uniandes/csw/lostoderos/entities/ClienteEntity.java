@@ -43,11 +43,11 @@ public class ClienteEntity extends UsuarioEntity implements Serializable
     private String direccion;
     
     @PodamExclude
-    @OneToMany( mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany( mappedBy = "cliente", cascade = CascadeType.PERSIST)
     private List <SolicitudEntity> solicitudes = new ArrayList<SolicitudEntity>();
     
     @PodamExclude
-    @OneToMany( mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany( mappedBy = "cliente", cascade = CascadeType.PERSIST)
     private List <CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
     
     public String getFecha_nacimiento() 
