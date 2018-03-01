@@ -23,6 +23,9 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
+import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -108,7 +111,7 @@ import java.util.List;
  */
 public class ClienteDetailDTO extends ClienteDTO 
 {
-        private List solicitudes;    
+        private List<SolicitudDTO> solicitudes;    
     
          /**
 	 * Constructor por defecto
@@ -118,13 +121,55 @@ public class ClienteDetailDTO extends ClienteDTO
             super();
 	}
         
-        public List getSolicitudes()
+         /**
+	 * Constructor para transformar un Entity a un DTO
+	 *
+	 * @param entity La entidad de Cliente a partir de la cual se construye el objeto
+	 */
+	public ServicioDetailDTO( ServicioEntity entity )
+	{
+		super( entity );
+                if(entity != null)
+                {
+                    if(entity.getSolicitudes() != null)
+                    {
+                        solicitudes = new ArrayList<>();
+                        for(SolicitudEntity entitySolicitud: entity.getSolicitudes())
+                        {
+                            solicitudes.add(new SolicitudDTO(entitySolicitud));
+                        }
+                    }
+                }
+	}
+        
+        public List<SolicitudDTO> getSolicitudes()
         {
                 return solicitudes;
         }
 
-        public void setSolicitudes(List solicitudes) 
+        public void setSolicitudes(List<SolicitudDTO> solicitudes) 
         {
                 this.solicitudes = solicitudes;
         }
+        
+        /**
+	 * Transformar un DTO a un Entity
+	 *
+	 * @return La entidad construida a partir del DTO.
+	 */
+	@Override
+	public ClienteEntity toEntity( )
+	{
+		ClienteEntity servicioEntity = super.toEntity( );
+                if(solicitudes != null)
+                {
+                    List<SolicitudEntity>solicitudesEntity = new ArrayList<>();
+                    for (SolicitudDTO dtoSolicitud : solicitudes)
+                    {
+                        solicitudesEntity.add(dtoSolicitud.toEntity());
+                    }
+                    servicioEntity.setSolicitudes(solicitudesEntity);
+                }
+		return servicioEntity;
+	}
 }

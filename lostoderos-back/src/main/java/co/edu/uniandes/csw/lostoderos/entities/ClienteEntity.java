@@ -23,13 +23,18 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.lostoderos.entities;
 
+import co.edu.uniandes.csw.lostoderos.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -38,7 +43,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class ClienteEntity extends UsuarioEntity implements Serializable
 {
-    private String fecha_nacimiento;
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
+    private Date fecha_nacimiento;
     private String forma_pago;
     private String direccion;
     
@@ -50,12 +57,12 @@ public class ClienteEntity extends UsuarioEntity implements Serializable
     @OneToMany( mappedBy = "cliente", cascade = CascadeType.PERSIST)
     private List <CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
     
-    public String getFecha_nacimiento() 
+    public Date getFecha_nacimiento() 
     {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(String fecha_nacimiento) 
+    public void setFecha_nacimiento(Date fecha_nacimiento) 
     {
         this.fecha_nacimiento = fecha_nacimiento;
     }

@@ -23,7 +23,9 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -85,7 +87,7 @@ import java.util.List;
  */
 public class ServicioDetailDTO extends ServicioDTO
 {
-        private List contratistas;
+        private List<ContratistaDTO> contratistas;
         
         /**
 	 * Constructor por defecto
@@ -103,14 +105,25 @@ public class ServicioDetailDTO extends ServicioDTO
 	public ServicioDetailDTO( ServicioEntity entity )
 	{
 		super( entity );
+                if(entity != null)
+                {
+                    if(entity.getContratistas() != null)
+                    {
+                        contratistas = new ArrayList<>();
+                        for(ContratistaEntity entityContratista: entity.getContratistas())
+                        {
+                            contratistas.add(new ContratistaDTO(entityContratista));
+                        }
+                    }
+                }
 	}
         
-        public List getContratistas()
+        public List<ContratistaDTO> getContratistas()
         {
                 return contratistas;
         }
 
-        public void setContratistas(List contratistas) 
+        public void setContratistas(List<ContratistaDTO> contratistas) 
         {
                 this.contratistas = contratistas;
         }
@@ -124,6 +137,15 @@ public class ServicioDetailDTO extends ServicioDTO
 	public ServicioEntity toEntity( )
 	{
 		ServicioEntity servicioEntity = super.toEntity( );
+                if(contratistas != null)
+                {
+                    List<ContratistaEntity> contratistasEntity = new ArrayList<>();
+                    for (ContratistaDTO dtoContratista : contratistas)
+                    {
+                        contratistasEntity.add(dtoContratista.toEntity());
+                    }
+                    servicioEntity.setContratistas(contratistasEntity);
+                }
 		return servicioEntity;
 	}
 }

@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
+import java.util.Date;
 
 /**
  * ServicioDTO Objeto de transferencia de datos de la entidad de Servicio. Los DTO contienen las
@@ -62,7 +63,7 @@ import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
 public class ClienteDTO extends UsuarioDTO
 {
     
-        private String fecha_nacimiento;
+        private Date fecha_nacimiento;
         
         private String forma_pago;
         
@@ -88,7 +89,7 @@ public class ClienteDTO extends UsuarioDTO
                 if(clienteEntity != null)
                 {
                     this.direccion = clienteEntity.getDireccion();
-                    this.fecha_nacimiento = clienteEntity.getDireccion();
+                    
                     this.forma_pago = clienteEntity.getForma_pago();
                 }
 	}
@@ -96,7 +97,7 @@ public class ClienteDTO extends UsuarioDTO
         /**
 	 * @return La fecha de nacimiento de la entidad Cliente
 	 */
-        public String getFecha_nacimiento() 
+        public Date getFecha_nacimiento() 
         {
                 return fecha_nacimiento;
         }
@@ -104,7 +105,7 @@ public class ClienteDTO extends UsuarioDTO
         /**
 	 * @param fecha_nacimiento La nueva fecha de nacimiento
 	 */
-        public void setFecha_nacimiento(String fecha_nacimiento) 
+        public void setFecha_nacimiento(Date fecha_nacimiento) 
         {
                 this.fecha_nacimiento = fecha_nacimiento;
         }
