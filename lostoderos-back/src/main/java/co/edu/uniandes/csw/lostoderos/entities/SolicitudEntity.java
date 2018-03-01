@@ -6,9 +6,11 @@
 package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 
 /**
@@ -50,38 +52,43 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
      */
     private Integer cantidad_contratistas;
     
-    
-    @OneToOne
+    @PodamExclude
+    @OneToOne (cascade=CascadeType.PERSIST)
     private ServicioEntity servicio;
     
     /**
      * 
      */
-    @OneToOne
+    @PodamExclude
+    @OneToOne (cascade=CascadeType.PERSIST)
     private FacturaEntity factura;
     
     /**
      * 
      */
-    @OneToOne
+    @PodamExclude
+    @OneToOne (cascade=CascadeType.PERSIST)
     private CotizacionEntity cotizacion;
     
     /**
      * 
      */
-    @ManyToOne
+    @PodamExclude
+    @ManyToOne (cascade=CascadeType.PERSIST)
     private ContratistaEntity contratista;
     
     /**
      * 
      */
-    @ManyToOne
+    @PodamExclude
+    @ManyToOne (cascade=CascadeType.PERSIST)
     private ClienteEntity cliente;
 
     /**
      * 
      */
-    @OneToOne
+    @PodamExclude
+    @OneToOne (cascade=CascadeType.PERSIST)
     private CalificacionEntity calificacion;
     
     //constructor
