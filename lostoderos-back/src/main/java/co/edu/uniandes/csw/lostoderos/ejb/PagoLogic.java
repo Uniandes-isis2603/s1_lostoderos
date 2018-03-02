@@ -35,10 +35,9 @@ import javax.inject.Inject;
 
 /**
  *
- * @author Santiago
+ * @author s.rangel
  */
 @Stateless
-
 public class PagoLogic {
     private static final Logger LOGGER = Logger.getLogger(FacturaLogic.class.getName());
 
@@ -60,7 +59,16 @@ public class PagoLogic {
         LOGGER.info("Creacion exitosa");
         return entity;
     }
-
+/**
+     * consulta el pago con el id deseado
+     * @param id identificador que se desea consultar
+     * @return entidad con el id deseado
+     */
+    public PagoEntity getById(Long id){
+        
+        return persistence.find(id);
+    }
+    
     /**
      *
      * Obtener todos las pagos existentes en la base de datos.

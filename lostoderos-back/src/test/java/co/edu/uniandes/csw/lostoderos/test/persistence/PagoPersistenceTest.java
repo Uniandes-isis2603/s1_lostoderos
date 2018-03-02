@@ -5,9 +5,7 @@
  */
 package co.edu.uniandes.csw.lostoderos.test.persistence;
 
-import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
-import co.edu.uniandes.csw.lostoderos.persistence.FacturaPersistence;
 import co.edu.uniandes.csw.lostoderos.persistence.PagoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,19 +26,34 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author Santiago
+ * @author s.rangel
  */
 @RunWith(Arquillian.class)
-
 public class PagoPersistenceTest {
     
+    
+        /**
+     *
+     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
+     * embebido. El jar contiene las clases de Editorial, el descriptor de la
+     * base de datos y el archivo beans.xml para resolver la inyección de
+     * dependencias.
+     */
+   @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(PagoEntity.class.getPackage())
+                .addPackage(PagoPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    }
      /**
      * Inyección de la dependencia a la clase FacturaPersistence cuyos métodos
      * se van a probar.
      */
-    @Inject
+   @Inject
     private PagoPersistence pagoPersistence;
-    
+
     
     @PersistenceContext
     private EntityManager em;
@@ -82,8 +95,8 @@ public class PagoPersistenceTest {
      *
      *
      */
-    private void clearData() {
-        em.createQuery("delete from EditorialEntity").executeUpdate();
+  private void clearData() {
+        em.createQuery("delete from PagoEntity").executeUpdate();
     }
 
     /**
@@ -97,7 +110,7 @@ public class PagoPersistenceTest {
      *
      *
      */
-    private void insertData() {
+   private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             
@@ -108,26 +121,18 @@ public class PagoPersistenceTest {
             data.add(entity);
         }
     }
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(FacturaEntity.class.getPackage())
-                .addPackage(FacturaPersistence.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
+
+    
      @Test
     public void createPagoTest() {
         PodamFactory factory = new PodamFactoryImpl();
         PagoEntity newEntity = factory.manufacturePojo(PagoEntity.class);
         PagoEntity result = pagoPersistence.create(newEntity);
-
         Assert.assertNotNull(result);
-
         PagoEntity entity = em.find(PagoEntity.class, result.getId());
-
         Assert.assertEquals(newEntity.getName(), entity.getName());
-    }
+    } 
+ /**
          /**
      * Prueba para consultar la lista de pagos.
      *
@@ -155,7 +160,7 @@ public class PagoPersistenceTest {
      */
     @Test
     public void getPagoTest() {
-        PagoEntity entity = data.get(0);
+      PagoEntity entity = data.get(0);
         PagoEntity newEntity = pagoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
@@ -187,7 +192,7 @@ public class PagoPersistenceTest {
 
         newEntity.setId(entity.getId());
 
-       pagoPersistence.update(newEntity);
+        pagoPersistence.update(newEntity);
 
         PagoEntity resp = em.find(PagoEntity.class, entity.getId());
 

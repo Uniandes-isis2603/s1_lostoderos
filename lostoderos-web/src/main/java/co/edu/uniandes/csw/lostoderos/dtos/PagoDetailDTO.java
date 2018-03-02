@@ -24,7 +24,6 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
-import java.util.ArrayList;
 
 /**
  * Clase que extiende de {@link PagoDetailDTO} para manejar la transformacion entre
@@ -67,12 +66,22 @@ import java.util.ArrayList;
  */
 public class PagoDetailDTO extends PagoDTO {
     
-    public PagoDetailDTO( )
-	{
-		super(  );
-	}
-    
-   /**
+   
+
+    /**
+     * Crea un objeto PagoDetailDTO a partir de un objeto PagoEntity
+     * incluyendo los atributos de PagoDTO.
+     *
+     * @param entity Entidad PagoEntity desde la cual se va a crear el nuevo
+     * objeto.
+     *
+     */
+    public PagoDetailDTO(PagoEntity entity) {
+        super(entity);
+        
+
+        }
+/**
 	 * Transformar un DTO a un Entity
 	 *
 	 * @return La entidad construida a partir del DTO.
@@ -83,6 +92,14 @@ public class PagoDetailDTO extends PagoDTO {
 		PagoEntity pagoEntity = super.toEntity( );
 		return pagoEntity;
 	}
-    
-
+        
+        
+        
+        
+        
+        
+        
 }
+   
+
+

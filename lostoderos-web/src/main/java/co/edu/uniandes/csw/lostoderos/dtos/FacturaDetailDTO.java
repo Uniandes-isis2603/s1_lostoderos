@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
+import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
 
 
 /**
@@ -63,7 +64,6 @@ import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
  *      "total": "300000",
  *      "subTotal": "304000",
  *      "pago": 
- *      
  *         {
  *      "id": 12390813,
  *      "codigoTarjeta": 123,
@@ -84,7 +84,20 @@ public class FacturaDetailDTO extends FacturaDTO{
 	{
 		super( );
 	}
-
+       /**
+     * Crea un objeto FacturaDetailDTO a partir de un objeto FacturaEntity
+     * incluyendo los atributos de FacturaDTO.
+     *
+     * @param entity Entidad FacturaEntity desde la cual se va a crear el nuevo
+     * objeto.
+     *
+     */
+    public FacturaDetailDTO( FacturaEntity entity)
+	{
+		super(entity );
+                PagoDTO pago = new PagoDTO(entity.getPago());
+                setPago(pago);
+	} 
     public PagoDTO getPago() {
         return pago;
     }
@@ -94,7 +107,8 @@ public class FacturaDetailDTO extends FacturaDTO{
     }
      
     
-      /**
+     
+        /**
 	 * Transformar un DTO a un Entity
 	 *
 	 * @return La entidad construida a partir del DTO.
@@ -102,8 +116,10 @@ public class FacturaDetailDTO extends FacturaDTO{
 	@Override
 	public FacturaEntity toEntity( )
 	{
-		FacturaEntity pagoEntity = super.toEntity( );
-		return pagoEntity;
+		FacturaEntity facturaEntity = super.toEntity( );
+                PagoEntity pago = facturaEntity.getPago();
+                facturaEntity.setPago(pago);
+		return facturaEntity;
 	}
     
   

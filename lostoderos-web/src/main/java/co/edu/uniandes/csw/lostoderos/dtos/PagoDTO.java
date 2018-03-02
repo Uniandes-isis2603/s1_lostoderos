@@ -80,6 +80,24 @@ public class PagoDTO {
 	 */
     public PagoDTO() {
     }
+     /**
+     * Crea un objeto PagoDTO a partir de un objeto PagoEntity.
+     *
+     * @param entity Entidad PagoEntity desde la cual se va a crear el nuevo
+     * objeto.
+     * 
+     */
+    public PagoDTO(PagoEntity entity) {
+        if (entity != null) {
+            this.id = entity.getId();
+            this.codigoTarjeta = entity.getCodigoTarjeta();
+            this.comprobantePagoMedio= entity.getComprobantePagoMedio();
+            this.comprobantePagoTotal = entity.getComprobantePagoTotal();
+            this.descripcion = entity.getDescripcion();
+            this.fechaTarjeta = entity.getFechaTarjeta();
+            this.numTarjeta = entity.getNumTarjeta();
+        }
+    }
 /**
 	 * @param ID El nuevo ID de la entidad Todero
 	 */

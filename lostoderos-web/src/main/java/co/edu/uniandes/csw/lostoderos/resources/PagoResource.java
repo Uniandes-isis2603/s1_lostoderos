@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.PagoDetailDTO;
 import co.edu.uniandes.csw.lostoderos.dtos.PagoDTO;
+import co.edu.uniandes.csw.lostoderos.ejb.PagoLogic;
+import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -20,6 +22,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.lostoderos.persistence.PagoPersistence;
+import java.util.logging.Logger;
+import javax.inject.Inject;
 
 
 /**
@@ -65,10 +70,21 @@ public class PagoResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya esta el pago.
 
      */
+    
+    @Inject
+    PagoLogic pagoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+
+    private static final Logger LOGGER = Logger.getLogger(PagoPersistence.class.getName());
+
     @POST
 	public PagoDetailDTO createPago( PagoDetailDTO dto ) throws BusinessLogicException 
 	{
-		return dto;
+		 // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
+        PagoEntity editorialEntity = dto.toEntity();
+        // Invoca la lógica para crear la editorial nueva
+        PagoEntity nuevoPago = pagoLogic.createPago(editorialEntity);
+        // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
+        return new PagoDetailDTO(nuevoPago);
 	}
          /**
      * <h1>GET /api/pagos : Obtener todas los pagos.</h1>
