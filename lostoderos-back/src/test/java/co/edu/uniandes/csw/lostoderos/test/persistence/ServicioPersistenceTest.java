@@ -200,4 +200,24 @@ public class ServicioPersistenceTest
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
     }
+    
+    /**
+     * Prueba para consultar la lista de servicios.
+     *
+     * 
+     */
+    @Test
+    public void getServiciosTest() {
+        List<ServicioEntity> list = servicioPersistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (ServicioEntity ent : list) {
+            boolean found = false;
+            for (ServicioEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
 }

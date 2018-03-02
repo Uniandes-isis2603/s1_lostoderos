@@ -24,11 +24,13 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.persistence;
 
 import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  * @author s.naranjop1
@@ -41,6 +43,11 @@ public class ServicioPersistence
     @PersistenceContext(unitName = "LosToderosPU")
     protected EntityManager em;
     
+    /**
+     * Crea un servicio en la base de datos
+     * @param entity objeto servicio que se creará en la base de datos
+     * @return devuelve la entidad creada con un id dado por la base de datos.
+     */
     public ServicioEntity create (ServicioEntity entity)
     {
         LOGGER.info("Creando un servicio nuevo");
@@ -49,18 +56,48 @@ public class ServicioPersistence
         return entity;
     }
     
+    /**
+     * Devuelve todos los servicios de la base de datos.
+     *
+     * @return una lista con todos los servicios que encuentre en la base de datos
+     */
+    public List<ServicioEntity> findAll( )
+    {
+	LOGGER.info( "Consultando todas las entidades de Servicios" );
+	TypedQuery<ServicioEntity> query = em.createQuery( "select u from ServicioEntity u", ServicioEntity.class );
+	return query.getResultList( );
+    }
+    
+    /**
+     * Busca si hay algun servicio con el id que se envía de argumento
+     *
+     * @param id: id correspondiente al servicio buscado.
+     * @return un servicio.
+     */
     public ServicioEntity find (Long id)
     {
         LOGGER.log(Level.INFO, "Consultando servicio con id={0}", id);
         return em.find(ServicioEntity.class, id);
     }    
     
+    /**
+     * Actualiza un servicio.
+     *
+     * @param entity: el servicio que viene con los nuevos cambios.
+     * @return un servicio con los cambios aplicados.
+     */
     public ServicioEntity update(ServicioEntity entity) 
     {
         LOGGER.log(Level.INFO, "Actualizando servicio con id={0}", entity.getId());
         return em.merge(entity);
     }
 
+    /**
+     * Borra un servicio de la base de datos recibiendo como argumento el id
+     * de la author
+     *
+     * @param id: id correspondiente al servicio a borrar.
+     */
     public void delete(Long id) 
     {
         LOGGER.log(Level.INFO, "Borrando servicio con id={0}", id);

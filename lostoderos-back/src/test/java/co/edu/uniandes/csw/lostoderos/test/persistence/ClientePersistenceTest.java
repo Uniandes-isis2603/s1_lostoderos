@@ -200,4 +200,24 @@ public class ClientePersistenceTest
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
     }
+    
+    /**
+     * Prueba para consultar la lista de clientes.
+     *
+     * 
+     */
+    @Test
+    public void getClientesTest() {
+        List<ClienteEntity> list = clientePersistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (ClienteEntity ent : list) {
+            boolean found = false;
+            for (ClienteEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
 }

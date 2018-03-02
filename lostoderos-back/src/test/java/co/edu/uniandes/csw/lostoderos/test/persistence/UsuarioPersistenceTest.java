@@ -199,4 +199,25 @@ public class UsuarioPersistenceTest
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
     }
+    
+    /**
+     * Prueba para consultar la lista de usuarios.
+     *
+     * 
+     */
+    @Test
+    public void getUsuariosTest() {
+        List<UsuarioEntity> list = usuarioPersistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (UsuarioEntity ent : list) {
+            boolean found = false;
+            for (UsuarioEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+
 }

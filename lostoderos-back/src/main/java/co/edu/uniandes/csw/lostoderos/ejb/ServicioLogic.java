@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.lostoderos.ejb;
 import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.ServicioPersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -43,6 +44,20 @@ public class ServicioLogic
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
+    }
+    
+    /**
+     *
+     * Obtener todos los servicios existentes en la base de datos.
+     *
+     * @return una lista de servicios.
+     */
+    public List<ServicioEntity> getAll( ){
+        
+	LOGGER.info( "Inicia proceso de consultar todas las entidades de Todero" );
+	List<ServicioEntity> entities = persistence.findAll( );
+	LOGGER.info( "Termina proceso de consultar todas las entidades de Todero" );
+	return entities;
     }
     
     /**

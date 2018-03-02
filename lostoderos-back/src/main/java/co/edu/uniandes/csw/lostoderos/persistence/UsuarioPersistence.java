@@ -24,11 +24,13 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.persistence;
 
 import co.edu.uniandes.csw.lostoderos.entities.UsuarioEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  * @author s.naranjop1
@@ -41,6 +43,11 @@ public class UsuarioPersistence
     @PersistenceContext(unitName = "LosToderosPU")
     protected EntityManager em;
     
+    /**
+     * Crea un usuario en la base de datos
+     * @param entity objeto usuario que se creará en la base de datos
+     * @return devuelve la entidad creada con un id dado por la base de datos.
+     */
     public UsuarioEntity create (UsuarioEntity entity)
     {
         LOGGER.info("Creando un usuario nuevo");
@@ -49,18 +56,48 @@ public class UsuarioPersistence
         return entity;
     }
     
+    /**
+     * Devuelve todos los usuarios de la base de datos.
+     *
+     * @return una lista con todos los usuarios que encuentre en la base de datos
+     */
+    public List<UsuarioEntity> findAll( )
+    {
+	LOGGER.info( "Consultando todas las entidades de Usuarios" );
+	TypedQuery<UsuarioEntity> query = em.createQuery( "select u from UsuarioEntity u", UsuarioEntity.class );
+	return query.getResultList( );
+    }
+    
+    /**
+     * Busca si hay algun usuario con el id que se envía de argumento
+     *
+     * @param id: id correspondiente al usuario buscado.
+     * @return un usuario.
+     */
     public UsuarioEntity find (Long id)
     {
         LOGGER.log(Level.INFO, "Consultando usuario con id={0}", id);
         return em.find(UsuarioEntity.class, id);
     }    
     
+    /**
+     * Actualiza un usuario.
+     *
+     * @param entity: el usuario que viene con los nuevos cambios.
+     * @return un usuario con los cambios aplicados.
+     */
     public UsuarioEntity update(UsuarioEntity entity) 
     {
         LOGGER.log(Level.INFO, "Actualizando usuario con id={0}", entity.getId());
         return em.merge(entity);
     }
 
+    /**
+     * Borra un usuario de la base de datos recibiendo como argumento el id
+     * de la author
+     *
+     * @param id: id correspondiente al usuario a borrar.
+     */
     public void delete(Long id) 
     {
         LOGGER.log(Level.INFO, "Borrando usuario con id={0}", id);

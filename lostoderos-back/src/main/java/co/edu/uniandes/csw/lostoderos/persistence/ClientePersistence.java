@@ -24,11 +24,13 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.persistence;
 
 import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  * @author s.naranjop1
@@ -41,6 +43,11 @@ public class ClientePersistence
     @PersistenceContext(unitName = "LosToderosPU")
     protected EntityManager em;
     
+    /**
+     * Crea un cliente en la base de datos
+     * @param entity objeto cliente que se creará en la base de datos
+     * @return devuelve la entidad creada con un id dado por la base de datos.
+     */
     public ClienteEntity create (ClienteEntity entity)
     {
         LOGGER.info("Creando un cliente nuevo");
@@ -49,18 +56,48 @@ public class ClientePersistence
         return entity;
     }
     
+    /**
+     * Devuelve todos los clientes de la base de datos.
+     *
+     * @return una lista con todos los clientes que encuentre en la base de datos
+     */
+    public List<ClienteEntity> findAll( )
+    {
+	LOGGER.info( "Consultando todas las entidades de Clientes" );
+	TypedQuery<ClienteEntity> query = em.createQuery( "select u from ClienteEntity u", ClienteEntity.class );
+	return query.getResultList( );
+    }
+    
+    /**
+     * Busca si hay algun cliente con el id que se envía de argumento
+     *
+     * @param id: id correspondiente al cliente buscado.
+     * @return un cliente.
+     */
     public ClienteEntity find (Long id)
     {
         LOGGER.log(Level.INFO, "Consultando cliente con id={0}", id);
         return em.find(ClienteEntity.class, id);
     }    
     
+    /**
+     * Actualiza un cliente.
+     *
+     * @param entity: el cliente que viene con los nuevos cambios.
+     * @return un cliente con los cambios aplicados.
+     */
     public ClienteEntity update(ClienteEntity entity) 
     {
         LOGGER.log(Level.INFO, "Actualizando cliente con id={0}", entity.getId());
         return em.merge(entity);
     }
 
+    /**
+     * Borra un cliente de la base de datos recibiendo como argumento el id
+     * de la author
+     *
+     * @param id: id correspondiente al cliente a borrar.
+     */
     public void delete(Long id) 
     {
         LOGGER.log(Level.INFO, "Borrando cliente con id={0}", id);

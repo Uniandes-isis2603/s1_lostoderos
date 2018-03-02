@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.lostoderos.ejb;
 import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.ClientePersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -43,6 +44,20 @@ public class ClienteLogic
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
+    }
+    
+    /**
+     *
+     * Obtener todos los clientes existentes en la base de datos.
+     *
+     * @return una lista de clientes.
+     */
+    public List<ClienteEntity> getAll( ){
+        
+	LOGGER.info( "Inicia proceso de consultar todas las entidades de Todero" );
+	List<ClienteEntity> entities = persistence.findAll( );
+	LOGGER.info( "Termina proceso de consultar todas las entidades de Todero" );
+	return entities;
     }
     
     /**

@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.lostoderos.ejb;
 import co.edu.uniandes.csw.lostoderos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.UsuarioPersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -43,6 +44,20 @@ public class UsuarioLogic
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
+    }
+    
+    /**
+     *
+     * Obtener todos los usuarios existentes en la base de datos.
+     *
+     * @return una lista de usuarios.
+     */
+    public List<UsuarioEntity> getAll( ){
+        
+	LOGGER.info( "Inicia proceso de consultar todas las entidades de Todero" );
+	List<UsuarioEntity> entities = persistence.findAll( );
+	LOGGER.info( "Termina proceso de consultar todas las entidades de Todero" );
+	return entities;
     }
     
     /**
