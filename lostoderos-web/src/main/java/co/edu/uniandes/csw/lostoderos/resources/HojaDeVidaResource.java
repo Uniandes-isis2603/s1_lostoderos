@@ -66,12 +66,13 @@ public class HojaDeVidaResource {
      * </code>
      * </pre>
      * @param hoja {@link HojaDeVidaDetailDTO} - La entidad de Hoja de Vida que se desea guardar.
+     * @param contratistaId Identificador del contratista que se le va a asociar una hoja de vida.
      * @return JSON {@link HojaDeVidaDetailDTO} - La entidad de Hoja de Vida que se guarda con el id generado automáticamente.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de Hoja de Vida.
      */
     @POST
-    public HojaDeVidaDetailDTO createHojaDeVida(HojaDeVidaDetailDTO hoja) throws BusinessLogicException{
-        return new HojaDeVidaDetailDTO(hojaVidaLogic.createHojaDeVida(hoja.toEntity()));
+    public HojaDeVidaDetailDTO createHojaDeVida(@PathParam("contratistaId") Long contratistaId,HojaDeVidaDetailDTO hoja) throws BusinessLogicException{
+        return new HojaDeVidaDetailDTO(hojaVidaLogic.createHojaDeVida(contratistaId,hoja.toEntity()));
     } 
     
     /**

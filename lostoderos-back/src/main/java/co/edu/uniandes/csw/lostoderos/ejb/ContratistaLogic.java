@@ -9,9 +9,9 @@ import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
+import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.ContratistaPersistence;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,13 +30,7 @@ public class ContratistaLogic {
     private ContratistaPersistence persistence;
     
     @Inject
-    private HojaDeVidaLogic hojaVidaLogic;
-    
-    @Inject
     private SolicitudLogic solicitudLogic;
-    
-    @Inject
-    private ServicioLogic servicioLogic;
     
     @Inject
     private CalificacionLogic calificacionLogic;
@@ -107,14 +101,35 @@ public class ContratistaLogic {
     }
     
     
+    /**
+     * Asocia un Servicio exisente a un Contratista
+     * @param servicioId Identificador de la instancia Servicio.
+     * @param contratistaId Identificador de la instancia Contratista.
+     * @return Instancia de Servicio que fue asociada a Contratista.
+     */
     public ServicioEntity addServicio(Long servicioId,Long contratistaId){
         LOGGER.info("Inicia proceso de agregar un servicio al contratista");
         ContratistaEntity contratista = getContratista(contratistaId);
         ServicioEntity servicio = new ServicioEntity();
         servicio.setId(servicioId);
         contratista.getServicios().add(servicio);
-        
+        LOGGER.info("Termina proceso de agregar un servicio al contratista");
+
         return getServicio(contratistaId, servicioId);
+    }
+    
+    /**
+     * Desasocia un Servicio existente de un Contratista existente.
+     * @param servicioId Identificador de la instancia Servicio.
+     * @param contratistaId  Identificador de la instancia Contratista.
+     */
+    public void removeServicio(Long servicioId,Long contratistaId){
+        LOGGER.info("Inicia proceso de remover un servicio al contratista");
+        ContratistaEntity entity = getContratista(contratistaId);
+        ServicioEntity servicio = new ServicioEntity();
+        servicio.setId(servicioId);
+        entity.getServicios().remove(servicio);
+        LOGGER.info("Termina proceso de agregar un servicio al contratista");
     }
     
     
@@ -134,9 +149,7 @@ public class ContratistaLogic {
         }
         LOGGER.log(Level.INFO, "Termina proceso de consultar contratista con id={0}", id);
         return contratista;
-    }
-    
-    
+    } 
     /**
      *
      * Actualizar un contratista.
@@ -156,13 +169,92 @@ public class ContratistaLogic {
     
     /**
      * Borrar un contratista.
-     *
      * @param id: id del contratista a borrar
  
      */
-    public void deleteContratista(Long id) throws BusinessLogicException {
+    public void deleteContratista(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar una hoja de vida con id={0}", id);
         persistence.delete(id);    
+    }
+    
+    
+    /**
+     * Agrega una Solicitud a un Contratista.
+     * @param solicitudId Identificador de la Solicitud.
+     * @param contratistaId Identificador del Contratista.
+     * @return La Solicitud que fue asociada al Contratista.
+     */
+    public SolicitudEntity addSolicitud(Long solicitudId,Long contratistaId){
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar una solicitud a un contratista");
+        ContratistaEntity contratista = getContratista(contratistaId);
+        SolicitudEntity solicitud = solicitudLogic.getById(solicitudId);
+        solicitud.setContratista(contratista);
+        LOGGER.log(Level.INFO, "Termina proceso de asociar una solicitud a un contratista");
+       return solicitud;
+    }
+    
+    /**
+     * Desasocia una Solicitud a un Contratista.
+     * @param solicitudId Identificador de la Solicitud
+     * @param contratistaId Identificador del Contratista.
+     */
+    public void removeSolicitud(Long solicitudId, Long contratistaId){
+        LOGGER.log(Level.INFO, "Inicia proceso de desasociar una solicitud a un contratista");
+        ContratistaEntity contratista = getContratista(contratistaId);
+        SolicitudEntity solicitud = solicitudLogic.getById(solicitudId);
+        solicitud.setContratista(contratista);
+        contratista.getSolicitudes().remove(solicitud);
+        LOGGER.log(Level.INFO, "Termina proceso de desasociar una solicitud a un contratista");
+    }
+   
+    /**
+     * Reemplazar las solicitudes de un Contratista.
+     * @param contratistaId Identificador del Contratista.
+     * @param solicitudes Lista de solicitudes que se queire actualizar.
+     * @return La lista de solicitudes actualizada
+     */
+    public List<SolicitudEntity> replaceSolicitudes(Long contratistaId,List<SolicitudEntity> solicitudes){
+        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar las solicitudes de un contratista por otras");
+        ContratistaEntity contratista = getContratista(contratistaId);
+        List<SolicitudEntity> list = solicitudLogic.getAll();
+        for(SolicitudEntity solicitud:list){
+            if(solicitudes.contains(solicitud)) solicitud.setContratista(contratista);
+            else if(solicitud.getContratista()!= null && solicitud.getContratista().equals(contratista))
+                solicitud.setContratista(null);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de reemplazar las solicitudes de un contratista por otras");
+        return solicitudes;
+    }
+    
+    /**
+     * Retorna todas las solicitudes de un Contratista.
+     * @param contratistaId Identificador del Contratista.
+     * @return Lista de las solicitudes asociadas a un Contratista.
+     */
+    public List<SolicitudEntity> getSolicitudes(Long contratistaId){
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar las solicitudes de un contratistas");
+        List<SolicitudEntity> resp = getContratista(contratistaId).getSolicitudes();
+        LOGGER.log(Level.INFO, "Termina proceso de consultar las solicitudes de un contratistas");
+        return resp;
+    }
+    
+    /**
+     * Retorna un Servicio asociada a un Contratista.
+     * @param solicitudId Identificador del Servicio.
+     * @param contratistaId Identificador del Contratista.
+     * @return La solicitud asociada a un Contratista.
+     * @throws BusinessLogicException Si la solicitud no se encuentra en el Contratista.
+     */
+    public SolicitudEntity getSolicitud(Long solicitudId,Long contratistaId)throws BusinessLogicException{
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar una solicitud de un contratistas");
+        List<SolicitudEntity> solicitudes = getSolicitudes(contratistaId);
+        SolicitudEntity solicitud = solicitudLogic.getById(solicitudId);
+        int index = solicitudes.indexOf(solicitud);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar una solicitud de un contratistas");        
+        if(index>=0){
+            return solicitudes.get(index);
+        }
+        throw new BusinessLogicException("La solicitud no está asociada al contratista");
     }
       
 }

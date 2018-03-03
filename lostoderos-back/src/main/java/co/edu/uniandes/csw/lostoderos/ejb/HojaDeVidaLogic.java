@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.lostoderos.ejb;
 
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.HojaDeVidaPersistence;
@@ -26,6 +27,9 @@ public class HojaDeVidaLogic {
     @Inject
     private HojaDeVidaPersistence persistence;
     
+    @Inject
+    private ContratistaLogic contratistaLogic;
+    
     
     /**
      * Devuelve todas las hojas de vida que hay en la base de datos.
@@ -39,17 +43,39 @@ public class HojaDeVidaLogic {
     }
     
     /**
-     * Crea una hoja de vida en la persistencia.
-     * @param entity la entidad que representa la hoja de vida.
-     * @return La entidad de la hoja de vida luego de persistirla.
-     * @throws BusinessLogicException Si la hoja de vida a persistir ya existe.
+     * Se encarga de crear una hoja de vida en la base de datos
+     * @param contratistaId Identificador del Contratista que será padre de la 
+     * HojaDeVida.
+     * @param entity Objeto de HojaDeVidaEntity con los datos nuevos.
+     * @return
+     * @throws BusinessLogicException 
      */
-    public HojaDeVidaEntity createHojaDeVida(HojaDeVidaEntity entity)throws BusinessLogicException{
-         LOGGER.info("Inicia proceso de creación de hoja de vida");
-        // Invoca la persistencia para crear la hoja de vida
+    public HojaDeVidaEntity createHojaDeVida(Long contratistaId, HojaDeVidaEntity entity)throws BusinessLogicException{
+        LOGGER.info("Inicia proceso de creación de hoja de vida");
+        ContratistaEntity contratista = contratistaLogic.getContratista(contratistaId);
+        contratista.setHojaVida(entity);
+        HojaDeVidaEntity resp = persistence.create(entity);
         LOGGER.info("Termina proceso de creación de hoja de vida");
-        return persistence.create(entity);
+        return resp;
     }
+    
+    /**
+     * Obtiene la instancia de HojaDeVida de un contratista específico.
+     * @param idContratista Identificador del COntratista.
+     * @return Instancia de HojaDeVida del Contratista.
+     * @throws BusinessLogicException Si el contratista no tiene hoja de vida.
+     */
+    public HojaDeVidaEntity getHojaDeVidaContratista(Long idContratista)throws BusinessLogicException{
+        LOGGER.info("Inicia proceso de búsqueda de hoja de vida");
+        ContratistaEntity contratista = contratistaLogic.getContratista(idContratista);
+        HojaDeVidaEntity entity = contratista.getHojaVida();
+        if(entity==null){
+            throw new BusinessLogicException("El contratista consultado no tiene hoja de vida.");
+        }
+        return entity;
+    }
+    
+    
     
     /**
      *
@@ -73,16 +99,18 @@ public class HojaDeVidaLogic {
      *
      * Actualizar una hoja de vida.
      *
-     * @param id: id de la hoja de vida para buscarla en la base de datos.
+     * @param contratistaId: Identificador del contratista.
      * @param entity: hoja de vida con los cambios para ser actualizada, por
      * ejemplo el nombre.
      * @return la hoja de vida con los cambios actualizados en la base de datos.
      */
-    public HojaDeVidaEntity updateHojaDeVida(Long id, HojaDeVidaEntity entity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar una hoja de vida con id={0}", id);
+    public HojaDeVidaEntity updateHojaDeVida(Long contratistaId, HojaDeVidaEntity entity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar una hoja de vida");
         // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
+        ContratistaEntity contratista = contratistaLogic.getContratista(contratistaId);
+        contratista.setHojaVida(entity);
         HojaDeVidaEntity newEntity = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar hoja de vida con id={0}", entity.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar hoja de vida");
         return newEntity;
     }
     
@@ -92,7 +120,7 @@ public class HojaDeVidaLogic {
      * @param id: id de la hoja de vida a borrar
  
      */
-    public void deleteHojaDeVida(Long id) throws BusinessLogicException {
+    public void deleteHojaDeVida(Long id){
         LOGGER.log(Level.INFO, "Inicia proceso de borrar una hoja de vida con id={0}", id);
         persistence.delete(id);    
     }
