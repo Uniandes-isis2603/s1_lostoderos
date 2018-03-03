@@ -55,9 +55,13 @@ public class SolicitudLogic {
         @Inject
         private CalificacionLogic calificacionLogic;
         
-        
-        public SolicitudEntity create(SolicitudEntity entity, Long servicioId, Long cotizacionId, Long facturaId,
-        Long contratistaId)throws BusinessLogicException{
+        /**
+         * 
+         * @param entity
+         * @return
+         * @throws BusinessLogicException 
+         */
+        public SolicitudEntity create(SolicitudEntity entity)throws BusinessLogicException{
             
             LOGGER.info("Inicia el proceso de creación de una enidad de Solicitud");
             
@@ -118,7 +122,12 @@ public class SolicitudLogic {
             LOGGER.log(Level.INFO, "Termina el proceso de borrado de la entidad Solicitud con id={0}", id);
         }
         
-        
+        /**
+         * 
+         * @param solicitudId
+         * @param servicioId
+         * @return 
+         */
         public ServicioEntity addServicio(Long solicitudId, Long servicioId ){
             
             //LOGGER.log(Level.INFO, "Inicia proceso de agregar un servicio a la solicitud con id = {0}", solicitudId);
@@ -128,12 +137,21 @@ public class SolicitudLogic {
             return servicio;
         }
         
+        /**
+         * 
+         * @param solicitudId 
+         */
         public void removeServicio(Long solicitudId){
             
             SolicitudEntity entity= getById(solicitudId);
             entity.setServicio(null);
         }
         
+        /**
+         * 
+         * @param solicitudId
+         * @return 
+         */
         public ServicioEntity getServicio(Long solicitudId){
             
             LOGGER.log(Level.INFO, "Inicia proceso de consultar todos el servicio con id = {0}", solicitudId);
@@ -141,6 +159,12 @@ public class SolicitudLogic {
 
         }
         
+        /**
+         * 
+         * @param solicitudId
+         * @param servicio
+         * @return 
+         */
         public ServicioEntity replaceServicio(Long solicitudId, ServicioEntity servicio){
             
             SolicitudEntity solicitud= getById(solicitudId);
@@ -148,6 +172,12 @@ public class SolicitudLogic {
             return servicio;
         }
         
+        /**
+         * 
+         * @param solicitudId
+         * @param cotizacionId
+         * @return 
+         */
         public CotizacionEntity addCotizacion(Long solicitudId, Long cotizacionId){
             
             SolicitudEntity entity= getById(solicitudId);
@@ -156,6 +186,11 @@ public class SolicitudLogic {
             return cotizacion;
         }
         
+        /**
+         * 
+         * @param solicitudId
+         * @return 
+         */
         public CotizacionEntity getCotizacion(Long solicitudId){
             
             LOGGER.log(Level.INFO, "Inicia proceso de consultar la cotizacion con id = {0}", solicitudId);
@@ -174,7 +209,12 @@ public class SolicitudLogic {
 //            SolicitudEntity entity= getById(solicitudId);
 //            entity.setCotizacion(null);
 //        }
-        
+        /**
+         * 
+         * @param solicitudId
+         * @param facturaId
+         * @return 
+         */
         public FacturaEntity addFactura(Long solicitudId, Long facturaId){
             
             SolicitudEntity entity= getById(solicitudId);
@@ -183,12 +223,23 @@ public class SolicitudLogic {
             return factura;
         }
         
+        /**
+         * 
+         * @param solicitudId
+         * @return 
+         */
         public FacturaEntity getFactura(Long solicitudId){
             
             LOGGER.log(Level.INFO, "Inicia proceso de consultar la factura con id = {0}", solicitudId);
             return getById(solicitudId).getFactura();
         }
         
+        /**
+         * 
+         * @param solicitudId
+         * @param contratistaId
+         * @return 
+         */
         public ContratistaEntity addContratista(Long solicitudId, Long contratistaId){
             
             SolicitudEntity entity= getById(solicitudId);
@@ -197,6 +248,11 @@ public class SolicitudLogic {
             return contratista;
         }
         
+        /**
+         * 
+         * @param solicitudId
+         * @return 
+         */
         public ContratistaEntity getContratista(Long solicitudId){
             
             LOGGER.log(Level.INFO, "Inicia proceso de consultar el contratista con id = {0}", solicitudId);
@@ -204,6 +260,12 @@ public class SolicitudLogic {
 
         }
         
+        /**
+         * 
+         * @param solicitudId
+         * @param clienteId
+         * @return 
+         */
         public ClienteEntity addCliente(Long solicitudId, Long clienteId){
             
             SolicitudEntity entity= getById(solicitudId);
@@ -212,12 +274,23 @@ public class SolicitudLogic {
             return cliente;
         }
         
+        /**
+         * 
+         * @param solicitudId
+         * @return 
+         */
         public ClienteEntity getCliente(Long solicitudId){
             
             LOGGER.log(Level.INFO, "Inicia proceso de consultar el cliente con id = {0}", solicitudId);
             return getById(solicitudId).getCliente();
         }
         
+        /**
+         * 
+         * @param solicitudId
+         * @param calificacionId
+         * @return 
+         */
         public CalificacionEntity addCalificacion(Long solicitudId, Long calificacionId){
             
             SolicitudEntity entity= getById(solicitudId);
@@ -226,6 +299,11 @@ public class SolicitudLogic {
             return calificacion;
         }
         
+        /**
+         * 
+         * @param solicitudId
+         * @return 
+         */
         public CalificacionEntity getCalificacion(Long solicitudId){
             
             LOGGER.log(Level.INFO, "Inicia proceso de consultar la calificacion con id = {0}", solicitudId);
