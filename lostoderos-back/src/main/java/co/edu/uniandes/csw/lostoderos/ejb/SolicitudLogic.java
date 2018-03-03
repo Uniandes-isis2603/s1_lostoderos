@@ -5,6 +5,12 @@
  */
 package co.edu.uniandes.csw.lostoderos.ejb;
 
+import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
+import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
+import co.edu.uniandes.csw.lostoderos.entities.CotizacionEntity;
+import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
+import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.SolicitudPersistence;
@@ -31,13 +37,27 @@ public class SolicitudLogic {
          */
         private SolicitudPersistence persistence;
         
-        /**
-         * metodo que crea la entidad
-         * @param entity entidad que se desea crear
-         * @return la entidad creada
-         * @throws BusinessLogicException excepcion si ya existe esa entidad
-         */
-        public SolicitudEntity create(SolicitudEntity entity)throws BusinessLogicException{
+        @Inject
+        private ServicioLogic servicioLogic;
+        
+        @Inject
+        private CotizacionLogic cotizacionLogic;
+        
+        @Inject
+        private FacturaLogic facturaLogic;
+        
+        @Inject
+        private ContratistaLogic contratistaLogic;
+        
+        @Inject
+        private ClienteLogic clienteLogic;
+        
+        @Inject
+        private CalificacionLogic calificacionLogic;
+        
+        
+        public SolicitudEntity create(SolicitudEntity entity, Long servicioId, Long cotizacionId, Long facturaId,
+        Long contratistaId)throws BusinessLogicException{
             
             LOGGER.info("Inicia el proceso de creación de una enidad de Solicitud");
             
@@ -85,7 +105,7 @@ public class SolicitudLogic {
             
             return persistence.update(entity);
         }
-        
+                
         /**
          * elimina la entidad deseada
          * @param entity entidad que se desea eliminar
@@ -97,6 +117,119 @@ public class SolicitudLogic {
             persistence.delete(id);
             LOGGER.log(Level.INFO, "Termina el proceso de borrado de la entidad Solicitud con id={0}", id);
         }
+        
+        
+        public ServicioEntity addServicio(Long solicitudId, Long servicioId ){
+            
+            //LOGGER.log(Level.INFO, "Inicia proceso de agregar un servicio a la solicitud con id = {0}", solicitudId);
+            SolicitudEntity entity= getById(solicitudId);
+            ServicioEntity servicio= servicioLogic.getById(servicioId);
+            entity.setServicio(servicio);
+            return servicio;
+        }
+        
+        public void removeServicio(Long solicitudId){
+            
+            SolicitudEntity entity= getById(solicitudId);
+            entity.setServicio(null);
+        }
+        
+        public ServicioEntity getServicio(Long solicitudId){
+            
+            LOGGER.log(Level.INFO, "Inicia proceso de consultar todos el servicio con id = {0}", solicitudId);
+            return getById(solicitudId).getServicio();
 
+        }
+        
+        public ServicioEntity replaceServicio(Long solicitudId, ServicioEntity servicio){
+            
+            SolicitudEntity solicitud= getById(solicitudId);
+            solicitud.setServicio(servicio);
+            return servicio;
+        }
+        
+        public CotizacionEntity addCotizacion(Long solicitudId, Long cotizacionId){
+            
+            SolicitudEntity entity= getById(solicitudId);
+            CotizacionEntity cotizacion= cotizacionLogic.getById(cotizacionId);
+            entity.setCotizacion(cotizacion);
+            return cotizacion;
+        }
+        
+        public CotizacionEntity getCotizacion(Long solicitudId){
+            
+            LOGGER.log(Level.INFO, "Inicia proceso de consultar la cotizacion con id = {0}", solicitudId);
+            return getById(solicitudId).getCotizacion();
+        }
+        
+//        public CotizacionEntity replaceCotizacion(Long solicitudId, CotizacionEntity cotizacion){
+//            
+//            SolicitudEntity solicitud= getById(solicitudId);
+//            solicitud.setCotizacion(cotizacion);
+//            return cotizacion;
+//        }
+//        
+//        public void removeCotizacion(Long solicitudId){
+//            
+//            SolicitudEntity entity= getById(solicitudId);
+//            entity.setCotizacion(null);
+//        }
+        
+        public FacturaEntity addFactura(Long solicitudId, Long facturaId){
+            
+            SolicitudEntity entity= getById(solicitudId);
+            FacturaEntity factura= facturaLogic.getFactura(facturaId);
+            entity.setFactura(factura);
+            return factura;
+        }
+        
+        public FacturaEntity getFactura(Long solicitudId){
+            
+            LOGGER.log(Level.INFO, "Inicia proceso de consultar la factura con id = {0}", solicitudId);
+            return getById(solicitudId).getFactura();
+        }
+        
+        public ContratistaEntity addContratista(Long solicitudId, Long contratistaId){
+            
+            SolicitudEntity entity= getById(solicitudId);
+            ContratistaEntity contratista= contratistaLogic.getContratista(contratistaId);
+            entity.setContratista(contratista);
+            return contratista;
+        }
+        
+        public ContratistaEntity getContratista(Long solicitudId){
+            
+            LOGGER.log(Level.INFO, "Inicia proceso de consultar el contratista con id = {0}", solicitudId);
+            return getById(solicitudId).getContratista();
+
+        }
+        
+        public ClienteEntity addCliente(Long solicitudId, Long clienteId){
+            
+            SolicitudEntity entity= getById(solicitudId);
+            ClienteEntity cliente= clienteLogic.getById(clienteId);
+            entity.setCliente(cliente);
+            return cliente;
+        }
+        
+        public ClienteEntity getCliente(Long solicitudId){
+            
+            LOGGER.log(Level.INFO, "Inicia proceso de consultar el cliente con id = {0}", solicitudId);
+            return getById(solicitudId).getCliente();
+        }
+        
+        public CalificacionEntity addCalificacion(Long solicitudId, Long calificacionId){
+            
+            SolicitudEntity entity= getById(solicitudId);
+            CalificacionEntity calificacion= calificacionLogic.getById(calificacionId);
+            entity.setCalificacion(calificacion);
+            return calificacion;
+        }
+        
+        public CalificacionEntity getCalificacion(Long solicitudId){
+            
+            LOGGER.log(Level.INFO, "Inicia proceso de consultar la calificacion con id = {0}", solicitudId);
+            return getById(solicitudId).getCalificacion();
+        }
     
 }
