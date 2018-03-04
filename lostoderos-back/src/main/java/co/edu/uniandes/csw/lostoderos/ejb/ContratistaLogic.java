@@ -32,12 +32,6 @@ public class ContratistaLogic {
     @Inject
     private SolicitudLogic solicitudLogic;
     
-    @Inject
-    private CalificacionLogic calificacionLogic;
-    
-    @Inject
-    private ContratoLogic contratoLogic;
-    
     /**
      * Crea un contratista en la persistencia.
      * @param entity la entidad que representa el contratista.
