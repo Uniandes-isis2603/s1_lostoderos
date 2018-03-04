@@ -116,6 +116,17 @@ public class CalificacionLogic {
         return entity.getCalificaciones();
         
     }
+           /**
+     * Devuelve todos las calificaciones que hay en la base de datos.
+     * @return Lista de entidades de tipo calificacion.
+     */
+    public List<CalificacionEntity> getCalificaciones() {
+        LOGGER.info("Inicia proceso de consultar todos las calificaciones");
+        List<CalificacionEntity> calificaciones = persistence.findAll();
+        LOGGER.info("Termina proceso de consultar todos los calificaciones");
+        return calificaciones;
+    }
+    
     
    /**
      * Obtiene la lista de los registros de calificaciones que pertenecen a un cliente.

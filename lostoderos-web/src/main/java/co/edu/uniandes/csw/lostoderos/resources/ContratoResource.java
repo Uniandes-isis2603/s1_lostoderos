@@ -6,11 +6,14 @@
 package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.ContratoDetailDTO;
+import co.edu.uniandes.csw.lostoderos.ejb.ContratoLogic;
+import co.edu.uniandes.csw.lostoderos.entities.ContratoEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "contrato".
@@ -42,6 +46,9 @@ import javax.ws.rs.Produces;
 @Consumes( "application/json" )
 @RequestScoped
 public class ContratoResource {
+    
+    @Inject
+    private ContratoLogic contratoLogic;
     
     /**
 	 * <h1>POST /api/toderos : Crear una entidad de contrato.</h1>
@@ -67,7 +74,7 @@ public class ContratoResource {
 	@POST
 	public ContratoDetailDTO createContrato( ContratoDetailDTO dto ) throws BusinessLogicException
 	{
-		return dto;
+		return new ContratoDetailDTO(contratoLogic.create(dto.toEntity()));
 	}
         
         /**
@@ -84,7 +91,7 @@ public class ContratoResource {
 	@GET
 	public List<ContratoDetailDTO> getContratos( )
 	{
-		return new ArrayList<>( );
+		return listContratoEntity2DetailDTO(contratoLogic.getContratos());
 	}
         
         /**
@@ -106,7 +113,11 @@ public class ContratoResource {
     @GET
     @Path("{id: \\d+}")
     public ContratoDetailDTO getContrato(@PathParam("id") Long id) {
-        return null;
+                ContratoEntity entity = contratoLogic.getById(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /contratos/" + id + " no existe.", 404);
+        }
+        return new ContratoDetailDTO(entity);
     }
     
     /**
@@ -130,7 +141,12 @@ public class ContratoResource {
     @PUT
     @Path("{id: \\d+}")
     public ContratoDetailDTO updateContrato(@PathParam("id") Long id, ContratoDetailDTO contrato) throws BusinessLogicException {
-        return contrato;
+        contrato.setID(id);
+        ContratoEntity entity = contratoLogic.getById(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /contratos/" + id + " no existe.", 404);
+        }
+        return new ContratoDetailDTO(contratoLogic.update(entity));
     }
     
     /**
@@ -146,11 +162,24 @@ public class ContratoResource {
      * </code>
      * </pre>
      * @param id Identificador del contrato que se desea borrar. Este debe ser una cadena de dígitos.
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @DELETE
     @Path("{id: \\d+}")
-     public void deleteContrato(@PathParam("id") Long id) {
-        // Void
+     public void deleteContrato(@PathParam("id") Long id) throws BusinessLogicException {
+        ContratoEntity entity = contratoLogic.getById(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /contratos/" + id + " no existe.", 404);
+        }
+        contratoLogic.delete(id);
+    }
+     
+    private List<ContratoDetailDTO> listContratoEntity2DetailDTO(List<ContratoEntity> entityList) {
+      List<ContratoDetailDTO> list = new ArrayList<>();
+        for (ContratoEntity entity : entityList) {
+            list.add(new ContratoDetailDTO(entity));
+        }
+        return list;
     }
 
     

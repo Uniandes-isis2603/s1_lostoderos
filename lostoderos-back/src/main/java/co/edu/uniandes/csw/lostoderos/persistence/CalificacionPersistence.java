@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.lostoderos.persistence;
 
 import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,6 +29,18 @@ public class CalificacionPersistence {
     public CalificacionEntity find(Long id){
         LOGGER.log(Level.INFO, "Consultando una calificacion con id={0}",id);
         return em.find(CalificacionEntity.class,id);
+    }
+    
+        /**
+     * Devuelve todos las calificaciones de la base de datos.
+     *
+     * @return una lista con todos las calificaciones que encuentre en la base de datos
+     */
+    public List<CalificacionEntity> findAll( )
+    {
+	LOGGER.info( "Consultando todas las entidades de Calificaciones" );
+	TypedQuery<CalificacionEntity> query = em.createQuery( "select u from CalificacionEntity u", CalificacionEntity.class );
+	return query.getResultList( );
     }
     
     public CalificacionEntity create(CalificacionEntity entity){

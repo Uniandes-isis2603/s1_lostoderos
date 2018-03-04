@@ -155,7 +155,7 @@ public class CalificacionLogicTest {
      * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @Test
-    public void updateClienteTest() throws BusinessLogicException {
+    public void updateCalificacionTest() throws BusinessLogicException {
         CalificacionEntity entity = data.get(0);
         CalificacionEntity pojoEntity = factory.manufacturePojo(CalificacionEntity.class);
 

@@ -186,6 +186,26 @@ public class ContratoPersistenceTest {
         Assert.assertEquals(entity.getName(), newEntity.getName());
     }
     
+    /**
+     * Prueba para consultar la lista de contratos.
+     *
+     * 
+     */
+    @Test
+    public void getContratosTest() {
+        List<ContratoEntity> list = contratoPersistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (ContratoEntity ent : list) {
+            boolean found = false;
+            for (ContratoEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    
     
     
     

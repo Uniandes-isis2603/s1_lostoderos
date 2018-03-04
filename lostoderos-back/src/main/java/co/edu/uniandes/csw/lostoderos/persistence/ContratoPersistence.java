@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.lostoderos.persistence;
 
 import co.edu.uniandes.csw.lostoderos.entities.ContratoEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,6 +29,18 @@ public class ContratoPersistence {
     public ContratoEntity find(Long id){
         LOGGER.log(Level.INFO, "Consultando un contrato con id={0}",id);
         return em.find(ContratoEntity.class,id);
+    }
+    
+        /**
+     * Devuelve todos los contratos de la base de datos.
+     *
+     * @return una lista con todos los contratos que encuentre en la base de datos
+     */
+    public List<ContratoEntity> findAll( )
+    {
+	LOGGER.info( "Consultando todas las entidades de Contratos" );
+	TypedQuery<ContratoEntity> query = em.createQuery( "select u from ContratoEntity u", ContratoEntity.class );
+	return query.getResultList( );
     }
     
     public ContratoEntity create(ContratoEntity entity){

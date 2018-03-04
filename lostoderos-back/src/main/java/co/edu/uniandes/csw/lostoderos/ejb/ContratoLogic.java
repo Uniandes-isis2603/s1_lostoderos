@@ -9,6 +9,7 @@ package co.edu.uniandes.csw.lostoderos.ejb;
 import co.edu.uniandes.csw.lostoderos.entities.ContratoEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.ContratoPersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -54,6 +55,17 @@ public class ContratoLogic {
     public ContratoEntity getById(Long id){
         
         return persistence.find(id);
+    }
+    
+        /**
+     * Devuelve todos los contratos que hay en la base de datos.
+     * @return Lista de entidades de tipo contrato.
+     */
+    public List<ContratoEntity> getContratos() {
+        LOGGER.info("Inicia proceso de consultar todos los contratos");
+        List<ContratoEntity> contratos = persistence.findAll();
+        LOGGER.info("Termina proceso de consultar todos los contratos");
+        return contratos;
     }
     
     /**
