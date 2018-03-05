@@ -38,9 +38,7 @@ public class CotizacionLogic {
     public CotizacionEntity create(CotizacionEntity entity)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Cotización");
-        if(persistence.find(entity.getId()) != null)
-            throw new BusinessLogicException("Ya existe una entidad de Cotizacion con el id \""+entity.getId()+"\"");
-        
+     
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
@@ -76,9 +74,6 @@ public class CotizacionLogic {
      * @throws BusinessLogicException si ya existe una entidad con el identificador
      */
     public CotizacionEntity update(CotizacionEntity entity)throws BusinessLogicException{
-        
-        if(persistence.find(entity.getId()) != null)
-            throw new BusinessLogicException("Ya existe una entidad de Cotizacion con el id \""+entity.getId()+"\"");
         
         return persistence.update(entity);
     }
