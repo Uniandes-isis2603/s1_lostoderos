@@ -61,8 +61,8 @@ import java.util.List;
  *          {
  *              "id": number,
  *              "nombre", string,
- *              "reputacion", string,
- *              "disponibilidad": string
+ *              "categorias", string,
+ *              "descripcion": string
  *          }
  *      ],
  *      "solicitudes":

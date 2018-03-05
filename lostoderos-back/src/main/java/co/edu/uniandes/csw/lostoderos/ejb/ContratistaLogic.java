@@ -5,13 +5,12 @@
  */
 package co.edu.uniandes.csw.lostoderos.ejb;
 
-import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
-import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.ContratistaPersistence;
+import co.edu.uniandes.csw.lostoderos.persistence.SolicitudPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +29,7 @@ public class ContratistaLogic {
     private ContratistaPersistence persistence;
     
     @Inject
-    private SolicitudLogic solicitudLogic;
+    private SolicitudPersistence solicitudPersistence;
     
     /**
      * Crea un contratista en la persistencia.
@@ -181,7 +180,7 @@ public class ContratistaLogic {
     public SolicitudEntity addSolicitud(Long solicitudId,Long contratistaId){
         LOGGER.log(Level.INFO, "Inicia proceso de asociar una solicitud a un contratista");
         ContratistaEntity contratista = getContratista(contratistaId);
-        SolicitudEntity solicitud = solicitudLogic.getById(solicitudId);
+        SolicitudEntity solicitud = solicitudPersistence.find(solicitudId);
         solicitud.setContratista(contratista);
         LOGGER.log(Level.INFO, "Termina proceso de asociar una solicitud a un contratista");
        return solicitud;
@@ -195,7 +194,7 @@ public class ContratistaLogic {
     public void removeSolicitud(Long solicitudId, Long contratistaId){
         LOGGER.log(Level.INFO, "Inicia proceso de desasociar una solicitud a un contratista");
         ContratistaEntity contratista = getContratista(contratistaId);
-        SolicitudEntity solicitud = solicitudLogic.getById(solicitudId);
+        SolicitudEntity solicitud = solicitudPersistence.find(solicitudId);
         solicitud.setContratista(contratista);
         contratista.getSolicitudes().remove(solicitud);
         LOGGER.log(Level.INFO, "Termina proceso de desasociar una solicitud a un contratista");
@@ -210,7 +209,7 @@ public class ContratistaLogic {
     public List<SolicitudEntity> replaceSolicitudes(Long contratistaId,List<SolicitudEntity> solicitudes){
         LOGGER.log(Level.INFO, "Inicia proceso de reemplazar las solicitudes de un contratista por otras");
         ContratistaEntity contratista = getContratista(contratistaId);
-        List<SolicitudEntity> list = solicitudLogic.getAll();
+        List<SolicitudEntity> list = solicitudPersistence.findAll();
         for(SolicitudEntity solicitud:list){
             if(solicitudes.contains(solicitud)) solicitud.setContratista(contratista);
             else if(solicitud.getContratista()!= null && solicitud.getContratista().equals(contratista))
@@ -242,7 +241,7 @@ public class ContratistaLogic {
     public SolicitudEntity getSolicitud(Long solicitudId,Long contratistaId)throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de consultar una solicitud de un contratistas");
         List<SolicitudEntity> solicitudes = getSolicitudes(contratistaId);
-        SolicitudEntity solicitud = solicitudLogic.getById(solicitudId);
+        SolicitudEntity solicitud = solicitudPersistence.find(solicitudId);
         int index = solicitudes.indexOf(solicitud);
         LOGGER.log(Level.INFO, "Termina proceso de consultar una solicitud de un contratistas");        
         if(index>=0){

@@ -97,9 +97,7 @@ public class HojaDeVidaLogicTest {
         for (int i = 0; i < 3; i++) {
             
             HojaDeVidaEntity entity = factory.manufacturePojo(HojaDeVidaEntity.class);
-            
             em.persist(entity);
-            
             data.add(entity);
         }
         for(int i = 0;i<3;i++){
@@ -113,14 +111,16 @@ public class HojaDeVidaLogicTest {
     @Test
     public void createHojaDeVidaTest()throws BusinessLogicException{
         HojaDeVidaEntity newEntity= factory.manufacturePojo(HojaDeVidaEntity.class);
-        Long contratistaId = factory.manufacturePojo(ContratistaEntity.class).getId();
+        Long contratistaId = contratistas.get(0).getId();
         HojaDeVidaEntity result = hojaVidaLogic.createHojaDeVida(contratistaId, newEntity);
         Assert.assertNotNull(result);
         HojaDeVidaEntity entity = em.find(HojaDeVidaEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
+        
     }
-    
+   
+    /**
     @Test
     public void getHojaDeVida(){
         HojaDeVidaEntity entity= data.get(0);
@@ -152,7 +152,7 @@ public class HojaDeVidaLogicTest {
     }
     
     
-    
+    */
     
     
     
