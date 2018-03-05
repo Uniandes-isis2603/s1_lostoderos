@@ -25,6 +25,7 @@ import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.PagoPersistence;
 import java.util.logging.Logger;
 import javax.inject.Inject;
+import javax.ws.rs.WebApplicationException;
 
 
 /**
@@ -79,12 +80,8 @@ public class PagoResource {
     @POST
 	public PagoDetailDTO createPago( PagoDetailDTO dto ) throws BusinessLogicException 
 	{
-		 // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
-        PagoEntity editorialEntity = dto.toEntity();
-        // Invoca la lógica para crear la editorial nueva
-        PagoEntity nuevoPago = pagoLogic.createPago(editorialEntity);
-        // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
-        return new PagoDetailDTO(nuevoPago);
+	        return new PagoDetailDTO(pagoLogic.createPago(dto.toEntity()));
+
 	}
          /**
      * <h1>GET /api/pagos : Obtener todas los pagos.</h1>
@@ -98,10 +95,10 @@ public class PagoResource {
      * @return JSONArray {@link PagoDetailDTO} - Los pagos encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-	public List<PagoDTO> getPago( )
-	{
-		return new ArrayList<>( );
-	}
+    @Path( "{id: \\d+}" )
+    public List<PagoDetailDTO> getAuthors() {
+        return listEntity2DetailDTO(pagoLogic.getPagos());
+    }
         /**
      * <h1>GET /api/pagos/{id} : Obtener pago por id.</h1>
      * 
@@ -115,15 +112,19 @@ public class PagoResource {
      * 404 Not Found No existe el pago con el id dado.
      * </code> 
      * </pre>
-     * @param id Identificador de la ciudad que se esta buscando. Este debe ser una cadena de dígitos.
+     * @param id  Este debe ser una cadena de dígitos.
      * @return JSON {@link PagoDetailDTO} - La ciudad buscada
      */
     @GET
-	@Path( "{id: \\d+}" )
-	public PagoDetailDTO getPago( @PathParam( "id" ) Long id )
+    public PagoDetailDTO getPago(@PathParam("id") Long id )
 	{
-		return null;
+        PagoEntity entity = pagoLogic.getById(id);
+        if (entity == null) {
+            throw new WebApplicationException("El author no existe", 404);
+        }
+        return new PagoDetailDTO(entity);
 	}
+
          /**
      * <h1>PUT /api/pagos/{id} : Actualizar pago con el id dado.</h1>
      * <pre>Cuerpo de petición: JSON {@link PagoDetailDTO}.
@@ -145,12 +146,26 @@ public class PagoResource {
      */
      
     @PUT
-	@Path( "{id: \\d+}" )
-	public PagoDetailDTO updatePago( @PathParam( "id" ) Long id, PagoDetailDTO pago ) throws BusinessLogicException 
+    @Path( "{id: \\d+}" )
+    public PagoDetailDTO updatePago( @PathParam( "id" ) Long id, PagoDetailDTO pago ) throws BusinessLogicException 
 	{
-		return pago;
+		PagoEntity entity = pago.toEntity();
+        entity.setId(id);
+        PagoEntity oldEntity = pagoLogic.getById(id);
+        if (oldEntity == null) {
+            throw new WebApplicationException("El pago no existe", 404);
+        }
+        return new PagoDetailDTO(pagoLogic.updatePago(entity));
 	}
-            /**
+           
+    private List<PagoDetailDTO> listEntity2DetailDTO(List<PagoEntity> entityList) {
+        List<PagoDetailDTO> list = new ArrayList<>();
+        for (PagoEntity entity : entityList) {
+            list.add(new PagoDetailDTO(entity));
+        }
+        return list;
+    }
+          /**
      * <h1>DELETE /api/pagos/{id} : Borrar pago por id.</h1>
      * 
      * <pre>Borra el pago con el id asociado recibido en la URL.
@@ -168,6 +183,11 @@ public class PagoResource {
 	@Path( "{id: \\d+}" )
 	public void deletePago( @PathParam( "id" ) Long id )
 	{
-		// Void
+		  PagoEntity entity = pagoLogic.getById(id);
+        if (entity == null) {
+            throw new WebApplicationException("El pago no existe", 404);
+        }
+        pagoLogic.deletePago(id);
 	}
+         
 }

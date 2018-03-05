@@ -26,7 +26,6 @@ package co.edu.uniandes.csw.lostoderos.ejb;
 import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.PagoPersistence;
-import java.util.logging.Logger;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,9 +51,6 @@ public class PagoLogic {
      */
     public PagoEntity createPago(PagoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicio de creación de la entidad pago");
-        if(persistence.find(entity.getId()) != null)
-            throw new BusinessLogicException("Ya existe una entidad de pago con el id \""+entity.getId()+"\"");
-        
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
@@ -105,15 +101,13 @@ public class PagoLogic {
      *
      * Actualizar un pago.
      *
-     * @param id: id del pago para buscarla en la base de datos.
      * @param entity: pago con los cambios para ser actualizada, por
      * ejemplo el nombre.
      * @return pago con los cambios actualizados en la base de datos.
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     public PagoEntity updatePago(PagoEntity entity) throws BusinessLogicException {
-           if(persistence.find(entity.getId()) == null)
-            throw new BusinessLogicException("No existe una entidad de pago con el id \""+entity.getId()+"\"");
-        
+    
         return persistence.update(entity);
     }
 

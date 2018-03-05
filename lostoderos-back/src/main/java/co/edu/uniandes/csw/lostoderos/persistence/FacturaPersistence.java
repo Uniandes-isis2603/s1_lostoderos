@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.lostoderos.persistence;
 
-import javax.ejb.Stateless;
 import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
 import java.util.List;
 import java.util.logging.Level;
