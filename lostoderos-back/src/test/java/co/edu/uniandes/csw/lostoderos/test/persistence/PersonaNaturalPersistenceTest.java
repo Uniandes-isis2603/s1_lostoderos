@@ -5,17 +5,22 @@
  */
 package co.edu.uniandes.csw.lostoderos.test.persistence;
 
+import co.edu.uniandes.csw.lostoderos.entities.PersonaJuridicaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.PersonaNaturalEntity;
 import co.edu.uniandes.csw.lostoderos.persistence.PersonaNaturalPersistence;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -65,6 +70,56 @@ public class PersonaNaturalPersistenceTest {
     @Inject
     UserTransaction utx;
     
+    @Before
+    public void configTest() {
+        try {
+            utx.begin();
+            em.joinTransaction();
+            clearData();
+            insertData();
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+    
+    /**
+     * Limpia las tablas que están implicadas en la prueba.
+     *
+     *
+     */
+    private void clearData() {
+        em.createQuery("delete from PersonaNaturalEntity").executeUpdate();
+    }
+
+    /**
+     * lista que tiene los datos de prueba
+     */
+    private List<PersonaNaturalEntity> data = new ArrayList<PersonaNaturalEntity>();
+    
+    /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     *
+     *
+     */
+    private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+            
+            PersonaNaturalEntity entity = factory.manufacturePojo(PersonaNaturalEntity.class);
+
+            em.persist(entity);
+            
+            data.add(entity);
+        }
+    }
+    
     @Test
     public void createPersonaNaturalTest() {
         PodamFactory factory = new PodamFactoryImpl();
@@ -76,6 +131,45 @@ public class PersonaNaturalPersistenceTest {
         PersonaNaturalEntity entity = em.find(PersonaNaturalEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getName(), entity.getName());
+    }
+    
+           /**
+     *
+     */
+    @Test
+    public void getPersonaNaturalTest(){
+        PersonaNaturalEntity entity = data.get(0);
+        PersonaNaturalEntity newEntity = personanaturalPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
+    
+        /**
+     * 
+     */
+    @Test
+    public void deletePersonaNaturalTest(){
+        
+        PersonaNaturalEntity entity = data.get(0);
+        personanaturalPersistence.delete(entity.getId());
+        PersonaNaturalEntity deleted = em.find(PersonaNaturalEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+        @Test
+    public void updateSolicitudTest(){
+        
+        PersonaNaturalEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        PersonaNaturalEntity newEntity = factory.manufacturePojo(PersonaNaturalEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        personanaturalPersistence.update(newEntity);
+
+        PersonaNaturalEntity resp = em.find(PersonaNaturalEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getName(), resp.getName());
     }
     
 }

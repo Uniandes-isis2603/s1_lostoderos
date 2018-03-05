@@ -5,6 +5,10 @@
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
+import co.edu.uniandes.csw.lostoderos.entities.PersonaJuridicaEntity;
+import co.edu.uniandes.csw.lostoderos.entities.UsuarioEntity;
+
 /**
  * PersonaJuridicaDTO Objeto de transferencia de datos de la entidad de PersonaJuridica. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
@@ -40,7 +44,5 @@ public class PersonaJuridicaDetailDTO extends PersonaJuridicaDTO {
         super();
         
     }
-    
-    
     
 }

@@ -33,7 +33,7 @@ public class PersonaJuridicaPersistence {
         return entity;
     }
     
-    public PersonaJuridicaEntity find (Long id)
+    public PersonaJuridicaEntity find(Long id)
     {
         LOGGER.log(Level.INFO, "Consultando persona juridica con id={0}", id);
         return em.find(PersonaJuridicaEntity.class, id);

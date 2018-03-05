@@ -54,7 +54,7 @@ public class PersonaJuridicaPersistenceTest {
      */
     @Inject
     private PersonaJuridicaPersistence personajuridicaPersistence;
-
+    
     /**
      * Contexto de Persistencia que se va a utilizar para acceder a la Base de
      * datos por fuera de los métodos que se están probando.
@@ -130,6 +130,45 @@ public class PersonaJuridicaPersistenceTest {
         PersonaJuridicaEntity entity = em.find(PersonaJuridicaEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getName(), entity.getName());
+    }
+    
+        /**
+     *
+     */
+    @Test
+    public void getPersonaJuridicaTest(){
+        PersonaJuridicaEntity entity = data.get(0);
+        PersonaJuridicaEntity newEntity = personajuridicaPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
+    
+        /**
+     * 
+     */
+    @Test
+    public void deletePersonaJuridicaTest(){
+        
+        PersonaJuridicaEntity entity = data.get(0);
+        personajuridicaPersistence.delete(entity.getId());
+        PersonaJuridicaEntity deleted = em.find(PersonaJuridicaEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+        @Test
+    public void updateSolicitudTest(){
+        
+        PersonaJuridicaEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        PersonaJuridicaEntity newEntity = factory.manufacturePojo(PersonaJuridicaEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        personajuridicaPersistence.update(newEntity);
+
+        PersonaJuridicaEntity resp = em.find(PersonaJuridicaEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getName(), resp.getName());
     }
     
 }
