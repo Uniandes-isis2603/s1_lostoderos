@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.lostoderos.ejb.UsuarioLogic;
+import co.edu.uniandes.csw.lostoderos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 
@@ -65,6 +66,21 @@ public class UsuarioResource
 {
     @Inject
     private UsuarioLogic usuarioLogic;
+    
+    /**
+     * Convierte una lista de AuthorEntity a una lista de AuthorDetailDTO.
+     *
+     * @param entityList Lista de AuthorEntity a convertir.
+     * @return Lista de AuthorDetailDTO convertida.
+     * 
+     */
+    private List<UsuarioDetailDTO> listEntity2DTO(List<UsuarioEntity> entityList) {
+        List<UsuarioDetailDTO> list = new ArrayList<>();
+        for (UsuarioEntity entity : entityList) {
+            list.add(new UsuarioDetailDTO(entity));
+        }
+        return list;
+    }
     /**
 	 * <h1>POST /api/usuarios : Crear una entidad de Usuario.</h1>
 	 * <pre>Cuerpo de petición: JSON {@link UsuarioDetailDTO}.
@@ -104,7 +120,7 @@ public class UsuarioResource
 	@GET
 	public List<UsuarioDetailDTO> getUsuarios( )
 	{
-		return new ArrayList<>( );
+		return listEntity2DTO(usuarioLogic.getAll());
 	}
         
         /**
