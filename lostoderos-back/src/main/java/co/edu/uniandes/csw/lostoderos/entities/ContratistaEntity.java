@@ -62,7 +62,7 @@ public class ContratistaEntity extends UsuarioEntity implements Serializable{
     private List<ServicioEntity> servicios = new ArrayList<ServicioEntity>();
     
     @PodamExclude
-    @OneToOne(cascade=CascadeType.PERSIST)
+    @OneToOne
     private HojaDeVidaEntity hojaVida;
 
     /**

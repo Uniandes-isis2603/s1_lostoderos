@@ -88,7 +88,7 @@ public class HojaDeVidaResource {
      */
     @GET
     public List<HojaDeVidaDetailDTO> getHojasDeVida(){
-        return listBookEntity2DetailDTO(hojaVidaLogic.getHojasDeVida());
+        return listEntity2DetailDTO(hojaVidaLogic.getHojasDeVida());
     }
     
     /**
@@ -110,9 +110,10 @@ public class HojaDeVidaResource {
     @GET
     @Path("{id: \\d+}")
     public HojaDeVidaDetailDTO getHojaDeVida(@PathParam("id") Long id){
+        
         HojaDeVidaEntity entity = hojaVidaLogic.getHojaDeVida(id);
-        if(entity==null){
-            
+        if(entity!=null){
+            return new HojaDeVidaDetailDTO(entity);
         }
         return null;
     }
@@ -138,7 +139,7 @@ public class HojaDeVidaResource {
     @PUT
     @Path("(id: \\d+)")
     public HojaDeVidaDetailDTO updateHojaDeVida(@PathParam("id") Long id,HojaDeVidaDetailDTO hoja)throws BusinessLogicException{
-        return hoja;
+        return new HojaDeVidaDetailDTO(hojaVidaLogic.updateHojaDeVida(hoja.toEntity()));
     }
    
     /**
@@ -159,9 +160,10 @@ public class HojaDeVidaResource {
     @Path("(id:\\d+)")
     public void deleteHojaDeVida(@PathParam("nombre") Long id){
         //Void
+        hojaVidaLogic.deleteHojaDeVida(id);
     }
     
-    private List<HojaDeVidaDetailDTO> listBookEntity2DetailDTO(List<HojaDeVidaEntity> entityList) {
+    private List<HojaDeVidaDetailDTO> listEntity2DetailDTO(List<HojaDeVidaEntity> entityList) {
         List<HojaDeVidaDetailDTO> list = new ArrayList<>();
         for (HojaDeVidaEntity entity : entityList) {
             list.add(new HojaDeVidaDetailDTO(entity));
