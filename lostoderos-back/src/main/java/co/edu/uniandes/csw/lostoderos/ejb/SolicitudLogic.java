@@ -149,44 +149,10 @@ public class SolicitudLogic {
          * @return la entidad actualizada
          * @throws BusinessLogicException sa hay otra entidad con ese id
          */
-        public SolicitudEntity update(SolicitudEntity entity, Long servicioId, Long clienteId, Long cotizacionId,
-        Long facturaId, Long calificacionId, Long contratistaId) throws BusinessLogicException{
+        public SolicitudEntity update(SolicitudEntity entity) throws BusinessLogicException{
             
-            ServicioEntity servicio=servicioPersistence.find(servicioId);
-            if(servicio == null )
-                throw new BusinessLogicException("No existe el servicio que se requiere");
-            else
-                entity.setServicio(servicio);
-            
-            ClienteEntity cliente = clientePersistence.find(clienteId);
-            if(cliente== null)
-                throw new BusinessLogicException("No existe un cliente con el id dado");
-            else
-                entity.setCliente(cliente);
-            
-            ContratistaEntity contratista= contratistaPersistence.find(contratistaId);
-            if(contratista==null)
-                throw new BusinessLogicException("No existe un contratista con e id especificado");
-            else
-                entity.setContratista(contratista);
-            
-            CotizacionEntity cotizacion= cotizacionPersistence.find(cotizacionId);
-            if(cotizacion== null)
-                throw new BusinessLogicException("No existe una cotizacion con ese id");
-            else
-                entity.setCotizacion(cotizacion);
-            
-            FacturaEntity factura= facturaPersistence.find(facturaId);
-            if(factura==null)
-                throw new BusinessLogicException("No existe una factura con el i dado");
-            else
-                entity.setFactura(factura);
-            
-            CalificacionEntity calificacion= calificacionPersistence.find(calificacionId);
-            if(calificacion==null)
-                throw new BusinessLogicException("No existe una calificacion con el id dado");
-            else
-                entity.setCalificacion(calificacion);
+            if(persistence.find(entity.getId()) == null)
+                throw new BusinessLogicException("No existe una Solicitud con el id \""+entity.getId()+"\"");
             
             return persistence.update(entity);
         }
