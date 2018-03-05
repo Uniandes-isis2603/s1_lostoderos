@@ -228,15 +228,8 @@ public class SolicitudLogicTest {
        SolicitudEntity pojoEntity= factory.manufacturePojo(SolicitudEntity.class);
        
        pojoEntity.setId(entity.getId());
-       Long servicioId= servicios.get(0).getId();
-       Long clienteId= clientes.get(0).getId();
-       Long cotizacionId= cotizaciones.get(0).getId();
-       Long facturaId= facturas.get(0).getId();
-       Long calificacionId= calificaciones.get(0).getId();
-       Long contratistaId=contratistas.get(0).getId();
        
-       solicitudLogic.update(pojoEntity, servicioId, clienteId, cotizacionId,
-               facturaId, calificacionId, contratistaId);
+       solicitudLogic.update(pojoEntity);
        
        SolicitudEntity result= em.find(SolicitudEntity.class, entity.getId());
        
