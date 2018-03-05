@@ -95,8 +95,14 @@ public class FacturaDetailDTO extends FacturaDTO{
     public FacturaDetailDTO( FacturaEntity entity)
 	{
 		super(entity );
-                PagoDTO pago = new PagoDTO(entity.getPago());
-                setPago(pago);
+                if (entity!=null) {
+                                    PagoDTO pago = new PagoDTO(entity.getPago());
+                                    if (pago!=null) {
+                                                        setPago(pago);
+
+                    }
+
+            }
 	} 
     public PagoDTO getPago() {
         return pago;
@@ -118,7 +124,10 @@ public class FacturaDetailDTO extends FacturaDTO{
 	{
 		FacturaEntity facturaEntity = super.toEntity( );
                 PagoEntity pago = facturaEntity.getPago();
-                facturaEntity.setPago(pago);
+                if (pago!=null) {
+                                facturaEntity.setPago(pago);
+
+            }
 		return facturaEntity;
 	}
     

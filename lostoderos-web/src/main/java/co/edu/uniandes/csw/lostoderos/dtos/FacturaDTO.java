@@ -73,6 +73,7 @@ public class FacturaDTO {
 	 */
      public FacturaDTO( FacturaEntity facturaEntity )
 	{
+            if(facturaEntity!=null)
 		this.ID = facturaEntity.getId();
 		this.producto = facturaEntity.getProducto();
 		this.subtotal = facturaEntity.getSubtotal();

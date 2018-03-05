@@ -81,6 +81,11 @@ public class PagoDetailDTO extends PagoDTO {
         
 
         }
+      public PagoDetailDTO() {
+        super();
+        
+
+        }
 /**
 	 * Transformar un DTO a un Entity
 	 *
