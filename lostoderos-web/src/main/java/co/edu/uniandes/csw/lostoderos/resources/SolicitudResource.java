@@ -6,12 +6,15 @@
 package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.SolicitudDetailDTO;
+import co.edu.uniandes.csw.lostoderos.ejb.SolicitudLogic;
+import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 
 import javax.ws.rs.*;
@@ -39,6 +42,9 @@ import javax.ws.rs.*;
 @RequestScoped
 public class SolicitudResource {
     
+    @Inject
+    private SolicitudLogic solicitudLogic;
+    
    /**
 	 * <h1>POST /api/solicitudes : Crear una entidad de Solicitud.</h1>
 	 * 
@@ -58,12 +64,20 @@ public class SolicitudResource {
 	 * </pre>
 	 *
 	 * @param solicitud {@link SolicitudDetailDTO} - La entidad de Solicitud que se desea guardar.
+         * @param idServicio
+         * @param clienteId
+     * @param cotizacionId
+     * @param facturaId
+     * @param calificacionId
+     * @param contratistaId
 	 * @return JSON {@link SolicitudDetailDTO}  - La entidad de Solicitud guardada con el atributo id autogenerado.
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de Solicitud.
 	 */ 
     @POST
-    public SolicitudDetailDTO crearSolicitud(SolicitudDetailDTO solicitud) throws BusinessLogicException{
-        return solicitud;
+    public SolicitudDetailDTO crearSolicitud(SolicitudDetailDTO solicitud, @PathParam("idServicio") Long idServicio, @PathParam("clienteId") Long clienteId, @PathParam("cotizacionId")Long cotizacionId,
+            @PathParam("facturaId")Long facturaId, @PathParam("clificacionId") Long calificacionId, @PathParam("contratistaId") Long contratistaId) throws BusinessLogicException{
+        
+        return new SolicitudDetailDTO(solicitudLogic.create(solicitud.toEntity(), idServicio, clienteId, cotizacionId, facturaId, calificacionId, contratistaId));
     }
     
     /**
@@ -76,12 +90,13 @@ public class SolicitudResource {
 	 * 200 OK Devuelve todas las entidades de Solicitud de la aplicacion.</code>
 	 * </pre>
 	 *
+         * @throws BusinessLogicException
 	 * @return JSONArray {@link SolicitudDetailDTO} - Las entidades de la solicitud encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
 	 */
     @GET
-    public List<SolicitudDetailDTO> getSolicitudes(){
+    public List<SolicitudDetailDTO> getSolicitudes()throws BusinessLogicException{
         
-        return new ArrayList<>();
+        return listSoliciudEntityToDetailDTO(solicitudLogic.getAll());
     }
     
     /**
@@ -103,8 +118,13 @@ public class SolicitudResource {
 	 */
     @GET
     @Path( "{id: \\d+}" )
-    public SolicitudDetailDTO getSolicitud( @PathParam( "id" ) Integer id ){
-        return null;
+    public SolicitudDetailDTO getSolicitud( @PathParam( "id" ) Long id ){
+        
+        SolicitudEntity entity= solicitudLogic.getById(id);
+        if(entity == null){
+            throw new WebApplicationException("El recurso /calificaciones/" + id + " no existe.", 404);
+        }
+        return new SolicitudDetailDTO(entity);
     }
     
     /**
@@ -128,9 +148,14 @@ public class SolicitudResource {
 	 */
     @PUT
     @Path( "{id: \\d+}" )
-    public SolicitudDetailDTO updateSolicitud(@PathParam( "id") Integer id, SolicitudDetailDTO solicitud)throws BusinessLogicException{
+    public SolicitudDetailDTO updateSolicitud(@PathParam( "id") Long id, SolicitudDetailDTO solicitud)throws BusinessLogicException{
         
-        return solicitud;
+        solicitud.setId(id);
+        SolicitudEntity entity= solicitudLogic.getById(id);
+        if(entity == null)
+            throw new WebApplicationException("El recurso /calificaciones/" + id + " no existe.", 404);
+        
+        return new SolicitudDetailDTO(solicitudLogic.update(entity));
     }
     
     /**
@@ -150,9 +175,21 @@ public class SolicitudResource {
 	 */
     @DELETE
     @Path( "{id: \\d+}" )
-    public void deleteSolicitud( @PathParam( "id" ) Integer id ){
+    public void deleteSolicitud( @PathParam( "id" ) Long id )throws BusinessLogicException{
 	
-        //cuerpo
+        SolicitudEntity entity= solicitudLogic.getById(id);
+        if(entity == null)
+            throw new WebApplicationException("El recurso /calificaciones/" + id + " no existe.", 404);
+        
+        solicitudLogic.delete(id);
+    }
+    
+    private List<SolicitudDetailDTO> listSoliciudEntityToDetailDTO(List<SolicitudEntity> entityList) {
+        List<SolicitudDetailDTO> list = new ArrayList<>();
+        for (SolicitudEntity entity : entityList) {
+            list.add(new SolicitudDetailDTO(entity));
+        }
+        return list;
     }
     
 }
