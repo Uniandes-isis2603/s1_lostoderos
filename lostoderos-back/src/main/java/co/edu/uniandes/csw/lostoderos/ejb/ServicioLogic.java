@@ -37,10 +37,7 @@ public class ServicioLogic
      */
     public ServicioEntity create(ServicioEntity entity)throws BusinessLogicException{
         
-        LOGGER.info("Inicio de creación de la entidad Cotización");
-        if(persistence.find(entity.getId()) != null)
-            throw new BusinessLogicException("Ya existe una entidad de Servicio con el id \""+entity.getId()+"\"");
-        
+        LOGGER.info("Inicio de creación de la entidad Cotización");        
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;

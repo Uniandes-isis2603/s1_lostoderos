@@ -24,12 +24,14 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.UsuarioDetailDTO;
+import co.edu.uniandes.csw.lostoderos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 
 import javax.ws.rs.DELETE;
@@ -61,6 +63,8 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class UsuarioResource 
 {
+    @Inject
+    private UsuarioLogic usuarioLogic;
     /**
 	 * <h1>POST /api/usuarios : Crear una entidad de Usuario.</h1>
 	 * <pre>Cuerpo de petición: JSON {@link UsuarioDetailDTO}.
@@ -84,7 +88,7 @@ public class UsuarioResource
 	@POST
 	public UsuarioDetailDTO createUusario( UsuarioDetailDTO usuario ) throws BusinessLogicException
 	{
-		return usuario;
+		return new UsuarioDetailDTO(usuarioLogic.create(usuario.toEntity()));
 	}
         
         /**
