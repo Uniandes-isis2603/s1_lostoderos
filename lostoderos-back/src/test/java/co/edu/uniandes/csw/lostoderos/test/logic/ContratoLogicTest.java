@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.lostoderos.test.logic;
 
 import co.edu.uniandes.csw.lostoderos.ejb.ContratoLogic;
 import co.edu.uniandes.csw.lostoderos.entities.ContratoEntity;
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.ContratoPersistence;
 import java.util.ArrayList;
@@ -45,6 +46,8 @@ public class ContratoLogicTest {
     private UserTransaction utx;
 
     private List<ContratoEntity> data = new ArrayList<ContratoEntity>();
+    
+    private List<ContratistaEntity> contratistaData = new ArrayList<ContratistaEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -91,10 +94,16 @@ public class ContratoLogicTest {
      *
      */
     private void insertData() {
+        
+                for (int i = 0; i < 3; i++) {
+            ContratistaEntity e = factory.manufacturePojo(ContratistaEntity.class);
+            em.persist(e);
+            contratistaData.add(e);
+        }
         for (int i = 0; i < 3; i++) {
             
             ContratoEntity entity = factory.manufacturePojo(ContratoEntity.class);
-            
+            entity.setContratista(contratistaData.get(1));
             em.persist(entity);
             
             data.add(entity);
@@ -109,7 +118,9 @@ public class ContratoLogicTest {
     @Test
     public void createContratoTest() throws BusinessLogicException   {
         ContratoEntity newEntity = factory.manufacturePojo(ContratoEntity.class);
-        ContratoEntity result = contratoLogic.create(newEntity);
+        //ContratistaEntity contratista = factory.manufacturePojo(ContratistaEntity.class);
+  
+        ContratoEntity result = contratoLogic.create(newEntity, data.get(0).getContratista().getId());
         Assert.assertNotNull(result);
         ContratoEntity entity = em.find(ContratoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());

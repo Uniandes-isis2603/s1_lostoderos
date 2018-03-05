@@ -6,8 +6,10 @@
 package co.edu.uniandes.csw.lostoderos.ejb;
 
 
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.ContratoEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.lostoderos.persistence.ContratistaPersistence;
 import co.edu.uniandes.csw.lostoderos.persistence.ContratoPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -30,15 +32,21 @@ public class ContratoLogic {
      */
     private ContratoPersistence persistence;
     
+    @Inject
+    private ContratistaPersistence contratistaPersistence;
+    
     /**
      * metodo que crea la entidad de contrato
      * @param entity entidad que se desea crear
+     * @param contratistaId id del contratista
      * @return entidad creada
      * @throws BusinessLogicException si la entidad a crea ya existe
      */
-    public ContratoEntity create(ContratoEntity entity)throws BusinessLogicException{
+    public ContratoEntity create(ContratoEntity entity, long contratistaId)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Contrato");
+        ContratistaEntity contratista = contratistaPersistence.find(contratistaId);
+        entity.setContratista(contratista);
         
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
