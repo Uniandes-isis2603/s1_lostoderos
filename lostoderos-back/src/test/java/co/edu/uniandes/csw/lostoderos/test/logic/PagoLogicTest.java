@@ -31,7 +31,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class PagoLogicTest {
-     private PodamFactory factory = new PodamFactoryImpl();
+     private final PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
     private PagoLogic pagoLogic;
@@ -46,10 +46,10 @@ public class PagoLogicTest {
 
     @Deployment
     public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
+       return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(PagoEntity.class.getPackage())
                 .addPackage(PagoLogic.class.getPackage())
-                .addPackage(PagoEntity.class.getPackage())
+                .addPackage(PagoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -58,7 +58,7 @@ public class PagoLogicTest {
      * Configuración inicial de la prueba.
      *
      */
-    @Before
+     @Before
     public void configTest() {
         try {
             utx.begin();
@@ -102,52 +102,69 @@ public class PagoLogicTest {
     /**
      * Prueba para crear un pago
      *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @Test
-    public void createPagoTest() throws BusinessLogicException {
+    public void createPagoTest() throws BusinessLogicException   {
         PagoEntity newEntity = factory.manufacturePojo(PagoEntity.class);
         PagoEntity result = pagoLogic.createPago(newEntity);
         Assert.assertNotNull(result);
         PagoEntity entity = em.find(PagoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getName(), entity.getName());
     }
-
-    /**
-     * Prueba para consultar un pago
+      /**
+     * Prueba para consultar un Pago
      *
-     * 
+     *
      */
     @Test
     public void getPagoTest() {
         PagoEntity entity = data.get(0);
-        PagoEntity resultEntity =pagoLogic.getPago(entity.getId());
+        PagoEntity resultEntity = pagoLogic.getById(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getName(), resultEntity.getName());
-    }
-
-    /**
-     * Prueba para eliminar un pago
+}
+     /**
+     * Prueba para consultar la lista de Pagos
      *
-     * 
+     *
      */
     @Test
-    public void deletePagoTest() throws BusinessLogicException {
+    public void getPagosTest() {
+        List<PagoEntity> list = pagoLogic.getPagos();
+        Assert.assertEquals(data.size(), list.size());
+        for (PagoEntity entity : list) {
+            boolean found = false;
+            for (PagoEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+        
+    }
+    
+     /**
+     * Prueba para eliminar un Pago
+     *
+     *
+     */
+    @Test
+    public void deleteAuthorTest() {
         PagoEntity entity = data.get(0);
         pagoLogic.deletePago(entity.getId());
         PagoEntity deleted = em.find(PagoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-
-    /**
-     * Prueba para actualizar un Servicio
+   /**
+        * Prueba para actualizar un Pago
      *
-     * 
+     *
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @Test
-    public void updatePagoTest() throws BusinessLogicException {
+    public void updateAuthorTest() throws BusinessLogicException {
         PagoEntity entity = data.get(0);
         PagoEntity pojoEntity = factory.manufacturePojo(PagoEntity.class);
 
@@ -158,6 +175,7 @@ public class PagoLogicTest {
         PagoEntity resp = em.find(PagoEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
+     
     }
+
 }

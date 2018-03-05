@@ -30,6 +30,7 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import co.edu.uniandes.csw.lostoderos.persistence.FacturaPersistence;
+import co.edu.uniandes.csw.lostoderos.persistence.PagoPersistence;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -46,7 +47,7 @@ public class FacturaLogic {
     private FacturaPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
     @Inject
-    private PagoLogic pagoLogic;
+    private PagoPersistence pagoLogic;
      /**
      * Crea una factura en la persistencia.
      * @param entity La entidad que representa la factura a persistir.
@@ -54,10 +55,7 @@ public class FacturaLogic {
      * @throws BusinessLogicException Si la factura a persistir ya existe.
      */
     public FacturaEntity createFactura(FacturaEntity entity) throws BusinessLogicException {
-          LOGGER.info("Inicio de creación de la entidad factura");
-        if(persistence.find(entity.getId()) != null)
-            throw new BusinessLogicException("Ya existe una entidad de factura con el id \""+entity.getId()+"\"");
-        
+          LOGGER.info("Inicio de creación de la entidad factura");        
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
@@ -99,10 +97,10 @@ public class FacturaLogic {
      *
      * Actualizar una factura.
      *
-     * @param id: id de la factura para buscarla en la base de datos.
      * @param entity: factura con los cambios para ser actualizada, por
      * ejemplo el nombre.
      * @return la factura con los cambios actualizados en la base de datos.
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     public FacturaEntity updateFactura(FacturaEntity entity) throws BusinessLogicException {
           if(persistence.find(entity.getId()) == null)
@@ -134,7 +132,7 @@ public class FacturaLogic {
      */
     public PagoEntity setPago(Long pagoId, Long facturaId) {
         FacturaEntity facturaEntity = getFactura(facturaId);
-        PagoEntity pagoEntity = pagoLogic.getPago(pagoId);
+        PagoEntity pagoEntity = pagoLogic.find(pagoId);
         facturaEntity.setPago(pagoEntity);
         return pagoEntity;
     }
