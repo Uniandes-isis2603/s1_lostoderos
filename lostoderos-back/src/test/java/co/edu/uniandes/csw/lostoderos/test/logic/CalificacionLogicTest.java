@@ -47,6 +47,10 @@ public class CalificacionLogicTest {
     private UserTransaction utx;
 
     private List<CalificacionEntity> data = new ArrayList<CalificacionEntity>();
+    
+    private List<ClienteEntity> clienteData = new ArrayList<ClienteEntity>();
+    
+    private List<ContratistaEntity> contratistaData = new ArrayList<ContratistaEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -93,10 +97,23 @@ public class CalificacionLogicTest {
      *
      */
     private void insertData() {
+        
+                for (int i = 0; i < 3; i++) {
+            ClienteEntity cliente = factory.manufacturePojo(ClienteEntity.class);
+            em.persist(cliente);
+            clienteData.add(cliente);
+        }
+            for (int i = 0; i < 3; i++) {
+            ContratistaEntity e = factory.manufacturePojo(ContratistaEntity.class);
+            em.persist(e);
+            contratistaData.add(e);
+        }
+                
         for (int i = 0; i < 3; i++) {
             
             CalificacionEntity entity = factory.manufacturePojo(CalificacionEntity.class);
-            
+            entity.setCliente(clienteData.get(1));
+            entity.setContratista(contratistaData.get(1));
             em.persist(entity);
             
             data.add(entity);
@@ -111,9 +128,7 @@ public class CalificacionLogicTest {
     @Test
     public void createCalificacionTest() throws BusinessLogicException   {
         CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        ContratistaEntity contratista = factory.manufacturePojo(ContratistaEntity.class);
-        ClienteEntity cliente = factory.manufacturePojo(ClienteEntity.class);
-        CalificacionEntity result = calificacionLogic.create(newEntity, cliente.getId(), contratista.getId());
+        CalificacionEntity result = calificacionLogic.create(newEntity, data.get(0).getCliente().getId(), data.get(0).getContratista().getId());
         Assert.assertNotNull(result);
         CalificacionEntity entity = em.find(CalificacionEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
