@@ -81,6 +81,7 @@ public class CalificacionDetailDTO extends CalificacionDTO {
      * Transformar el DTO a una entidad
      * @return La entidad que representa la calificacion.
      */
+    @Override
     public CalificacionEntity toEntity() {
         CalificacionEntity entity = super.toEntity();
         if (this.getCliente() != null) {

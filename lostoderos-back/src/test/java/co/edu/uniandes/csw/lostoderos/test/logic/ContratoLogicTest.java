@@ -33,8 +33,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class ContratoLogicTest {
-    
-     private PodamFactory factory = new PodamFactoryImpl();
+        private final PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
     private ContratoLogic contratoLogic;
@@ -49,7 +48,7 @@ public class ContratoLogicTest {
 
     @Deployment
     public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
+       return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(ContratoEntity.class.getPackage())
                 .addPackage(ContratoLogic.class.getPackage())
                 .addPackage(ContratoPersistence.class.getPackage())
@@ -61,7 +60,7 @@ public class ContratoLogicTest {
      * Configuración inicial de la prueba.
      *
      */
-    @Before
+     @Before
     public void configTest() {
         try {
             utx.begin();
@@ -103,24 +102,23 @@ public class ContratoLogicTest {
     }
 
     /**
-     * Prueba para crear una Contrato
+     * Prueba para crear un contrato
      *
      * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @Test
-    public void createContratoTest() throws BusinessLogicException {
+    public void createContratoTest() throws BusinessLogicException   {
         ContratoEntity newEntity = factory.manufacturePojo(ContratoEntity.class);
         ContratoEntity result = contratoLogic.create(newEntity);
         Assert.assertNotNull(result);
         ContratoEntity entity = em.find(ContratoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getName(), entity.getName());
     }
-
+    
     /**
-     * Prueba para consultar un Contrato
+     * Prueba para consultar un contrato
      *
-     * 
+     *
      */
     @Test
     public void getContratoTest() {
@@ -128,42 +126,60 @@ public class ContratoLogicTest {
         ContratoEntity resultEntity = contratoLogic.getById(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getName(), resultEntity.getName());
-    }
-
-    /**
-     * Prueba para eliminar una Contrato
+}
+     /**
+     * Prueba para consultar la lista de contratos
      *
-     * 
-     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
+     *
      */
     @Test
-    public void deleteContratoTest() throws BusinessLogicException {
+    public void getContratosTest() {
+        List<ContratoEntity> list = contratoLogic.getContratos();
+        Assert.assertEquals(data.size(), list.size());
+        for (ContratoEntity entity : list) {
+            boolean found = false;
+            for (ContratoEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+        
+    }
+    
+     /**
+     * Prueba para eliminar un contrato
+     *
+     *
+     */
+    @Test
+    public void deleteContratoTest() {
         ContratoEntity entity = data.get(0);
         contratoLogic.delete(entity.getId());
         ContratoEntity deleted = em.find(ContratoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-
     /**
-     * Prueba para actualizar una Contrato
+        * Prueba para actualizar un contrato
      *
-     * 
+     *
      * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @Test
-    public void updateClienteTest() throws BusinessLogicException {
+    public void updateContratoTest() throws BusinessLogicException {
         ContratoEntity entity = data.get(0);
         ContratoEntity pojoEntity = factory.manufacturePojo(ContratoEntity.class);
 
         pojoEntity.setId(entity.getId());
 
-        contratoLogic.update(pojoEntity);
+        contratoLogic.update(entity);
 
         ContratoEntity resp = em.find(ContratoEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
+     
     }
+    
     
 }

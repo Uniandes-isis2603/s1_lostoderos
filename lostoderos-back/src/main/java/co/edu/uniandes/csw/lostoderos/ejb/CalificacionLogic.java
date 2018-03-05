@@ -11,6 +11,8 @@ import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
 
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.CalificacionPersistence;
+import co.edu.uniandes.csw.lostoderos.persistence.ClientePersistence;
+import co.edu.uniandes.csw.lostoderos.persistence.ContratistaPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,10 +35,10 @@ public class CalificacionLogic {
     private CalificacionPersistence persistence;
     
     @Inject
-    private ContratistaLogic contratistaLogic;
+    private ContratistaPersistence contratistaPersistence;
     
     @Inject
-    private ClienteLogic clienteLogic;
+    private ClientePersistence clientePersistence;
     
     /**
      * metodo que crea la entidad de calificacion
@@ -49,13 +51,11 @@ public class CalificacionLogic {
     public CalificacionEntity create(CalificacionEntity entity, long clienteid, long contratistaid)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Calificacion");
-        if(persistence.find(entity.getId()) != null){
-            throw new BusinessLogicException("Ya existe una entidad de calificacion con el id \""+entity.getId()+"\"");
-        }
-        ClienteEntity cliente = clienteLogic.getById(clienteid);
+
+        ClienteEntity cliente = clientePersistence.find(clienteid);
         entity.setCliente(cliente);
         
-        ContratistaEntity contratista = contratistaLogic.getContratista(contratistaid);
+        ContratistaEntity contratista = contratistaPersistence.find(contratistaid);
         entity.setContratista(contratista);
         
         return persistence.create(entity);
@@ -90,7 +90,7 @@ public class CalificacionLogic {
      * @param id identificador de la entidad que se desea borrar
      * @throws BusinessLogicException si la entidad no existe
      */
-    public void delete(Long id)throws BusinessLogicException{
+    public void delete(Long id){
         
         LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Calificacion con id={0}", id);
         persistence.delete(id);
@@ -106,7 +106,7 @@ public class CalificacionLogic {
      */
     public List<CalificacionEntity> getCalificacionesContratista(Long contratistaid) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de consultar todas las calificaciones");
-        ContratistaEntity entity = contratistaLogic.getContratista(contratistaid);
+        ContratistaEntity entity = contratistaPersistence.find(contratistaid);
             if (entity.getCalificaciones() == null) {
             throw new BusinessLogicException("El contratista que consulta aún no tiene calificaciones");
         }
@@ -137,7 +137,7 @@ public class CalificacionLogic {
      */
     public List<CalificacionEntity> getCalificacionesCliente(Long clienteid) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de consultar todas las calificaciones");
-        ClienteEntity entity = clienteLogic.getById(clienteid);
+        ClienteEntity entity = clientePersistence.find(clienteid);
             if (entity.getCalificaciones() == null) {
             throw new BusinessLogicException("El cliente que consulta aún no tiene calificaciones");
         }
