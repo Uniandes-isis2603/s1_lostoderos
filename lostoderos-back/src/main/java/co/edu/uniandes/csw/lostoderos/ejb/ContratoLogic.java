@@ -39,8 +39,6 @@ public class ContratoLogic {
     public ContratoEntity create(ContratoEntity entity)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Contrato");
-        if(persistence.find(entity.getId()) != null)
-            throw new BusinessLogicException("Ya existe una entidad de contrato con el id \""+entity.getId()+"\"");
         
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
@@ -85,9 +83,8 @@ public class ContratoLogic {
     /**
      * elimina la entidad con el id asignado
      * @param id identificador de la entidad que se desea borrar
-     * @throws BusinessLogicException si la entidad no existe
      */
-    public void delete(Long id)throws BusinessLogicException{
+    public void delete(Long id){
         
         LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Contrato con id={0}", id);
         persistence.delete(id);
