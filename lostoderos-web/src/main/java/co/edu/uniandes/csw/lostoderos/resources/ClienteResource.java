@@ -24,12 +24,14 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.ClienteDetailDTO;
+import co.edu.uniandes.csw.lostoderos.ejb.ClienteLogic;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 
 import javax.ws.rs.GET;
@@ -61,6 +63,8 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class ClienteResource 
 {
+    @Inject
+    private ClienteLogic clienteLogic;
     /**
 	 * <h1>POST /api/clientes : Crear una entidad de Cliente.</h1>
 	 * <pre>Cuerpo de petición: JSON {@link ClienteDetailDTO}.
@@ -82,9 +86,9 @@ public class ClienteResource
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de Cliente.
 	 */
 	@POST
-	public ClienteDetailDTO createUusario( ClienteDetailDTO cliente ) throws BusinessLogicException
+	public ClienteDetailDTO createCliente( ClienteDetailDTO cliente ) throws BusinessLogicException
 	{
-		return cliente;
+		return new ClienteDetailDTO(clienteLogic.create(cliente.toEntity()));
 	}
         
         /**

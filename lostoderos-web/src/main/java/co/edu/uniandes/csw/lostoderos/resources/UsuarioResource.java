@@ -102,7 +102,7 @@ public class UsuarioResource
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de Usuario.
 	 */
 	@POST
-	public UsuarioDetailDTO createUusario( UsuarioDetailDTO usuario ) throws BusinessLogicException
+	public UsuarioDetailDTO createUsuario( UsuarioDetailDTO usuario ) throws BusinessLogicException
 	{
 		return new UsuarioDetailDTO(usuarioLogic.create(usuario.toEntity()));
 	}

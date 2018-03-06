@@ -24,11 +24,13 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.ServicioDetailDTO;
+import co.edu.uniandes.csw.lostoderos.ejb.ServicioLogic;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -59,6 +61,8 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class ServicioResource 
 {
+     @Inject
+    private ServicioLogic servicioLogic;
     /**
 	 * <h1>POST /api/servicios : Crear una entidad de Servicio.</h1>
 	 * <pre>Cuerpo de petición: JSON {@link ServicioDetailDTO}.
@@ -80,9 +84,9 @@ public class ServicioResource
 	 * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existe la entidad de Servicio.
 	 */
 	@POST
-	public ServicioDetailDTO createUusario( ServicioDetailDTO servicio ) throws BusinessLogicException
+	public ServicioDetailDTO createServicio( ServicioDetailDTO servicio ) throws BusinessLogicException
 	{
-		return servicio;
+		return new ServicioDetailDTO(servicioLogic.create(servicio.toEntity()));
 	}
         
         /**
