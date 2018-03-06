@@ -6,10 +6,8 @@
 package co.edu.uniandes.csw.lostoderos.ejb;
 
 import co.edu.uniandes.csw.lostoderos.entities.PersonaJuridicaEntity;
-import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.PersonaJuridicaPersistence;
-import co.edu.uniandes.csw.lostoderos.persistence.ServicioPersistence;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -39,9 +37,6 @@ public class PersonaJuridicaLogic {
     public PersonaJuridicaEntity create(PersonaJuridicaEntity entity)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Persona Juridica");
-        if(persistence.find(entity.getId()) != null)
-            throw new BusinessLogicException("Ya existe una entidad de Servicio con el id \""+entity.getId()+"\"");
-        
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
