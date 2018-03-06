@@ -9,6 +9,7 @@ package co.edu.uniandes.csw.lostoderos.test.logic;
 import co.edu.uniandes.csw.lostoderos.ejb.PersonaJuridicaLogic;
 import co.edu.uniandes.csw.lostoderos.entities.PersonaJuridicaEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.lostoderos.persistence.PersonaJuridicaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -51,7 +52,7 @@ public class PersonaJuridicaLogicTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(PersonaJuridicaEntity.class.getPackage())
                 .addPackage(PersonaJuridicaLogic.class.getPackage())
-                .addPackage(PersonaJuridicaEntity.class.getPackage())
+                .addPackage(PersonaJuridicaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }

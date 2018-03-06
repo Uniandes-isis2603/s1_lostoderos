@@ -5,13 +5,10 @@
  */
 package co.edu.uniandes.csw.lostoderos.test.logic;
 
-import co.edu.uniandes.csw.lostoderos.ejb.PagoLogic;
-import co.edu.uniandes.csw.lostoderos.ejb.PersonaJuridicaLogic;
 import co.edu.uniandes.csw.lostoderos.ejb.PersonaNaturalLogic;
-import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
-import co.edu.uniandes.csw.lostoderos.entities.PersonaJuridicaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.PersonaNaturalEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.lostoderos.persistence.PersonaNaturalPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -52,9 +49,9 @@ public class PersonaNaturalLogicTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(PagoEntity.class.getPackage())
-                .addPackage(PagoLogic.class.getPackage())
-                .addPackage(PagoEntity.class.getPackage())
+                .addPackage(PersonaNaturalEntity.class.getPackage())
+                .addPackage(PersonaNaturalLogic.class.getPackage())
+                .addPackage(PersonaNaturalPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
