@@ -72,9 +72,9 @@ public class ContratoResource {
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad.
 	 */
 	@POST
-	public ContratoDetailDTO createContrato( ContratoDetailDTO dto ) throws BusinessLogicException
+	public ContratoDetailDTO createContrato(@PathParam("idContratista") Long idContratista, ContratoDetailDTO dto ) throws BusinessLogicException
 	{
-		return new ContratoDetailDTO(contratoLogic.create(dto.toEntity()));
+		return new ContratoDetailDTO(contratoLogic.create(dto.toEntity(), idContratista));
 	}
         
         /**
