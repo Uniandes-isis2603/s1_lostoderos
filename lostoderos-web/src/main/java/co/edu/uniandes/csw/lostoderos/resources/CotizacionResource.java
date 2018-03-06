@@ -6,12 +6,15 @@
 package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.CotizacionDetailDTO;
+import co.edu.uniandes.csw.lostoderos.ejb.CotizacionLogic;
+import co.edu.uniandes.csw.lostoderos.entities.CotizacionEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 
 import javax.ws.rs.*;
@@ -38,6 +41,9 @@ import javax.ws.rs.*;
 @RequestScoped
 public class CotizacionResource {
     
+    @Inject
+    private CotizacionLogic cotizacionLogic;
+    
     /**
 	 * <h1>POST /api/cotizaciones : Crear una entidad de Cotizacion.</h1>
 	 * 
@@ -62,7 +68,8 @@ public class CotizacionResource {
 	 */
     @POST
     public CotizacionDetailDTO crearCotizacion(CotizacionDetailDTO cotizacion) throws BusinessLogicException{
-        return cotizacion;
+        return new CotizacionDetailDTO(cotizacionLogic.create(cotizacion.toEntity()));
+        
     }
     
     /**
@@ -80,7 +87,7 @@ public class CotizacionResource {
     @GET
     public List<CotizacionDetailDTO> getCotizaciones(){
         
-        return new ArrayList<>();
+        return listCotizacionEntityToDetailDTO(cotizacionLogic.getAll());
     }
     
     /**
@@ -99,11 +106,17 @@ public class CotizacionResource {
 	 *
 	 * @param id Identificador de la entidad de Cotizacion que se esta buscando. Este debe ser una cadena de dígitos.
 	 * @return JSON {@link CotizacionDetailDTO} - La entidad de Cotizacion buscada
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
 	 */
     @GET
     @Path( "{id: \\d+}" )
-    public CotizacionDetailDTO getCotizacion( @PathParam( "id" ) Long id ){
-        return null;
+    public CotizacionDetailDTO getCotizacion( @PathParam( "id" ) Long id )throws BusinessLogicException{
+        
+        CotizacionEntity entity= cotizacionLogic.getById(id);
+        if(entity == null)
+            throw new WebApplicationException("El recurso /calificaciones/" + id + " no existe.", 404);
+        
+        return new CotizacionDetailDTO(entity);
     }
     
      /**
@@ -129,7 +142,12 @@ public class CotizacionResource {
     @Path( "{id: \\d+}" )
     public CotizacionDetailDTO updateCotizacion(@PathParam( "id") Long id, CotizacionDetailDTO cotizacion)throws BusinessLogicException{
         
-        return cotizacion;
+        cotizacion.setId(id);
+        CotizacionEntity entity= cotizacionLogic.getById(id);
+        if(entity == null)
+            throw new WebApplicationException("El recurso /calificaciones/" + id + " no existe.", 404);
+        
+        return new CotizacionDetailDTO(cotizacionLogic.update(entity));
     }
     
     /**
@@ -149,9 +167,21 @@ public class CotizacionResource {
 	 */
     @DELETE
     @Path( "{id: \\d+}" )
-    public void deleteCotizacion( @PathParam( "id" ) Long id ){
+    public void deleteCotizacion( @PathParam( "id" ) Long id )throws BusinessLogicException{
 	
-        //cuerpo
+        CotizacionEntity entity= cotizacionLogic.getById(id);
+        if(entity == null)
+            throw new WebApplicationException("El recurso /calificaciones/" + id + " no existe.", 404);
+        
+        cotizacionLogic.delete(id);
+    }
+    
+    private List<CotizacionDetailDTO> listCotizacionEntityToDetailDTO(List<CotizacionEntity> entityList) {
+        List<CotizacionDetailDTO> list = new ArrayList<>();
+        for (CotizacionEntity entity : entityList) {
+            list.add(new CotizacionDetailDTO(entity));
+        }
+        return list;
     }
     
 }

@@ -131,6 +131,24 @@ public class ServicioLogicTest
     }
 
     /**
+     * Prueba para consultar la lista de Servicios
+     *
+     *
+     */
+     @Test
+    public void getAllTest(){
+        List<ServicioEntity> list = servicioLogic.getAll();
+        Assert.assertEquals(data.size(), list.size());
+        for(ServicioEntity entity:list){
+            boolean found = false;
+            for(ServicioEntity storedEntity:data){
+                if(entity.getId().equals(storedEntity.getId())) found =true;
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    
+    /**
      * Prueba para eliminar un Servicio
      *
      * 

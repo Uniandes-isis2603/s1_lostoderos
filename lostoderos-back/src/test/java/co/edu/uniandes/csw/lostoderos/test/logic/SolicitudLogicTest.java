@@ -6,9 +6,17 @@
 package co.edu.uniandes.csw.lostoderos.test.logic;
 
 import co.edu.uniandes.csw.lostoderos.ejb.SolicitudLogic;
+import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
+import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
+import co.edu.uniandes.csw.lostoderos.entities.CotizacionEntity;
+import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
+import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.SolicitudPersistence;
+import com.gs.collections.impl.list.fixed.ArrayAdapter;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -57,6 +65,20 @@ public class SolicitudLogicTest {
      * 
      */
     private List<SolicitudEntity> data= new ArrayList<SolicitudEntity>();
+    
+    private List<ServicioEntity> servicios= new ArrayList<ServicioEntity>();
+    
+    private List<CalificacionEntity> calificaciones= new ArrayList<CalificacionEntity>();
+    
+    private List<ContratistaEntity> contratistas= new ArrayList<ContratistaEntity>();
+    
+    private List<CotizacionEntity> cotizaciones= new ArrayList<CotizacionEntity>();
+    
+    private List<FacturaEntity> facturas= new ArrayList<FacturaEntity>();
+    
+    private List<ClienteEntity> clientes= new ArrayList<ClienteEntity>();
+    
+    //private List<ServicioEntity> data1= new ArrayList<>();
     
     /**
      * 
@@ -117,6 +139,44 @@ public class SolicitudLogicTest {
             
             data.add(entity);
         }
+        for(int i=0; i<3; i++){
+            ServicioEntity entity= factory.manufacturePojo(ServicioEntity.class);
+            em.persist(entity);
+            servicios.add(entity);
+        }
+        for(int i=0; i<3; i++){
+            ClienteEntity cliente= factory.manufacturePojo(ClienteEntity.class);
+            em.persist(cliente);
+            clientes.add(cliente);
+
+        }
+        for(int i=0; i<3; i++){
+            CotizacionEntity cotizacion= factory.manufacturePojo(CotizacionEntity.class);
+            em.persist(cotizacion);
+            cotizaciones.add(cotizacion);
+
+        }
+            
+        for(int i=0; i<3; i++){
+                    ContratistaEntity contratista= factory.manufacturePojo(ContratistaEntity.class);
+        em.persist(contratista);
+        contratistas.add(contratista);
+
+        }
+            
+        for(int i=0; i<3; i++){
+                    FacturaEntity factura= factory.manufacturePojo(FacturaEntity.class);
+        em.persist(factura);
+        facturas.add(factura);
+
+        }
+            
+        for(int i=0; i<3; i++){
+                    CalificacionEntity calificacion= factory.manufacturePojo(CalificacionEntity.class);
+        em.persist(calificacion);
+        calificaciones.add(calificacion);
+
+        }
     }
     
     /**
@@ -127,11 +187,20 @@ public class SolicitudLogicTest {
    public void createSolicitudTest()throws BusinessLogicException{
        
        SolicitudEntity newEntity= factory.manufacturePojo(SolicitudEntity.class);
-       SolicitudEntity result= solicitudLogic.create(newEntity);
+       Long servicioId= servicios.get(0).getId();
+       Long clienteId= clientes.get(0).getId();
+       Long cotizacionId= cotizaciones.get(0).getId();
+       Long facturaId= facturas.get(0).getId();
+       Long calificacionId= calificaciones.get(0).getId();
+       Long contratistaId=contratistas.get(0).getId();
+       
+       SolicitudEntity result= solicitudLogic.create(newEntity, servicioId, clienteId, cotizacionId, 
+               facturaId, calificacionId, contratistaId);
        Assert.assertNotNull(result);
        SolicitudEntity entity= em.find(SolicitudEntity.class, result.getId());
        Assert.assertEquals(newEntity.getId(), entity.getId());
        Assert.assertEquals(newEntity.getName(), entity.getName());
+        
    }
    
    /**

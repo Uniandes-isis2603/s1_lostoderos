@@ -164,7 +164,6 @@ public class CotizacionLogicTest {
        CotizacionEntity result= em.find(CotizacionEntity.class, entity.getId());
        
        Assert.assertEquals(pojoEntity.getId(), result.getId());
-       Assert.assertEquals(pojoEntity.getName(), result.getName());
    }
    
    /**

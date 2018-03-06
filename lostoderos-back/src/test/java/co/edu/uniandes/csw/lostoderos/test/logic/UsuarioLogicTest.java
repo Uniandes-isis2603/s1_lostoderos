@@ -122,7 +122,7 @@ public class UsuarioLogicTest
     /**
      * Prueba para crear un Usuario
      *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @Test
     public void createUsuarioTest() throws BusinessLogicException {
@@ -149,9 +149,28 @@ public class UsuarioLogicTest
     }
 
     /**
+     * Prueba para consultar la lista de Usuarios
+     *
+     *
+     */
+    @Test
+    public void getAllTest(){
+        List<UsuarioEntity> list = usuarioLogic.getAll();
+        Assert.assertEquals(data.size(), list.size());
+        for(UsuarioEntity entity:list){
+            boolean found = false;
+            for(UsuarioEntity storedEntity:data){
+                if(entity.getId().equals(storedEntity.getId())) found =true;
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    
+    /**
      * Prueba para eliminar un Usuario
      *
      * 
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @Test
     public void deleteUsuarioTest() throws BusinessLogicException {
@@ -165,6 +184,7 @@ public class UsuarioLogicTest
      * Prueba para actualizar un Usuario
      *
      * 
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @Test
     public void updateUsuarioTest() throws BusinessLogicException {

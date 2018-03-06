@@ -38,9 +38,6 @@ public class ClienteLogic
     public ClienteEntity create(ClienteEntity entity)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Cotización");
-        if(persistence.find(entity.getId()) != null)
-            throw new BusinessLogicException("Ya existe una entidad de Cliente con el id \""+entity.getId()+"\"");
-        
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;

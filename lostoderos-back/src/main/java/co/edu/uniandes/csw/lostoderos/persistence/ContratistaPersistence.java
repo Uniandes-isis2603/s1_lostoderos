@@ -46,7 +46,9 @@ public class ContratistaPersistence {
     
      public ContratistaEntity find(Long id) {
         LOGGER.log(Level.INFO, "Consultando contratista con id={0}", id);
-        return em.find(ContratistaEntity.class, id);
+        ContratistaEntity contratista =em.find(ContratistaEntity.class, id); 
+        LOGGER.log(Level.INFO, "Termina consulta de contratista con id={0}", id);
+        return contratista;
     }
     
     public ContratistaEntity create(ContratistaEntity entity) {

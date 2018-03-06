@@ -131,6 +131,24 @@ public class ClienteLogicTest
     }
 
     /**
+     * Prueba para consultar la lista de clientes
+     *
+     *
+     */
+     @Test
+    public void getAllTest(){
+        List<ClienteEntity> list = clienteLogic.getAll();
+        Assert.assertEquals(data.size(), list.size());
+        for(ClienteEntity entity:list){
+            boolean found = false;
+            for(ClienteEntity storedEntity:data){
+                if(entity.getId().equals(storedEntity.getId())) found =true;
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    
+    /**
      * Prueba para eliminar un Cliente
      *
      * 

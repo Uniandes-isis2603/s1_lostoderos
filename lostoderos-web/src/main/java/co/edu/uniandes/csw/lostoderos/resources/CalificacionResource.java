@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.lostoderos.resources;
-import co.edu.uniandes.csw.lostoderos.dtos.CalificacionDTO;
 import co.edu.uniandes.csw.lostoderos.dtos.CalificacionDetailDTO;
 import co.edu.uniandes.csw.lostoderos.ejb.CalificacionLogic;
 import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;

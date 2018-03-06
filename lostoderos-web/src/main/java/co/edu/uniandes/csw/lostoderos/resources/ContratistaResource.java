@@ -24,11 +24,14 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.ContratistaDetailDTO;
+import co.edu.uniandes.csw.lostoderos.ejb.ContratistaLogic;
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -59,6 +62,8 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class ContratistaResource {
     
+    @Inject
+    ContratistaLogic contratistaLogic;
     
     /**
      * <h1>POST /api/contratistas: Crear un contratista. </h1>
@@ -84,7 +89,7 @@ public class ContratistaResource {
      */
     @POST
     public ContratistaDetailDTO createContratista(ContratistaDetailDTO contratista) throws BusinessLogicException{
-        return contratista;
+        return new ContratistaDetailDTO(contratistaLogic.createContratista(contratista.toEntity()));
     }
     
      /**
@@ -100,7 +105,7 @@ public class ContratistaResource {
      */
     @GET
     public List<ContratistaDetailDTO> getContratistas() {
-        return new ArrayList<>();
+        return listEntity2DetailDTO(contratistaLogic.getContratistas());
     }
     
     
@@ -123,7 +128,7 @@ public class ContratistaResource {
     @GET
     @Path("{id: \\d+}")
     public ContratistaDetailDTO getContratista(@PathParam("id") Long id){
-        return null;
+        return new ContratistaDetailDTO(contratistaLogic.getContratista(id));
     }
     
      /**
@@ -147,7 +152,7 @@ public class ContratistaResource {
     @PUT
     @Path("{id: \\d+}")
     public ContratistaDetailDTO updateContratista(@PathParam("id") Long id, ContratistaDetailDTO contratista)throws BusinessLogicException{
-        return contratista;
+        return new ContratistaDetailDTO(contratistaLogic.updateContratista(id, contratista.toEntity()));
     }
     
     /**
@@ -168,5 +173,14 @@ public class ContratistaResource {
     @Path("{id: \\d+}")
     public void deleteContratista(@PathParam("id") Long id){
         //Void
+        contratistaLogic.deleteContratista(id);
+    }
+    
+    private List<ContratistaDetailDTO> listEntity2DetailDTO(List<ContratistaEntity> entityList) {
+        List<ContratistaDetailDTO> list = new ArrayList<>();
+        for (ContratistaEntity entity : entityList) {
+            list.add(new ContratistaDetailDTO(entity));
+        }
+        return list;
     }
 }
