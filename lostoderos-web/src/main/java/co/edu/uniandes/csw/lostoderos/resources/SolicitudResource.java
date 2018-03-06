@@ -172,6 +172,7 @@ public class SolicitudResource {
 	 * </pre>
 	 *
 	 * @param id Identificador de la entidad de Solicitud que se desea borrar. Este debe ser una cadena de dígitos.
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
 	 */
     @DELETE
     @Path( "{id: \\d+}" )
