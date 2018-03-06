@@ -15,8 +15,6 @@ import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.SolicitudPersistence;
-import com.gs.collections.impl.list.fixed.ArrayAdapter;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -41,7 +39,7 @@ public class SolicitudLogicTest {
     /**
      * 
      */
-    private PodamFactoryImpl factory= new PodamFactoryImpl();
+    private final PodamFactoryImpl factory= new PodamFactoryImpl();
         
     /**
      * 
