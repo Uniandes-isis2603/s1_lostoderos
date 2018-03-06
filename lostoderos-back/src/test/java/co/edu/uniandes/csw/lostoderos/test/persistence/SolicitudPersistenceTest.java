@@ -5,6 +5,12 @@
  */
 package co.edu.uniandes.csw.lostoderos.test.persistence;
 
+import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
+import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
+import co.edu.uniandes.csw.lostoderos.entities.CotizacionEntity;
+import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
+import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
 import co.edu.uniandes.csw.lostoderos.persistence.SolicitudPersistence;
 import java.util.ArrayList;
@@ -99,6 +105,7 @@ public class SolicitudPersistenceTest {
      * lista que tiene los datos de prueba
      */
     private List<SolicitudEntity> data = new ArrayList<SolicitudEntity>();
+    
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
@@ -116,6 +123,7 @@ public class SolicitudPersistenceTest {
             
             data.add(entity);
         }
+        
     }
 
     /**
