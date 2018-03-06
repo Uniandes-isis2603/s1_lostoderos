@@ -92,6 +92,16 @@ public class FacturaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar factura con id={0}", id);
         return factura;
     }
+    /**
+     * consulta la  factura con el id deseado
+     * @param id identificador que se desea consultar
+     * @return entidad con el id deseado
+     */
+    public FacturaEntity getById(Long id){
+        
+        return persistence.find(id);
+    }
+    
 
     /**
      *

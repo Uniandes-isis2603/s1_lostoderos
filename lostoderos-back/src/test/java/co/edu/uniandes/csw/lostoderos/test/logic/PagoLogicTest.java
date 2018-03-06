@@ -151,7 +151,7 @@ public class PagoLogicTest {
      *
      */
     @Test
-    public void deleteAuthorTest() {
+    public void deletePagoTest() {
         PagoEntity entity = data.get(0);
         pagoLogic.deletePago(entity.getId());
         PagoEntity deleted = em.find(PagoEntity.class, entity.getId());
@@ -164,7 +164,7 @@ public class PagoLogicTest {
      * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @Test
-    public void updateAuthorTest() throws BusinessLogicException {
+    public void updatePagoTest() throws BusinessLogicException {
         PagoEntity entity = data.get(0);
         PagoEntity pojoEntity = factory.manufacturePojo(PagoEntity.class);
 
