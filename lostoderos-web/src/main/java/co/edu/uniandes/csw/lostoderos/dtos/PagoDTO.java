@@ -79,6 +79,9 @@ public class PagoDTO {
 	 * Constructor por defecto
 	 */
     public PagoDTO() {
+          /**
+	 * Constructor por defecto
+	 */
     }
      /**
      * Crea un objeto PagoDTO a partir de un objeto PagoEntity.
@@ -164,7 +167,6 @@ public class PagoDTO {
     
 
    
-    //entity
 /**
 	 * @return El ID de la entidad Pago
 	 */

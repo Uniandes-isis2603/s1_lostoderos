@@ -10,7 +10,8 @@ package co.edu.uniandes.csw.lostoderos.resources;
  * @author s.rangel
  */
 import co.edu.uniandes.csw.lostoderos.dtos.FacturaDetailDTO;
-import co.edu.uniandes.csw.lostoderos.dtos.FacturaDTO;
+import co.edu.uniandes.csw.lostoderos.ejb.FacturaLogic;
+import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -24,6 +25,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.lostoderos.persistence.FacturaPersistence;
+import java.util.logging.Logger;
+import javax.inject.Inject;
+import javax.ws.rs.WebApplicationException;
 
 
 /**
@@ -47,6 +52,14 @@ import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 @Consumes( "application/json" )
 @RequestScoped
 public class FacturaResource {
+    
+    
+    
+    @Inject
+    FacturaLogic facturaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+
+    private static final Logger LOGGER = Logger.getLogger(FacturaPersistence.class.getName());
+
 /**
      * <h1>POST /api/facturas : Crear una factura.</h1>
      * 
@@ -71,7 +84,8 @@ public class FacturaResource {
     @POST
 	public FacturaDetailDTO createFactura( FacturaDetailDTO dto ) throws BusinessLogicException 
 	{
-		return dto;
+            return new FacturaDetailDTO(facturaLogic.createFactura(dto.toEntity()));
+
 	}
          /**
      * <h1>GET /api/facturas : Obtener todas las facturas.</h1>
@@ -85,9 +99,9 @@ public class FacturaResource {
      * @return JSONArray {@link FacturaDetailDTO} - Las facturas encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-	public List<FacturaDTO> getFactura( )
+    public List<FacturaDetailDTO> getFactura( )
 	{
-		return new ArrayList<>( );
+		 return listEntity2DetailDTO(facturaLogic.getFacturas());
 	}
         /**
      * <h1>GET /api/facturas/{id} : Obtener factura por id.</h1>
@@ -105,11 +119,15 @@ public class FacturaResource {
      * @param id Identificador de la factura que se esta buscando. Este debe ser una cadena de dígitos.
      * @return JSON {@link FacturaDetailDTO} - La factura buscada
      */
-           @GET
+     @GET
 	@Path( "{id: \\d+}" )
 	public FacturaDetailDTO getFactura( @PathParam( "id" ) Long id )
 	{
-		return null;
+        FacturaEntity entity = facturaLogic.getFactura(id);
+        if (entity == null) {
+            throw new WebApplicationException("La factura no existe", 404);
+        }
+        return new FacturaDetailDTO(entity);
 	}
       /**
      * <h1>PUT /api/facturas/{id} : Actualizar factura con el id dado.</h1>
@@ -133,8 +151,13 @@ public class FacturaResource {
 	@Path( "{id: \\d+}" )
 	public FacturaDetailDTO updateFactura( @PathParam( "id" ) Long id, FacturaDetailDTO factura ) throws BusinessLogicException 
 	{
-		return factura;
-	}
+	FacturaEntity entity = factura.toEntity();
+        entity.setId(id);
+        FacturaEntity oldEntity = facturaLogic.getFactura(id);
+        if (oldEntity == null) {
+            throw new WebApplicationException("La factura no existe", 404);
+        }
+        return new FacturaDetailDTO(facturaLogic.updateFactura(entity));	}
           
     /**
      * <h1>DELETE /api/facturas/{id} : Borrar factura por id.</h1>
@@ -150,11 +173,21 @@ public class FacturaResource {
      * </pre>
      * @param id Identificador de la factura que se desea borrar. Este debe ser una cadena de dígitos.
      */
-@DELETE
+    @DELETE
 	@Path( "{id: \\d+}" )
 	public void deleteFactura( @PathParam( "id" ) Long id )
         {
-
-		// Void
+	FacturaEntity entity = facturaLogic.getFactura(id);
+        if (entity == null) {
+            throw new WebApplicationException("Laa factura no existe", 404);
+        }
+        facturaLogic.deleteFactura(id);
 	}
+   private List<FacturaDetailDTO> listEntity2DetailDTO(List<FacturaEntity> entityList) {
+        List<FacturaDetailDTO> list = new ArrayList<>();
+        entityList.forEach((entity) -> {
+            list.add(new FacturaDetailDTO(entity));
+        });
+        return list;
+    }
 }

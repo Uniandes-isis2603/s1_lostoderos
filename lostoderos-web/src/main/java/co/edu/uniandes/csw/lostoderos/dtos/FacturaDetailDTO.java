@@ -54,7 +54,7 @@ import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
  *         }
  *   }
  * </pre>
- * Por ejemplo una entidad de Servicio se representa asi:<br>
+ * Por ejemplo una entidad de Factura se representa asi:<br>
  * <pre>
  *
  *   {
@@ -76,6 +76,7 @@ import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
  *         }
  *      
  *   }
+ * 
  */
 public class FacturaDetailDTO extends FacturaDTO{
 
@@ -96,11 +97,10 @@ public class FacturaDetailDTO extends FacturaDTO{
 	{
 		super(entity );
                 if (entity!=null) {
-                                    PagoDTO pago = new PagoDTO(entity.getPago());
-                                    if (pago!=null) {
-                                                        setPago(pago);
+                PagoDTO pagoE = new PagoDTO(entity.getPago());
+                this.setPago(pagoE);
 
-                    }
+                    
 
             }
 	} 
@@ -123,9 +123,9 @@ public class FacturaDetailDTO extends FacturaDTO{
 	public FacturaEntity toEntity( )
 	{
 		FacturaEntity facturaEntity = super.toEntity( );
-                PagoEntity pago = facturaEntity.getPago();
-                if (pago!=null) {
-                                facturaEntity.setPago(pago);
+                PagoEntity pagoE = facturaEntity.getPago();
+                if (pagoE!=null) {
+                                facturaEntity.setPago(pagoE);
 
             }
 		return facturaEntity;

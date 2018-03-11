@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.PagoDetailDTO;
-import co.edu.uniandes.csw.lostoderos.dtos.PagoDTO;
 import co.edu.uniandes.csw.lostoderos.ejb.PagoLogic;
 import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
 import java.util.ArrayList;
@@ -120,7 +119,7 @@ public class PagoResource {
 	{
         PagoEntity entity = pagoLogic.getById(id);
         if (entity == null) {
-            throw new WebApplicationException("El author no existe", 404);
+            throw new WebApplicationException("El pago no existe", 404);
         }
         return new PagoDetailDTO(entity);
 	}
@@ -160,9 +159,9 @@ public class PagoResource {
            
     private List<PagoDetailDTO> listEntity2DetailDTO(List<PagoEntity> entityList) {
         List<PagoDetailDTO> list = new ArrayList<>();
-        for (PagoEntity entity : entityList) {
+        entityList.forEach((entity) -> {
             list.add(new PagoDetailDTO(entity));
-        }
+        });
         return list;
     }
           /**

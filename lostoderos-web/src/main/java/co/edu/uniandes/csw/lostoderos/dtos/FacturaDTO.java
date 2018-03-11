@@ -63,7 +63,9 @@ public class FacturaDTO {
 	 * construcor por defecto
 	 */
     public FacturaDTO() {
-      
+        /**
+	 * construcor por defecto
+	 */
     }
     /**
 	 * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
@@ -74,66 +76,72 @@ public class FacturaDTO {
      public FacturaDTO( FacturaEntity facturaEntity )
 	{
             if(facturaEntity!=null)
+            {
 		this.ID = facturaEntity.getId();
-		this.producto = facturaEntity.getProducto();
+                this.producto = facturaEntity.getProducto();
 		this.subtotal = facturaEntity.getSubtotal();
                 this.total = facturaEntity.getTotal();
-
+            }
 	}
     
   /**
-	 * @return el ID de la entidad Cliente
+	 * @return el ID de la entidad Factura
 	 */
     public Long getID() {
         return ID;
     }
   /**
-	 * @return el producto de la entidad Cliente
+	 * @return el producto de la entidad Factura
 	 */
     public String getProducto() {
         return producto;
     }
   /**
-	 * @return el total de la entidad Cliente
+	 * @return el total de la entidad Factura
 	 */
     public Integer getTotal() {
         return total;
     }
+      /**
+	 * @return la forma de pago de la entidad Factura
+	 */
+    public String getFormaPago() {
+        return formaPago;
+    }
   /**
-	 * @return el subtotal de la entidad Cliente
+	 * @return el subtotal de la entidad Factura
 	 */
     public Integer getSubtotal() {
         return subtotal;
     }
 /**
-	 * @param ID El nuevo ID de la entidad Todero
+	 * @param id El nuevo ID de la entidad Factura
 	 */
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void setID(Long id) {
+        this.ID = id;
     }
 /**
-	 * @param producto El nuevo producto medio de la entidad Todero
+	 * @param producto El nuevo producto medio de la entidad Factura
 	 */
     public void setProducto(String producto) {
         this.producto = producto;
     }
 /**
-	 * @param total El nuevo total de la entidad Todero
+	 * @param total El nuevo total de la entidad Factura
 	 */
     public void setTotal(Integer total) {
         this.total = total;
     }
 /**
-	 * @param subtotal El nuevo subtotal de la entidad Todero
+	 * @param subtotal El nuevo subtotal de la entidad Factura
 	 */
     public void setSubtotal(Integer subtotal) {
         this.subtotal = subtotal;
     }
-    
+   /**
+	 * @param formaPago El nuevo subtotal de la entidad Factura
+	 */
 
-    public String getFormaPago() {
-        return formaPago;
-    }
 
     public void setFormaPago(String formaPago) {
         this.formaPago = formaPago;
