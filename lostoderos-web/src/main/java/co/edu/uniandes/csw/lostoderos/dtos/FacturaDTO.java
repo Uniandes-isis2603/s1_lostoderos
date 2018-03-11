@@ -54,7 +54,7 @@ import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
  * @author s.rangel
  */
 public class FacturaDTO {
-    private Long ID;
+    private Long id;
     private String producto;
     private String formaPago;
     private Integer total;
@@ -77,7 +77,7 @@ public class FacturaDTO {
 	{
             if(facturaEntity!=null)
             {
-		this.ID = facturaEntity.getId();
+		this.id = facturaEntity.getId();
                 this.producto = facturaEntity.getProducto();
 		this.subtotal = facturaEntity.getSubtotal();
                 this.total = facturaEntity.getTotal();
@@ -88,7 +88,7 @@ public class FacturaDTO {
 	 * @return el ID de la entidad Factura
 	 */
     public Long getID() {
-        return ID;
+        return id;
     }
   /**
 	 * @return el producto de la entidad Factura
@@ -118,7 +118,7 @@ public class FacturaDTO {
 	 * @param id El nuevo ID de la entidad Factura
 	 */
     public void setID(Long id) {
-        this.ID = id;
+        this.id = id;
     }
 /**
 	 * @param producto El nuevo producto medio de la entidad Factura
@@ -156,7 +156,7 @@ public class FacturaDTO {
 	public FacturaEntity toEntity( )
 	{
 		FacturaEntity entity = new FacturaEntity( );
-		entity.setId(this.ID );
+		entity.setId(this.id );
 		entity.setProducto(this.producto );
 		entity.setSubtotal(this.subtotal );
 		entity.setTotal(this.total);
