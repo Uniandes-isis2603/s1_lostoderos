@@ -102,10 +102,10 @@ public class PagoDTO {
         }
     }
 /**
-	 * @param ID El nuevo ID de la entidad Todero
+	 * @param id El nuevo ID de la entidad Todero
 	 */
-    public void setID(Long ID) {
-        this.id = ID;
+    public void setID(Long id) {
+        this.id = id;
     }
     
     /**
