@@ -76,46 +76,8 @@ public class CalificacionResource {
 	{
             return new CalificacionDetailDTO(calificacionLogic.create(dto.toEntity(), idCliente, idContratista));
 	}
-        
-        /**
-	 * <h1>GET /api/calificaciones : Obtener todas las entidades de de Calificacion de un cliente.</h1>
-	 * <pre>Busca y devuelve todas las entidades de Calificacion que existen en la aplicacion de un cliente.
-	 *
-	 * Codigos de respuesta:
-	 * <code style="color: mediumseagreen; background-color: #eaffe0;">
-	 * 200 OK Devuelve todas las entidades de Calificacion de la aplicacion.</code>
-	 * </pre>
-	 *
-         * @param idCliente id del cliente
-	 * @return JSONArray {@link CalificacionDetailDTO} - Las entidades de Calificacion encontradas en la aplicación de un cliente. Si no hay ninguna retorna una lista vacía.
-         * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
-	 */
-	@GET
-	public List<CalificacionDetailDTO> getCalificacionesCliente(@PathParam("idCliente") Long idCliente ) throws BusinessLogicException
-	{
-		return listCalificacionEntity2DetailDTO(calificacionLogic.getCalificacionesCliente(idCliente));
-	}
-        
-        
-        
-                /**
-	 * <h1>GET /api/calificaciones : Obtener todas las entidades de de Calificacion de un contratista.</h1>
-	 * <pre>Busca y devuelve todas las entidades de Calificacion que existen en la aplicacion de un contratista.
-	 *
-	 * Codigos de respuesta:
-	 * <code style="color: mediumseagreen; background-color: #eaffe0;">
-	 * 200 OK Devuelve todas las entidades de Calificacion de la aplicacion.</code>
-	 * </pre>
-	 *
-         * @param idContratista id del contratista
-	 * @return JSONArray {@link CalificacionDetailDTO} - Las entidades de Calificacion encontradas en la aplicación de un contratista. Si no hay ninguna retorna una lista vacía.
-         * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
-	 */
-	@GET
-	public List<CalificacionDetailDTO> getCalificacionesContratista(@PathParam("idContratista") Long idContratista ) throws BusinessLogicException
-	{
-		return listCalificacionEntity2DetailDTO(calificacionLogic.getCalificacionesContratista(idContratista));
-	}
+       
+
         
         /**
      * <h1>GET /api/calificaciones/{id} : Obtener Calificacion por id.</h1>

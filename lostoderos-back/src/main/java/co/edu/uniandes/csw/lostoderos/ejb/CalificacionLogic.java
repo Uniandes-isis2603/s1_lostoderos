@@ -96,26 +96,7 @@ public class CalificacionLogic {
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Borrado exitoso", id);
     }
-    
-        /**
-     * Obtiene la lista de los registros de calificaciones que pertenecen a un contratista.
-     *
-     * @param contratistaid id del contratista el cual es padre de las calificaciones.
-     * @return Colección de objetos de CalificacionEntity.
-     * @throws BusinessLogicException Error cuando el contratista no tiene calificaciones.
-     */
-    public List<CalificacionEntity> getCalificacionesContratista(Long contratistaid) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de consultar todas las calificaciones");
-        ContratistaEntity entity = contratistaPersistence.find(contratistaid);
-            if (entity.getCalificaciones() == null) {
-            throw new BusinessLogicException("El contratista que consulta aún no tiene calificaciones");
-        }
-            if (entity.getCalificaciones().isEmpty()) {
-            throw new BusinessLogicException("El contratista que consulta aún no tiene calificaciones");
-        }
-        return entity.getCalificaciones();
-        
-    }
+
            /**
      * Devuelve todos las calificaciones que hay en la base de datos.
      * @return Lista de entidades de tipo calificacion.
@@ -127,26 +108,6 @@ public class CalificacionLogic {
         return calificaciones;
     }
     
-    
-   /**
-     * Obtiene la lista de los registros de calificaciones que pertenecen a un cliente.
-     *
-     * @param clienteid id del cliente el cual es padre de las calificaciones.
-     * @return Colección de objetos de CalificacionEntity.
-     * @throws BusinessLogicException Error cuando el cliente no tiene calificaciones.
-     */
-    public List<CalificacionEntity> getCalificacionesCliente(Long clienteid) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de consultar todas las calificaciones");
-        ClienteEntity entity = clientePersistence.find(clienteid);
-            if (entity.getCalificaciones() == null) {
-            throw new BusinessLogicException("El cliente que consulta aún no tiene calificaciones");
-        }
-            if (entity.getCalificaciones().isEmpty()) {
-            throw new BusinessLogicException("El cliente que consulta aún no tiene calificaciones");
-        }
-        return entity.getCalificaciones();
-        
-    }
 }
 
     
