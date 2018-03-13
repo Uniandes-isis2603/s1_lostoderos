@@ -61,17 +61,17 @@ import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
  *      "id": 91852,
  *      "producto": "Plomería",
  *      "formaPago": "efectivo",
- *      "total": "300000",
- *      "subTotal": "304000",
+ *      "total": 300000,
+ *      "subTotal": 304000,
  *      "pago": 
  *         {
  *      "id": 12390813,
- *      "codigoTarjeta": 123,
+ *      "codigoTarjeta": "123",
  *      "comprobantePagoMedio": true,
  *      "comprobantePagoTotal": false,
- *      "descripcion": un pago correspondiente a tal servicio,
- *      "fechaTarjeta": 10/09/2018,
- *      "numTarjeta": 123456629723,
+ *      "descripcion": "un pago correspondiente a tal servicio",
+ *      "fechaTarjeta": "10/18",
+ *      "numTarjeta":" 123456629723"
  * 
  *         }
  *      

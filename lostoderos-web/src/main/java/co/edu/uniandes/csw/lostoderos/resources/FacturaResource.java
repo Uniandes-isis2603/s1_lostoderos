@@ -99,7 +99,7 @@ public class FacturaResource {
      * @return JSONArray {@link FacturaDetailDTO} - Las facturas encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<FacturaDetailDTO> getFactura( )
+    public List<FacturaDetailDTO> getFacturas( )
 	{
 		 return listEntity2DetailDTO(facturaLogic.getFacturas());
 	}

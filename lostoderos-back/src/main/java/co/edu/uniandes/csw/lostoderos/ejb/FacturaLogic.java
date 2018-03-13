@@ -24,7 +24,6 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.ejb;
 
 import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
-import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -132,49 +131,7 @@ public class FacturaLogic {
             LOGGER.log(Level.INFO, "Termina proceso de borrar factura con id={0}", id);
         }
     
-    /**
-     * Agregar un book a la editorial
-     *
-     * @param pagoId El id pago a guardar
-     * @param facturaId El id de la factura en la cual se va a guardar el
-     * pago.
-     * @return El pago que fue agregado a la factura.
-     */
-    public PagoEntity setPago(Long pagoId, Long facturaId) {
-        FacturaEntity facturaEntity = getFactura(facturaId);
-        PagoEntity pagoEntity = pagoLogic.find(pagoId);
-        facturaEntity.setPago(pagoEntity);
-        return pagoEntity;
-    }
-
-    /**
-     * Borrar el pago de una factura
-     *
-     * @param facturaId id de La factura de la cual se desea eliminar.
-     */
-    public void removePago(Long facturaId) {
-        FacturaEntity facturaEntity = getFactura(facturaId);
-        facturaEntity.setPago(null);
-    }
-
-    /**
-     * Retorna el pago asociado a una factura
-     *
-     * @param facturaId El id de la editorial a buscar.
-     * @return El libro encontrado dentro de la editorial.
-     * @throws BusinessLogicException Si el libro no se encuentra en la editorial
-     */
-    public PagoEntity getPago(Long facturaId) throws BusinessLogicException {
-        FacturaEntity facturaEntity = getFactura(facturaId);
-        PagoEntity pagoEntity = facturaEntity.getPago();
-        if(pagoEntity==null)
-        {
-        throw new BusinessLogicException("La factura no tiene pago");
-        }
-        else
-        return pagoEntity;
-
-    }
+ 
 
 }
 
