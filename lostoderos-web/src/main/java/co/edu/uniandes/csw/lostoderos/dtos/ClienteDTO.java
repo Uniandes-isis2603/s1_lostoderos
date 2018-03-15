@@ -38,7 +38,7 @@ import java.util.Date;
  *      "contraseña": string,
  *      "correo": string,
  *      "fecha_nacimiento" string,
- *      "forma_pago" number,
+ *      "forma_pago" string,
  *      "direccion": string
  * 
  *   }
@@ -52,8 +52,8 @@ import java.util.Date;
  *      "usuario": "Jperez",
  *      "contraseña": "enero1999",
  *      "correo":"Jperez@gmail.com"
- *      "fecha_nacimiento" "14/01/1999",
- *      "forma_pago" 1,
+ *      "fecha_nacimiento" 14/01/1999,
+ *      "forma_pago" "1",
  *      "direccion": "Carrera 5 #62-08"
  *   }
  *
