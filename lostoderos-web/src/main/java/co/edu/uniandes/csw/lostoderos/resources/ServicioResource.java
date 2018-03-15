@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.ServicioDetailDTO;
 import co.edu.uniandes.csw.lostoderos.ejb.ServicioLogic;
+import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "servicio".
@@ -63,6 +65,22 @@ public class ServicioResource
 {
      @Inject
     private ServicioLogic servicioLogic;
+     
+     /**
+     * Convierte una lista de AuthorEntity a una lista de AuthorDetailDTO.
+     *
+     * @param entityList Lista de AuthorEntity a convertir.
+     * @return Lista de AuthorDetailDTO convertida.
+     * 
+     */
+    private List<ServicioDetailDTO> listEntity2DTO(List<ServicioEntity> entityList) {
+        List<ServicioDetailDTO> list = new ArrayList<>();
+        for (ServicioEntity entity : entityList) {
+            list.add(new ServicioDetailDTO(entity));
+        }
+        return list;
+    }
+     
     /**
 	 * <h1>POST /api/servicios : Crear una entidad de Servicio.</h1>
 	 * <pre>Cuerpo de petición: JSON {@link ServicioDetailDTO}.
@@ -102,7 +120,7 @@ public class ServicioResource
 	@GET
 	public List<ServicioDetailDTO> getServicios( )
 	{
-		return new ArrayList<>( );
+		return listEntity2DTO(servicioLogic.getAll());
 	}
         
         /**
@@ -124,7 +142,11 @@ public class ServicioResource
 	@Path( "{id: \\d+}" )
 	public ServicioDetailDTO getServicio( @PathParam( "id" ) Long id )
 	{
-		return null;
+		ServicioEntity entity= servicioLogic.getById(id);
+                if(entity == null){
+                     throw new WebApplicationException("El recurso /servicios/" + id + " no existe.", 404);
+                }
+                return new ServicioDetailDTO(entity);
 	}
 
 	/**
@@ -150,7 +172,13 @@ public class ServicioResource
 	@Path( "{id: \\d+}" )
 	public ServicioDetailDTO updateServicio( @PathParam( "id" ) Long id, ServicioDetailDTO detailDTO ) throws BusinessLogicException
 	{
-		return detailDTO;
+		detailDTO.setId(id);
+                ServicioEntity entity= servicioLogic.getById(id);
+                if(entity == null)
+                {
+                    throw new WebApplicationException("El recurso /servicios/" + id + " no existe.", 404);
+                }
+                return new ServicioDetailDTO(servicioLogic.update(entity));
 	}
 
 	/**
@@ -168,8 +196,13 @@ public class ServicioResource
 	 */
 	@DELETE
 	@Path( "{id: \\d+}" )
-	public void deleteServicio( @PathParam( "id" ) Long id )
+	public void deleteServicio( @PathParam( "id" ) Long id ) throws BusinessLogicException
 	{
-		// Void
+		ServicioEntity entity= servicioLogic.getById(id);
+                if(entity == null)
+                {
+                     throw new WebApplicationException("El recurso /clientes/" + id + " no existe.", 404);
+                }
+                servicioLogic.delete(id);
 	}
 }
