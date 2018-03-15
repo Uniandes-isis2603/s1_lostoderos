@@ -88,6 +88,8 @@ public class ClienteDTO extends UsuarioDTO
 		super();
                 if(clienteEntity != null)
                 {
+                    this.fecha_nacimiento = clienteEntity.getFecha_nacimiento();
+                            
                     this.direccion = clienteEntity.getDireccion();
                     
                     this.forma_pago = clienteEntity.getForma_pago();
