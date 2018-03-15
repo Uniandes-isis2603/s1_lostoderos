@@ -37,7 +37,7 @@ public class ServicioLogic
      */
     public ServicioEntity create(ServicioEntity entity)throws BusinessLogicException{
         
-        LOGGER.info("Inicio de creación de la entidad Cotización");        
+        LOGGER.info("Inicio de creación de la entidad Servicio");  
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
