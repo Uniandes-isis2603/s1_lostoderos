@@ -47,13 +47,12 @@ import java.util.Date;
  * <pre>
  *
  *   {
- *      "id": 91852,
  *      "nombre": "Juan Perez",
  *      "usuario": "Jperez",
  *      "contraseña": "enero1999",
- *      "correo":"Jperez@gmail.com"
- *      "fecha_nacimiento" 14/01/1999,
- *      "forma_pago" "1",
+ *      "correo": "Jperez@gmail.com",
+ *      "fecha_nacimiento": "1999-04-14T00:00:00-05:00",
+ *      "forma_pago" "Efectivo",
  *      "direccion": "Carrera 5 #62-08"
  *   }
  *
