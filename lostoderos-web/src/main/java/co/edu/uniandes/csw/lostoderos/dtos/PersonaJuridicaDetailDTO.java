@@ -44,5 +44,27 @@ public class PersonaJuridicaDetailDTO extends PersonaJuridicaDTO {
         super();
         
     }
+  
+         /**
+	 * Constructor para transformar un Entity a un DTO
+	 *
+	 * @param entity La entidad de PersonaJuridica a partir de la cual se construye el objeto
+	 */
+	public PersonaJuridicaDetailDTO( PersonaJuridicaEntity entity )
+	{
+		super( entity );
+	}    
     
+        /**
+	 * Transformar un DTO a un Entity
+	 *
+	 * @return La entidad construida a partir del DTO.
+	 */
+	@Override
+	public PersonaJuridicaEntity toEntity( )
+	{
+		PersonaJuridicaEntity personajuridicaEntity = super.toEntity( );
+		return personajuridicaEntity;
+	}        
+        
 }

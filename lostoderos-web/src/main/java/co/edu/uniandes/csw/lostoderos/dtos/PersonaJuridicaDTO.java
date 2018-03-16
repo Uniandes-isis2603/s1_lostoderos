@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.PersonaJuridicaEntity;
+
 /**
  * PersonaJuridicaDTO Objeto de transferencia de datos de la entidad de PersonaJuridica. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
@@ -38,15 +40,38 @@ public class PersonaJuridicaDTO extends ClienteDTO{
         /**
 	 * Constructor por defecto
 	 */
-        public PersonaJuridicaDTO() {
+ 	public PersonaJuridicaDTO( )
+	{
+            super();
+	}  
+        
+            /**
+	 * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+	 * la entidad que viene de argumento.
+	 *
+	 * @param PersonaJuridicaEntity: Es la entidad que se va a convertir a DTO
+	 */
+         public PersonaJuridicaDTO(PersonaJuridicaEntity personajuridicaentity) {
             
             super();
-    }
-
+            if(personajuridicaentity != null)
+            {
+                this.ID = personajuridicaentity.getId();                     
+                this.NIT = personajuridicaentity.getNit();
+            }
+         }
+        
+        
+    /**
+     * @return El ID de la Persona Juridica
+     */
     public long getID() {
         return ID;
     }
 
+    /**
+    * @param ID El nuevo id 
+    */
     public void setID(long ID) {
         this.ID = ID;
     }
@@ -58,13 +83,28 @@ public class PersonaJuridicaDTO extends ClienteDTO{
         return NIT;
     }
 
-        /**
+    /**
     * @param NIT El nuevo NIT
     */
     public void setNIT(String NIT) {
         this.NIT = NIT;
     }
     
+            /**
+	 * Convertir DTO a Entity
+	 *
+	 * @return Un Entity con los valores del DTO
+	 */
+	public PersonaJuridicaEntity toEntity( )
+	{
+                super.toEntity();
+		PersonaJuridicaEntity entity = new PersonaJuridicaEntity();
+                
+                entity.setId(this.ID);
+                entity.setNit(this.NIT);
+                
+                return entity;
+	}
 }
 
 

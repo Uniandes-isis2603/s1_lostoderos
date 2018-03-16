@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.lostoderos.ejb;
 import co.edu.uniandes.csw.lostoderos.entities.PersonaNaturalEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.PersonaNaturalPersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -27,6 +28,17 @@ public class PersonaNaturalLogic {
      * atributo para acceder a la persistencia de la aplicacion. Es una inyeccion de dependencia
      */
     private PersonaNaturalPersistence persistence;
+    
+    /**
+     * Devuelve todas las hojas de vida que hay en la base de datos.
+     * @return Lista de entidades de tipo hoja de vida.
+     */
+    public List<PersonaNaturalEntity> getPersonaNaturales() {
+        LOGGER.info("Inicia proceso de consultar todas las hojas  de vida");
+        List<PersonaNaturalEntity> personaNaturales = persistence.findAll();
+        LOGGER.info("Termina proceso de consultar todos las hojas de vida");
+        return personaNaturales;
+    }     
     
     /**
      * metodo que crea la entidad de personaNatural

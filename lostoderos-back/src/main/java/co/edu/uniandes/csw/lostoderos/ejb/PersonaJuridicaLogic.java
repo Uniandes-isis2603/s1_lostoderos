@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.lostoderos.ejb;
 import co.edu.uniandes.csw.lostoderos.entities.PersonaJuridicaEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.PersonaJuridicaPersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -27,6 +28,17 @@ public class PersonaJuridicaLogic {
      * atributo para acceder a la persistencia de la aplicacion. Es una inyeccion de dependencia
      */
     private PersonaJuridicaPersistence persistence;
+    
+    /**
+     * Devuelve todas las hojas de vida que hay en la base de datos.
+     * @return Lista de entidades de tipo hoja de vida.
+     */
+    public List<PersonaJuridicaEntity> getPersonaJuridicas() {
+        LOGGER.info("Inicia proceso de consultar todas las hojas  de vida");
+        List<PersonaJuridicaEntity> personaJuridicas = persistence.findAll();
+        LOGGER.info("Termina proceso de consultar todos las hojas de vida");
+        return personaJuridicas;
+    }    
     
     /**
      * metodo que crea la entidad de personaJuridica
