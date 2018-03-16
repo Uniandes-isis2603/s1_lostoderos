@@ -33,10 +33,10 @@ import javax.persistence.Entity;
 @Entity
 public class UsuarioEntity extends BaseEntity implements Serializable
 {
-    private String nombre;
-    private String usuario;
-    private String contraseña;
-    private String correo;
+    protected String nombre;
+    protected String usuario;
+    protected String contraseña;
+    protected String correo;
 
     public String getNombre() 
     {

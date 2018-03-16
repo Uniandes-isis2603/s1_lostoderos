@@ -41,75 +41,7 @@ import java.util.List;
  *      "id":number,
  *      "nombre": string,
  *      "reputacion": string,
- *      "disponibilidad": string,
- *      "hojaVida":
- *      {
- *          "id": number,
- *          "nombre": string,
- *          "edad": number,
- *          "especialidad": string,
- *          "empleos": string,
- *          "experiencia": string,
- *          "referencias": string
- *      },
- *      "contrato":
- *      {
- *          "id": number
- *      },
- *      "servicios":
- *      [
- *          {
- *              "id": number,
- *              "nombre", string,
- *              "categorias", string,
- *              "descripcion": string
- *          }
- *      ],
- *      "solicitudes":
- *      [
- *          {
- *              "id": number,
- *              "cod_seguridad": number,
- *              "tipo_Servicio": number,
- *              "descripcion": string,
- *              "fecha_inicio": string,
- *              "requerimientos": string,
- *              "factura":
- *              {
- *                  "id": number,
- *                  "subtotal": number,
- *                  "total": number,
- *                  "formaPago": String,
- *                  "pago":
- *                  {
- *                      "id": number,
- *                      "numTarjeta": string,
- *                      "codigoTarjeta": string,
- *                      "fechaTarjeta": string,
- *                      "descripcion": string,
- *                      "comprobantePagoMedio": boolean,
- *                      "comprobantePagoTotal": boolean
- *                  }
- *              }
- *          }
- *      ],
- *      "calificaciones": 
- *      [
- *          {
- *              "numEstrellas": number,
- *              "comentario": string,
- *              "tipoServicio": string,
- *              "cliente":
- *              {
- *                  "id": number,
- *                  "fechaNacimiento": string,
- *                  "forma_pago": string,
- *                  "direccion": string,
- *                  "solicitudes":[]
- *              }
- *          }
- *      ]
- *      
+ *      "disponibilidad": string 
  *  }
  * </pre>
  * @author sa.yepes
