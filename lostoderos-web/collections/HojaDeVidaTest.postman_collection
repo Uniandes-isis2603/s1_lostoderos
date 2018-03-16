@@ -1,0 +1,222 @@
+{
+	"id": "3515cf99-4f75-0c7e-b592-8db37d4363d4",
+	"name": "HojaDeVidaTest",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": null,
+	"order": [
+		"25dfc3c3-ded2-f75b-b186-9a1459445fae",
+		"f7d901c8-1b7f-9715-076b-2dea457f317e",
+		"df965619-8362-2344-d1ca-da6632c3e790",
+		"5c2a537a-d3d9-9155-c665-9e03636f9bf2",
+		"a9841665-fc35-e1a6-af71-b5092db98380",
+		"84d30a6f-0b29-a3cd-58aa-e475cb8e4c66"
+	],
+	"folders_order": [],
+	"folders": [],
+	"requests": [
+		{
+			"id": "25dfc3c3-ded2-f75b-b186-9a1459445fae",
+			"name": "Crear una hoja de vida primera vez",
+			"url": "http://localhost:8080/lostoderos-web/api/hojasdevida",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\r\n  \"id\": 1,\r\n  \"nombre\": \"Myrah\",\r\n  \"edad\": 57,\r\n  \"especialidad\": \"Technical Writer\",\r\n  \"empleos\": \"Executive Secretary\",\r\n  \"experiencia\": \"Vinder\",\r\n  \"referencias\": \"Myrah Amoore\"\r\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "5c2a537a-d3d9-9155-c665-9e03636f9bf2",
+			"name": "Crear una hoja de vida con el mismo nombre",
+			"url": "http://localhost:8080/lostoderos-web/api/hojasdevida/",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No crea con el mismo nombre\"] = responseCode.code === 412;",
+							"",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe una hoja de vida con el nombre\");"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\r\n  \"id\": 1,\r\n  \"nombre\": \"Myrah\",\r\n  \"edad\": 57,\r\n  \"especialidad\": \"Technical Writer\",\r\n  \"empleos\": \"Executive Secretary\",\r\n  \"experiencia\": \"Vinder\",\r\n  \"referencias\": \"Myrah Amoore\"\r\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "84d30a6f-0b29-a3cd-58aa-e475cb8e4c66",
+			"name": "Borrar una hoja de vida",
+			"url": "http://localhost:8080/lostoderos-web/api/hojasdevida/{{new_id_e}}",
+			"description": null,
+			"data": [],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "a9841665-fc35-e1a6-af71-b5092db98380",
+			"name": "Editar una hoja de vida",
+			"url": "http://localhost:8080/lostoderos-web/api/hojasdevida/{{new_id_e}}",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"enabled": true
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\r\n  \"nombre\": \"Hoja de vida con nuevo nombre\"\r\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "df965619-8362-2344-d1ca-da6632c3e790",
+			"name": "Obtener una hoja de vida",
+			"url": "http://localhost:8080/lostoderos-web/api/hojasdevida/{{new_id_e}}",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\r\n  \"id\": 1,\r\n  \"nombre\": \"Myrah\",\r\n  \"edad\": 57,\r\n  \"especialidad\": \"Technical Writer\",\r\n  \"empleos\": \"Executive Secretary\",\r\n  \"experiencia\": \"Vinder\",\r\n  \"referencias\": \"Myrah Amoore\"\r\n}",
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "f7d901c8-1b7f-9715-076b-2dea457f317e",
+			"name": "Obtener las hojas de vida",
+			"url": "http://localhost:8080/lostoderos-web/api/hojasdevida/",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"editorials count\"] = data.length >= 0;"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\r\n  \"id\": 1,\r\n  \"nombre\": \"Myrah\",\r\n  \"edad\": 57,\r\n  \"especialidad\": \"Technical Writer\",\r\n  \"empleos\": \"Executive Secretary\",\r\n  \"experiencia\": \"Vinder\",\r\n  \"referencias\": \"Myrah Amoore\"\r\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		}
+	]
+}
