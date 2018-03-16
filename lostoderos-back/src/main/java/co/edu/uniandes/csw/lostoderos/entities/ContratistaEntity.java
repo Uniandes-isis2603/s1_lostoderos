@@ -64,6 +64,10 @@ public class ContratistaEntity extends UsuarioEntity implements Serializable{
     @PodamExclude
     @OneToOne
     private HojaDeVidaEntity hojaVida;
+    
+    public ContratistaEntity(){
+        super();
+    }
 
     /**
      * Obtiene el atributo reputación.

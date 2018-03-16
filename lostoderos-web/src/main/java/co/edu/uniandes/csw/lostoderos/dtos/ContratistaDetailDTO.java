@@ -23,8 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
-import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
 import java.util.ArrayList;
@@ -38,8 +38,11 @@ import java.util.List;
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *  {
- *      "id":number,
+ *      "id": number,
  *      "nombre": string,
+ *      "usuario": string,
+ *      "contraseña": string,
+ *      "correo": string,
  *      "reputacion": string,
  *      "disponibilidad": string 
  *  }
@@ -72,6 +75,36 @@ public class ContratistaDetailDTO extends ContratistaDTO{
      */
     public ContratistaDetailDTO(ContratistaEntity entity) {
         super(entity);
+        if(entity.getServicios()!=null){
+            servicios = new ArrayList<>();
+            for(ServicioEntity servicio:entity.getServicios()){
+                servicios.add(new ServicioDTO(servicio));
+            }
+        }
+        if(entity.getSolicitudes()!=null){
+            solicitudes=new ArrayList<>();
+            for(SolicitudEntity solicitud:entity.getSolicitudes()){
+                solicitudes.add(new SolicitudDTO(solicitud));
+            }
+        }
+        if(entity.getCalificaciones()!=null){
+            calificaciones= new ArrayList<>();
+            for(CalificacionEntity calificacion:entity.getCalificaciones()){
+                calificaciones.add(new CalificacionDTO(calificacion));
+            }
+        }
+        if(entity.getContrato()!=null){
+            contrato=new ContratoDTO(entity.getContrato());
+        }
+        else{
+            entity.setContrato(null);
+        }
+        if(entity.getHojaVida()!=null){
+            hojaVida=new HojaDeVidaDTO(entity.getHojaVida());
+        }
+        else{
+            entity.setHojaVida(null);
+        }
     }
     
     /**

@@ -155,6 +155,7 @@ public class ContratistaLogic {
     public ContratistaEntity updateContratista(Long id, ContratistaEntity entity) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un contratista con id={0}", id);
         // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
+        entity.setId(id);
         ContratistaEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar contratista con id={0}", entity.getId());
         return newEntity;

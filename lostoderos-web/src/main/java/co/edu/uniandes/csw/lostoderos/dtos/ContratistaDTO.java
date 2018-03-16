@@ -61,8 +61,9 @@ public class ContratistaDTO extends UsuarioDTO{
      * Constructor por defecto.
      */
     public ContratistaDTO() {
-        super();
+       
     }
+    
 
     /**
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
