@@ -27,7 +27,7 @@ import javax.ws.rs.Produces;
 
 /**
  * <pre>Clase que implementa el recurso "PersonaNatural".
- * URL: /api/PersonaJuridica
+ * URL: /api/PersonaNatural
  * </pre>
  * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
  * este recurso tiene la ruta "toderos".</i>
