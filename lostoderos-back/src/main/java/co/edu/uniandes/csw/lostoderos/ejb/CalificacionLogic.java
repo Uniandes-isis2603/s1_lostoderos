@@ -25,7 +25,7 @@ import javax.inject.Inject;
  */
 @Stateless
 public class CalificacionLogic {
-    
+    //TODO: Cambiar el nombre de la clase
     private static final Logger LOGGER = Logger.getLogger(ContratoLogic.class.getName());
     
     @Inject
@@ -51,7 +51,7 @@ public class CalificacionLogic {
     public CalificacionEntity create(CalificacionEntity entity, long clienteid, long contratistaid)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Calificacion");
-
+// TODO: No hay ninguna regla de Negiocio?
         ClienteEntity cliente = clientePersistence.find(clienteid);
         entity.setCliente(cliente);
         
@@ -81,10 +81,10 @@ public class CalificacionLogic {
         
         if(persistence.find(entity.getId()) == null)
             throw new BusinessLogicException("No existe una entidad de Calificacion con el id \""+entity.getId()+"\"");
-        
+        // TODO: Antes de actualizar validar las reglas de negocio
         return persistence.update(entity);
     }
-    
+    //TODO: ACtualizar la documentación
     /**
      * elimina la entidad con el id asignado
      * @param id identificador de la entidad que se desea borrar

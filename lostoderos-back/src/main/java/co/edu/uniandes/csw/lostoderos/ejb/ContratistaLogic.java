@@ -40,7 +40,7 @@ public class ContratistaLogic {
     public ContratistaEntity createContratista(ContratistaEntity entity)throws BusinessLogicException{
          LOGGER.info("Inicia proceso de creación de hoja de vida");
         // Invoca la persistencia para crear la hoja de vida
-        
+        //TODO: NO hay ninguna regla de negocio?
         LOGGER.info("Termina proceso de creación de hoja de vida");
         return persistence.create(entity);
     }
@@ -82,6 +82,8 @@ public class ContratistaLogic {
      */
     public ServicioEntity getServicio(Long contratistaId, Long servicioId){
         LOGGER.info("Inicia proceso de consultar un servicio del contratista");
+        //TODO: Hay que hacer un findServicioByContratista que sea un query con los dos ids.
+        //TODO: HAy qu evalidar que el contratista existe
         List<ServicioEntity> list = getContratista(contratistaId).getServicios();
         ServicioEntity servicioEntity = new ServicioEntity();
         servicioEntity.setId(servicioId);
@@ -100,11 +102,13 @@ public class ContratistaLogic {
      * @param contratistaId Identificador de la instancia Contratista.
      * @return Instancia de Servicio que fue asociada a Contratista.
      */
+    
     public ServicioEntity addServicio(Long servicioId,Long contratistaId){
         LOGGER.info("Inicia proceso de agregar un servicio al contratista");
         ContratistaEntity contratista = getContratista(contratistaId);
         ServicioEntity servicio = new ServicioEntity();
         servicio.setId(servicioId);
+        //TODO: qué pasa si el contratista no existe? NUnca se valido. Aquí habría un nullpointerexception
         contratista.getServicios().add(servicio);
         LOGGER.info("Termina proceso de agregar un servicio al contratista");
 
@@ -121,6 +125,7 @@ public class ContratistaLogic {
         ContratistaEntity entity = getContratista(contratistaId);
         ServicioEntity servicio = new ServicioEntity();
         servicio.setId(servicioId);
+        //TODO: qué pasa si el contratista no existe? NUnca se valido. Aquí habría un nullpointerexception
         entity.getServicios().remove(servicio);
         LOGGER.info("Termina proceso de agregar un servicio al contratista");
     }
@@ -182,6 +187,7 @@ public class ContratistaLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar una solicitud a un contratista");
         ContratistaEntity contratista = getContratista(contratistaId);
         SolicitudEntity solicitud = solicitudPersistence.find(solicitudId);
+      //TODO: qué pasa si la solicitud  no existe? NUnca se valido. Aquí habría un nullpointerexception
         solicitud.setContratista(contratista);
         LOGGER.log(Level.INFO, "Termina proceso de asociar una solicitud a un contratista");
        return solicitud;
@@ -196,6 +202,7 @@ public class ContratistaLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de desasociar una solicitud a un contratista");
         ContratistaEntity contratista = getContratista(contratistaId);
         SolicitudEntity solicitud = solicitudPersistence.find(solicitudId);
+        //TODO: qué pasa si el contratista no existe? NUnca se valido. Aquí habría un nullpointerexception
         solicitud.setContratista(contratista);
         contratista.getSolicitudes().remove(solicitud);
         LOGGER.log(Level.INFO, "Termina proceso de desasociar una solicitud a un contratista");
@@ -243,6 +250,7 @@ public class ContratistaLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar una solicitud de un contratistas");
         List<SolicitudEntity> solicitudes = getSolicitudes(contratistaId);
         SolicitudEntity solicitud = solicitudPersistence.find(solicitudId);
+        //TODO: qué pasa si la solicitud no existe? NUnca se valido. Aquí habría un nullpointerexception
         int index = solicitudes.indexOf(solicitud);
         LOGGER.log(Level.INFO, "Termina proceso de consultar una solicitud de un contratistas");        
         if(index>=0){

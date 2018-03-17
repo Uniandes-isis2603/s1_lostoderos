@@ -49,6 +49,7 @@ public class PersonaJuridicaLogic {
     public PersonaJuridicaEntity create(PersonaJuridicaEntity entity)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Persona Juridica");
+        //TODO: NO hay ninguna regla de negocio? 
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
@@ -86,6 +87,7 @@ public class PersonaJuridicaLogic {
     public void delete(Long id)throws BusinessLogicException{
         
         LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Persona Juridica con id={0}", id);
+        //TODO: Qué pasa si no existe una persona juridica con ese id?
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Borrado exitoso", id);
     }

@@ -153,7 +153,7 @@ public class SolicitudLogic {
             
             if(persistence.find(entity.getId()) == null)
                 throw new BusinessLogicException("No existe una Solicitud con el id \""+entity.getId()+"\"");
-            
+            //TODO: NO hay ninguna regla de negocio? 
             return persistence.update(entity);
         }
                 
@@ -165,6 +165,7 @@ public class SolicitudLogic {
         public void delete(Long id) throws BusinessLogicException{
             
             LOGGER.log(Level.INFO, "inicia proceso de borrado de la entidad Solicitud con id={0}", id);
+            //TODO: qué pasa si no existe una solicitud con ese id?
             persistence.delete(id);
             LOGGER.log(Level.INFO, "Termina el proceso de borrado de la entidad Solicitud con id={0}", id);
         }

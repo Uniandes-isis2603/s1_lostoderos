@@ -38,7 +38,7 @@ public class CotizacionLogic {
     public CotizacionEntity create(CotizacionEntity entity)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Cotización");
-     
+        //TODO: NO hay ninguna regla de negocio?
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
@@ -66,7 +66,7 @@ public class CotizacionLogic {
         
         return persistence.find(id);
     }
-    
+    //TODO: Debería haber un getCotizacionByContratista
     /**
      * Actualiza la entidad deseada
      * @param entity entidad que se desea actualizar
@@ -74,7 +74,8 @@ public class CotizacionLogic {
      * @throws BusinessLogicException si ya existe una entidad con el identificador
      */
     public CotizacionEntity update(CotizacionEntity entity)throws BusinessLogicException{
-        
+           //TODO: NO hay ninguna regla de negocio? 
+           // TODO: que pasa si la contización que se quiere actualizar no existe
         return persistence.update(entity);
     }
     
@@ -86,6 +87,7 @@ public class CotizacionLogic {
     public void delete(Long id)throws BusinessLogicException{
         
         LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Cotizacion con id={0}", id);
+           // TODO: que pasa si la contización que se quiere actualizar no existe
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Borrado exitoso", id);
     }

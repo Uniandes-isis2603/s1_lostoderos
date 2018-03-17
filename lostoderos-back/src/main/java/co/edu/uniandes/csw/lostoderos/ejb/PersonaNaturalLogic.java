@@ -49,6 +49,7 @@ public class PersonaNaturalLogic {
     public PersonaNaturalEntity create(PersonaNaturalEntity entity)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Persona Natural");
+        //TODO: NO hay ninguna regla de negocio? 
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
@@ -74,7 +75,7 @@ public class PersonaNaturalLogic {
         
         if(persistence.find(entity.getId()) == null)
             throw new BusinessLogicException("No existe una entidad de Persona Natural con el id \""+entity.getId()+"\"");
-        
+        //TODO: NO hay ninguna regla de negocio? 
         return persistence.update(entity);
     }
     
@@ -86,6 +87,7 @@ public class PersonaNaturalLogic {
     public void delete(Long id)throws BusinessLogicException{
         
         LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Persona Natural con id={0}", id);
+              //TODO: Qué pasa si no existe una persona Natural con ese id?
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Borrado exitoso", id);
     }

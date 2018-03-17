@@ -38,6 +38,7 @@ public class UsuarioLogic
     public UsuarioEntity create(UsuarioEntity entity)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Cotización");
+        //TODO: NO hay ninguna regla de negocio? 
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
@@ -77,7 +78,7 @@ public class UsuarioLogic
         
         if(persistence.find(entity.getId()) == null)
             throw new BusinessLogicException("No existe una entidad de Usuario con el id \""+entity.getId()+"\"");
-        
+        //TODO: NO hay ninguna regla de negocio? 
         return persistence.update(entity);
     }
     
