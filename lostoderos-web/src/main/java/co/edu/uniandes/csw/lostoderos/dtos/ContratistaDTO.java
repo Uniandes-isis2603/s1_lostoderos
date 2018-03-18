@@ -73,8 +73,8 @@ public class ContratistaDTO extends UsuarioDTO{
      */
     public ContratistaDTO(ContratistaEntity contratista) {
         super(contratista);
-            this.reputacion = contratista.getReputacion();
-            this.disponibilidad = contratista.getDisponibilidad();
+        this.reputacion = contratista.getReputacion();
+        this.disponibilidad = contratista.getDisponibilidad();
         
     }
 

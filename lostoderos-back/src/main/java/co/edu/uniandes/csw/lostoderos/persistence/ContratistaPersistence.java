@@ -70,18 +70,21 @@ public class ContratistaPersistence {
         LOGGER.info("Consultando todas los contratistas");
         // Se crea un query para buscar todos los contratistas en la base de datos.
         TypedQuery query = em.createQuery("select u from ContratistaEntity u", ContratistaEntity.class);
-        // Note que en el query se hace uso del método getResultList() que obtiene una lista de contratistas.
+        LOGGER.info("Termina la consulta de todos los contratistas");
         return query.getResultList();
     }
     
     public ContratistaEntity update(ContratistaEntity entity) {
-        LOGGER.log(Level.INFO, "Actualizando tratista con id={0}", entity.getId());
-        return em.merge(entity);
+        LOGGER.log(Level.INFO, "Actualizando contratista con id={0}", entity.getId());
+        ContratistaEntity c = em.merge(entity);
+        LOGGER.log(Level.INFO, "Termina actualización del contratista con id={0}", entity.getId());
+        return c;
     }
     
     public void delete(Long id) {
-        LOGGER.log(Level.INFO, "Borrando contratista con id={0}", id);
+        LOGGER.log(Level.INFO, "Eliminando contratista con id={0}", id);
         ContratistaEntity entity = em.find(ContratistaEntity.class, id);
         em.remove(entity);
+        LOGGER.log(Level.INFO, "Termina eliminación de contratista con id={0}", id);
     }
 }

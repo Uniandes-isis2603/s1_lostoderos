@@ -6,10 +6,12 @@
 package co.edu.uniandes.csw.lostoderos.ejb;
 
 import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
+import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.ContratistaPersistence;
+import co.edu.uniandes.csw.lostoderos.persistence.HojaDeVidaPersistence;
 import co.edu.uniandes.csw.lostoderos.persistence.SolicitudPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,6 +33,9 @@ public class ContratistaLogic {
     @Inject
     private SolicitudPersistence solicitudPersistence;
     
+    @Inject
+    private HojaDeVidaPersistence hojaDeVidaPersistence;
+    
     /**
      * Crea un contratista en la persistencia.
      * @param entity la entidad que representa el contratista.
@@ -38,11 +43,11 @@ public class ContratistaLogic {
      * @throws BusinessLogicException Si el contratista a persistir ya existe.
      */
     public ContratistaEntity createContratista(ContratistaEntity entity)throws BusinessLogicException{
-         LOGGER.info("Inicia proceso de creación de hoja de vida");
-        // Invoca la persistencia para crear la hoja de vida
-        //TODO: NO hay ninguna regla de negocio?
-        LOGGER.info("Termina proceso de creación de hoja de vida");
-        return persistence.create(entity);
+         LOGGER.info("Inicia proceso de creación del contratista");
+        ContratistaEntity c=persistence.create(entity);
+        //No existe ninguna regla de negocio
+        LOGGER.info("Termina proceso de creación del contratista");
+        return c;
     }
     
      /**
@@ -52,7 +57,7 @@ public class ContratistaLogic {
      */
     public List<ContratistaEntity> getContratistas() {
         LOGGER.info("Inicia proceso de consultar todos los contratistas");
-        // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
+        
         List<ContratistaEntity> contratistas = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todos los contratistas");
         return contratistas;
@@ -257,6 +262,5 @@ public class ContratistaLogic {
             return solicitudes.get(index);
         }
         throw new BusinessLogicException("La solicitud no está asociada al contratista");
-    }
-      
+    } 
 }
