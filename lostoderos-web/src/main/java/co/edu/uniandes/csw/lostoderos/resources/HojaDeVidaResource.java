@@ -88,6 +88,7 @@ public class HojaDeVidaResource {
      */
     @GET
     public List<HojaDeVidaDetailDTO> getHojasDeVida(){
+        
         return listEntity2DetailDTO(hojaVidaLogic.getHojasDeVida());
     }
     
