@@ -77,6 +77,26 @@ public class HojaDeVidaResource {
     } 
     
     /**
+<<<<<<< HEAD
+=======
+     * <h1>GET /api/hojasdevida: Obtener todas las hojas de vida. </h1>
+     * 
+     * <pre> Busca y devuelve todas las ciudades que existen en la aplicación.
+     * 
+     * Códigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Devuelve todas las ciudades de la aplicación. </code>
+     * </pre>
+     * @return JSONArray {@link HojaDeVidaDetailDTO} - Las hojas de vida encontradas en la aplicación. 
+     */
+    @GET
+    public List<HojaDeVidaDetailDTO> getHojasDeVida(){
+        
+        return listEntity2DetailDTO(hojaVidaLogic.getHojasDeVida());
+    }
+    
+    /**
+>>>>>>> a9b18a62a545a52e8dbffb1715beb9ba19dce072
      * <h1> GET /api/hojasdevida/{id} : Obtener hoja de vida por id de contratista. </h1>
      * 
      * <pre> Busca la hoja de vida con el id asociado recibido en la URL y la devuelve.

@@ -43,7 +43,7 @@ import javax.ws.rs.WebApplicationException;
  * @author s.rangel  
  * @version 1.0
  */
-@Path( "pagos" )
+@Path( "facturas/{id: \\d+}/pagos" )
 @Produces( "application/json" )
 @Consumes( "application/json" )
 @RequestScoped
@@ -118,7 +118,7 @@ public class PagoResource {
     @Path( "{id: \\d+}" )
     public PagoDetailDTO getPago(@PathParam("id") Long id )
 	{
-        PagoEntity entity = pagoLogic.getById(id);
+        PagoEntity entity = pagoLogic.getPago(id);
         if (entity == null) {
             throw new WebApplicationException("El pago no existe", 404);
         }
