@@ -71,7 +71,8 @@ public class HojaDeVidaResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de Hoja de Vida.
      */
     @POST
-    public HojaDeVidaDetailDTO createHojaDeVida(@PathParam("contratistaId") Long contratistaId,HojaDeVidaDetailDTO hoja) throws BusinessLogicException{
+    
+    public HojaDeVidaDetailDTO createHojaDeVida(@PathParam("contratistaId") Long contratistaId, HojaDeVidaDetailDTO hoja) throws BusinessLogicException{
         return new HojaDeVidaDetailDTO(hojaVidaLogic.createHojaDeVida(contratistaId,hoja.toEntity()));
     } 
     

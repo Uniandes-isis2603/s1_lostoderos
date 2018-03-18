@@ -54,15 +54,15 @@ import co.edu.uniandes.csw.lostoderos.entities.UsuarioEntity;
  */
 public class UsuarioDTO
 {
-        private Long id;
+        protected Long id;
 
-	private String nombre;    
+	protected String nombre;    
         
-        private String usuario;
+        protected String usuario;
         
-        private String contraseña;
+        protected String contraseña;
         
-        private String correo;
+        protected String correo;
     
         /**
 	 * Constructor por defecto

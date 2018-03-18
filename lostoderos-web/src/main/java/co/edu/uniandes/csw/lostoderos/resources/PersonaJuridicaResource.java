@@ -6,12 +6,15 @@
 package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.PersonaJuridicaDetailDTO;
+import co.edu.uniandes.csw.lostoderos.ejb.PersonaJuridicaLogic;
+import co.edu.uniandes.csw.lostoderos.entities.PersonaJuridicaEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 
 import javax.ws.rs.DELETE;
@@ -44,6 +47,11 @@ import javax.ws.rs.Produces;
 @Consumes( "application/json" )
 @RequestScoped
 public class PersonaJuridicaResource {
+    
+    @Inject
+    PersonaJuridicaLogic personajuridicaLogic;
+    
+    
     /**
 	 * <h1>POST /api/PersonaJuridica : Crear una entidad de PersonaJuridica.</h1>
 	 * <p>
@@ -69,7 +77,7 @@ public class PersonaJuridicaResource {
 	@POST
 	public PersonaJuridicaDetailDTO createPersonaJuridica( PersonaJuridicaDetailDTO dto ) throws BusinessLogicException
 	{
-		return dto;
+            return new PersonaJuridicaDetailDTO(personajuridicaLogic.create(dto.toEntity()));
 	}
 
 	/**
@@ -87,7 +95,7 @@ public class PersonaJuridicaResource {
 	@GET
 	public List<PersonaJuridicaDetailDTO> getPersonaJuridica( )
 	{
-		return new ArrayList<>( );
+		return listEntity2DetailDTO(personajuridicaLogic.getPersonaJuridicas());
 	}
 
 	/**
@@ -111,7 +119,11 @@ public class PersonaJuridicaResource {
 	@Path( "{id: \\d+}" )
 	public PersonaJuridicaDetailDTO getPersonJuridica( @PathParam( "id" ) Long id )
 	{
-		return null;
+            PersonaJuridicaEntity entity = personajuridicaLogic.getById(id);
+            if(entity!=null){
+                return new PersonaJuridicaDetailDTO(entity);
+            }
+            return null;
 	}
 
 	/**
@@ -137,7 +149,7 @@ public class PersonaJuridicaResource {
 	@Path( "{id: \\d+}" )
 	public PersonaJuridicaDetailDTO updatePersonaJuridica( @PathParam( "id" ) Long id, PersonaJuridicaDetailDTO detailDTO ) throws BusinessLogicException
 	{
-		return detailDTO;
+		return new PersonaJuridicaDetailDTO(personajuridicaLogic.update(detailDTO.toEntity()));
 	}
 
 	/**
@@ -157,8 +169,16 @@ public class PersonaJuridicaResource {
 	 */
 	@DELETE
 	@Path( "{id: \\d+}" )
-	public void deletePersonaJuridica( @PathParam( "id" ) Long id )
+	public void deletePersonaJuridica( @PathParam( "id" ) Long id ) throws BusinessLogicException
 	{
-		// Void
+            personajuridicaLogic.delete(id);
 	}
+        
+        private List<PersonaJuridicaDetailDTO> listEntity2DetailDTO(List<PersonaJuridicaEntity> entityList) {
+            List<PersonaJuridicaDetailDTO> list = new ArrayList<>();
+            for (PersonaJuridicaEntity entity : entityList) {
+                list.add(new PersonaJuridicaDetailDTO(entity));
+            }
+            return list;
+        }        
 }

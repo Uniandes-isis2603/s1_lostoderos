@@ -42,6 +42,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "usuario".
@@ -142,7 +143,11 @@ public class UsuarioResource
 	@Path( "{id: \\d+}" )
 	public UsuarioDetailDTO getUsuario( @PathParam( "id" ) Long id )
 	{
-		return null;
+		UsuarioEntity entity= usuarioLogic.getById(id);
+                if(entity == null){
+                     throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+                }
+                return new UsuarioDetailDTO(entity);
 	}
 
 	/**
@@ -168,7 +173,13 @@ public class UsuarioResource
 	@Path( "{id: \\d+}" )
 	public UsuarioDetailDTO updateUsuario( @PathParam( "id" ) Long id, UsuarioDetailDTO detailDTO ) throws BusinessLogicException
 	{
-		return detailDTO;
+		detailDTO.setId(id);
+                UsuarioEntity entity= usuarioLogic.getById(id);
+                if(entity == null)
+                {
+                    throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+                }
+                return new UsuarioDetailDTO(usuarioLogic.update(entity));
 	}
 
 	/**
@@ -186,8 +197,13 @@ public class UsuarioResource
 	 */
 	@DELETE
 	@Path( "{id: \\d+}" )
-	public void deleteUsuario( @PathParam( "id" ) Long id )
+	public void deleteUsuario( @PathParam( "id" ) Long id ) throws BusinessLogicException
 	{
-		// Void
+		UsuarioEntity entity=usuarioLogic.getById(id);
+                if(entity == null)
+                {
+                     throw new WebApplicationException("El recurso /clientes/" + id + " no existe.", 404);
+                }
+                usuarioLogic.delete(id);
 	}
 }

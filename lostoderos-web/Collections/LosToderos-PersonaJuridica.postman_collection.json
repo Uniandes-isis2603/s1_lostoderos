@@ -1,0 +1,237 @@
+{
+	"variables": [],
+	"info": {
+		"name": "LosToderos-PersonaJuridica",
+		"_postman_id": "6cb92e27-3f41-6f85-3d3a-215e70e54d51",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear PersonaJuridica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id\",data.id);\r",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"console.log(data.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/lostoderos-web/api/PersonasJuridicas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"id\": 15453,\r\n        \"NIT\": \"900642461-4\"\r\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Crear PersonaNatural",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id\",data.id);\r",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"console.log(data.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/lostoderos-web/api/PersonasNaturales",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"id\": 15453,\r\n        \"Cedula\": \"1022434817\"\r\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las personas juridicas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"authors count\"] = data.length >= 0;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/lostoderos-web/api/PersonasJuridicas",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"id\": 15453,\r\n        \"Cedula\": \"1022434817\"\r\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una persona juridica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/lostoderos-web/api/PersonasJuridicas/{{new_id}}",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"id\": 15453,\r\n        \"Cedula\": \"1022434817\"\r\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una Persona Juridica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/lostoderos-web/api/PersonasJuridicas/{{new_id}}",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las personas naturales",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"authors count\"] = data.length >= 0;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/lostoderos-web/api/PersonasNaturales",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"id\": 15453,\r\n        \"Cedula\": \"1022434817\"\r\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una persona natural",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/lostoderos-web/api/PersonasNaturales/{{new_id}}",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"id\": 15453,\r\n        \"Cedula\": \"1022434817\"\r\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una Persona Natural",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/lostoderos-web/api/PersonasNaturales/{{new_id}}",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

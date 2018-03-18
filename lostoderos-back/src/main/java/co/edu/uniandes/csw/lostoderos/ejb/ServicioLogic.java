@@ -37,7 +37,8 @@ public class ServicioLogic
      */
     public ServicioEntity create(ServicioEntity entity)throws BusinessLogicException{
         
-        LOGGER.info("Inicio de creación de la entidad Cotización");        
+        LOGGER.info("Inicio de creación de la entidad Servicio");  
+        //TODO: NO hay ninguna regla de negocio? 
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
@@ -77,7 +78,7 @@ public class ServicioLogic
         
         if(persistence.find(entity.getId()) == null)
             throw new BusinessLogicException("No existe una entidad de Servicio con el id \""+entity.getId()+"\"");
-        
+        //TODO: NO hay ninguna regla de negocio? 
         return persistence.update(entity);
     }
     
@@ -89,6 +90,7 @@ public class ServicioLogic
     public void delete(Long id)throws BusinessLogicException{
         
         LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Servicio con id={0}", id);
+        //TODO: qué pasa is no existe un servicio con ese id?
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Borrado exitoso", id);
     }

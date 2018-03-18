@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.PersonaNaturalEntity;
+
 /**
  * PersonaNaturalDTO Objeto de transferencia de datos de la entidad de PersonaNatural. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
@@ -43,21 +45,67 @@ public class PersonaNaturalDTO extends ClienteDTO {
             
             super();
     }
-
+        
+                    /**
+	 * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+	 * la entidad que viene de argumento.
+	 *
+	 * @param PersonaNaturalEntity: Es la entidad que se va a convertir a DTO
+	 */
+         public PersonaNaturalDTO(PersonaNaturalEntity personanaturalentity) {
+            
+            super();
+            if(personanaturalentity != null)
+            {
+                this.ID = personanaturalentity.getId();                     
+                this.Cedula = personanaturalentity.getCedula();
+            }
+    }
+         
+    /**
+     * @return El ID de la Persona Natural
+     */
     public long getID() {
         return ID;
     }
 
+    /**
+    * @param ID El nuevo id 
+    */
     public void setID(long ID) {
         this.ID = ID;
     }
-
-    public String getNIT() {
+    
+    /**
+     * @return la Cedula de la Persona Natural
+     */
+    public String getCedula() {
         return Cedula;
     }
 
-    public void setNIT(String NIT) {
-        this.Cedula = NIT;
+    /**
+    * @param Cedula La nueva cedula
+    */
+    public void setCedula(String cedula) {
+        this.Cedula = cedula;
     }
 
+    
+            /**
+	 * Convertir DTO a Entity
+	 *
+	 * @return Un Entity con los valores del DTO
+	 */
+	public PersonaNaturalEntity toEntity( )
+	{
+                super.toEntity();
+		PersonaNaturalEntity entity = new PersonaNaturalEntity();
+                
+                entity.setId(this.ID);
+                entity.setCedula(this.Cedula);
+                
+                return entity;
+	}    
+    
+    
 }

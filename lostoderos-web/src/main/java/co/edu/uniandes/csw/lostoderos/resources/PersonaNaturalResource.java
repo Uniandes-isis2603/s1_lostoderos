@@ -6,12 +6,15 @@
 package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.PersonaNaturalDetailDTO;
+import co.edu.uniandes.csw.lostoderos.ejb.PersonaNaturalLogic;
+import co.edu.uniandes.csw.lostoderos.entities.PersonaNaturalEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 
 import javax.ws.rs.DELETE;
@@ -24,7 +27,7 @@ import javax.ws.rs.Produces;
 
 /**
  * <pre>Clase que implementa el recurso "PersonaNatural".
- * URL: /api/PersonaJuridica
+ * URL: /api/PersonaNatural
  * </pre>
  * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
  * este recurso tiene la ruta "toderos".</i>
@@ -44,6 +47,10 @@ import javax.ws.rs.Produces;
 @Consumes( "application/json" )
 @RequestScoped
 public class PersonaNaturalResource {
+    
+    @Inject
+    PersonaNaturalLogic personanaturalLogic;
+    
     /**
 	 * <h1>POST /api/PersonaJuridica : Crear una entidad de PersonaNatural.</h1>
 	 * <p>
@@ -67,9 +74,9 @@ public class PersonaNaturalResource {
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de PersonaNatural.
 	 */
 	@POST
-	public PersonaNaturalDetailDTO createPersonaJuridica( PersonaNaturalDetailDTO dto ) throws BusinessLogicException
+	public PersonaNaturalDetailDTO createPersonaNatural( PersonaNaturalDetailDTO dto ) throws BusinessLogicException
 	{
-		return dto;
+            return new PersonaNaturalDetailDTO(personanaturalLogic.create(dto.toEntity()));
 	}
 
 	/**
@@ -87,7 +94,7 @@ public class PersonaNaturalResource {
 	@GET
 	public List<PersonaNaturalDetailDTO> getPersonaNatural( )
 	{
-		return new ArrayList<>( );
+		return listEntity2DetailDTO(personanaturalLogic.getPersonaNaturales());
 	}
 
 	/**
@@ -111,7 +118,11 @@ public class PersonaNaturalResource {
 	@Path( "{id: \\d+}" )
 	public PersonaNaturalDetailDTO getPersonaNatural( @PathParam( "id" ) Long id )
 	{
-		return null;
+            PersonaNaturalEntity entity = personanaturalLogic.getById(id);
+            if(entity!=null){
+                return new PersonaNaturalDetailDTO(entity);
+            }
+            return null;
 	}
 
 	/**
@@ -137,7 +148,7 @@ public class PersonaNaturalResource {
 	@Path( "{id: \\d+}" )
 	public PersonaNaturalDetailDTO updatePersonaNatural( @PathParam( "id" ) Long id, PersonaNaturalDetailDTO detailDTO ) throws BusinessLogicException
 	{
-		return detailDTO;
+		return new PersonaNaturalDetailDTO(personanaturalLogic.update(detailDTO.toEntity()));
 	}
 
 	/**
@@ -157,8 +168,17 @@ public class PersonaNaturalResource {
 	 */
 	@DELETE
 	@Path( "{id: \\d+}" )
-	public void deletePersonaNatural( @PathParam( "id" ) Long id )
+	public void deletePersonaNatural( @PathParam( "id" ) Long id ) throws BusinessLogicException
 	{
-		// Void
+            personanaturalLogic.delete(id);
 	}
+        
+        private List<PersonaNaturalDetailDTO> listEntity2DetailDTO(List<PersonaNaturalEntity> entityList) {
+            List<PersonaNaturalDetailDTO> list = new ArrayList<>();
+            for (PersonaNaturalEntity entity : entityList) {
+                list.add(new PersonaNaturalDetailDTO(entity));
+            }
+            return list;
+        }         
+        
 }
