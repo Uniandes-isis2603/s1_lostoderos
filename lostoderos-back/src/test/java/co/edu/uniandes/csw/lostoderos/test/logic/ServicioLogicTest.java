@@ -172,12 +172,13 @@ public class ServicioLogicTest
         ServicioEntity pojoEntity = factory.manufacturePojo(ServicioEntity.class);
 
         pojoEntity.setId(entity.getId());
+        pojoEntity.setNombre(entity.getNombre());
 
         servicioLogic.update(pojoEntity);
 
         ServicioEntity resp = em.find(ServicioEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
+        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
     }
 }

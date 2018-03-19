@@ -41,7 +41,7 @@ public class ServicioLogic
         ServicioEntity servicioEntity = persistence.findByNombre(entity.getNombre());
         if(servicioEntity != null)
         {
-            throw new BusinessLogicException("Ya existe un usuario con el nombre: "+entity.getUsuario());
+            throw new BusinessLogicException("Ya existe un servcio con el nombre: "+entity.getUsuario());
         }
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
@@ -92,7 +92,7 @@ public class ServicioLogic
         
         if(persistence.findByNombre(entity.getNombre()) == null)
         {
-            throw new BusinessLogicException("No existe una entidad de Usuario con el username \""+entity.getNombre()+"\"");
+            throw new BusinessLogicException("No existe una entidad de Servicio con el nombre \""+entity.getNombre()+"\"");
         }
         return persistence.update(entity);
     }
