@@ -96,14 +96,8 @@ public class ContratistaDetailDTO extends ContratistaDTO{
         if(entity.getContrato()!=null){
             contrato=new ContratoDTO(entity.getContrato());
         }
-        else{
-            entity.setContrato(null);
-        }
         if(entity.getHojaVida()!=null){
             hojaVida=new HojaDeVidaDTO(entity.getHojaVida());
-        }
-        else{
-            entity.setHojaVida(null);
         }
     }
     

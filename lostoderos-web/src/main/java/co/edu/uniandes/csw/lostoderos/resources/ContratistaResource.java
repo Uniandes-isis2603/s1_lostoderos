@@ -172,7 +172,6 @@ public class ContratistaResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deleteContratista(@PathParam("id") Long id){
-        //Void
         contratistaLogic.deleteContratista(id);
     }
     
