@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.persistence;
 
 import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -103,5 +104,29 @@ public class ClientePersistence
         LOGGER.log(Level.INFO, "Borrando cliente con id={0}", id);
         ClienteEntity entity = em.find(ClienteEntity.class, id);
         em.remove(entity);
+    }
+    
+     /**
+     * Busca si hay alguna entidad de usuario con el usuario que se envía de argumento
+     *
+     * @param username: usuario de la entidad de usuario que se está buscando
+     * @return null si no existe ninguna entidad usuario con el nombre del argumento. Si
+     * existe alguna devuelve la primera.
+     */
+    public ClienteEntity findByUsername( String username )
+    {
+	LOGGER.log( Level.INFO, "Consultando entidades de Usuarios por username ", username );
+
+	TypedQuery<ClienteEntity> query = em.createQuery( "Select e From ClienteEntity e where e.usuario = :username", ClienteEntity.class );
+	query = query.setParameter( "username", username );
+	List<ClienteEntity> sameUserName = query.getResultList( );
+	if( sameUserName.isEmpty( ) )
+	{
+		return null;
+	}
+	else
+	{
+		return sameUserName.get( 0 );
+	}
     }
 }

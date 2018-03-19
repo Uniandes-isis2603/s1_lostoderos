@@ -51,6 +51,7 @@ public class PagoLogic {
      */
     public PagoEntity createPago(PagoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicio de creación de la entidad pago");
+        //TODO: NO hay ninguna regla de negocio? 
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
@@ -64,7 +65,7 @@ public class PagoLogic {
         
         return persistence.find(id);
     }
-    
+    //TOD: debería haber getPagoBy algún concepto que permita filtar los pagos
     /**
      *
      * Obtener todos las pagos existentes en la base de datos.
@@ -119,6 +120,7 @@ public class PagoLogic {
     public void deletePago(Long id)   {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar factura con id={0}", id);
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
+        //TODO: qué pasa si no hay un pago con ese id?
             persistence.delete(id);
 
             LOGGER.log(Level.INFO, "Termina proceso de borrar factura con id={0}", id);

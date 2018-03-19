@@ -96,12 +96,37 @@ public class ServicioPersistence
      * Borra un servicio de la base de datos recibiendo como argumento el id
      * de la author
      *
-     * @param id: id correspondiente al servicio a borrar.
+     * @param nombre: id correspondiente al servicio a borrar.
      */
-    public void delete(Long id) 
+    public void delete(String nombre) 
     {
-        LOGGER.log(Level.INFO, "Borrando servicio con id={0}", id);
-        ServicioEntity entity = em.find(ServicioEntity.class, id);
+        LOGGER.log(Level.INFO, "Borrando servicio con nombre={0}", nombre);
+        ServicioEntity entity = findByNombre(nombre);
         em.remove(entity);
     }
+    
+    /**
+     * Busca si hay alguna entidad de servicio con el nombre que se envía de argumento
+     *
+     * @param nombre: usuario de la entidad de usuario que se está buscando
+     * @return null si no existe ninguna entidad usuario con el nombre del argumento. Si
+     * existe alguna devuelve la primera.
+     */
+    public ServicioEntity findByNombre( String nombre )
+    {
+	LOGGER.log( Level.INFO, "Consultando entidades de Usuarios por username ", nombre );
+
+	TypedQuery<ServicioEntity> query = em.createQuery( "Select e From ServicioEntity e where e.nombre = :name", ServicioEntity.class );
+	query = query.setParameter( "name", nombre );
+	List<ServicioEntity> sameUserName = query.getResultList( );
+	if( sameUserName.isEmpty( ) )
+	{
+		return null;
+	}
+	else
+	{
+		return sameUserName.get( 0 );
+	}
+    }
+    
 }

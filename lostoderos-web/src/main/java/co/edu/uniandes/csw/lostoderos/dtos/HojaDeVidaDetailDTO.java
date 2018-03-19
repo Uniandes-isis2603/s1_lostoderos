@@ -45,11 +45,13 @@ import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
  */
 public class HojaDeVidaDetailDTO extends HojaDeVidaDTO {
     
+    private ContratistaDTO contratista;
+    
     /**
      * Constructor por defecto
      */
     public HojaDeVidaDetailDTO(){
-        super();
+        
     }
     /**
      * Constructor para transformar un Entity a un DTO
@@ -58,6 +60,9 @@ public class HojaDeVidaDetailDTO extends HojaDeVidaDTO {
      */
     public HojaDeVidaDetailDTO(HojaDeVidaEntity entity) {
         super(entity);
+        if(entity.getContratista()!=null){
+            contratista = new ContratistaDTO(entity.getContratista());
+        }
     }
 
     /**
@@ -69,6 +74,20 @@ public class HojaDeVidaDetailDTO extends HojaDeVidaDTO {
     public HojaDeVidaEntity toEntity() {
         HojaDeVidaEntity hojaDeVidaE = super.toEntity();
         return hojaDeVidaE;
+    }
+
+    /**
+     * @return the contratista
+     */
+    public ContratistaDTO getContratista() {
+        return contratista;
+    }
+
+    /**
+     * @param contratista the contratista to set
+     */
+    public void setContratista(ContratistaDTO contratista) {
+        this.contratista = contratista;
     }
     
 }

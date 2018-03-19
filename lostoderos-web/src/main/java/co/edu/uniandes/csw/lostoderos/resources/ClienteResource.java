@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.ClienteDetailDTO;
 import co.edu.uniandes.csw.lostoderos.ejb.ClienteLogic;
+import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 
@@ -41,6 +42,7 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "cliente".
@@ -57,7 +59,7 @@ import javax.ws.rs.Produces;
  * @author s.naranjop1
  * @version 1.0
  */
-@Path( "clientes" )
+@Path( "usuarios/{username}/cliente" )
 @Produces( "application/json" )
 @Consumes( "application/json" )
 @RequestScoped
@@ -65,6 +67,21 @@ public class ClienteResource
 {
     @Inject
     private ClienteLogic clienteLogic;
+    
+     /**
+     * Convierte una lista de AuthorEntity a una lista de AuthorDetailDTO.
+     *
+     * @param entityList Lista de AuthorEntity a convertir.
+     * @return Lista de AuthorDetailDTO convertida.
+     * 
+     */
+    private List<ClienteDetailDTO> listEntity2DTO(List<ClienteEntity> entityList) {
+        List<ClienteDetailDTO> list = new ArrayList<>();
+        for (ClienteEntity entity : entityList) {
+            list.add(new ClienteDetailDTO(entity));
+        }
+        return list;
+    }
     /**
 	 * <h1>POST /api/clientes : Crear una entidad de Cliente.</h1>
 	 * <pre>Cuerpo de petición: JSON {@link ClienteDetailDTO}.
@@ -92,22 +109,6 @@ public class ClienteResource
 	}
         
         /**
-	 * <h1>GET /api/clientes : Obtener todas las entidadese de Cliente.</h1>
-	 * <pre>Busca y devuelve todas las entidades de Cliente que existen en la aplicacion.
-	 *
-	 * Codigos de respuesta:
-	 * <code style="color: mediumseagreen; background-color: #eaffe0;">
-	 * 200 OK Devuelve todas las entidades de Cliente de la aplicacion.</code>
-	 * </pre>
-	 * @return JSONArray {@link ClienteDetailDTO} - Las entidades de Cliente encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
-	 */
-	@GET
-	public List<ClienteDetailDTO> getClientes( )
-	{
-		return new ArrayList<>( );
-	}
-        
-        /**
 	 * <h1>GET /api/os/{id} : Obtener una entidad de Cliente por id.</h1>
 	 * <pre>Busca la entidad de Cliente con el id asociado recibido en la URL y la devuelve.
 	 *
@@ -119,14 +120,17 @@ public class ClienteResource
 	 * 404 Not Found No existe una entidad de Cliente con el id dado.
 	 * </code>
 	 * </pre>
-	 * @param id Identificador de la entidad de Cliente que se esta buscando. Este debe ser una cadena de dígitos.
+	 * @param username Identificador de la entidad de Cliente que se esta buscando. Este debe ser una cadena de dígitos.
 	 * @return JSON {@link ClienteDetailDTO} - La entidad de Cliente buscada
 	 */
 	@GET
-	@Path( "{id: \\d+}" )
-	public ClienteDetailDTO getCliente( @PathParam( "id" ) Long id )
+	public ClienteDetailDTO getCliente( @PathParam( "username" )String username )
 	{
-		return null;
+		ClienteEntity entity= clienteLogic.getByUsername(username);
+                if(entity == null){
+                     throw new WebApplicationException("El recurso usuarios/" + username + "/cliente no existe.", 404);
+                }
+                return new ClienteDetailDTO(entity);
 	}
 
 	/**
@@ -152,7 +156,13 @@ public class ClienteResource
 	@Path( "{id: \\d+}" )
 	public ClienteDetailDTO updateCliente( @PathParam( "id" ) Long id, ClienteDetailDTO detailDTO ) throws BusinessLogicException
 	{
-		return detailDTO;
+		detailDTO.setId(id);
+                ClienteEntity entity= clienteLogic.getById(id);
+                if(entity == null)
+                {
+                    throw new WebApplicationException("El recurso /clientes/" + id + " no existe.", 404);
+                }
+                return new ClienteDetailDTO(clienteLogic.update(entity));
 	}
 
 	/**
@@ -170,8 +180,13 @@ public class ClienteResource
 	 */
 	@DELETE
 	@Path( "{id: \\d+}" )
-	public void deleteCliente( @PathParam( "id" ) Long id )
+	public void deleteCliente( @PathParam( "id" ) Long id ) throws BusinessLogicException
 	{
-		// Void
+		ClienteEntity entity= clienteLogic.getById(id);
+                if(entity == null)
+                {
+                     throw new WebApplicationException("El recurso /clientes/" + id + " no existe.", 404);
+                }
+                clienteLogic.delete(id);
 	}
 }

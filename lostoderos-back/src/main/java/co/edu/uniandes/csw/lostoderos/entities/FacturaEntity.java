@@ -51,37 +51,47 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     public Integer getSubtotal() {
         return subtotal;
     }
-
 /**
-	 * @param producto El nuevo producto medio de la entidad Todero
+	 * @return la forma de pago de la entidad factura
+	 */
+    public String getFormaPago() {
+        return formaPago;
+    }
+    /**
+	 * @return el pago de la entidad factura
+	 */
+    public PagoEntity getPago() {
+        return pago;
+    }
+/**
+	 * @param producto El nuevo producto medio de la entidad Factura
 	 */
     public void setProducto(String producto) {
         this.producto = producto;
     }
 /**
-	 * @param total El nuevo total de la entidad Todero
+	 * @param total El nuevo total de la entidad factura
 	 */
     public void setTotal(Integer total) {
         this.total = total;
     }
 /**
-	 * @param subtotal El nuevo subtotal de la entidad Todero
+	 * @param subtotal El nuevo subtotal de la entidad factura
 	 */
     public void setSubtotal(Integer subtotal) {
         this.subtotal = subtotal;
     }
-
-    public String getFormaPago() {
-        return formaPago;
-    }
-
+ 
+/**
+	 * @param formaPago La nueva forma de pago de la entidad factura
+	 */
     public void setFormaPago(String formaPago) {
         this.formaPago = formaPago;
     }
 
-    public PagoEntity getPago() {
-        return pago;
-    }
+/**
+	 * @param pago el nuevo pago de entidad factura
+	 */
 
     public void setPago(PagoEntity pago) {
         this.pago = pago;

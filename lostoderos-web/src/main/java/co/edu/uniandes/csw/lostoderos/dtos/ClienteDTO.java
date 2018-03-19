@@ -38,7 +38,7 @@ import java.util.Date;
  *      "contraseña": string,
  *      "correo": string,
  *      "fecha_nacimiento" string,
- *      "forma_pago" number,
+ *      "forma_pago" string,
  *      "direccion": string
  * 
  *   }
@@ -47,13 +47,12 @@ import java.util.Date;
  * <pre>
  *
  *   {
- *      "id": 91852,
  *      "nombre": "Juan Perez",
  *      "usuario": "Jperez",
  *      "contraseña": "enero1999",
- *      "correo":"Jperez@gmail.com"
- *      "fecha_nacimiento" "14/01/1999",
- *      "forma_pago" 1,
+ *      "correo": "Jperez@gmail.com",
+ *      "fecha_nacimiento": "1999-04-14T00:00:00-05:00",
+ *      "forma_pago" "Efectivo",
  *      "direccion": "Carrera 5 #62-08"
  *   }
  *
@@ -88,6 +87,8 @@ public class ClienteDTO extends UsuarioDTO
 		super();
                 if(clienteEntity != null)
                 {
+                    this.fecha_nacimiento = clienteEntity.getFecha_nacimiento();
+                            
                     this.direccion = clienteEntity.getDireccion();
                     
                     this.forma_pago = clienteEntity.getForma_pago();

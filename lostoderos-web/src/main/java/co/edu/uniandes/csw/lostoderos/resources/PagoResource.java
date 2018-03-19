@@ -43,7 +43,7 @@ import javax.ws.rs.WebApplicationException;
  * @author s.rangel  
  * @version 1.0
  */
-@Path( "pagos" )
+@Path( "facturas/{id: \\d+}/pagos" )
 @Produces( "application/json" )
 @Consumes( "application/json" )
 @RequestScoped
@@ -94,8 +94,8 @@ public class PagoResource {
      * @return JSONArray {@link PagoDetailDTO} - Los pagos encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    @Path( "{id: \\d+}" )
-    public List<PagoDetailDTO> getAuthors() {
+
+    public List<PagoDetailDTO> getPagos() {
         return listEntity2DetailDTO(pagoLogic.getPagos());
     }
         /**
@@ -115,9 +115,10 @@ public class PagoResource {
      * @return JSON {@link PagoDetailDTO} - La ciudad buscada
      */
     @GET
+    @Path( "{id: \\d+}" )
     public PagoDetailDTO getPago(@PathParam("id") Long id )
 	{
-        PagoEntity entity = pagoLogic.getById(id);
+        PagoEntity entity = pagoLogic.getPago(id);
         if (entity == null) {
             throw new WebApplicationException("El pago no existe", 404);
         }

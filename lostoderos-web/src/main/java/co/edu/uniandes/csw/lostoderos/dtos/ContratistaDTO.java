@@ -38,8 +38,7 @@ import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
  *      "reputacion": string,
  *      "disponibilidad": boolean,
  *  }
- * </pre>
- * Por ejemplo, una entidad de Contratista se representa así: <br>
+ * </pre> Por ejemplo, una entidad de Contratista se representa así: <br>
  * <pre>
  *  {
  *      "id": 91364,
@@ -48,108 +47,80 @@ import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
  *      "disponibilidad" : true
  *  }
  * </pre>
+ *
  * @author sa.yepes
  */
-public class ContratistaDTO {
-    
-    private Long id;
-    
-    private String nombre;
-    
+public class ContratistaDTO extends UsuarioDTO{
+
+
     private String reputacion;
-    
+
     private Boolean disponibilidad;
-    
+
     /**
      * Constructor por defecto.
      */
-    public ContratistaDTO(){
-        super();
+    public ContratistaDTO() {
+       
     }
     
-     /**
+
+    /**
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento.
      *
      * @param contratista: Es la entidad que se va a convertir a DTO
      */
     public ContratistaDTO(ContratistaEntity contratista) {
-        this.id = contratista.getId();
-        this.nombre=contratista.getNombre();
-        this.reputacion=contratista.getReputacion();
-        this.disponibilidad=contratista.getDisponibilidad();
+        super(contratista);
+        this.reputacion = contratista.getReputacion();
+        this.disponibilidad = contratista.getDisponibilidad();
+        
+    }
 
-    }
-    
-    /**
-     * Retorna la identificación del contratista.
-     * @return Id del contratista.
-     */
-    public Long getId(){
-        return id;
-    }
-    
-    /**
-     * @param id Nueva identificación.
-     */
-    public void setId(Long id){
-        this.id=id;
-    }
-           
-    /**
-     * Retorna el nombre del contratista.
-     * @return Nombre del contratista.
-     */
-    public String getNombre(){
-        return nombre;
-    }
-    
-    /**
-     * @param nombre Nuevo nombre.
-     */
-    public void setNombre(String nombre){
-        this.nombre=nombre;
-    }
-    
     /**
      * Retorna la reputación del contratista.
+     *
      * @return Reputación del contratista.
      */
-    public String getReputacion(){
+    public String getReputacion() {
         return reputacion;
     }
-    
+
     /*
      * @param reputacion Nueva reputación.
      */
-    public void setReputacion(String reputacion){
-        this.reputacion=reputacion;
+    public void setReputacion(String reputacion) {
+        this.reputacion = reputacion;
     }
-    
+
     /**
      * True si el contratista está disponible, false en caso contrario.
+     *
      * @return True si el contratista está disponible, false en caso contrario.
      */
-    public boolean isDisponibilidad(){
+    public boolean isDisponibilidad() {
         return disponibilidad;
     }
-    
+
     /**
      * @param disponibilidad Nueva disponibilidad del contratista.
      */
-    public void setDisponibilidad(Boolean disponibilidad){
-        this.disponibilidad=disponibilidad;
-    }  
-    
+    public void setDisponibilidad(Boolean disponibilidad) {
+        this.disponibilidad = disponibilidad;
+    }
+
     /**
      * Convertir DTO a Entity
-     *
      * @return Un Entity con los valores del DTO
      */
     public ContratistaEntity toEntity() {
         ContratistaEntity entity = new ContratistaEntity();
-        entity.setId(this.id);
-        entity.setNombre(this.nombre);
+        entity.setId( this.id );
+	entity.setNombre(this.nombre);
+        entity.setUsuario(this.usuario);
+        entity.setContraseña(this.contraseña);
+        entity.setCorreo(this.correo);
         entity.setReputacion(this.reputacion);
         entity.setDisponibilidad(this.disponibilidad);
         return entity;

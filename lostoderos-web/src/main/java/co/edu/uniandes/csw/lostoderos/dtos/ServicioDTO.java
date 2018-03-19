@@ -31,7 +31,6 @@ import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
- *      "id": number,
  *      "nombre": string,
  *      "categorias": string,
  *      "descripcion": string
@@ -41,7 +40,6 @@ import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
  * <pre>
  *
  *   {
- *      "id": 91852,
  *      "nombre": "Plomería",
  *      "categorias": "agua y tuberias",
  *      "descripción": "Aqui va una descripcion detallada del servicio"

@@ -42,7 +42,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-@Path("hojasdevida")
+@Path("contratistas/{id_contratista: \\d+}/hojasdevida")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -65,31 +65,16 @@ public class HojaDeVidaResource {
      * 200 OK Creó la nueva ciudad.
      * </code>
      * </pre>
+     * @param id_contratista Identificador del contratista
      * @param hoja {@link HojaDeVidaDetailDTO} - La entidad de Hoja de Vida que se desea guardar.
-     * @param contratistaId Identificador del contratista que se le va a asociar una hoja de vida.
      * @return JSON {@link HojaDeVidaDetailDTO} - La entidad de Hoja de Vida que se guarda con el id generado automáticamente.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de Hoja de Vida.
      */
     @POST
-    public HojaDeVidaDetailDTO createHojaDeVida(@PathParam("contratistaId") Long contratistaId,HojaDeVidaDetailDTO hoja) throws BusinessLogicException{
-        return new HojaDeVidaDetailDTO(hojaVidaLogic.createHojaDeVida(contratistaId,hoja.toEntity()));
-    } 
     
-    /**
-     * <h1>GET /api/hojasdevida: Obtener todas las hojas de vida. </h1>
-     * 
-     * <pre> Busca y devuelve todas las ciudades que existen en la aplicación.
-     * 
-     * Códigos de respuesta:
-     * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve todas las ciudades de la aplicación. </code>
-     * </pre>
-     * @return JSONArray {@link HojaDeVidaDetailDTO} - Las hojas de vida encontradas en la aplicación. 
-     */
-    @GET
-    public List<HojaDeVidaDetailDTO> getHojasDeVida(){
-        return listEntity2DetailDTO(hojaVidaLogic.getHojasDeVida());
-    }
+    public HojaDeVidaDetailDTO createHojaDeVida(@PathParam("id_contratista") Long id_contratista,HojaDeVidaDetailDTO hoja) throws BusinessLogicException{
+        return new HojaDeVidaDetailDTO(hojaVidaLogic.createHojaDeVida(id_contratista,hoja.toEntity()));
+    } 
     
     /**
      * <h1> GET /api/hojasdevida/{id} : Obtener hoja de vida por id de contratista. </h1>
@@ -104,18 +89,16 @@ public class HojaDeVidaResource {
      * 404 Not Found No existe una hoja de vida con el nombre dado.
      * </code>
      * </pre>
-     * @param id Id de la hoja de vida que se está buscando. Este debe ser una cadena de números.
+     * @param id_contratista Identificador del contratista asociado a la hoja de vida
      * @return JSON {@link HojaDeVidaDetailDTO} - La hoja de vida buscada.
+     * @throws BusinessLogicException Lanza excepción si el contratista no existe.
      */
     @GET
-    @Path("{id: \\d+}")
-    public HojaDeVidaDetailDTO getHojaDeVida(@PathParam("id") Long id){
+    public HojaDeVidaDetailDTO getHojaDeVida(@PathParam("id_contratista") Long id_contratista)throws BusinessLogicException{
         
-        HojaDeVidaEntity entity = hojaVidaLogic.getHojaDeVida(id);
-        if(entity!=null){
-            return new HojaDeVidaDetailDTO(entity);
-        }
-        return null;
+        HojaDeVidaEntity entity = hojaVidaLogic.getHojaDeVidaContratista(id_contratista);
+        //En la lógica se comprueba si la entity es null. Se lanza excepción si es el caso.
+        return new HojaDeVidaDetailDTO(entity);
     }
     
     /**
@@ -131,15 +114,14 @@ public class HojaDeVidaResource {
      *  404 Not Found. No existe una hoja de vida con el id dado.
      * </code> 
      * </pre>
-     * @param id Id de la hoja de vida que se desea actualizar. Este debe ser una cadena de números.
+     * @param id_contratista Id del contratista poseedor de la hoja de vida.
      * @param hoja {@link HojaDeVidaDetailDTO} La hoja de vida que se desea guardar.
      * @return  JSON {@link HojaDeVidaDetailDTO} - La hoja de vida guardada.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera ya que no existe una hoja de vida con ese nombre. 
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera ya que no existe una hoja de vida con ese id. 
      */
     @PUT
-    @Path("(id: \\d+)")
-    public HojaDeVidaDetailDTO updateHojaDeVida(@PathParam("id") Long id,HojaDeVidaDetailDTO hoja)throws BusinessLogicException{
-        return new HojaDeVidaDetailDTO(hojaVidaLogic.updateHojaDeVida(hoja.toEntity()));
+    public HojaDeVidaDetailDTO updateHojaDeVida(@PathParam("id_contratista") Long id_contratista,HojaDeVidaDetailDTO hoja)throws BusinessLogicException{
+        return new HojaDeVidaDetailDTO(hojaVidaLogic.updateHojaDeVida(id_contratista,hoja.toEntity()));
     }
    
     /**
@@ -154,21 +136,11 @@ public class HojaDeVidaResource {
      * 404 Not Found. No existe una hoja de vida con el id dado.
      * </code>
      * </pre>
-     * @param id Id de la hoja de vida que se desea borrar. Este debe ser una cadena de números.
+     * @param id_contratista Identificador del contratista cuya hoja de vida será borrada.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera ya que no existe una hoja de vida con ese id. 
      */
     @DELETE
-    @Path("(id:\\d+)")
-    public void deleteHojaDeVida(@PathParam("nombre") Long id){
-        //Void
-        hojaVidaLogic.deleteHojaDeVida(id);
+    public void deleteHojaDeVida(@PathParam("id_contratista") Long id_contratista)throws BusinessLogicException{
+        hojaVidaLogic.deleteHojaDeVida(id_contratista);
     }
-    
-    private List<HojaDeVidaDetailDTO> listEntity2DetailDTO(List<HojaDeVidaEntity> entityList) {
-        List<HojaDeVidaDetailDTO> list = new ArrayList<>();
-        for (HojaDeVidaEntity entity : entityList) {
-            list.add(new HojaDeVidaDetailDTO(entity));
-        }
-        return list;
-    }
-    
 }

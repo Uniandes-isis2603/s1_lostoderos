@@ -115,19 +115,17 @@ public class HojaDeVidaLogicTest {
    
     
     @Test
-    public void getHojaDeVidaTest(){
-       /*
+    public void getHojaDeVidaTest()throws BusinessLogicException{
         HojaDeVidaEntity entity= data.get(0);
-        HojaDeVidaEntity result = hojaVidaLogic.getHojaDeVida(entity.getId());
+        HojaDeVidaEntity result = hojaVidaLogic.getHojaDeVidaContratista(entity.getId());
         Assert.assertNotNull(result);
         Assert.assertEquals(entity.getId(), result.getId());
-        */
     }
     
     
     
     @Test
-    public void deleteHojaDeVida(){
+    public void deleteHojaDeVida()throws BusinessLogicException{
         HojaDeVidaEntity entity = data.get(0);
         hojaVidaLogic.deleteHojaDeVida(entity.getId());
         HojaDeVidaEntity deleted= em.find(HojaDeVidaEntity.class, entity.getId());
@@ -136,11 +134,11 @@ public class HojaDeVidaLogicTest {
     
     
     @Test
-    public void updateHojaDeVidaTest(){
+    public void updateHojaDeVidaTest()throws BusinessLogicException{
         HojaDeVidaEntity entity = data.get(0);
         HojaDeVidaEntity newEntity = factory.manufacturePojo(HojaDeVidaEntity.class);
         newEntity.setId(entity.getId());
-        hojaVidaLogic.updateHojaDeVida(newEntity);
+        hojaVidaLogic.updateHojaDeVida(newEntity.getId(),newEntity);
         HojaDeVidaEntity resp = em.find(HojaDeVidaEntity.class,entity.getId());
         Assert.assertEquals(newEntity.getId(), resp.getId());
         Assert.assertEquals(newEntity.getName(), resp.getName());

@@ -38,6 +38,16 @@ public class UsuarioLogic
     public UsuarioEntity create(UsuarioEntity entity)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Cotización");
+        UsuarioEntity usuarioEntity = persistence.findByUsername(entity.getUsuario());
+        UsuarioEntity usuarioEntity2 = persistence.findByCorreo(entity.getCorreo());
+        if(usuarioEntity != null)
+        {
+            throw new BusinessLogicException("Ya existe un usuario con el username: "+entity.getUsuario());
+        }
+        if(usuarioEntity2 != null)
+        {
+            throw new BusinessLogicException("Ya existe un usuario que usa el correo: "+entity.getCorreo());
+        }
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
@@ -68,28 +78,43 @@ public class UsuarioLogic
     }
     
     /**
+     * consulta el usuario con el username deseado
+     * @param username identificador que se desea consultar
+     * @return entidad con el id deseado
+     */
+    public UsuarioEntity getByUsername(String username){
+        
+        return persistence.findByUsername(username);
+    }
+    
+    /**
      * Actualiza la entidad deseada
      * @param entity entidad que se desea actualizar
      * @return entidad actualizada
-     * @throws BusinessLogicException si ya existe una entidad con el identificador
+     * @throws BusinessLogicException si ya existe una entidad
      */
     public UsuarioEntity update(UsuarioEntity entity)throws BusinessLogicException{
         
-        if(persistence.find(entity.getId()) == null)
-            throw new BusinessLogicException("No existe una entidad de Usuario con el id \""+entity.getId()+"\"");
-        
+        if(persistence.findByUsername(entity.getUsuario()) == null)
+        {
+            throw new BusinessLogicException("No existe una entidad de Usuario con el username \""+entity.getUsuario()+"\"");
+        }
         return persistence.update(entity);
     }
     
     /**
-     * elimina la entidad con el id asignado
-     * @param id identificador de la entidad que se desea borrar
+     * elimina la entidad con el username asignado
+     * @param username identificador de la entidad que se desea borrar
      * @throws BusinessLogicException si la entidad no existe
      */
-    public void delete(Long id)throws BusinessLogicException{
+    public void delete(String username)throws BusinessLogicException{
         
-        LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Usuario con id={0}", id);
-        persistence.delete(id);
-        LOGGER.log(Level.INFO, "Borrado exitoso", id);
+        LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Usuario con username={0}", username);
+        if(persistence.findByUsername(username) == null)
+        {
+            throw new BusinessLogicException("No existe una entidad de Usuario con el username \""+username+"\"");
+        }
+        persistence.delete(username);
+        LOGGER.log(Level.INFO, "Borrado exitoso", username);
     }    
 }

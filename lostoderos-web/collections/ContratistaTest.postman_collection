@@ -1,0 +1,198 @@
+{
+	"id": "b1aad242-0cf7-8643-4ed8-062e1c4bbb8a",
+	"name": "ContratistaTest",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": null,
+	"order": [
+		"c8cf75c7-128c-ce55-0584-1ad65cdb7eaf",
+		"1dd0e321-3cbe-4057-b1c7-539ef92bad61",
+		"86b17b8d-6c25-4551-a54d-871c87cfd737",
+		"c7050025-9300-4e0c-b8a8-262054d750dd",
+		"15dbc0c7-0e9e-4996-9462-970665310203"
+	],
+	"folders_order": [],
+	"folders": [],
+	"requests": [
+		{
+			"id": "15dbc0c7-0e9e-4996-9462-970665310203",
+			"name": "Borrar un contratista",
+			"url": "http://localhost:8080/lostoderos-web/api/contratistas/{{new_id_e}}",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "DELETE",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f8851b0d-8f0e-433d-860a-bee78e29df44",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\r\n  \r\n  \"usuario\":\"sa.yepes\",\r\n  \"contraseña\":\"123\",\r\n  \"correo\":\"sa.yepes@uniandes.edu.co\"\r\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "1dd0e321-3cbe-4057-b1c7-539ef92bad61",
+			"name": "Obtener contratista",
+			"url": "http://localhost:8080/lostoderos-web/api/contratistas/{{new_id_e}}",
+			"description": null,
+			"data": [],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8e755477-799c-4568-82a7-21c02783ce6b",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "86b17b8d-6c25-4551-a54d-871c87cfd737",
+			"name": "Obtener contratistas",
+			"url": "http://localhost:8080/lostoderos-web/api/contratistas",
+			"description": null,
+			"data": [],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3dae8a78-97a3-49bf-8808-70dc2e5fe31a",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"editorials count\"] = data.length >= 0;"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "c7050025-9300-4e0c-b8a8-262054d750dd",
+			"name": "Editar un contratista",
+			"url": "http://localhost:8080/lostoderos-web/api/contratistas/{{new_id_e}}",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3e6634dc-c2a4-4fd1-9115-d005f636b800",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\r\n  \r\n  \"usuario\":\"sa.yepes\",\r\n  \"contraseña\":\"123\",\r\n  \"correo\":\"sa.yepes@uniandes.edu.co\"\r\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "c8cf75c7-128c-ce55-0584-1ad65cdb7eaf",
+			"name": "Crear un contratista primera vez",
+			"url": "http://localhost:8080/lostoderos-web/api/contratistas",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d293f0ef-ce31-4d4f-a7ca-93239d0a6068",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\n\t\"id\":\"1\",\n\t\"nombre\":\"Sergio\",\n\t\"reputacion\":\"Buena\",\n\t\"disponibilidad\":\"Está disponible\"\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		}
+	]
+}

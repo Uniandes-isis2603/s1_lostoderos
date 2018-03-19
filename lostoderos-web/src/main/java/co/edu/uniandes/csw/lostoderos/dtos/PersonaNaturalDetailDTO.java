@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.PersonaNaturalEntity;
+
 /**
  * PersonaNaturalDTO Objeto de transferencia de datos de la entidad de PersonaNatural. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
@@ -41,6 +43,26 @@ public class PersonaNaturalDetailDTO extends PersonaNaturalDTO {
         super();
     }
     
+         /**
+	 * Constructor para transformar un Entity a un DTO
+	 *
+	 * @param entity La entidad de PersonaNatural a partir de la cual se construye el objeto
+	 */
+	public PersonaNaturalDetailDTO( PersonaNaturalEntity entity )
+	{
+            super( entity );
+	}
     
+        /**
+	 * Transformar un DTO a un Entity
+	 *
+	 * @return La entidad construida a partir del DTO.
+	 */
+	@Override
+	public PersonaNaturalEntity toEntity( )
+	{
+		PersonaNaturalEntity personanaturalEntity = super.toEntity( );
+		return personanaturalEntity;
+	}    
     
 }

@@ -24,7 +24,6 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.ejb;
 
 import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
-import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -47,6 +46,7 @@ public class FacturaLogic {
     private FacturaPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
     @Inject
+    //TODO: Esta variable nunca se usa
     private PagoPersistence pagoLogic;
      /**
      * Crea una factura en la persistencia.
@@ -55,7 +55,8 @@ public class FacturaLogic {
      * @throws BusinessLogicException Si la factura a persistir ya existe.
      */
     public FacturaEntity createFactura(FacturaEntity entity) throws BusinessLogicException {
-          LOGGER.info("Inicio de creación de la entidad factura");        
+          LOGGER.info("Inicio de creación de la entidad factura");    
+          //TODO: NO hay ninguna regla de negocio? 
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
@@ -74,7 +75,7 @@ public class FacturaLogic {
         LOGGER.info("Termina proceso de consultar todas las Facturas");
         return facturas;
     }
-
+//TODO: Debería haber getFacturasByClient y otros gets que filtre el mundo de las facturas
     /**
      *
      * Obtener una factura por medio de su id.
@@ -115,7 +116,7 @@ public class FacturaLogic {
     public FacturaEntity updateFactura(FacturaEntity entity) throws BusinessLogicException {
           if(persistence.find(entity.getId()) == null)
             throw new BusinessLogicException("No existe una entidad de Servicio con el id \""+entity.getId()+"\"");
-        
+        //TODO: NO hay ninguna regla de negocio? 
         return persistence.update(entity);
     }
 
@@ -127,54 +128,13 @@ public class FacturaLogic {
     public void deleteFactura(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar factura con id={0}", id);
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
+       //TODO:  Qué pasa si no existe la factura que se quiere borrar?
             persistence.delete(id);
 
             LOGGER.log(Level.INFO, "Termina proceso de borrar factura con id={0}", id);
         }
     
-    /**
-     * Agregar un book a la editorial
-     *
-     * @param pagoId El id pago a guardar
-     * @param facturaId El id de la factura en la cual se va a guardar el
-     * pago.
-     * @return El pago que fue agregado a la factura.
-     */
-    public PagoEntity setPago(Long pagoId, Long facturaId) {
-        FacturaEntity facturaEntity = getFactura(facturaId);
-        PagoEntity pagoEntity = pagoLogic.find(pagoId);
-        facturaEntity.setPago(pagoEntity);
-        return pagoEntity;
-    }
-
-    /**
-     * Borrar el pago de una factura
-     *
-     * @param facturaId id de La factura de la cual se desea eliminar.
-     */
-    public void removePago(Long facturaId) {
-        FacturaEntity facturaEntity = getFactura(facturaId);
-        facturaEntity.setPago(null);
-    }
-
-    /**
-     * Retorna el pago asociado a una factura
-     *
-     * @param facturaId El id de la editorial a buscar.
-     * @return El libro encontrado dentro de la editorial.
-     * @throws BusinessLogicException Si el libro no se encuentra en la editorial
-     */
-    public PagoEntity getPago(Long facturaId) throws BusinessLogicException {
-        FacturaEntity facturaEntity = getFactura(facturaId);
-        PagoEntity pagoEntity = facturaEntity.getPago();
-        if(pagoEntity==null)
-        {
-        throw new BusinessLogicException("La factura no tiene pago");
-        }
-        else
-        return pagoEntity;
-
-    }
+ 
 
 }
 

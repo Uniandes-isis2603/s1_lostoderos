@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.ServicioDetailDTO;
 import co.edu.uniandes.csw.lostoderos.ejb.ServicioLogic;
+import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "servicio".
@@ -63,6 +65,22 @@ public class ServicioResource
 {
      @Inject
     private ServicioLogic servicioLogic;
+     
+     /**
+     * Convierte una lista de AuthorEntity a una lista de AuthorDetailDTO.
+     *
+     * @param entityList Lista de AuthorEntity a convertir.
+     * @return Lista de AuthorDetailDTO convertida.
+     * 
+     */
+    private List<ServicioDetailDTO> listEntity2DTO(List<ServicioEntity> entityList) {
+        List<ServicioDetailDTO> list = new ArrayList<>();
+        for (ServicioEntity entity : entityList) {
+            list.add(new ServicioDetailDTO(entity));
+        }
+        return list;
+    }
+     
     /**
 	 * <h1>POST /api/servicios : Crear una entidad de Servicio.</h1>
 	 * <pre>Cuerpo de petición: JSON {@link ServicioDetailDTO}.
@@ -102,7 +120,7 @@ public class ServicioResource
 	@GET
 	public List<ServicioDetailDTO> getServicios( )
 	{
-		return new ArrayList<>( );
+		return listEntity2DTO(servicioLogic.getAll());
 	}
         
         /**
@@ -117,14 +135,18 @@ public class ServicioResource
 	 * 404 Not Found No existe una entidad de Servicio con el id dado.
 	 * </code>
 	 * </pre>
-	 * @param id Identificador de la entidad de Servicio que se esta buscando. Este debe ser una cadena de dígitos.
+	 * @param nombre Nombre de la entidad de Servicio que se esta buscando. Este debe ser una cadena de dígitos.
 	 * @return JSON {@link ServicioDetailDTO} - La entidad de Servicio buscada
 	 */
 	@GET
-	@Path( "{id: \\d+}" )
-	public ServicioDetailDTO getServicio( @PathParam( "id" ) Long id )
+	@Path( "{nombre}" )
+	public ServicioDetailDTO getServicio( @PathParam( "nombre" ) String nombre )
 	{
-		return null;
+		ServicioEntity entity= servicioLogic.getByNombre(nombre);
+                if(entity == null){
+                     throw new WebApplicationException("El recurso /servicios/" + nombre + " no existe.", 404);
+                }
+                return new ServicioDetailDTO(entity);
 	}
 
 	/**
@@ -141,16 +163,22 @@ public class ServicioResource
 	 * </code>
 	 * </pre>
 	 *
-	 * @param id Identificador de la entidad de Cliente que se desea actualizar.Este debe ser una cadena de dígitos.
+	 * @param nombre Nombre de la entidad de Cliente que se desea actualizar.Este debe ser una cadena de dígitos.
 	 * @param detailDTO {@link ServicioDetailDTO} La entidad de Cliente que se desea guardar.
 	 * @return JSON {@link ServicioDetailDTO} - La entidad de Cliente guardada.
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la entidad de Servicio porque ya existe una con ese nombre.
 	 */
 	@PUT
-	@Path( "{id: \\d+}" )
-	public ServicioDetailDTO updateServicio( @PathParam( "id" ) Long id, ServicioDetailDTO detailDTO ) throws BusinessLogicException
+	@Path( "{nombre}" )
+	public ServicioDetailDTO updateServicio( @PathParam( "nombre" ) String nombre, ServicioDetailDTO detailDTO ) throws BusinessLogicException
 	{
-		return detailDTO;
+		detailDTO.setNombre(nombre);
+                ServicioEntity entity= servicioLogic.getByNombre(nombre);
+                if(entity == null)
+                {
+                    throw new WebApplicationException("El recurso /servicios/" + nombre + " no existe.", 404);
+                }
+                return new ServicioDetailDTO(servicioLogic.update(entity));
 	}
 
 	/**
@@ -164,12 +192,17 @@ public class ServicioResource
 	 * 404 Not Found. No existe una entidad de Servicio con el id dado.
 	 * </code>
 	 * </pre>
-	 * @param id Identificador de la entidad de Servicio que se desea borrar. Este debe ser una cadena de dígitos.
+	 * @param nombre Identificador de la entidad de Servicio que se desea borrar. Este debe ser una cadena de dígitos.
 	 */
 	@DELETE
-	@Path( "{id: \\d+}" )
-	public void deleteServicio( @PathParam( "id" ) Long id )
+	@Path( "{nombre}" )
+	public void deleteServicio( @PathParam( "nombre" )String nombre ) throws BusinessLogicException
 	{
-		// Void
+		ServicioEntity entity= servicioLogic.getByNombre(nombre);
+                if(entity == null)
+                {
+                     throw new WebApplicationException("El recurso /clientes/" + nombre + " no existe.", 404);
+                }
+                servicioLogic.delete(nombre);
 	}
 }

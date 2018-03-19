@@ -202,6 +202,19 @@ public class ClientePersistenceTest
     }
     
     /**
+     * Prueba para consultar un Usuario por username.
+     *
+     * 
+     */
+    @Test
+    public void getUsuarioByUsernameTest() {
+        ClienteEntity entity = data.get(0);
+        ClienteEntity newEntity = clientePersistence.findByUsername(entity.getUsuario());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getUsuario(), newEntity.getUsuario());
+    }
+    
+    /**
      * Prueba para consultar la lista de clientes.
      *
      * 

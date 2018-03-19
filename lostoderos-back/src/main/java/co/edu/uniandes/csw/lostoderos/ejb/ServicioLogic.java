@@ -30,14 +30,19 @@ public class ServicioLogic
     private ServicioPersistence persistence;
     
     /**
-     * metodo que crea la entidad de cotizacion
+     * metodo que crea la entidad de servicio
      * @param entity entidad que se desea crear
      * @return entidad creada
      * @throws BusinessLogicException si la entidad a crea ya existe
      */
     public ServicioEntity create(ServicioEntity entity)throws BusinessLogicException{
         
-        LOGGER.info("Inicio de creación de la entidad Cotización");        
+        LOGGER.info("Inicio de creación de la entidad Servicio");  
+        ServicioEntity servicioEntity = persistence.findByNombre(entity.getNombre());
+        if(servicioEntity != null)
+        {
+            throw new BusinessLogicException("Ya existe un usuario con el nombre: "+entity.getUsuario());
+        }
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
@@ -51,9 +56,9 @@ public class ServicioLogic
      */
     public List<ServicioEntity> getAll( ){
         
-	LOGGER.info( "Inicia proceso de consultar todas las entidades de Todero" );
+	LOGGER.info( "Inicia proceso de consultar todas las entidades de Servicio" );
 	List<ServicioEntity> entities = persistence.findAll( );
-	LOGGER.info( "Termina proceso de consultar todas las entidades de Todero" );
+	LOGGER.info( "Termina proceso de consultar todas las entidades de Servicio" );
 	return entities;
     }
     
@@ -68,6 +73,16 @@ public class ServicioLogic
     }
     
     /**
+     * consulta el servicio con el nombre deseado
+     * @param nombre identificador que se desea consultar
+     * @return entidad con el nombre deseado
+     */
+    public ServicioEntity getByNombre(String nombre){
+        
+        return persistence.findByNombre(nombre);
+    }
+    
+    /**
      * Actualiza la entidad deseada
      * @param entity entidad que se desea actualizar
      * @return entidad actualizada
@@ -75,21 +90,26 @@ public class ServicioLogic
      */
     public ServicioEntity update(ServicioEntity entity)throws BusinessLogicException{
         
-        if(persistence.find(entity.getId()) == null)
-            throw new BusinessLogicException("No existe una entidad de Servicio con el id \""+entity.getId()+"\"");
-        
+        if(persistence.findByNombre(entity.getNombre()) == null)
+        {
+            throw new BusinessLogicException("No existe una entidad de Usuario con el username \""+entity.getNombre()+"\"");
+        }
         return persistence.update(entity);
     }
     
     /**
      * elimina la entidad con el id asignado
-     * @param id identificador de la entidad que se desea borrar
+     * @param nombre Nombre de la entidad que se desea borrar
      * @throws BusinessLogicException si la entidad no existe
      */
-    public void delete(Long id)throws BusinessLogicException{
+    public void delete(String nombre)throws BusinessLogicException{
         
-        LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Servicio con id={0}", id);
-        persistence.delete(id);
-        LOGGER.log(Level.INFO, "Borrado exitoso", id);
+        LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Servicio con nombre={0}", nombre);
+        if(persistence.findByNombre(nombre) == null)
+        {
+            throw new BusinessLogicException("No existe una entidad de Usuario con el username \""+nombre+"\"");
+        }
+        persistence.delete(nombre);
+        LOGGER.log(Level.INFO, "Borrado exitoso", nombre);
     }
 }

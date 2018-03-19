@@ -36,6 +36,7 @@ import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
  *      "producto": String,
  *      "subTotal": Integer,
  *      "total": Integer
+ * 
  *   }
  * </pre>
  * Por ejemplo una entidad de Factura se representa asi:<br>

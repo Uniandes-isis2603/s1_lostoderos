@@ -79,12 +79,14 @@ public class ToderoLogic
 		{
 			throw new BusinessLogicException( "Ya existe una entidad de Todero con el nombre \"" + entity.getName( ) + "\"" );
 		}
+                //TODO: NO hay ninguna regla de negocio? 
 		return persistence.update( entity );
 	}
 
 	public void delete( ToderoEntity entity ) throws BusinessLogicException
-	{
+	{//Este método debe recibir un id y hayq ue verificar que exista el todero correspondiente
 		LOGGER.log( Level.INFO, "Inicia proceso de borrar la entidad de Todero con id={0}", entity.getId( ) );
+                
 		persistence.delete( entity );
 		LOGGER.log( Level.INFO, "Termina proceso de borrar la entidad de Todero con id={0}", entity.getId( ) );
 	}

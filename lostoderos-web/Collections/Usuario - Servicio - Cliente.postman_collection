@@ -1,0 +1,537 @@
+{
+	"info": {
+		"name": "Colecction Usuario, Servicio, Cliente",
+		"_postman_id": "3dc18016-7770-402d-9ef9-e54f0912adf3",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4bef525d-63df-41c2-af53-96a9dd3b0aba",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_s\",data.id);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"nombre\": \"Plomeria\",\r\n      \"categorias\": \"agua y tuberias\",\r\n      \"descripción\": \"Aqui va una descripcion detallada del servicio\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/lostoderos-web/api/servicios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lostoderos-web",
+						"api",
+						"servicios"
+					]
+				},
+				"description": "Crea un servicio"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "83fb867b-2120-4d00-a003-9482d2b2cf65",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_u\",data.id);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"nombre\": \"Juan Perez\",\r\n     \"usuario\": \"Jperez\",\r\n     \"contraseña\": \"enero1999\",\r\n     \"correo\": \"Jperez@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/lostoderos-web/api/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lostoderos-web",
+						"api",
+						"usuarios"
+					]
+				},
+				"description": "Crea un usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "91c85509-caba-4ae1-a51e-2831a6fef0f6",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_u\",data.id);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"nombre\": \"Juan Perez\",\r\n     \"usuario\": \"Jperez\",\r\n     \"contraseña\": \"enero1999\",\r\n     \"correo\":\"Jperez@gmail.com\",\r\n     \"fecha_nacimiento\":\"1999-04-14T00:00:00-05:00\",\r\n     \"forma_pago\":\"Efectivo\",\r\n     \"direccion\": \"Carrera 5 #62-08\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/lostoderos-web/api/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lostoderos-web",
+						"api",
+						"clientes"
+					]
+				},
+				"description": "Crea un cliente"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los servicios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8060aa5d-4e4b-4615-8733-e2ce650b23ec",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"servicios count\"] = data.length >= 0;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/lostoderos-web/api/servicios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lostoderos-web",
+						"api",
+						"servicios"
+					]
+				},
+				"description": "Consulta todos los servicios"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los usuarios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e949ba2c-4d6a-4bcf-a7a3-4dea0c41d133",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"authors count\"] = data.length >= 0;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/lostoderos-web/api/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lostoderos-web",
+						"api",
+						"usuarios"
+					]
+				},
+				"description": "obtiene todos los usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los clientes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "af21e08a-e660-4d13-ae71-99e3bf84df14",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"authors count\"] = data.length >= 0;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/lostoderos-web/api/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lostoderos-web",
+						"api",
+						"clientes"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4703b0eb-7c62-455d-8c9d-db03fd5ea02e",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"nombre\": \"Plomeria\",\r\n      \"categorias\": \"agua y tuberias\",\r\n      \"descripción\": \"Aqui va una descripcion detallada del servicio\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/lostoderos-web/api/servicios/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lostoderos-web",
+						"api",
+						"servicios",
+						"{{new_id}}"
+					]
+				},
+				"description": "Obtiene un servicio"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "51cb20ff-98e8-4c97-bb78-cce11f6e314a",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/lostoderos-web/api/usuarios/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lostoderos-web",
+						"api",
+						"usuarios",
+						"{{new_id}}"
+					]
+				},
+				"description": "Obtiene un usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "960d063b-6f52-4d06-b8a7-51936785df1f",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/lostoderos-web/api/clientes/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lostoderos-web",
+						"api",
+						"clientes",
+						"{{new_id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7bb13359-2aac-4ed3-bea0-979d2c437b05",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/lostoderos-web/api/servicios/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lostoderos-web",
+						"api",
+						"servicios",
+						"{{new_id}}"
+					]
+				},
+				"description": "Borra un servicio"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cfdf3a9b-fad3-4197-aacc-122e7d5de4f1",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/lostoderos-web/api/usuarios/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lostoderos-web",
+						"api",
+						"usuarios",
+						"{{new_id}}"
+					]
+				},
+				"description": "Borra un usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "84c97cf2-13be-4f8a-9fbd-9fafe428e718",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/lostoderos-web/api/clientes/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lostoderos-web",
+						"api",
+						"clientes",
+						"{{new_id}}"
+					]
+				},
+				"description": "Borra un cliente"
+			},
+			"response": []
+		}
+	]
+}

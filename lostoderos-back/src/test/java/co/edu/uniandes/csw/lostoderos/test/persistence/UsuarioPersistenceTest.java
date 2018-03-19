@@ -162,7 +162,7 @@ public class UsuarioPersistenceTest
     @Test
     public void deleteUsuarioTest() {
         UsuarioEntity entity = data.get(0);
-        usuarioPersistence.delete(entity.getId());
+        usuarioPersistence.delete(entity.getUsuario());
         UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -220,4 +220,29 @@ public class UsuarioPersistenceTest
         }
     }
 
+    /**
+     * Prueba para consultar un Usuario por username.
+     *
+     * 
+     */
+    @Test
+    public void getUsuarioByUsernameTest() {
+        UsuarioEntity entity = data.get(0);
+        UsuarioEntity newEntity = usuarioPersistence.findByUsername(entity.getUsuario());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getUsuario(), newEntity.getUsuario());
+    }
+
+    /**
+     * Prueba para consultar un Usuario por correo.
+     *
+     * 
+     */
+    @Test
+    public void getUsuarioByCorreoTest() {
+        UsuarioEntity entity = data.get(0);
+        UsuarioEntity newEntity = usuarioPersistence.findByCorreo(entity.getCorreo());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getCorreo(), newEntity.getCorreo());
+    }
 }
