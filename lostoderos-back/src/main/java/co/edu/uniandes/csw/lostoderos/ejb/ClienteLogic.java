@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.lostoderos.ejb;
 import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.ClientePersistence;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,8 +38,12 @@ public class ClienteLogic
      */
     public ClienteEntity create(ClienteEntity entity)throws BusinessLogicException{
         
-        LOGGER.info("Inicio de creación de la entidad Cotización");
-        //TODO: NO hay ninguna regla de negocio?
+        LOGGER.info("Inicio de creación de la entidad Cliente");
+        Date fechaMayoriaEdad = new Date(2000,0,1);
+        if(entity.getFecha_nacimiento().before(fechaMayoriaEdad))
+        {
+            throw new BusinessLogicException("El cliente debe ser mayor de edad para poder registrarse");
+        }
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
@@ -52,9 +57,9 @@ public class ClienteLogic
      */
     public List<ClienteEntity> getAll( ){
         
-	LOGGER.info( "Inicia proceso de consultar todas las entidades de Todero" );
+	LOGGER.info( "Inicia proceso de consultar todas las entidades de Cliente" );
 	List<ClienteEntity> entities = persistence.findAll( );
-	LOGGER.info( "Termina proceso de consultar todas las entidades de Todero" );
+	LOGGER.info( "Termina proceso de consultar todas las entidades de Cliente" );
 	return entities;
     }
     
@@ -66,6 +71,16 @@ public class ClienteLogic
     public ClienteEntity getById(Long id){
         
         return persistence.find(id);
+    }
+    
+    /**
+     * consulta el usuario con el username deseado
+     * @param username identificador que se desea consultar
+     * @return entidad con el id deseado
+     */
+    public ClienteEntity getByUsername(String username){
+        
+        return persistence.findByUsername(username);
     }
     
     /**

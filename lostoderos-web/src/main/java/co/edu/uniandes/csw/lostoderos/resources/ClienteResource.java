@@ -59,7 +59,7 @@ import javax.ws.rs.WebApplicationException;
  * @author s.naranjop1
  * @version 1.0
  */
-@Path( "clientes" )
+@Path( "usuarios/{username}/cliente" )
 @Produces( "application/json" )
 @Consumes( "application/json" )
 @RequestScoped
@@ -109,22 +109,6 @@ public class ClienteResource
 	}
         
         /**
-	 * <h1>GET /api/clientes : Obtener todas las entidadese de Cliente.</h1>
-	 * <pre>Busca y devuelve todas las entidades de Cliente que existen en la aplicacion.
-	 *
-	 * Codigos de respuesta:
-	 * <code style="color: mediumseagreen; background-color: #eaffe0;">
-	 * 200 OK Devuelve todas las entidades de Cliente de la aplicacion.</code>
-	 * </pre>
-	 * @return JSONArray {@link ClienteDetailDTO} - Las entidades de Cliente encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
-	 */
-	@GET
-	public List<ClienteDetailDTO> getClientes( )
-	{
-		return listEntity2DTO(clienteLogic.getAll());
-	}
-        
-        /**
 	 * <h1>GET /api/os/{id} : Obtener una entidad de Cliente por id.</h1>
 	 * <pre>Busca la entidad de Cliente con el id asociado recibido en la URL y la devuelve.
 	 *
@@ -136,16 +120,15 @@ public class ClienteResource
 	 * 404 Not Found No existe una entidad de Cliente con el id dado.
 	 * </code>
 	 * </pre>
-	 * @param id Identificador de la entidad de Cliente que se esta buscando. Este debe ser una cadena de dígitos.
+	 * @param username Identificador de la entidad de Cliente que se esta buscando. Este debe ser una cadena de dígitos.
 	 * @return JSON {@link ClienteDetailDTO} - La entidad de Cliente buscada
 	 */
 	@GET
-	@Path( "{id: \\d+}" )
-	public ClienteDetailDTO getCliente( @PathParam( "id" ) Long id )
+	public ClienteDetailDTO getCliente( @PathParam( "username" )String username )
 	{
-		ClienteEntity entity= clienteLogic.getById(id);
+		ClienteEntity entity= clienteLogic.getByUsername(username);
                 if(entity == null){
-                     throw new WebApplicationException("El recurso /clientes/" + id + " no existe.", 404);
+                     throw new WebApplicationException("El recurso usuarios/" + username + "/cliente no existe.", 404);
                 }
                 return new ClienteDetailDTO(entity);
 	}

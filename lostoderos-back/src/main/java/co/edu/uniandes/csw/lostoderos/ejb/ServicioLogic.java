@@ -30,7 +30,7 @@ public class ServicioLogic
     private ServicioPersistence persistence;
     
     /**
-     * metodo que crea la entidad de cotizacion
+     * metodo que crea la entidad de servicio
      * @param entity entidad que se desea crear
      * @return entidad creada
      * @throws BusinessLogicException si la entidad a crea ya existe
@@ -38,7 +38,6 @@ public class ServicioLogic
     public ServicioEntity create(ServicioEntity entity)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Servicio");  
-        //TODO: NO hay ninguna regla de negocio? 
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
@@ -52,9 +51,9 @@ public class ServicioLogic
      */
     public List<ServicioEntity> getAll( ){
         
-	LOGGER.info( "Inicia proceso de consultar todas las entidades de Todero" );
+	LOGGER.info( "Inicia proceso de consultar todas las entidades de Servicio" );
 	List<ServicioEntity> entities = persistence.findAll( );
-	LOGGER.info( "Termina proceso de consultar todas las entidades de Todero" );
+	LOGGER.info( "Termina proceso de consultar todas las entidades de Servicio" );
 	return entities;
     }
     
