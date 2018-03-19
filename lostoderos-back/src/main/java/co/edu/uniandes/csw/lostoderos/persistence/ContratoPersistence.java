@@ -28,7 +28,8 @@ public class ContratoPersistence {
     
     public ContratoEntity find(Long id){
         LOGGER.log(Level.INFO, "Consultando un contrato con id={0}",id);
-        return em.find(ContratoEntity.class,id);
+        ContratoEntity contrato = em.find(ContratoEntity.class,id);
+        return contrato;
     }
     
         /**

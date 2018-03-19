@@ -67,7 +67,9 @@ public class CalificacionResource {
 	 * </code>
 	 * </pre>
 	 *
+         * @param idCliente id del cliente
 	 * @param dto {@link CalificacionDetailDTO} - La entidad de calificacion que se desea guardar.
+         * @param idContratista id del contratista
 	 * @return JSON {@link CalificacionDetailDTO}  - La entidad de calificacion guardada con el atributo id autogenerado.
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad.
 	 */

@@ -67,6 +67,7 @@ public class ContratoResource {
 	 * </code>
 	 * </pre>
 	 *
+         * @param idContratista id del contratista
 	 * @param dto {@link ContratoDetailDTO} - La entidad de contrato que se desea guardar.
 	 * @return JSON {@link ContratoDetailDTO}  - La entidad de contrato guardada con el atributo id autogenerado.
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad.

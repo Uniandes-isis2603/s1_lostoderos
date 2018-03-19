@@ -82,8 +82,6 @@ public class ContratoLogic {
      */
     public ContratoEntity update(ContratoEntity entity)throws BusinessLogicException{
         
-        if(persistence.find(entity.getId()) == null)
-            throw new BusinessLogicException("No existe una entidad de Contrato con el id \""+entity.getId()+"\"");
         
         return persistence.update(entity);
     }
