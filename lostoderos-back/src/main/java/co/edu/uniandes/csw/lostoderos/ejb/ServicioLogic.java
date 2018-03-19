@@ -68,6 +68,16 @@ public class ServicioLogic
     }
     
     /**
+     * consulta el servicio con el nombre deseado
+     * @param nombre identificador que se desea consultar
+     * @return entidad con el nombre deseado
+     */
+    public ServicioEntity getByNombre(String nombre){
+        
+        return persistence.findByNombre(nombre);
+    }
+    
+    /**
      * Actualiza la entidad deseada
      * @param entity entidad que se desea actualizar
      * @return entidad actualizada
@@ -83,14 +93,14 @@ public class ServicioLogic
     
     /**
      * elimina la entidad con el id asignado
-     * @param id identificador de la entidad que se desea borrar
+     * @param nombre Nombre de la entidad que se desea borrar
      * @throws BusinessLogicException si la entidad no existe
      */
-    public void delete(Long id)throws BusinessLogicException{
+    public void delete(String nombre)throws BusinessLogicException{
         
-        LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Servicio con id={0}", id);
-        //TODO: qué pasa is no existe un servicio con ese id?
-        persistence.delete(id);
-        LOGGER.log(Level.INFO, "Borrado exitoso", id);
+        LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Servicio con nombre={0}", nombre);
+        
+        persistence.delete(nombre);
+        LOGGER.log(Level.INFO, "Borrado exitoso", nombre);
     }
 }

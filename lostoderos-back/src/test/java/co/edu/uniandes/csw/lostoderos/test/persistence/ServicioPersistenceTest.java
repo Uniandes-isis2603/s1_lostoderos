@@ -163,7 +163,7 @@ public class ServicioPersistenceTest
     @Test
     public void deleteServicioTest() {
         ServicioEntity entity = data.get(0);
-        servicioPersistence.delete(entity.getId());
+        servicioPersistence.delete(entity.getNombre());
         ServicioEntity deleted = em.find(ServicioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -219,5 +219,18 @@ public class ServicioPersistenceTest
             }
             Assert.assertTrue(found);
         }
+    }
+    
+    /**
+     * Prueba para consultar un Servcio por nombre.
+     *
+     * 
+     */
+    @Test
+    public void getServcioByNombre() {
+        ServicioEntity entity = data.get(0);
+        ServicioEntity newEntity = servicioPersistence.findByNombre(entity.getNombre());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
     }
 }
