@@ -110,6 +110,10 @@ public class UsuarioLogic
     public void delete(String username)throws BusinessLogicException{
         
         LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Usuario con username={0}", username);
+        if(persistence.findByUsername(username) == null)
+        {
+            throw new BusinessLogicException("No existe una entidad de Usuario con el username \""+username+"\"");
+        }
         persistence.delete(username);
         LOGGER.log(Level.INFO, "Borrado exitoso", username);
     }    
