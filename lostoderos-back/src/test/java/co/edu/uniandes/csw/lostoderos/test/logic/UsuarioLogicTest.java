@@ -175,7 +175,7 @@ public class UsuarioLogicTest
     @Test
     public void deleteUsuarioTest() throws BusinessLogicException {
         UsuarioEntity entity = data.get(0);
-        usuarioLogic.delete(entity.getId());
+        usuarioLogic.delete(entity.getUsuario());
         UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -192,12 +192,13 @@ public class UsuarioLogicTest
         UsuarioEntity pojoEntity = factory.manufacturePojo(UsuarioEntity.class);
 
         pojoEntity.setId(entity.getId());
+        pojoEntity.setUsuario(entity.getUsuario());
 
         usuarioLogic.update(pojoEntity);
 
         UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
+        Assert.assertEquals(pojoEntity.getUsuario(), resp.getUsuario());
     }   
 }

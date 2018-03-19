@@ -93,15 +93,63 @@ public class UsuarioPersistence
     }
 
     /**
-     * Borra un usuario de la base de datos recibiendo como argumento el id
-     * de la author
+     * Borra un usuario de la base de datos recibiendo como argumento el username
+     * del usuario
      *
-     * @param id: id correspondiente al usuario a borrar.
+     * @param username: id correspondiente al usuario a borrar.
      */
-    public void delete(Long id) 
+    public void delete(String username) 
     {
-        LOGGER.log(Level.INFO, "Borrando usuario con id={0}", id);
-        UsuarioEntity entity = em.find(UsuarioEntity.class, id);
+        LOGGER.log(Level.INFO, "Borrando usuario con username={0}", username);
+        UsuarioEntity entity = findByUsername(username);
         em.remove(entity);
+    }
+    
+    /**
+     * Busca si hay alguna entidad de usuario con el usuario que se envía de argumento
+     *
+     * @param username: usuario de la entidad de usuario que se está buscando
+     * @return null si no existe ninguna entidad usuario con el nombre del argumento. Si
+     * existe alguna devuelve la primera.
+     */
+    public UsuarioEntity findByUsername( String username )
+    {
+	LOGGER.log( Level.INFO, "Consultando entidades de Usuarios por username ", username );
+
+	TypedQuery<UsuarioEntity> query = em.createQuery( "Select e From UsuarioEntity e where e.usuario = :username", UsuarioEntity.class );
+	query = query.setParameter( "username", username );
+	List<UsuarioEntity> sameUserName = query.getResultList( );
+	if( sameUserName.isEmpty( ) )
+	{
+		return null;
+	}
+	else
+	{
+		return sameUserName.get( 0 );
+	}
+    }
+    
+    /**
+     * Busca si hay alguna entidad de usuario con el correo que se envía de argumento
+     *
+     * @param correo: Correo de la entidad de usuario que se está buscando
+     * @return null si no existe ninguna entidad usuario con el nombre del argumento. Si
+     * existe alguna devuelve la primera.
+     */
+    public UsuarioEntity findByCorreo( String correo )
+    {
+	LOGGER.log( Level.INFO, "Consultando entidades de Usuarios por correo ", correo );
+
+	TypedQuery<UsuarioEntity> query = em.createQuery( "Select e From UsuarioEntity e where e.correo = :correo", UsuarioEntity.class );
+	query = query.setParameter( "correo", correo );
+	List<UsuarioEntity> sameCorreo = query.getResultList( );
+	if( sameCorreo.isEmpty( ) )
+	{
+		return null;
+	}
+	else
+	{
+		return sameCorreo.get( 0 );
+	}
     }
 }

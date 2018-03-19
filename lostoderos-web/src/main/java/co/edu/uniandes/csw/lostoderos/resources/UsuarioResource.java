@@ -136,16 +136,16 @@ public class UsuarioResource
 	 * 404 Not Found No existe una entidad de Usuario con el id dado.
 	 * </code>
 	 * </pre>
-	 * @param id Identificador de la entidad de Usuario que se esta buscando. Este debe ser una cadena de dígitos.
+	 * @param username Identificador de la entidad de Usuario que se esta buscando. Este debe ser una cadena de dígitos.
 	 * @return JSON {@link UsuarioDetailDTO} - La entidad de Usuario buscada
 	 */
 	@GET
-	@Path( "{id: \\d+}" )
-	public UsuarioDetailDTO getUsuario( @PathParam( "id" ) Long id )
+	@Path( "{username}" )
+	public UsuarioDetailDTO getUsuario( @PathParam( "username" ) String username )
 	{
-		UsuarioEntity entity= usuarioLogic.getById(id);
+		UsuarioEntity entity= usuarioLogic.getByUsername(username);
                 if(entity == null){
-                     throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+                     throw new WebApplicationException("El recurso /usuarios/" + username + " no existe.", 404);
                 }
                 return new UsuarioDetailDTO(entity);
 	}
@@ -164,20 +164,20 @@ public class UsuarioResource
 	 * </code>
 	 * </pre>
 	 *
-	 * @param id Identificador de la entidad de Usuario que se desea actualizar.Este debe ser una cadena de dígitos.
+	 * @param username Identificador de la entidad de Usuario que se desea actualizar.Este debe ser una cadena de dígitos.
 	 * @param detailDTO {@link UsuarioDetailDTO} La entidad de Usuario que se desea guardar.
 	 * @return JSON {@link UsuarioDetailDTO} - La entidad de Usuario guardada.
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la entidad de Usuario porque ya existe una con ese nombre.
 	 */
 	@PUT
-	@Path( "{id: \\d+}" )
-	public UsuarioDetailDTO updateUsuario( @PathParam( "id" ) Long id, UsuarioDetailDTO detailDTO ) throws BusinessLogicException
+	@Path( "{username}" )
+	public UsuarioDetailDTO updateUsuario( @PathParam( "username" ) String username, UsuarioDetailDTO detailDTO ) throws BusinessLogicException
 	{
-		detailDTO.setId(id);
-                UsuarioEntity entity= usuarioLogic.getById(id);
+		detailDTO.setUsuario(username);
+                UsuarioEntity entity= usuarioLogic.getByUsername(username);
                 if(entity == null)
                 {
-                    throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+                    throw new WebApplicationException("El recurso /usuarios/" + username + " no existe.", 404);
                 }
                 return new UsuarioDetailDTO(usuarioLogic.update(entity));
 	}
@@ -193,17 +193,17 @@ public class UsuarioResource
 	 * 404 Not Found. No existe una entidad de Usuario con el id dado.
 	 * </code>
 	 * </pre>
-	 * @param id Identificador de la entidad de Usuario que se desea borrar. Este debe ser una cadena de dígitos.
+	 * @param username Identificador de la entidad de Usuario que se desea borrar. Este debe ser una cadena de dígitos.
 	 */
 	@DELETE
-	@Path( "{id: \\d+}" )
-	public void deleteUsuario( @PathParam( "id" ) Long id ) throws BusinessLogicException
+	@Path( "{username}" )
+	public void deleteUsuario( @PathParam( "username" ) String username ) throws BusinessLogicException
 	{
-		UsuarioEntity entity=usuarioLogic.getById(id);
+		UsuarioEntity entity = usuarioLogic.getByUsername(username);
                 if(entity == null)
                 {
-                     throw new WebApplicationException("El recurso /clientes/" + id + " no existe.", 404);
+                     throw new WebApplicationException("El recurso /clientes/" + username + " no existe.", 404);
                 }
-                usuarioLogic.delete(id);
+                usuarioLogic.delete(username);
 	}
 }
