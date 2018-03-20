@@ -41,7 +41,7 @@ import javax.ws.rs.WebApplicationException;
  * @author s.blancoc
  */
 
-@Path( "contratos" )
+@Path("contratistas/{id_contratista: \\d+}/contratos")
 @Produces( "application/json" )
 @Consumes( "application/json" )
 @RequestScoped
@@ -113,11 +113,8 @@ public class ContratoResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public ContratoDetailDTO getContrato(@PathParam("id") Long id) {
-                ContratoEntity entity = contratoLogic.getById(id);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /contratos/" + id + " no existe.", 404);
-        }
+    public ContratoDetailDTO getContrato(@PathParam("idContratista") Long idContratista) throws BusinessLogicException {
+                ContratoEntity entity = contratoLogic.getByIdContratista(idContratista);
         return new ContratoDetailDTO(entity);
     }
     
@@ -141,13 +138,8 @@ public class ContratoResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public ContratoDetailDTO updateContrato(@PathParam("id") Long id, ContratoDetailDTO contrato) throws BusinessLogicException {
-        contrato.setID(id);
-        ContratoEntity entity = contratoLogic.getById(id);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /contratos/" + id + " no existe.", 404);
-        }
-        return new ContratoDetailDTO(contratoLogic.update(entity));
+    public ContratoDetailDTO updateContrato(@PathParam("idContratista") Long idContratista, ContratoDetailDTO contrato) throws BusinessLogicException {
+        return new ContratoDetailDTO(contratoLogic.update(idContratista, contrato.toEntity()));
     }
     
     /**
@@ -168,10 +160,6 @@ public class ContratoResource {
     @DELETE
     @Path("{id: \\d+}")
      public void deleteContrato(@PathParam("id") Long id) throws BusinessLogicException {
-        ContratoEntity entity = contratoLogic.getById(id);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /contratos/" + id + " no existe.", 404);
-        }
         contratoLogic.delete(id);
     }
      

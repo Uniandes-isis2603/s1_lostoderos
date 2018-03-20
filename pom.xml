@@ -8,7 +8,10 @@
     <packaging>pom</packaging>
     <name>s1_lostoderos</name>
 
-    <modules></modules>
+    <modules>
+        <module>lostoderos-back</module>
+        <module>lostoderos-web</module>
+    </modules>
     
     <repositories>
         <repository>

@@ -132,9 +132,9 @@ public class ContratoLogicTest {
      *
      */
     @Test
-    public void getContratoTest() {
+    public void getContratoTest() throws BusinessLogicException {
         ContratoEntity entity = data.get(0);
-        ContratoEntity resultEntity = contratoLogic.getById(entity.getId());
+        ContratoEntity resultEntity = contratoLogic.getByIdContratista(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
 }
@@ -165,7 +165,7 @@ public class ContratoLogicTest {
      *
      */
     @Test
-    public void deleteContratoTest() {
+    public void deleteContratoTest() throws BusinessLogicException {
         ContratoEntity entity = data.get(0);
         contratoLogic.delete(entity.getId());
         ContratoEntity deleted = em.find(ContratoEntity.class, entity.getId());
@@ -184,7 +184,7 @@ public class ContratoLogicTest {
 
         pojoEntity.setId(entity.getId());
 
-        contratoLogic.update(entity);
+        contratoLogic.update(entity.getId(), entity);
 
         ContratoEntity resp = em.find(ContratoEntity.class, entity.getId());
 

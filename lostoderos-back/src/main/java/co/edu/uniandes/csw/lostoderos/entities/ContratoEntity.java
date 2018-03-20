@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -17,7 +18,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class ContratoEntity extends BaseEntity implements Serializable {
   
-     @OneToOne(mappedBy = "contrato", cascade = CascadeType.PERSIST)
+    @PodamExclude 
+    @OneToOne(mappedBy = "contrato", cascade = CascadeType.PERSIST)
      private ContratistaEntity contratista;
 
     /**
