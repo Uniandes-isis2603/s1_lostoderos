@@ -150,9 +150,12 @@ public class ClienteDTO extends UsuarioDTO
 	 */
 	public ClienteEntity toEntity( )
 	{
-                super.toEntity();
 		ClienteEntity entity = new ClienteEntity( );
-                
+                entity.setId( this.id );
+	        entity.setNombre(this.nombre);
+                entity.setUsuario(this.usuario);
+                entity.setContrasena(this.contrasena);
+                entity.setCorreo(this.correo);
                 entity.setFecha_nacimiento(this.fecha_nacimiento);
                 entity.setDireccion(this.direccion);
                 entity.setForma_pago(this.forma_pago);

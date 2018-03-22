@@ -119,7 +119,7 @@ public class ContratistaDTO extends UsuarioDTO{
         entity.setId( this.id );
 	entity.setNombre(this.nombre);
         entity.setUsuario(this.usuario);
-        entity.setContraseña(this.contraseña);
+        entity.setContrasena(this.contrasena);
         entity.setCorreo(this.correo);
         entity.setReputacion(this.reputacion);
         entity.setDisponibilidad(this.disponibilidad);

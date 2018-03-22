@@ -205,4 +205,25 @@ public class ServicioResource
                 }
                 servicioLogic.delete(nombre);
 	}
+        
+        /**
+         * Conexión con el servicio de servicios para un contratista. {@link ServicioContratistaResource}
+         * 
+         * Este método conecta la ruta de /servicios con las rutas de /contratistas que dependen
+         * del servicio, es una redirección al servicio que maneja el segmento de la 
+         * URL que se encarga de los contratistas.
+         * 
+         * @param nombreServicio El nombre del servicio con respecto al cual se accede al servicio.
+         * @return El servicio de Contratistas para ese servicio en paricular.
+         */
+        @Path("{nombre}/contratistas")
+        public Class<ServicioContratistaResource> getServicioContratistaResource(@PathParam("nombre") String nombreServicio) 
+        {
+                ServicioEntity entity = servicioLogic.getByNombre(nombreServicio);
+                if (entity == null)
+                {
+                     throw new WebApplicationException("El recurso /servicios/" + nombreServicio + "/contratistas no existe.", 404);
+                }
+                return ServicioContratistaResource.class;
+        }
 }

@@ -60,7 +60,7 @@ public class UsuarioDTO
         
         protected String usuario;
         
-        protected String contraseña;
+        protected String contrasena;
         
         protected String correo;
     
@@ -82,7 +82,7 @@ public class UsuarioDTO
 		this.id = usuarioEntity.getId( );
 		this.nombre = usuarioEntity.getNombre();
                 this.usuario = usuarioEntity.getUsuario();
-                this.contraseña = usuarioEntity.getContraseña();
+                this.contrasena = usuarioEntity.getContrasena();
                 this.correo = usuarioEntity.getCorreo();
 	}
         
@@ -137,17 +137,17 @@ public class UsuarioDTO
          /**
 	 * @return La contraseña de la entidad Usuario
 	 */
-        public String getContraseña() 
+        public String getContrasena() 
         {
-                return contraseña;
+                return contrasena;
         }
 
         /**
 	 * @param contraseña La nueva contraseña
 	 */
-        public void setContraseña(String contraseña) 
+        public void setContrasena(String contraseña) 
         {
-                this.contraseña = contraseña;
+                this.contrasena = contraseña;
         }
 
         /**
@@ -177,7 +177,7 @@ public class UsuarioDTO
 		entity.setId( this.id );
 		entity.setNombre(this.nombre);
                 entity.setUsuario(this.usuario);
-                entity.setContraseña(this.contraseña);
+                entity.setContrasena(this.contrasena);
                 entity.setCorreo(this.correo);
 		return entity;
 	}
