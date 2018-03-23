@@ -35,7 +35,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable
 {
     protected String nombre;
     protected String usuario;
-    protected String contraseña;
+    protected String contrasena;
     protected String correo;
 
     public String getNombre() 
@@ -58,14 +58,14 @@ public class UsuarioEntity extends BaseEntity implements Serializable
         this.usuario = usuario;
     }
 
-    public String getContraseña() 
+    public String getContrasena() 
     {
-        return contraseña;
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) 
+    public void setContrasena(String contraseña) 
     {
-        this.contraseña = contraseña;
+        this.contrasena = contraseña;
     }
 
     public String getCorreo() 

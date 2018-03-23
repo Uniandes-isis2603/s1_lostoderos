@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.lostoderos.ejb;
 
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.ServicioPersistence;
@@ -111,5 +112,86 @@ public class ServicioLogic
         }
         persistence.delete(nombre);
         LOGGER.log(Level.INFO, "Borrado exitoso", nombre);
+    }
+    
+    /**
+     * Obtiene una colección de instancias de ContratistaEntity asociadas a una
+     * instancia de Servicio
+     *
+     * @param nombreServicio nombre de la instancia de Servicio
+     * @return Colección de instancias de ContratistaEntity asociadas a la instancia
+     * de Servicio
+     * 
+     */
+    public List<ContratistaEntity> listContratistas(String nombreServicio) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los contratistas del servicio con nombre = {0}", nombreServicio);
+        return getByNombre(nombreServicio).getContratistas();
+    }
+
+    /**
+     * Obtiene una instancia de ContratistaEntity asociada a una instancia de Servicio
+     *
+     * @param nombreServicio nombre de la instancia de Servicio
+     * @param contratistaId Identificador de la instancia de Contratista
+     * @return La entidad del Contratista asociada al servicio
+     */
+    public ContratistaEntity getContratista(String nombreServicio, Long contratistaId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar un contratista del servicio con nombre = {0}", nombreServicio);
+        List<ContratistaEntity> list = getByNombre(nombreServicio).getContratistas();
+        ContratistaEntity contratistaEntity = new ContratistaEntity();
+        contratistaEntity.setId(contratistaId);
+        int index = list.indexOf(contratistaEntity);
+        if (index >= 0) {
+            return list.get(index);
+        }
+        return null;
+    }
+
+    /**
+     * Asocia un Contratista existente a un Servicio
+     *
+     * @param nombreServicio nombre de la instancia de Servicio
+     * @param contratistaId Identificador de la instancia de Contratista
+     * @return Instancia de ContratistaEntity que fue asociada a Servicio
+     * 
+     */
+    public ContratistaEntity addContratista(String nombreServicio, Long contratistaId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar un contratista al servicio con nombre = {0}", nombreServicio);
+        ServicioEntity bookEntity = getByNombre(nombreServicio);
+        ContratistaEntity contratistaEntity = new ContratistaEntity();
+        contratistaEntity.setId(contratistaId);
+        bookEntity.getContratistas().add(contratistaEntity);
+        return getContratista(nombreServicio, contratistaId);
+    }
+
+    /**
+     * Remplaza las instancias de Contratista asociadas a una instancia de Servicio
+     *
+     * @param nombreServicio nombre de la instancia de Servicio
+     * @param list Colección de instancias de ContratistaEntity a asociar a instancia
+     * de Servicio
+     * @return Nueva colección de ContratistaEntity asociada a la instancia de Servicio
+     * 
+     */
+    public List<ContratistaEntity> replaceContratistas(String nombreServicio, List<ContratistaEntity> list) {
+        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un contratista del servicio con nombre = {0}", nombreServicio);
+        ServicioEntity bookEntity = getByNombre(nombreServicio);
+        bookEntity.setContratistas(list);
+        return bookEntity.getContratistas();
+    }
+
+    /**
+     * Desasocia un Contratista existente de un Servicio existente
+     *
+     * @param nombreServicio nombre de la instancia de Servicio
+     * @param contratistaId Identificador de la instancia de Contratista
+     * 
+     */
+    public void removeContratista(String nombreServicio, Long contratistaId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un contratista del servicio con nombre = {0}", nombreServicio);
+        ServicioEntity entity = getByNombre(nombreServicio);
+        ContratistaEntity contratistaEntity = new ContratistaEntity();
+        contratistaEntity.setId(contratistaId);
+        entity.getContratistas().remove(contratistaEntity);
     }
 }

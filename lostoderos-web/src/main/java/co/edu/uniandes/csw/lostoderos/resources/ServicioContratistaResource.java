@@ -166,7 +166,7 @@ public class ServicioContratistaResource
      */
     @DELETE
     @Path("{contratistaId: \\d+}")
-    public void removeContratistas(@PathParam("nombre") String nombreServicio, @PathParam("contratistaId") Long contratistaId) {
-        servicioLogic.removeContratistas(nombreServicio, contratistaId);
+    public void removeContratista(@PathParam("nombre") String nombreServicio, @PathParam("contratistaId") Long contratistaId) {
+        servicioLogic.removeContratista(nombreServicio, contratistaId);
     }    
 }
