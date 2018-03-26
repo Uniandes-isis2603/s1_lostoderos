@@ -111,13 +111,23 @@ public class HojaDeVidaLogicTest {
         
     }
     
-
+    @Test
+    public void createHojaDeVidaTest()throws BusinessLogicException{ 
+        
+        HojaDeVidaEntity newEntity= factory.manufacturePojo(HojaDeVidaEntity.class);
+        newEntity.setContratista(contratistas.get(0));
+        HojaDeVidaEntity result = hojaVidaLogic.createHojaDeVida(newEntity);
+        Assert.assertNotNull(result);
+        HojaDeVidaEntity entity = em.find(HojaDeVidaEntity.class,result.getId());
+        Assert.assertEquals(newEntity.getId(), 
+                entity.getId());
+    }
    
     
     @Test
     public void getHojaDeVidaTest()throws BusinessLogicException{
         HojaDeVidaEntity entity= data.get(0);
-        HojaDeVidaEntity result = hojaVidaLogic.getHojaDeVidaContratista(entity.getId());
+        HojaDeVidaEntity result = hojaVidaLogic.getHojaDeVida(entity.getId());
         Assert.assertNotNull(result);
         Assert.assertEquals(entity.getId(), result.getId());
     }
@@ -138,6 +148,7 @@ public class HojaDeVidaLogicTest {
         HojaDeVidaEntity entity = data.get(0);
         HojaDeVidaEntity newEntity = factory.manufacturePojo(HojaDeVidaEntity.class);
         newEntity.setId(entity.getId());
+        newEntity.setContratista(contratistas.get(0));
         hojaVidaLogic.updateHojaDeVida(newEntity.getId(),newEntity);
         HojaDeVidaEntity resp = em.find(HojaDeVidaEntity.class,entity.getId());
         Assert.assertEquals(newEntity.getId(), resp.getId());
@@ -145,14 +156,6 @@ public class HojaDeVidaLogicTest {
     }
     
     
-    @Test
-    public void createHojaDeVidaTest()throws BusinessLogicException{ 
-        
-        HojaDeVidaEntity newEntity= factory.manufacturePojo(HojaDeVidaEntity.class);
-        HojaDeVidaEntity result = hojaVidaLogic.createHojaDeVida(data.get(0).getContratista().getId(), newEntity);
-        Assert.assertNotNull(result);
-        HojaDeVidaEntity entity = em.find(HojaDeVidaEntity.class, result.getId());
-        Assert.assertEquals(newEntity.getId(), entity.getId());
-    }
+    
     
 }

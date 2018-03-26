@@ -73,6 +73,7 @@ public class HojaDeVidaDetailDTO extends HojaDeVidaDTO {
     @Override
     public HojaDeVidaEntity toEntity() {
         HojaDeVidaEntity hojaDeVidaE = super.toEntity();
+        if(this.contratista!=null) hojaDeVidaE.setContratista(this.contratista.toEntity());
         return hojaDeVidaE;
     }
 

@@ -64,10 +64,6 @@ public class ContratistaEntity extends UsuarioEntity implements Serializable{
     @PodamExclude
     @OneToOne(mappedBy = "contratista",cascade=CascadeType.PERSIST)
     private HojaDeVidaEntity hojaVida;
-    
-    public ContratistaEntity(){
-        super();
-    }
 
     /**
      * Obtiene el atributo reputación.

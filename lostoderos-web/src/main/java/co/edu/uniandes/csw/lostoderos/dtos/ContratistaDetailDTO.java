@@ -126,6 +126,7 @@ public class ContratistaDetailDTO extends ContratistaDTO{
         if(this.getHojaVida()!=null){
             contratista.setHojaVida(this.hojaVida.toEntity());
         }
+        if(this.contrato!=null) contratista.setContrato(this.contrato.toEntity());
         return contratista;
     }
 

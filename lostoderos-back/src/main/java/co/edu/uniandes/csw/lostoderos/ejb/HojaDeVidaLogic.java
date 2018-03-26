@@ -47,53 +47,38 @@ public class HojaDeVidaLogic {
 
     /**
      * Se encarga de crear una hoja de vida en la base de datos
-     *
-     * @param id_contratista Identificador del contratista
      * @param entity Objeto de HojaDeVidaEntity con los datos nuevos.
      * @return
      * @throws BusinessLogicException
      */
-    public HojaDeVidaEntity createHojaDeVida(Long id_contratista, HojaDeVidaEntity entity) throws BusinessLogicException {
+    public HojaDeVidaEntity createHojaDeVida( HojaDeVidaEntity entity) throws BusinessLogicException {
 
         LOGGER.info("Inicia proceso de creación de hoja de vida");
-        //No hay ninguna regla de negocio para crear una hoja de vida.
-        ContratistaEntity contratistaEntity = contratistaPersistence.find(id_contratista);
-        if(contratistaEntity==null){
-            throw new BusinessLogicException("No existe un contratista con el id_ "+id_contratista);
-        }
-        LOGGER.info("Inicia proceso de asociación entre el contratista y la hoja de vida");
-        entity.setId(id_contratista);
-        HojaDeVidaEntity resp;
-        if(persistence.find(id_contratista)!=null){
-            resp = persistence.update(entity);
-        }
-        else{
-            resp = persistence.create(entity);
-        }
-        LOGGER.info("Termina proceso de asociación entre el contratista y la hoja de vida");
+        if(persistence.find(entity.getId())!=null)throw new BusinessLogicException("Ya existe una hoja de vida con id: "+entity.getId());
+        if(entity.getContratista()==null) throw new BusinessLogicException("Debe especificar el contratista de la hoja de vida");
+        if(entity.getContratista().getId()== null) throw new BusinessLogicException("El contratista que especificó debe tener id para comprobar que existe en la base de datos");
+        ContratistaEntity contratista = contratistaPersistence.find(entity.getContratista().getId());
+        if(contratista==null) throw new BusinessLogicException("El contratista que especificó no existe");
+        persistence.create(entity);
+        entity.setContratista(null);//
+        contratista.setHojaVida(entity); //Se escribieron estas líneas para que el contratista sepa su hoja de vida. si no hacía entity.setContratista(null) antes del update de contratistaPersistence, me mandaba un error en los test.
+        contratistaPersistence.update(contratista);//
+        entity.setContratista(contratista); //
         LOGGER.info("Termina proceso de creación de hoja de vida");
-        return resp;
+        return entity;
 
     }
 
     /**
      * Obtiene la instancia de HojaDeVida de un contratista específico.
      *
-     * @param contratistaId Identificador del COntratista.
+     * @param id Identificador de la hoja de vida
      * @return Instancia de HojaDeVida del Contratista.
-     * @throws BusinessLogicException Si el contratista no tiene hoja de vida.
+     * @throws BusinessLogicException Si la hoja de vida no existe.
      */
-    public HojaDeVidaEntity getHojaDeVidaContratista(Long contratistaId) throws BusinessLogicException {
+    public HojaDeVidaEntity getHojaDeVida(Long id) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de búsqueda de hoja de vida");
-        ContratistaEntity contratista = contratistaPersistence.find(contratistaId);
-        if(contratista==null){
-            throw new BusinessLogicException("No existe un contratista con id: "+contratistaId);
-        }
-        HojaDeVidaEntity entity = persistence.find(contratistaId);
-        
-        if (entity == null) {
-            throw new BusinessLogicException("El contratista con id: "+contratistaId+" no tiene hoja de vida.");
-        }
+        HojaDeVidaEntity entity = persistence.find(id);
         LOGGER.info("Termina proceso de búsqueda de hoja de vida");
         return entity;
     }
@@ -103,37 +88,45 @@ public class HojaDeVidaLogic {
      *
      * Actualizar una hoja de vida.
      *
-     * @param id_contratista Identificador del contratista.
+     * @param id Identifcador de la hoja de vida.
      * @param entity: hoja de vida con los cambios para ser actualizada, por
      * ejemplo el nombre.
-     * @throws BusinessLogicException Lanza excepción si no existe una hoja de vida para ese contratista
+     * @throws BusinessLogicException Lanza excepción si no existe esa hoja de vida
      * @return la hoja de vida con los cambios actualizados en la base de datos.
      */
-    public HojaDeVidaEntity updateHojaDeVida(Long id_contratista,HojaDeVidaEntity entity)throws BusinessLogicException {
+    public HojaDeVidaEntity updateHojaDeVida(Long id,HojaDeVidaEntity entity)throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar una hoja de vida");
         //No existe ninguna regla de negocio para actualizar la hoja de vida.
-        if(persistence.find(id_contratista)==null){
-            throw new BusinessLogicException("No existe una hoja de vida asociada a ese contratista con id: "+id_contratista);
-        }
-        entity.setId(id_contratista);
-        HojaDeVidaEntity newEntity = persistence.update(entity);
+        HojaDeVidaEntity newEntity = persistence.find(id);
+        if(newEntity==null)throw new BusinessLogicException("No existe una hoja de vida con id: "+id);
+        if(entity.getContratista()==null) throw new BusinessLogicException("Debe especificar el contratista de la hoja de vida");
+        if(entity.getContratista().getId()== null) throw new BusinessLogicException("El contratista que especificó debe tener id para comprobar que existe en la base de datos");
+        ContratistaEntity contratista = contratistaPersistence.find(entity.getContratista().getId());
+        if(contratista==null) throw new BusinessLogicException("El contratista que especificó no existe");
+        entity.setId(id);
+        contratista.setHojaVida(entity);
+        contratistaPersistence.update(contratista);
+        entity.setContratista(contratista);
+        newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar hoja de vida");
         return newEntity;
     }
 
     /**
      * Borrar una hoja de vida.
-     * @param id_contratista Identificador del contratista cuya hoja de vida se borrará.
+     * @param id Identificador de la hoja de vida.
      * @throws BusinessLogicException Lanza excepción si no existe una hoja de vida para ese contratista
      *
      */
-    public void deleteHojaDeVida(Long id_contratista)throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar una hoja de vida con id={0}", id_contratista);
-        if(persistence.find(id_contratista)==null){
-            throw new BusinessLogicException("No existe una hoja de vida asociada a ese contratista con id: "+id_contratista);
-        }
-        persistence.delete(id_contratista);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar una hoja de vida con id={0}", id_contratista);
+    public void deleteHojaDeVida(Long id)throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar una hoja de vida con id={0}", id);
+        HojaDeVidaEntity entity = persistence.find(id);
+        if(entity==null)throw new BusinessLogicException("No existe una hoja de vida con id: "+id);
+        ContratistaEntity contratista = entity.getContratista(); //No puede ser nulo
+        contratista.setHojaVida(null);
+        contratistaPersistence.update(contratista);
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar una hoja de vida con id={0}", id);
     }
 
 }
