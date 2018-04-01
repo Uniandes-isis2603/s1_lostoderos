@@ -13,6 +13,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
+import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
+import co.edu.uniandes.csw.lostoderos.persistence.ContratistaPersistence;
+import java.util.ArrayList;
 
 /**
  *
@@ -28,6 +32,10 @@ public class CotizacionLogic {
      * atributo para acceder a la persistencia de la aplicacion. Es una inyeccion de dependencia
      */
     private CotizacionPersistence persistence;
+    
+    
+    @Inject
+    private ContratistaPersistence contratista;
     
     /**
      * metodo que crea la entidad de cotizacion
@@ -67,6 +75,31 @@ public class CotizacionLogic {
         return persistence.find(id);
     }
     //TODO: Debería haber un getCotizacionByContratista
+    
+    /**
+     * Obtiene las cotizaciones a partir del contratista deseado
+     * @param idContratista id requerido para tener las cotizaciones
+     * @return
+     * @throws BusinessLogicException 
+     */
+   public List<CotizacionEntity> getCotizacionesByContratista(Long idContratista)throws BusinessLogicException{
+       
+        LOGGER.info("Inicia proceso de consultar todas las entidades de Cotizacion, a partir de un contratista");
+       
+       ContratistaEntity entity_1= contratista.find(idContratista);
+       if( entity_1== null)
+           throw new BusinessLogicException("No hay un contratista con ese id");
+       
+       List<SolicitudEntity> solicitudes= entity_1.getSolicitudes();
+
+            List<CotizacionEntity> cotizaciones= new ArrayList<>();
+            for(SolicitudEntity entity_2: solicitudes){
+                CotizacionEntity cotizacion= entity_2.getCotizacion();
+                cotizaciones.add(cotizacion);
+       }
+       return cotizaciones;
+
+   }
     /**
      * Actualiza la entidad deseada
      * @param entity entidad que se desea actualizar
@@ -76,6 +109,10 @@ public class CotizacionLogic {
     public CotizacionEntity update(CotizacionEntity entity)throws BusinessLogicException{
            //TODO: NO hay ninguna regla de negocio? 
            // TODO: que pasa si la contización que se quiere actualizar no existe
+        CotizacionEntity entity_1= getById(entity.getId());
+        if(entity_1 == null)
+            throw new BusinessLogicException("No existe la cotizacion que se desea actualizar");
+           
         return persistence.update(entity);
     }
     
