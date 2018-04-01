@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.lostoderos.test.logic;
 
 import co.edu.uniandes.csw.lostoderos.ejb.CotizacionLogic;
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.CotizacionEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.CotizacionPersistence;
@@ -56,6 +57,11 @@ public class CotizacionLogicTest {
      * 
      */
     private List<CotizacionEntity> data= new ArrayList<CotizacionEntity>();
+    
+    /**
+     * 
+     */
+    private List<ContratistaEntity> contratistas= new ArrayList<>();
     
     /**
      * 
@@ -115,6 +121,12 @@ public class CotizacionLogicTest {
             em.persist(entity);
             
             data.add(entity);
+        }
+        
+        for(int i=0; i<3; i++){
+            ContratistaEntity contratista= factory.manufacturePojo(ContratistaEntity.class);
+            em.persist(contratista);
+            contratistas.add(contratista);
         }
     }
     
@@ -177,6 +189,29 @@ public class CotizacionLogicTest {
         cotizacionLogic.delete(entity.getId());
         CotizacionEntity deleted = em.find(CotizacionEntity.class, entity.getId());
         Assert.assertNull(deleted);
+    }
+    
+    /**
+     * 
+     * @throws BusinessLogicException 
+     */
+    @Test
+    public void getCotizacionesByContratistaTest()throws BusinessLogicException{
+        
+        Long contratistaId=contratistas.get(0).getId();
+        List<CotizacionEntity> list= cotizacionLogic.getCotizacionesByContratista(contratistaId);
+        Assert.assertTrue(list.size() <= data.size());
+        if(list.size() > 0){
+            for(CotizacionEntity entity: list){
+                boolean found= false;
+                
+                for(CotizacionEntity storedEntity: data){
+                    if(entity.getId().equals(storedEntity.getId())) found= true;
+                }
+                
+                Assert.assertTrue(found);
+            }
+        }
     }
     
     
