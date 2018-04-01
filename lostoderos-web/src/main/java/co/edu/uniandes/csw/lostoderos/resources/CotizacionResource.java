@@ -119,6 +119,28 @@ public class CotizacionResource {
         return new CotizacionDetailDTO(entity);
     }
     
+    /**
+	 * <h1>GET /api/contratistas/cotizaciones : Obtener todas las entidadese de Cotizacion.</h1>
+	 * 
+	 * <pre>Busca y devuelve todas las entidades de Cotizacion pertenecientes a un respectivo contratista.
+	 *
+	 * Codigos de respuesta:
+	 * <code style="color: mediumseagreen; background-color: #eaffe0;">
+	 * 200 OK Devuelve todas las entidades de Cotizacion de la aplicacion, pertenecientes a un contratista.</code>
+	 * </pre>
+	 *
+         * @param idContratista id del contratista el cual se desea conocer las cotizaciones
+	 * @return JSONArray {@link CotizacionDetailDTO} - Las entidades de la Cotizacion encontradas en la aplicación, pertenecientes a un contratista. Si no hay ninguna retorna una lista vacía.
+	 */
+    @GET
+    @Path("{idContratista: \\d+}")
+    public List<CotizacionDetailDTO> getCotizacionesByContratista(@PathParam("idContratista")Long idContratista)throws BusinessLogicException{
+        
+        
+        List<CotizacionDetailDTO> cotizaciones= listCotizacionEntityToDetailDTO(cotizacionLogic.getCotizacionesByContratista(idContratista));
+        return cotizaciones;
+    }
+    
      /**
 	 * <h1>PUT /api/Cotizaciones/{id} : Actualizar una entidad de Cotizacion con el id dado.</h1>
 	 * <pre>Cuerpo de petición: JSON {@link CotizacionDetailDTO}.
@@ -149,6 +171,7 @@ public class CotizacionResource {
         
         return new CotizacionDetailDTO(cotizacionLogic.update(entity));
     }
+    
     
     /**
 	 * <h1>DELETE /api/cotizaciones/{id} : Borrar una entidad de Cotizacion por id.</h1>
