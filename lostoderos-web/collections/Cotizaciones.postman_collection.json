@@ -1,0 +1,93 @@
+{
+	"id": "f0a39ede-79e8-d965-c52d-42cba4205acf",
+	"name": "Cotizaciones",
+	"description": "Las cotizaciones persistidas desde postman",
+	"order": [
+		"0bc95e47-cb95-f7d5-d046-7b45dd256175",
+		"99472dc2-0ab8-cc7d-53bc-6226466d90d9"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1522640103888,
+	"owner": 0,
+	"public": false,
+	"events": [],
+	"variables": [],
+	"auth": null,
+	"requests": [
+		{
+			"id": "0bc95e47-cb95-f7d5-d046-7b45dd256175",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/lostoderos-web/api/cotizaciones",
+			"queryParams": [],
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d4405d56-873f-4686-80bf-41f6d1a22fcc",
+						"type": "text/javascript",
+						"exec": [
+							"test[\\\"Status code is 200\\\"] = response.Code.code === 200;"
+						]
+					}
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"auth": null,
+			"time": 1522640545513,
+			"name": "http://localhost:8080/lostoderos-web/api/cotizaciones",
+			"description": "consulta de cotizaciones",
+			"collectionId": "f0a39ede-79e8-d965-c52d-42cba4205acf",
+			"responses": [],
+			"preRequestScript": null,
+			"tests": "test[\\\"Status code is 200\\\"] = response.Code.code === 200;",
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\r\n  \"id\": 10,\r\n  \"descripcion\": \"Morbi non lectus.\",\r\n  \"servicio\": \"electricidad\",\r\n  \"valor\": 61929\r\n}"
+		},
+		{
+			"id": "99472dc2-0ab8-cc7d-53bc-6226466d90d9",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/lostoderos-web/api/cotizaciones",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"events": [],
+			"auth": null,
+			"method": "POST",
+			"collectionId": "f0a39ede-79e8-d965-c52d-42cba4205acf",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:8080/lostoderos-web/api/cotizaciones",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1522640169147,
+			"version": 2,
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "\n\t{\n\t\t\"id\":201405258,\n\t\t\"servicio\": \"electricidad\",\n\t\t\"descripcion\": \"arreglo de todos los bombillos de la casa\",\n\t\t\"valor\": 75100\n\t}"
+		}
+	]
+}
