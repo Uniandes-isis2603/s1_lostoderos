@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.lostoderos.resources;
 import co.edu.uniandes.csw.lostoderos.dtos.ContratistaDetailDTO;
 import co.edu.uniandes.csw.lostoderos.ejb.ServicioLogic;
 import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
+import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -117,10 +118,11 @@ public class ServicioContratistaResource
      * @param contratistaId El ID del contratista que se va a asociar
      * @param nombreServicio El nombre del servicio al cual se le va a asociar el contratista
      * @return JSON {@link ContratistaDetailDTO}  - El contratista asociado.
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @POST
     @Path("{contratistaId: \\d+}")
-    public ContratistaDetailDTO addContratistas(@PathParam("nombre") String nombreServicio, @PathParam("contratistaId") Long contratistaId) {
+    public ContratistaDetailDTO addContratistas(@PathParam("nombre") String nombreServicio, @PathParam("contratistaId") Long contratistaId) throws BusinessLogicException {
         return new ContratistaDetailDTO(servicioLogic.addContratista(nombreServicio, contratistaId));
     }
 
@@ -163,10 +165,11 @@ public class ServicioContratistaResource
      * </pre>
      * @param nombreServicio El nombre del servicio al cual se le va a desasociar el contratista
      * @param contratistaId El ID del contratista que se desasocia
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @DELETE
     @Path("{contratistaId: \\d+}")
-    public void removeContratista(@PathParam("nombre") String nombreServicio, @PathParam("contratistaId") Long contratistaId) {
+    public void removeContratista(@PathParam("nombre") String nombreServicio, @PathParam("contratistaId") Long contratistaId) throws BusinessLogicException {
         servicioLogic.removeContratista(nombreServicio, contratistaId);
     }    
 }
