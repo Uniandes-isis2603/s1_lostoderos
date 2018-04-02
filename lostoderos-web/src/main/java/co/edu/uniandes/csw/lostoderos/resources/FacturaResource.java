@@ -82,7 +82,7 @@ public class FacturaResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la factura.
      */
     @POST
-	public FacturaDetailDTO createFactura( FacturaDetailDTO dto ) throws BusinessLogicException 
+	public FacturaDetailDTO createFactura( FacturaDetailDTO dto ) throws BusinessLogicException, Exception 
 	{
             return new FacturaDetailDTO(facturaLogic.createFactura(dto.toEntity()));
 
@@ -175,7 +175,7 @@ public class FacturaResource {
      */
     @DELETE
 	@Path( "{id: \\d+}" )
-	public void deleteFactura( @PathParam( "id" ) Long id )
+	public void deleteFactura( @PathParam( "id" ) Long id ) throws Exception
         {
 	FacturaEntity entity = facturaLogic.getFactura(id);
         if (entity == null) {
