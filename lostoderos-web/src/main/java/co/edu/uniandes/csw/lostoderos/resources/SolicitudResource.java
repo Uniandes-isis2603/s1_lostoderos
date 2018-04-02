@@ -6,6 +6,8 @@
 package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.SolicitudDetailDTO;
+import co.edu.uniandes.csw.lostoderos.dtos.SolicitudDTO;
+
 import co.edu.uniandes.csw.lostoderos.ejb.SolicitudLogic;
 import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
@@ -64,12 +66,12 @@ public class SolicitudResource {
 	 * </pre>
 	 *
 	 * @param solicitud {@link SolicitudDetailDTO} - La entidad de Solicitud que se desea guardar.
-         * @param idServicio
-         * @param clienteId
-     * @param cotizacionId
-     * @param facturaId
-     * @param calificacionId
-     * @param contratistaId
+         * @param idServicio {@link Long} - el id que se requiere
+         * @param clienteId {@link Long}
+         * @param cotizacionId {@link Long}
+         * @param facturaId {@link Long}
+         * @param calificacionId {@link Long}
+         * @param contratistaId {@link Long}
 	 * @return JSON {@link SolicitudDetailDTO}  - La entidad de Solicitud guardada con el atributo id autogenerado.
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de Solicitud.
 	 */ 
@@ -79,6 +81,7 @@ public class SolicitudResource {
         
         return new SolicitudDetailDTO(solicitudLogic.create(solicitud.toEntity(), idServicio, clienteId, cotizacionId, facturaId, calificacionId, contratistaId));
     }
+   
     
     /**
 	 * <h1>GET /api/solicitud : Obtener todas las entidadese de Solicitud.</h1>
@@ -122,7 +125,7 @@ public class SolicitudResource {
         
         SolicitudEntity entity= solicitudLogic.getById(id);
         if(entity == null){
-            throw new WebApplicationException("El recurso /calificaciones/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /solicitudes/" + id + " no existe.", 404);
         }
         return new SolicitudDetailDTO(entity);
     }

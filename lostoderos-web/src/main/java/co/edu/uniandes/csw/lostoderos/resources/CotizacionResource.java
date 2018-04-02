@@ -120,7 +120,7 @@ public class CotizacionResource {
     }
     
     /**
-	 * <h1>GET /api/contratistas/cotizaciones : Obtener todas las entidadese de Cotizacion.</h1>
+	 * <h1>GET /api/contratista/cotizaciones : Obtener todas las entidadese de Cotizacion.</h1>
 	 * 
 	 * <pre>Busca y devuelve todas las entidades de Cotizacion pertenecientes a un respectivo contratista.
 	 *
