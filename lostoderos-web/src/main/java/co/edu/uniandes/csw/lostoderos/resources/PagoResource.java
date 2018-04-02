@@ -77,7 +77,7 @@ public class PagoResource {
     private static final Logger LOGGER = Logger.getLogger(PagoPersistence.class.getName());
 
     @POST
-	public PagoDetailDTO createPago( PagoDetailDTO dto ) throws BusinessLogicException 
+	public PagoDetailDTO createPago( PagoDetailDTO dto ) throws BusinessLogicException, Exception 
 	{
 	        return new PagoDetailDTO(pagoLogic.createPago(dto.toEntity()));
 
@@ -181,7 +181,7 @@ public class PagoResource {
      */
 @DELETE
 	@Path( "{id: \\d+}" )
-	public void deletePago( @PathParam( "id" ) Long id )
+	public void deletePago( @PathParam( "id" ) Long id ) throws Exception
 	{
 		  PagoEntity entity = pagoLogic.getById(id);
         if (entity == null) {

@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.lostoderos.ejb;
 
 import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.lostoderos.persistence.ClientePersistence;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -45,6 +46,10 @@ public class FacturaLogic {
     @Inject
     private FacturaPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
+    
+    @Inject
+    private ClientePersistence persistenceCliente;
+
     @Inject
     //TODO: Esta variable nunca se usa
     private PagoPersistence pagoLogic;
@@ -54,12 +59,20 @@ public class FacturaLogic {
      * @return La entiddad de la factura luego de persistirla.
      * @throws BusinessLogicException Si la factura a persistir ya existe.
      */
-    public FacturaEntity createFactura(FacturaEntity entity) throws BusinessLogicException {
+    public FacturaEntity createFactura(FacturaEntity entity) throws BusinessLogicException, Exception {
           LOGGER.info("Inicio de creación de la entidad factura");    
           //TODO: NO hay ninguna regla de negocio? 
-        persistence.create(entity);
+        
+        if (getById(entity.getId())==null) {
+              persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
+        }
+      else
+        {
+            throw new Exception("ya esta esa factura en el sistema");
+        }
+        
     }
 
     /**
@@ -71,6 +84,22 @@ public class FacturaLogic {
     public List<FacturaEntity> getFacturas() {
         LOGGER.info("Inicia proceso de consultar todas las Facturas");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
+        List<FacturaEntity> facturas = persistence.findAll();
+        LOGGER.info("Termina proceso de consultar todas las Facturas");
+        return facturas;
+    }
+     /**
+     *
+     * Obtener todas las facturas existentes de un cliente
+     * @param id: id del cliente
+     * @return una lista de facturas.
+     */
+    public List<FacturaEntity> getFacturasCliente(Long id) {
+        LOGGER.info("Inicia proceso de consultarlas facturas del cliente");
+        if (persistenceCliente.find(id)!=null) {
+               LOGGER.info("Existe el cliente");
+
+        }
         List<FacturaEntity> facturas = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todas las Facturas");
         return facturas;
@@ -125,13 +154,20 @@ public class FacturaLogic {
      *
      * @param id: id de la factura a borrar
      */
-    public void deleteFactura(Long id) {
+    public void deleteFactura(Long id) throws Exception {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar factura con id={0}", id);
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
        //TODO:  Qué pasa si no existe la factura que se quiere borrar?
+        if (getById(id)==null) {
+            throw new Exception("No esta la factura que se desea borrar");
+        }
+        else
+        {
             persistence.delete(id);
-
             LOGGER.log(Level.INFO, "Termina proceso de borrar factura con id={0}", id);
+
+        } 
+
         }
     
  

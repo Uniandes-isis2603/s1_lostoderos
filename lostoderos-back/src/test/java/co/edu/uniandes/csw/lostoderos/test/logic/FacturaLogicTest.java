@@ -116,7 +116,7 @@ public class FacturaLogicTest {
      * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      */
     @Test
-    public void createFacturaTest() throws BusinessLogicException {
+    public void createFacturaTest() throws BusinessLogicException, Exception {
         FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
         FacturaEntity result = facturaLogic.createFactura(newEntity);
         Assert.assertNotNull(result);
@@ -163,7 +163,7 @@ public class FacturaLogicTest {
      * 
      */
     @Test
-    public void deleteFacturaTest()   {
+    public void deleteFacturaTest() throws Exception   {
         FacturaEntity entity = data.get(0);
         facturaLogic.deleteFactura(entity.getId());
         FacturaEntity deleted = em.find(FacturaEntity.class, entity.getId());
