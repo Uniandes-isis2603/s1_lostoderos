@@ -43,21 +43,40 @@ public class CalificacionLogic {
     /**
      * metodo que crea la entidad de calificacion
      * @param entity entidad que se desea crear
-     * @param clienteid id del cliente
-     * @param contratistaid id del contratista
+     * @param clienteId id del cliente
+     * @param contratistaId id del contratista
      * @return entidad creada
      * @throws BusinessLogicException si la entidad a crea ya existe
      */
-    public CalificacionEntity create(CalificacionEntity entity, long clienteid, long contratistaid)throws BusinessLogicException{
+    public CalificacionEntity create(CalificacionEntity entity)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Calificacion");
+        if(entity.getCliente()== null){
+            throw new BusinessLogicException("No existe un cliente asociado a la calificacion");
+        }
+        if(entity.getCliente().getId()== null){
+            throw new BusinessLogicException("id del cliente invalido");
+        }
+        ClienteEntity cliente =clientePersistence.find(entity.getCliente().getId());
+        if(cliente== null){
+        throw new BusinessLogicException("El cliente no existe");
+    }
 // TODO: No hay ninguna regla de Negiocio?
-        ClienteEntity cliente = clientePersistence.find(clienteid);
-        entity.setCliente(cliente);
         
-        ContratistaEntity contratista = contratistaPersistence.find(contratistaid);
-        entity.setContratista(contratista);
-        
+
+        if(entity.getContratista()==null){
+            throw new BusinessLogicException("No existe un contratista asociado a la calificacion");
+        }
+        if(entity.getContratista().getId()== null){
+            throw new BusinessLogicException("id del contratista invalido");
+        }
+        ContratistaEntity contratista = contratistaPersistence.find(entity.getContratista().getId());
+        if(contratista==null){
+            throw new BusinessLogicException("El contratista no existe");
+        }
+        cliente.getCalificaciones().add(entity);
+        clientePersistence.update(cliente);
+        contratista.getCalificaciones().add(entity);
         return persistence.create(entity);
     }
     
@@ -77,10 +96,31 @@ public class CalificacionLogic {
      * @return entidad actualizada
      * @throws BusinessLogicException si ya existe una entidad con el identificador
      */
-    public CalificacionEntity update(CalificacionEntity entity)throws BusinessLogicException{
+    public CalificacionEntity update(CalificacionEntity entity, Long calificacionId)throws BusinessLogicException{
         
-        if(persistence.find(entity.getId()) == null)
+        if(persistence.find(calificacionId) == null)
             throw new BusinessLogicException("No existe una entidad de Calificacion con el id \""+entity.getId()+"\"");
+        entity.setId(calificacionId);
+        if(entity.getCliente()== null){
+            throw new BusinessLogicException("No existe un cliente asociado a la calificacion");
+        }
+        if(entity.getCliente().getId()== null){
+            throw new BusinessLogicException("id del cliente invalido");
+        }
+        if(clientePersistence.find(entity.getCliente().getId())== null){
+        throw new BusinessLogicException("El cliente no existe");
+    }
+// TODO: No hay ninguna regla de Negiocio?
+
+        if(entity.getContratista()==null){
+            throw new BusinessLogicException("No existe un contratista asociado a la calificacion");
+        }
+        if(entity.getContratista().getId()== null){
+            throw new BusinessLogicException("id del contratista invalido");
+        }
+        if(contratistaPersistence.find(entity.getContratista().getId())==null){
+            throw new BusinessLogicException("El contratista no existe");
+        }
         // TODO: Antes de actualizar validar las reglas de negocio
         return persistence.update(entity);
     }

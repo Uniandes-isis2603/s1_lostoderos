@@ -34,7 +34,7 @@ public class ContratoDTO {
     /**
      * Atributo que define el número de identificación del contrato
      */
-    private long id;
+    private Long id;
     
     /**
      * COnstructor de la clase
@@ -66,7 +66,7 @@ public class ContratoDTO {
      * 
      * @param id el nuevo id 
      */
-    public void setID(long id){
+    public void setID(Long id){
         this.id = id;
     }
     

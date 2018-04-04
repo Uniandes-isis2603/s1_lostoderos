@@ -53,7 +53,7 @@ public class CalificacionDTO {
     /**
      * numero de identificacion de la calificacion
      */
-    private long id;
+    private Long id;
     
     /**
      * Constructor vacio
@@ -133,7 +133,7 @@ public class CalificacionDTO {
      * 
      * @param id identificacion nueva de la calificacion
      */
-    public void setId(long id){
+    public void setId(Long id){
         this.id = id;
     }
     

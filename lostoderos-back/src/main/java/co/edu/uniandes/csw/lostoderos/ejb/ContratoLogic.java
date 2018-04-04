@@ -42,17 +42,17 @@ public class ContratoLogic {
      * @return entidad creada
      * @throws BusinessLogicException si la entidad a crea ya existe
      */
-    public ContratoEntity create(ContratoEntity entity, long idContratista)throws BusinessLogicException{
+    public ContratoEntity create(Long contratistaId, Long contratoId, ContratoEntity entity)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Contrato");
-        ContratistaEntity contratista = contratistaPersistence.find(idContratista);
+        ContratistaEntity contratista = contratistaPersistence.find(contratistaId);
             if(contratista==null){
-            throw new BusinessLogicException("No existe un contratista con el id_ "+idContratista);
+            throw new BusinessLogicException("No existe un contratista con el id_ "+contratistaId);
         }
         entity.setContratista(contratista);
-        entity.setId(idContratista);
+        entity.setId(contratoId);
         ContratoEntity resp;
-        if(persistence.find(idContratista)!=null){
+        if(persistence.find(contratoId)!=null){
             resp = persistence.update(entity);
         }
         else{
@@ -67,16 +67,16 @@ public class ContratoLogic {
      * @param id identificador que se desea consultar
      * @return entidad con el id deseado
      */
-    public ContratoEntity getByIdContratista(Long id) throws BusinessLogicException{
+    public ContratoEntity getContrato(Long contratistaId,Long contratoId) throws BusinessLogicException{
          LOGGER.info("Inicia proceso de búsqueda de contrato");
-        ContratistaEntity contratista = contratistaPersistence.find(id);
+        ContratistaEntity contratista = contratistaPersistence.find(contratistaId);
         if(contratista==null){
-            throw new BusinessLogicException("No existe un contratista con id: "+id);
+            throw new BusinessLogicException("No existe un contratista con id: "+contratistaId);
         }
-        ContratoEntity entity = persistence.find(id);
+        ContratoEntity entity = persistence.find(contratoId);
         
         if (entity == null) {
-            throw new BusinessLogicException("El contratista con id: "+id+" no tiene contrato.");
+            throw new BusinessLogicException("El contratista con id: "+contratistaId+" no tiene contrato.");
         }
         LOGGER.info("Termina proceso de búsqueda de contrato");
         return entity;
@@ -101,14 +101,17 @@ public class ContratoLogic {
      * @return entidad actualizada
      * @throws BusinessLogicException si ya existe una entidad con el identificador
      */
-    public ContratoEntity update(Long idContratista, ContratoEntity entity)throws BusinessLogicException{
+    public ContratoEntity update(Long contratistaId,Long contratoId, ContratoEntity entity)throws BusinessLogicException{
                 LOGGER.log(Level.INFO, "Inicia proceso de actualizar un contrato");
         //No existe ninguna regla de negocio para actualizar la hoja de vida.
-        if(persistence.find(idContratista)==null){
-            throw new BusinessLogicException("No existe un contrato asociado a ese contratista con id: "+idContratista);
+        if(contratistaPersistence.find(contratistaId)==null){
+            throw new BusinessLogicException("No existe un contratista con id: "+contratistaId);
         }
-        entity.setId(idContratista);
-        entity.setContratista(contratistaPersistence.find(idContratista));
+        if(persistence.find(contratoId)==null){
+            throw new BusinessLogicException("No existe un contrato con id: "+contratoId);
+        }
+        entity.setId(contratoId);
+        entity.setContratista(contratistaPersistence.find(contratistaId));
         ContratoEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar contrato");
         return newEntity;
@@ -118,13 +121,17 @@ public class ContratoLogic {
      * elimina la entidad con el id asignado
      * @param id identificador de la entidad que se desea borrar
      */
-    public void delete(Long idContratista) throws BusinessLogicException{
-                LOGGER.log(Level.INFO, "Inicia proceso de borrar un contrato con id={0}", idContratista);
-        if(persistence.find(idContratista)==null){
-            throw new BusinessLogicException("No existe un contrato asociado a ese contratista con id: "+idContratista);
+    public void delete(Long contratistaId, Long contratoId) throws BusinessLogicException{
+                LOGGER.log(Level.INFO, "Inicia proceso de borrar un contrato con id={0}", contratoId);
+        if(contratistaPersistence.find(contratistaId)==null){
+            throw new BusinessLogicException("No existe un contratista con id: "+contratistaId);
         }
-        persistence.delete(idContratista);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar un contrato con id={0}", idContratista);
+        if(persistence.find(contratoId)==null){
+            throw new BusinessLogicException("No existe un contrato con id: "+contratoId);
+        }
+        
+        persistence.delete(contratoId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar un contrato con id={0}", contratoId);
     } 
     }
     

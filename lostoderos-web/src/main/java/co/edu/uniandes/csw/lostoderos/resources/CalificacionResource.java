@@ -39,7 +39,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author s.blancoc
  */
-@Path( "calificaciones" )
+@Path("calificaciones" )
 @Produces( "application/json" )
 @Consumes( "application/json" )
 @RequestScoped
@@ -69,14 +69,14 @@ public class CalificacionResource {
 	 *
          * @param idCliente id del cliente
 	 * @param dto {@link CalificacionDetailDTO} - La entidad de calificacion que se desea guardar.
-         * @param idContratista id del contratista
+         * @param contratistaId id del contratista
 	 * @return JSON {@link CalificacionDetailDTO}  - La entidad de calificacion guardada con el atributo id autogenerado.
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad.
 	 */
 	@POST
-	public CalificacionDetailDTO createCalificacion(@PathParam("idCliente") Long idCliente, CalificacionDetailDTO dto, @PathParam("idContratista") Long idContratista ) throws BusinessLogicException
+	public CalificacionDetailDTO createCalificacion( CalificacionDetailDTO dto ) throws BusinessLogicException
 	{
-            return new CalificacionDetailDTO(calificacionLogic.create(dto.toEntity(), idCliente, idContratista));
+            return new CalificacionDetailDTO(calificacionLogic.create(dto.toEntity()));
 	}
        
 
@@ -143,14 +143,10 @@ public class CalificacionResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar el contrato porque ya existe uno.
      */
     @PUT
-    @Path("{id: \\d+}")
-    public CalificacionDetailDTO updateCalificacion(@PathParam("id") Long id, CalificacionDetailDTO calificacion) throws BusinessLogicException {
-                calificacion.setId(id);
-        CalificacionEntity entity = calificacionLogic.getById(id);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /calificaciones/" + id + " no existe.", 404);
-        }
-        return new CalificacionDetailDTO(calificacionLogic.update(entity));
+    @Path("{calificacionId: \\d+}")
+    public CalificacionDetailDTO updateCalificacion(@PathParam("calificacionId") Long calificacionId, CalificacionDetailDTO calificacion) throws BusinessLogicException {
+   
+        return new CalificacionDetailDTO(calificacionLogic.update(calificacion.toEntity(), calificacionId));
     }
     
     /**
