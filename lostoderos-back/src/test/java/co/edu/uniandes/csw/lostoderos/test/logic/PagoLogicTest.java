@@ -130,7 +130,7 @@ public class PagoLogicTest {
      *
      */
     @Test
-    public void getPagosTest() {
+    public void getPagosTest()throws Exception {
         List<PagoEntity> list = pagoLogic.getPagos();
         Assert.assertEquals(data.size(), list.size());
         for (PagoEntity entity : list) {

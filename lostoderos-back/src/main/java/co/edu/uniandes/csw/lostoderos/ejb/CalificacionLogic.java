@@ -77,6 +77,7 @@ public class CalificacionLogic {
         cliente.getCalificaciones().add(entity);
         clientePersistence.update(cliente);
         contratista.getCalificaciones().add(entity);
+        contratistaPersistence.update(contratista);
         return persistence.create(entity);
     }
     

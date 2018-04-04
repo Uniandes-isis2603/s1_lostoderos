@@ -59,7 +59,7 @@ public class ContratoDTO {
      * @return el id del contrato 
      */
     
-    public long getID(){
+    public Long getID(){
         return id;
     }
     /**

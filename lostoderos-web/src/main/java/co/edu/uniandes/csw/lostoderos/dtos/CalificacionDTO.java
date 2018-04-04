@@ -126,7 +126,7 @@ public class CalificacionDTO {
      * 
      * @return la identificacion de la calificacion 
      */
-    public long getId(){
+    public Long getId(){
         return id;
     }
     /**
