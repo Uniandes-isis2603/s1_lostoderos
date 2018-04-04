@@ -81,10 +81,10 @@ public class UsuarioDetailDTO extends UsuarioDTO
 	 *
 	 * @return La entidad construida a partir del DTO.
 	 */
-	@Override
-	public UsuarioEntity toEntity( )
+	
+	public UsuarioEntity toEntity()
 	{
-		UsuarioEntity usuarioEntity = super.toEntity( );
-		return usuarioEntity;
+		
+		return null;
 	}
 }

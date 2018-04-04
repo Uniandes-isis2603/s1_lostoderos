@@ -168,12 +168,11 @@ public class UsuarioDTO
         
         /**
 	 * Convertir DTO a Entity
-	 *
+	 *@param entity entidad que herada de clase Usuario
 	 * @return Un Entity con los valores del DTO
 	 */
-	public UsuarioEntity toEntity( )
+	public UsuarioEntity toEntity(UsuarioEntity entity)
 	{
-		UsuarioEntity entity = new UsuarioEntity( );
 		entity.setId( this.id );
 		entity.setNombre(this.nombre);
                 entity.setUsuario(this.usuario);

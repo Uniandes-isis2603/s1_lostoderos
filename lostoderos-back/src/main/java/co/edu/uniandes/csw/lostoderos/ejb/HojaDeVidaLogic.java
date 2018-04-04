@@ -54,16 +54,12 @@ public class HojaDeVidaLogic {
     public HojaDeVidaEntity createHojaDeVida( HojaDeVidaEntity entity) throws BusinessLogicException {
 
         LOGGER.info("Inicia proceso de creación de hoja de vida");
-        if(persistence.find(entity.getId())!=null)throw new BusinessLogicException("Ya existe una hoja de vida con id: "+entity.getId());
         if(entity.getContratista()==null) throw new BusinessLogicException("Debe especificar el contratista de la hoja de vida");
         if(entity.getContratista().getId()== null) throw new BusinessLogicException("El contratista que especificó debe tener id para comprobar que existe en la base de datos");
         ContratistaEntity contratista = contratistaPersistence.find(entity.getContratista().getId());
         if(contratista==null) throw new BusinessLogicException("El contratista que especificó no existe");
+        entity.setContratista(contratista);
         persistence.create(entity);
-        entity.setContratista(null);//
-        contratista.setHojaVida(entity); //Se escribieron estas líneas para que el contratista sepa su hoja de vida. si no hacía entity.setContratista(null) antes del update de contratistaPersistence, me mandaba un error en los test.
-        contratistaPersistence.update(contratista);//
-        entity.setContratista(contratista); //
         LOGGER.info("Termina proceso de creación de hoja de vida");
         return entity;
 
@@ -122,9 +118,6 @@ public class HojaDeVidaLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar una hoja de vida con id={0}", id);
         HojaDeVidaEntity entity = persistence.find(id);
         if(entity==null)throw new BusinessLogicException("No existe una hoja de vida con id: "+id);
-        ContratistaEntity contratista = entity.getContratista(); //No puede ser nulo
-        contratista.setHojaVida(null);
-        contratistaPersistence.update(contratista);
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar una hoja de vida con id={0}", id);
     }

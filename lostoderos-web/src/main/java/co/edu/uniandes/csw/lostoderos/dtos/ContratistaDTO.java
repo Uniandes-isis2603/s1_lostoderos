@@ -116,11 +116,7 @@ public class ContratistaDTO extends UsuarioDTO{
      */
     public ContratistaEntity toEntity() {
         ContratistaEntity entity = new ContratistaEntity();
-        entity.setId( this.id );
-	entity.setNombre(this.nombre);
-        entity.setUsuario(this.usuario);
-        entity.setContrasena(this.contrasena);
-        entity.setCorreo(this.correo);
+        super.toEntity(entity);
         entity.setReputacion(this.reputacion);
         entity.setDisponibilidad(this.disponibilidad);
         return entity;

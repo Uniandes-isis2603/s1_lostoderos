@@ -57,7 +57,7 @@ import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
  */
 public class HojaDeVidaDTO {
     
-    private Long id;
+   private Long id;
     
    private String nombre;
    
@@ -107,7 +107,7 @@ public class HojaDeVidaDTO {
    /**
     * @param id Id de la hoja de vida.
     */
-   public void setLong(Long id){
+   public void setId(Long id){
        this.id=id;
    }
    
