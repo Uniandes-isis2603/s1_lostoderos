@@ -27,7 +27,7 @@ public class PagoPersistence {
     protected EntityManager em;
 
     public PagoEntity find(Long id) {
-        LOGGER.log(Level.INFO, "Consultando Pago con id={0}", id);
+        LOGGER.log(Level.INFO, "Consultando Pago con id=", id);
         return em.find(PagoEntity.class, id);
         
     }
@@ -59,7 +59,7 @@ public class PagoPersistence {
     }
 
     public void delete(Long id) {
-        LOGGER.log(Level.INFO, "Borrando Pago con id={0}", id);
+        LOGGER.log(Level.INFO, "Borrando Pago con id=", id);
         PagoEntity entity = em.find(PagoEntity.class, id);
         em.remove(entity);
 }

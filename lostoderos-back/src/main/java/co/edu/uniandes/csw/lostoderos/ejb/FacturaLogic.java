@@ -142,7 +142,7 @@ public class FacturaLogic {
      * @return la factura con los cambios actualizados en la base de datos.
      * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
-    public FacturaEntity updateFactura(FacturaEntity entity) throws BusinessLogicException {
+     public FacturaEntity updateFactura(FacturaEntity entity) throws BusinessLogicException {
           if(persistence.find(entity.getId()) == null)
             throw new BusinessLogicException("No existe una entidad de Servicio con el id \""+entity.getId()+"\"");
         //TODO: NO hay ninguna regla de negocio? 

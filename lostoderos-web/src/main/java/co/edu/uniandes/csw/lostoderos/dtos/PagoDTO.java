@@ -223,7 +223,7 @@ public class PagoDTO {
                 entity.setDescripcion(this.descripcion);
                 entity.setFechaTarjeta(this.fechaTarjeta);
                 entity.setCodigoTarjeta(this.codigoTarjeta);
-             
+                entity.setNumTarjeta(this.numTarjeta);
 		return entity;
 	}
 }

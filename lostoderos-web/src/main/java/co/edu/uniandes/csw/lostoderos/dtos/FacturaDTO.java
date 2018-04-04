@@ -82,6 +82,7 @@ public class FacturaDTO {
                 this.producto = facturaEntity.getProducto();
 		this.subtotal = facturaEntity.getSubtotal();
                 this.total = facturaEntity.getTotal();
+                this.formaPago = facturaEntity.getFormaPago();
             }
 	}
     
@@ -161,6 +162,7 @@ public class FacturaDTO {
 		entity.setProducto(this.producto );
 		entity.setSubtotal(this.subtotal );
 		entity.setTotal(this.total);
+                entity.setFormaPago(this.formaPago);
 		return entity;
 	}
     
