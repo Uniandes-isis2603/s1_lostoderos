@@ -131,7 +131,7 @@ public class CotizacionResource {
 	 *
          * @param idContratista id del contratista el cual se desea conocer las cotizaciones
 	 * @return JSONArray {@link CotizacionDetailDTO} - Las entidades de la Cotizacion encontradas en la aplicación, pertenecientes a un contratista. Si no hay ninguna retorna una lista vacía.
-	 */
+	 
     @GET
     @Path("{idContratista: \\d+}")
     public List<CotizacionDetailDTO> getCotizacionesByContratista(@PathParam("idContratista")Long idContratista)throws BusinessLogicException{
@@ -140,6 +140,8 @@ public class CotizacionResource {
         List<CotizacionDetailDTO> cotizaciones= listCotizacionEntityToDetailDTO(cotizacionLogic.getCotizacionesByContratista(idContratista));
         return cotizaciones;
     }
+    * 
+    */
     
      /**
 	 * <h1>PUT /api/Cotizaciones/{id} : Actualizar una entidad de Cotizacion con el id dado.</h1>
