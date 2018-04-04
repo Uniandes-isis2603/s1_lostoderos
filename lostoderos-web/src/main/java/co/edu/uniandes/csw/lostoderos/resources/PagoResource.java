@@ -43,7 +43,9 @@ import javax.ws.rs.WebApplicationException;
  * @author s.rangel  
  * @version 1.0
  */
-@Path( "facturas/{id: \\d+}/pagos" )
+//@Path( "facturas/{id: \\d+}/pagos" )
+@Path( "pagos" )
+
 @Produces( "application/json" )
 @Consumes( "application/json" )
 @RequestScoped
@@ -94,8 +96,7 @@ public class PagoResource {
      * @return JSONArray {@link PagoDetailDTO} - Los pagos encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-
-    public List<PagoDetailDTO> getPagos() {
+    public List<PagoDetailDTO> getPagos() throws Exception {
         return listEntity2DetailDTO(pagoLogic.getPagos());
     }
         /**
@@ -165,6 +166,7 @@ public class PagoResource {
         });
         return list;
     }
+
           /**
      * <h1>DELETE /api/pagos/{id} : Borrar pago por id.</h1>
      * 
@@ -180,14 +182,20 @@ public class PagoResource {
      * @param id Identificador del pago que se desea borrar. Este debe ser una cadena de dígitos.
      */
 @DELETE
-	@Path( "{id: \\d+}" )
-	public void deletePago( @PathParam( "id" ) Long id ) throws Exception
+@Path( "{id: \\d+}" )
+public PagoDetailDTO deletePago( @PathParam( "id" ) Long id ) throws Exception
 	{
 		  PagoEntity entity = pagoLogic.getById(id);
         if (entity == null) {
             throw new WebApplicationException("El pago no existe", 404);
         }
-        pagoLogic.deletePago(id);
+        else
+        {
+            pagoLogic.deletePago(id);
+                    
+        }
+        return new PagoDetailDTO(entity);
 	}
          
+    
 }

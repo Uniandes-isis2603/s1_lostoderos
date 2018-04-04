@@ -49,11 +49,18 @@ public class PagoLogic {
      * @return La entiddad del pago luego de persistirla.
      * @throws BusinessLogicException Si el pago a persistir ya existe.
      */
-    public PagoEntity createPago(PagoEntity entity) throws BusinessLogicException {
+    public PagoEntity createPago(PagoEntity entity) throws BusinessLogicException, Exception {
         LOGGER.info("Inicio de creación de la entidad pago");
         //TODO: NO hay ninguna regla de negocio? 
-        persistence.create(entity);
+        if (persistence.find(entity.getId())!=null) {
+            throw new Exception("Ya existe el pago que se desea crear");
+
+        }
+        else{
+                    persistence.create(entity);
         LOGGER.info("Creacion exitosa");
+
+        }
         return entity;
     }
 /**
@@ -72,12 +79,19 @@ public class PagoLogic {
      *
      * @return una lista de pagos.
      */
-    public List<PagoEntity> getPagos() {
+    public List<PagoEntity> getPagos() throws Exception {
         LOGGER.info("Inicia proceso de consultar todas los pagos");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
         List<PagoEntity> pagos = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todas los pagos");
-        return pagos;
+        if (pagos ==null) {
+            throw new Exception("No hay pagos");
+        }
+        else
+        {
+                    return pagos;
+
+        }
     }
 
     /**
@@ -117,13 +131,21 @@ public class PagoLogic {
      *
      * @param id: id del pago a borrar
      */
-    public void deletePago(Long id)   {
+    public void deletePago(Long id) throws Exception   {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar factura con id={0}", id);
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
         //TODO: qué pasa si no hay un pago con ese id?
-            persistence.delete(id);
+        if (persistence.find(id)== null) {
+            throw new Exception("No existe el pago que se quiere borrar");
+        }
+        else
+        {
+                        persistence.delete(id);
 
-            LOGGER.log(Level.INFO, "Termina proceso de borrar factura con id={0}", id);
+        }
+        
+
+            LOGGER.log(Level.INFO, "Termina proceso de borrar factura con id=", id);
         }
     
 }
