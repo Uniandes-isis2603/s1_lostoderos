@@ -72,6 +72,7 @@ public class HojaDeVidaResource {
     @POST
     
     public HojaDeVidaDetailDTO createHojaDeVida(HojaDeVidaDetailDTO hoja) throws BusinessLogicException{
+        
         return new HojaDeVidaDetailDTO(hojaVidaLogic.createHojaDeVida(hoja.toEntity()));
     } 
     

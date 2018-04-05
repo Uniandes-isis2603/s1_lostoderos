@@ -145,17 +145,23 @@ public class ClienteDTO extends UsuarioDTO
         
         /**
 	 * Convertir DTO a Entity
-	 *
+	 *@param entity Entidad de la subclase
 	 * @return Un Entity con los valores del DTO
 	 */
-	public ClienteEntity toEntity( )
+	public ClienteEntity toEntity(ClienteEntity entity )
 	{
-		ClienteEntity entity = new ClienteEntity( );
-                entity.setId( this.id );
-	        entity.setNombre(this.nombre);
-                entity.setUsuario(this.usuario);
-                entity.setContrasena(this.contrasena);
-                entity.setCorreo(this.correo);
+                super.toEntity(entity);
+                entity.setFecha_nacimiento(this.fecha_nacimiento);
+                entity.setDireccion(this.direccion);
+                entity.setForma_pago(this.forma_pago);
+                
+                return entity;
+	}
+        
+        public ClienteEntity toEntity( )
+	{
+                ClienteEntity entity = new ClienteEntity();
+                super.toEntity(entity);
                 entity.setFecha_nacimiento(this.fecha_nacimiento);
                 entity.setDireccion(this.direccion);
                 entity.setForma_pago(this.forma_pago);

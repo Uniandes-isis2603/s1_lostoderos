@@ -81,12 +81,10 @@ public class PersonaJuridicaDTO extends ClienteDTO{
 	 * @return Un Entity con los valores del DTO
 	 */
 	public PersonaJuridicaEntity toEntity( )
-	{
-                super.toEntity();
+	{      
 		PersonaJuridicaEntity entity = new PersonaJuridicaEntity();
-                
+                super.toEntity(entity);
                 entity.setNit(this.NIT);
-                
                 return entity;
 	}
 }

@@ -84,11 +84,9 @@ public class PersonaNaturalDTO extends ClienteDTO {
 	 */
 	public PersonaNaturalEntity toEntity( )
 	{
-                super.toEntity();
 		PersonaNaturalEntity entity = new PersonaNaturalEntity();
-                
+                super.toEntity(entity);
                 entity.setCedula(this.Cedula);
-                
                 return entity;
 	}    
     
