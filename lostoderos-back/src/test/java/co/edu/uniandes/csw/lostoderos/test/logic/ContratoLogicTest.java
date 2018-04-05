@@ -132,9 +132,9 @@ public class ContratoLogicTest {
      *
      */
     @Test
-    public void getContratoTest() throws BusinessLogicException {
+  public void getContratoByContratistaTest() throws BusinessLogicException {
         ContratoEntity entity = data.get(0);
-        ContratoEntity resultEntity = contratoLogic.getContrato(entity.getContratista().getId());
+        ContratoEntity resultEntity = contratoLogic.getContrato(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
 }

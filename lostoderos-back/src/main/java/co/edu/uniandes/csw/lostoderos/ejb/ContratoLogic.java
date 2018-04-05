@@ -62,19 +62,15 @@ public class ContratoLogic {
      * @param id identificador que se desea consultar
      * @return entidad con el id deseado
      */
-    public ContratoEntity getContrato(Long contratistaId) throws BusinessLogicException{
+    public ContratoEntity getContrato(Long contratoId) throws BusinessLogicException{
          LOGGER.info("Inicia proceso de búsqueda de contrato");
-        ContratistaEntity contratista = contratistaPersistence.find(contratistaId);
-        if(contratista==null){
-            throw new BusinessLogicException("No existe un contratista con id: "+contratistaId);
+        ContratoEntity contrato = persistence.find(contratoId);
+        if(contrato==null){
+            throw new BusinessLogicException("No existe un contrato con id: "+contratoId);
         }
-        ContratoEntity entity = contratista.getContrato();
-        
-        if (entity == null) {
-            throw new BusinessLogicException("El contratista con id: "+contratistaId+" no tiene contrato.");
-        }
+
         LOGGER.info("Termina proceso de búsqueda de contrato");
-        return entity;
+        return contrato;
     }
     
     

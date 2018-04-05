@@ -74,10 +74,10 @@ public class CalificacionLogic {
         if(contratista==null){
             throw new BusinessLogicException("El contratista no existe");
         }
-        cliente.getCalificaciones().add(entity);
-        clientePersistence.update(cliente);
-        contratista.getCalificaciones().add(entity);
-        contratistaPersistence.update(contratista);
+        //cliente.getCalificaciones().add(entity);
+        //clientePersistence.update(cliente);
+        //contratista.getCalificaciones().add(entity);
+        //contratistaPersistence.update(contratista);
         return persistence.create(entity);
     }
     
