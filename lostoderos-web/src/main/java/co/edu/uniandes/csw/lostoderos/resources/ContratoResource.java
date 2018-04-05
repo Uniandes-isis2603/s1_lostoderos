@@ -74,28 +74,12 @@ public class ContratoResource {
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad.
 	 */
 	@POST
-        @Path("{contratoId: \\d+}")
-	public ContratoDetailDTO createContrato(@PathParam("contratistaId") Long contratistaId,@PathParam("contratoId") Long contratoId, ContratoDetailDTO dto ) throws BusinessLogicException
+	public ContratoDetailDTO createContrato(@PathParam("contratistaId") Long contratistaId,ContratoDetailDTO dto ) throws BusinessLogicException
 	{
-		return new ContratoDetailDTO(contratoLogic.create(contratistaId, contratoId, dto.toEntity()));
+		return new ContratoDetailDTO(contratoLogic.create(contratistaId,dto.toEntity()));
 	}
         
-        /**
-	 * <h1>GET /api/contratos : Obtener todas las entidades de de contrato.</h1>
-	 * <pre>Busca y devuelve todas las entidades de contrato que existen en la aplicacion.
-	 *
-	 * Codigos de respuesta:
-	 * <code style="color: mediumseagreen; background-color: #eaffe0;">
-	 * 200 OK Devuelve todas las entidades de contrato de la aplicacion.</code>
-	 * </pre>
-	 *
-	 * @return JSONArray {@link ContratoDetailDTO} - Las entidades de contrato encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
-	 */
-	@GET
-	public List<ContratoDetailDTO> getContratos( )
-	{
-		return listContratoEntity2DetailDTO(contratoLogic.getContratos());
-	}
+
         
         /**
      * <h1>GET /api/contratos/{id} : Obtener contrato por id.</h1>
@@ -114,9 +98,8 @@ public class ContratoResource {
      * @return JSON {@link ContratoDetailDTO} - El contrato buscado
      */
     @GET
-    @Path("{contratoId: \\d+}")
-    public ContratoDetailDTO getContrato(@PathParam("contratistaId") Long contratistaId, @PathParam("contratoId")Long contratoId) throws BusinessLogicException {
-                ContratoEntity entity = contratoLogic.getContrato(contratistaId, contratoId);
+    public ContratoDetailDTO getContrato(@PathParam("contratistaId") Long contratistaId) throws BusinessLogicException {
+                ContratoEntity entity = contratoLogic.getContrato(contratistaId);
         return new ContratoDetailDTO(entity);
     }
     
@@ -163,14 +146,6 @@ public class ContratoResource {
     @Path("{contratoId: \\d+}")
      public void deleteContrato(@PathParam("contratistaId") Long contratistaId, @PathParam("contratoId") Long contratoId)throws BusinessLogicException {
         contratoLogic.delete(contratistaId, contratoId);
-    }
-     
-    private List<ContratoDetailDTO> listContratoEntity2DetailDTO(List<ContratoEntity> entityList) {
-      List<ContratoDetailDTO> list = new ArrayList<>();
-        for (ContratoEntity entity : entityList) {
-            list.add(new ContratoDetailDTO(entity));
-        }
-        return list;
     }
 
     

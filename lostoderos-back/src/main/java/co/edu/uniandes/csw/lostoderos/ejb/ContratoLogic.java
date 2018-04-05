@@ -42,7 +42,7 @@ public class ContratoLogic {
      * @return entidad creada
      * @throws BusinessLogicException si la entidad a crea ya existe
      */
-    public ContratoEntity create(Long contratistaId, Long contratoId, ContratoEntity entity)throws BusinessLogicException{
+    public ContratoEntity create(Long contratistaId, ContratoEntity entity)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Contrato");
         ContratistaEntity contratista = contratistaPersistence.find(contratistaId);
@@ -50,16 +50,11 @@ public class ContratoLogic {
             throw new BusinessLogicException("No existe un contratista con el id_ "+contratistaId);
         }
         entity.setContratista(contratista);
-        entity.setId(contratoId);
         ContratoEntity resp;
-        if(persistence.find(contratoId)!=null){
-            resp = persistence.update(entity);
-        }
-        else{
-            resp = persistence.create(entity);
-        }
-        LOGGER.info("Termina proceso de asociación entre el contratista y la hoja de vida");
-        LOGGER.info("Termina proceso de creación de hoja de vida");
+
+        resp = persistence.create(entity);
+        LOGGER.info("Termina proceso de asociación entre el contratista y el contrato");
+        LOGGER.info("Termina proceso de creación de contrato");
         return resp;
     }
         /**
@@ -67,13 +62,13 @@ public class ContratoLogic {
      * @param id identificador que se desea consultar
      * @return entidad con el id deseado
      */
-    public ContratoEntity getContrato(Long contratistaId,Long contratoId) throws BusinessLogicException{
+    public ContratoEntity getContrato(Long contratistaId) throws BusinessLogicException{
          LOGGER.info("Inicia proceso de búsqueda de contrato");
         ContratistaEntity contratista = contratistaPersistence.find(contratistaId);
         if(contratista==null){
             throw new BusinessLogicException("No existe un contratista con id: "+contratistaId);
         }
-        ContratoEntity entity = persistence.find(contratoId);
+        ContratoEntity entity = contratista.getContrato();
         
         if (entity == null) {
             throw new BusinessLogicException("El contratista con id: "+contratistaId+" no tiene contrato.");
