@@ -104,7 +104,7 @@ public class ServicioLogicTest
     /**
      * Prueba para crear un Servicio
      *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @Test
     public void createServicioTest() throws BusinessLogicException {
@@ -152,11 +152,12 @@ public class ServicioLogicTest
      * Prueba para eliminar un Servicio
      *
      * 
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @Test
     public void deleteServicioTest() throws BusinessLogicException {
         ServicioEntity entity = data.get(0);
-        servicioLogic.delete(entity.getNombre());
+        servicioLogic.delete(entity.getId());
         ServicioEntity deleted = em.find(ServicioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -165,6 +166,7 @@ public class ServicioLogicTest
      * Prueba para actualizar un Servicio
      *
      * 
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @Test
     public void updateServicioTest() throws BusinessLogicException {

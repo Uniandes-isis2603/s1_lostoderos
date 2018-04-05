@@ -23,7 +23,7 @@ import javax.ws.rs.PathParam;
  *
  * @author s.naranjop1
  */
-@Path("servicios/{nombre}/contratistas")
+@Path("servicios/{id: \\d+}/contratistas")
 public class ServicioContratistaResource 
 {
     @Inject
@@ -60,7 +60,7 @@ public class ServicioContratistaResource
     }
 
     /**
-     * <h1>GET /api/servicios/{nombre}/contratistas : Obtener todos los contratistas de un servicio.</h1>
+     * <h1>GET /api/servicios/{id}/contratistas : Obtener todos los contratistas de un servicio.</h1>
      *
      * <pre>Busca y devuelve todos los contratistas que existen en un servicio.
      * 
@@ -71,16 +71,16 @@ public class ServicioContratistaResource
      * <code style="color: #c7254e; background-color: #f9f2f4;">
      * 404 Not Found. No existe un servicio con el nombre dado.
      * </code>
-     * @param nombreServicio El nombre del servicio del cual se buscan los contratistas
+     * @param idServicio Identificador del servicio del cual se buscan los contratistas
      * @return JSONArray {@link ContratistaDetailDTO} - Los contratistaes encontrados en el servicio. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<ContratistaDetailDTO> listContratistas(@PathParam("nombre") String nombreServicio) {
-        return contratistasListEntity2DTO(servicioLogic.listContratistas(nombreServicio));
+    public List<ContratistaDetailDTO> listContratistas(@PathParam("id") Long idServicio) {
+        return contratistasListEntity2DTO(servicioLogic.listContratistas(idServicio));
     }
 
     /**
-     * <h1>GET /api/servicios/{nombre}/contratistas/{contratistaId} : Obtener un contratista de un servicio.</h1>
+     * <h1>GET /api/servicios/{id}/contratistas/{contratistaId} : Obtener un contratista de un servicio.</h1>
      *
      * <pre>Busca y devuelve el contratista con el ID recibido en la URL, relativo a un
      * servicio.
@@ -93,17 +93,17 @@ public class ServicioContratistaResource
      * 404 Not Found. No existe un servicio con el id dado.
      * </code>
      * @param contratistaId El ID del contratista que se busca
-     * @param nombreServicio El nombre del servicio del cual se busca el contratista
+     * @param idServicio Identificador del servicio del cual se busca el contratista
      * @return {@link ContratistaDetailDTO} - El contratista encontrado en el servicio.
      */
     @GET
     @Path("{contratistaId: \\d+}")
-    public ContratistaDetailDTO getContratistas(@PathParam("nombre") String nombreServicio, @PathParam("contratistaId") Long contratistaId) {
-        return new ContratistaDetailDTO(servicioLogic.getContratista(nombreServicio, contratistaId));
+    public ContratistaDetailDTO getContratistas(@PathParam("id")Long idServicio, @PathParam("contratistaId") Long contratistaId) {
+        return new ContratistaDetailDTO(servicioLogic.getContratista(idServicio, contratistaId));
     }
 
     /**
-     * <h1>POST /api/servicios/{nombre}/contratistas/{contratistaId} : Asociar un contratista a un servicio.</h1>
+     * <h1>POST /api/servicios/{id}/contratistas/{contratistaId} : Asociar un contratista a un servicio.</h1>
      *
      * <pre> Asocia un contratista existente con un servicio existente
      * 
@@ -116,18 +116,18 @@ public class ServicioContratistaResource
      * </code>
      * </pre>
      * @param contratistaId El ID del contratista que se va a asociar
-     * @param nombreServicio El nombre del servicio al cual se le va a asociar el contratista
+     * @param idServicio El Identificador del servicio al cual se le va a asociar el contratista
      * @return JSON {@link ContratistaDetailDTO}  - El contratista asociado.
      * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @POST
     @Path("{contratistaId: \\d+}")
-    public ContratistaDetailDTO addContratistas(@PathParam("nombre") String nombreServicio, @PathParam("contratistaId") Long contratistaId) throws BusinessLogicException {
-        return new ContratistaDetailDTO(servicioLogic.addContratista(nombreServicio, contratistaId));
+    public ContratistaDetailDTO addContratistas(@PathParam("id")Long idServicio, @PathParam("contratistaId") Long contratistaId) throws BusinessLogicException {
+        return new ContratistaDetailDTO(servicioLogic.addContratista(idServicio, contratistaId));
     }
 
     /**
-     * <h1>PUT api/servicios/{nombre}/contratistas/ : Actualizar los contratistaes de un servicio..</h1>
+     * <h1>PUT api/servicios/{id}/contratistas/ : Actualizar los contratistaes de un servicio..</h1>
      *
      * <pre>Cuerpo de petición: JSONArray {@link ContratistaDetailDTO}.
      * 
@@ -142,17 +142,17 @@ public class ServicioContratistaResource
      * 412 Precodition Failed: No se pudo actualizar la lista
      * </code>
      * </pre>
-     * @param nombreServicio El nombre del servicio al cual se le va a asociar la lista de contratistaes
+     * @param idServicio Identificador del servicio al cual se le va a asociar la lista de contratistaes
      * @param contratistas JSONArray {@link ContratistaDetailDTO} - La lista de contratistaes que se desea guardar.
      * @return JSONArray {@link ContratistaDetailDTO}  - La lista actualizada.
      */
     @PUT
-    public List<ContratistaDetailDTO> replaceContratistas(@PathParam("nombre") String nombreServicio, List<ContratistaDetailDTO> contratistas) {
-        return contratistasListEntity2DTO(servicioLogic.replaceContratistas(nombreServicio, contratistasListDTO2Entity(contratistas)));
+    public List<ContratistaDetailDTO> replaceContratistas(@PathParam("id")Long idServicio, List<ContratistaDetailDTO> contratistas) {
+        return contratistasListEntity2DTO(servicioLogic.replaceContratistas(idServicio, contratistasListDTO2Entity(contratistas)));
     }
 
     /**
-     * <h1>DELETE api/servicios/{nombre}/contratistas/{contratistaId} : Desasociar contratista por id.</h1>
+     * <h1>DELETE api/servicios/{id}/contratistas/{contratistaId} : Desasociar contratista por id.</h1>
      *
      * <pre>Elimina la conexión entre el contratista y el servicio recibidos en la URL.
      *
@@ -163,13 +163,13 @@ public class ServicioContratistaResource
      * 404 Not Found. No existe un contratista con el id dado en el servicio.
      * </code>
      * </pre>
-     * @param nombreServicio El nombre del servicio al cual se le va a desasociar el contratista
+     * @param idServicio Identificador del servicio al cual se le va a desasociar el contratista
      * @param contratistaId El ID del contratista que se desasocia
      * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
     @DELETE
     @Path("{contratistaId: \\d+}")
-    public void removeContratista(@PathParam("nombre") String nombreServicio, @PathParam("contratistaId") Long contratistaId) throws BusinessLogicException {
-        servicioLogic.removeContratista(nombreServicio, contratistaId);
+    public void removeContratista(@PathParam("id")Long idServicio, @PathParam("contratistaId") Long contratistaId) throws BusinessLogicException {
+        servicioLogic.removeContratista(idServicio, contratistaId);
     }    
 }

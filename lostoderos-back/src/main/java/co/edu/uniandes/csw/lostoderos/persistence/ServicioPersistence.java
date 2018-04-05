@@ -96,13 +96,14 @@ public class ServicioPersistence
      * Borra un servicio de la base de datos recibiendo como argumento el id
      * de la author
      *
-     * @param nombre: id correspondiente al servicio a borrar.
+     * @param id: id correspondiente al servicio a borrar.
      */
-    public void delete(String nombre) 
+        public void delete(Long id) 
     {
-        LOGGER.log(Level.INFO, "Borrando servicio con nombre={0}", nombre);
-        ServicioEntity entity = findByNombre(nombre);
+        LOGGER.log(Level.INFO, "Eliminando servicio con id={0}", id);
+        ServicioEntity entity = em.find(ServicioEntity.class, id);
         em.remove(entity);
+        LOGGER.log(Level.INFO, "Termina eliminación de id con id={0}", id);
     }
     
     /**

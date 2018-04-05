@@ -115,7 +115,7 @@ public class ClientePersistence
      */
     public ClienteEntity findByUsername( String username )
     {
-	LOGGER.log( Level.INFO, "Consultando entidades de Usuarios por username ", username );
+	LOGGER.log( Level.INFO, "Consultando entidades de Clientes por username ", username );
 
 	TypedQuery<ClienteEntity> query = em.createQuery( "Select e From ClienteEntity e where e.usuario = :username", ClienteEntity.class );
 	query = query.setParameter( "username", username );
@@ -127,6 +127,30 @@ public class ClientePersistence
 	else
 	{
 		return sameUserName.get( 0 );
+	}
+    }
+    
+    /**
+     * Busca si hay alguna entidad de cliente con el correo que se envía de argumento
+     *
+     * @param correo: Correo de la entidad de cliente que se está buscando
+     * @return null si no existe ninguna entidad usuario con el nombre del argumento. Si
+     * existe alguna devuelve la primera.
+     */
+    public ClienteEntity findByCorreo( String correo )
+    {
+	LOGGER.log( Level.INFO, "Consultando entidades de Clientes por correo ", correo );
+
+	TypedQuery<ClienteEntity> query = em.createQuery( "Select e From ClienteEntity e where e.correo = :correo", ClienteEntity.class );
+	query = query.setParameter( "correo", correo );
+	List<ClienteEntity> sameCorreo = query.getResultList( );
+	if( sameCorreo.isEmpty( ) )
+	{
+		return null;
+	}
+	else
+	{
+		return sameCorreo.get( 0 );
 	}
     }
 }

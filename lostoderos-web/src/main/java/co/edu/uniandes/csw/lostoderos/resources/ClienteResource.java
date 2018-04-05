@@ -59,7 +59,7 @@ import javax.ws.rs.WebApplicationException;
  * @author s.naranjop1
  * @version 1.0
  */
-@Path( "usuarios/{username}/cliente" )
+@Path( "clientes" )
 @Produces( "application/json" )
 @Consumes( "application/json" )
 @RequestScoped
@@ -109,6 +109,45 @@ public class ClienteResource
 	}
         
         /**
+	 * <h1>GET /api/clientes : Obtener todas las entidades de Cliente.</h1>
+	 * <pre>Busca y devuelve todas las entidades de Cliente que existen en la aplicacion.
+	 *
+	 * Codigos de respuesta:
+	 * <code style="color: mediumseagreen; background-color: #eaffe0;">
+	 * 200 OK Devuelve todas las entidades de Usuario de la aplicacion.</code>
+	 * </pre>
+	 * @return JSONArray {@link ClienteDetailDTO} - Las entidades de Cliente encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+	 */
+	@GET
+	public List<ClienteDetailDTO> getClientes( )
+	{
+		return listEntity2DTO(clienteLogic.getAll());
+	}
+        
+        /**
+         * <h1>GET /api/clientes/{id} : Obtener cliente por id.</h1>
+         * 
+         * <pre>Busca el cliente con el id asociado recibido en la URL y la devuelve.
+         * 
+         * Codigos de respuesta:
+         * <code style="color: mediumseagreen; background-color: #eaffe0;">
+         * 200 OK Devuelve el cliente correspondiente al id.
+         * </code> 
+         * <code style="color: #c7254e; background-color: #f9f2f4;">
+         * 404 Not Found No existe un cliente con el id dado.
+         * </code> 
+         * </pre>
+         * @param id Identificador del cliente que se esta buscando. Este debe ser una cadena de dígitos.
+         * @return JSON {@link ClienteDetailDTO} - El cliente buscado
+         */
+        @GET
+        @Path("{id: \\d+}")
+        public ClienteDetailDTO getContratista(@PathParam("id") Long id)
+        {
+                return new ClienteDetailDTO(clienteLogic.getById(id));
+        }
+        
+        /**
 	 * <h1>GET /api/os/{id} : Obtener una entidad de Cliente por id.</h1>
 	 * <pre>Busca la entidad de Cliente con el id asociado recibido en la URL y la devuelve.
 	 *
@@ -124,11 +163,12 @@ public class ClienteResource
 	 * @return JSON {@link ClienteDetailDTO} - La entidad de Cliente buscada
 	 */
 	@GET
-	public ClienteDetailDTO getCliente( @PathParam( "username" )String username )
+        @Path("{username}")
+	public ClienteDetailDTO getClienteByUsername( @PathParam( "username" )String username )
 	{
 		ClienteEntity entity= clienteLogic.getByUsername(username);
                 if(entity == null){
-                     throw new WebApplicationException("El recurso usuarios/" + username + "/cliente no existe.", 404);
+                     throw new WebApplicationException("El recurso clientes/" + username + " no existe.", 404);
                 }
                 return new ClienteDetailDTO(entity);
 	}

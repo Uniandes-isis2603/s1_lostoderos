@@ -39,6 +39,16 @@ public class ClienteLogic
     public ClienteEntity create(ClienteEntity entity)throws BusinessLogicException{
         
         LOGGER.info("Inicio de creación de la entidad Cliente");
+        ClienteEntity clienteEntity = persistence.findByUsername(entity.getUsuario());
+        ClienteEntity clienteEntity2 = persistence.findByCorreo(entity.getCorreo());
+        if(clienteEntity != null)
+        {
+            throw new BusinessLogicException("Ya existe un usuario con el username: "+entity.getUsuario());
+        }
+        if(clienteEntity2 != null)
+        {
+            throw new BusinessLogicException("Ya existe un usuario que usa el correo: "+entity.getCorreo());
+        }
         Date fechaMayoriaEdad = new Date(2000,0,1);
         if(entity.getFecha_nacimiento().before(fechaMayoriaEdad))
         {
@@ -68,9 +78,16 @@ public class ClienteLogic
      * @param id identificador que se desea consultar
      * @return entidad con el id deseado
      */
-    public ClienteEntity getById(Long id){
-        
-        return persistence.find(id);
+    public ClienteEntity getById(Long id)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar cliente con id={0}", id);
+        ClienteEntity cliente = persistence.find(id);
+        if (cliente == null) 
+        {
+            LOGGER.log(Level.SEVERE, "El cliente con el id={0} no existe", id);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar cliente con id={0}", id);
+        return cliente;
     }
     
     /**
@@ -78,9 +95,17 @@ public class ClienteLogic
      * @param username identificador que se desea consultar
      * @return entidad con el id deseado
      */
-    public ClienteEntity getByUsername(String username){
+    public ClienteEntity getByUsername(String username)
+    {
         
-        return persistence.findByUsername(username);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar cliente con username={0}", username);
+        ClienteEntity cliente = persistence.findByUsername(username);
+        if (cliente == null) 
+        {
+            LOGGER.log(Level.SEVERE, "El cliente con el username={0} no existe", username);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar cliente con username={0}", username);
+        return cliente;
     }
     
     /**
@@ -93,7 +118,6 @@ public class ClienteLogic
         
         if(persistence.find(entity.getId()) == null)
             throw new BusinessLogicException("No existe una entidad de Cliente con el id \""+entity.getId()+"\"");
-        //TODO: NO hay ninguna regla de negocio?
         return persistence.update(entity);
     }
     
@@ -105,6 +129,10 @@ public class ClienteLogic
     public void delete(Long id)throws BusinessLogicException{
         
         LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Cliente con id={0}", id);
+        if(persistence.find(id) == null)
+        {
+            throw new BusinessLogicException("No existe una entidad de Cliente con el id \""+id+"\"");
+        }
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Borrado exitoso", id);
     }

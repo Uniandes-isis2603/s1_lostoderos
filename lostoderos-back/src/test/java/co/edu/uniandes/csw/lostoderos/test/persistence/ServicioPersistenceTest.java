@@ -152,7 +152,7 @@ public class ServicioPersistenceTest
         ServicioEntity result = servicioPersistence.create(newEntity);
         Assert.assertNotNull(result);
         ServicioEntity entity = em.find(ServicioEntity.class, result.getId());
-        Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
     } 
     
     /**
@@ -163,7 +163,7 @@ public class ServicioPersistenceTest
     @Test
     public void deleteServicioTest() {
         ServicioEntity entity = data.get(0);
-        servicioPersistence.delete(entity.getNombre());
+        servicioPersistence.delete(entity.getId());
         ServicioEntity deleted = em.find(ServicioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -185,7 +185,7 @@ public class ServicioPersistenceTest
 
         ServicioEntity resp = em.find(ServicioEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
+        Assert.assertEquals(newEntity.getId(), resp.getId());
     }
     
     /**
@@ -198,7 +198,7 @@ public class ServicioPersistenceTest
         ServicioEntity entity = data.get(0);
         ServicioEntity newEntity = servicioPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getId(), newEntity.getId());
     }
     
     /**
