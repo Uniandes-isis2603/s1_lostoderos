@@ -125,6 +125,11 @@ public class CotizacionLogic {
         
         LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Cotizacion con id={0}", id);
            // TODO: que pasa si la contización que se quiere actualizar no existe
+        
+        CotizacionEntity entity= getById(id);
+        if(entity == null)
+            throw new BusinessLogicException("No hay una entidad de solicitud con ese ID");
+           
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Borrado exitoso", id);
     }
