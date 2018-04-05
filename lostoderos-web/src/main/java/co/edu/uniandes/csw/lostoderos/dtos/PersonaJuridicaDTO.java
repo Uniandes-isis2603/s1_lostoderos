@@ -41,7 +41,7 @@ public class PersonaJuridicaDTO extends ClienteDTO{
 	 */
  	public PersonaJuridicaDTO( )
 	{
-            super();
+           
 	}  
         
             /**
@@ -52,7 +52,7 @@ public class PersonaJuridicaDTO extends ClienteDTO{
 	 */
          public PersonaJuridicaDTO(PersonaJuridicaEntity personajuridicaentity) {
             
-            super();
+            super(personajuridicaentity);
             if(personajuridicaentity != null)
             {
                 this.NIT = personajuridicaentity.getNit();

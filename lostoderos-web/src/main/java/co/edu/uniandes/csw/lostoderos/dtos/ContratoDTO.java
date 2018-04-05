@@ -41,7 +41,7 @@ public class ContratoDTO {
      */
     
     public ContratoDTO(){
-         super();
+         
     }
     public ContratoDTO(ContratoEntity entity){
         if(entity != null){

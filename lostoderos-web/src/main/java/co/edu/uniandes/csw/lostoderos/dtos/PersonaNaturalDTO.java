@@ -42,7 +42,7 @@ public class PersonaNaturalDTO extends ClienteDTO {
 	 */
         public PersonaNaturalDTO() {
             
-            super();
+            
     }
         
                     /**
@@ -53,7 +53,7 @@ public class PersonaNaturalDTO extends ClienteDTO {
 	 */
          public PersonaNaturalDTO(PersonaNaturalEntity personanaturalentity) {
             
-            super();
+            super(personanaturalentity);
             if(personanaturalentity != null)
             {
                 this.Cedula = personanaturalentity.getCedula();
