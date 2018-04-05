@@ -48,7 +48,7 @@ public class PersonaJuridicaDTO extends ClienteDTO{
 	 * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
 	 * la entidad que viene de argumento.
 	 *
-	 * @param PersonaJuridicaEntity: Es la entidad que se va a convertir a DTO
+	 * @param personajuridicaentity: Es la entidad que se va a convertir a DTO
 	 */
          public PersonaJuridicaDTO(PersonaJuridicaEntity personajuridicaentity) {
             

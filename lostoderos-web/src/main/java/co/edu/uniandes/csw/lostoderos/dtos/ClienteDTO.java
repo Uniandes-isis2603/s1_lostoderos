@@ -73,7 +73,7 @@ public class ClienteDTO extends UsuarioDTO
 	 */
 	public ClienteDTO( )
 	{
-            super();
+            
 	}
         
         /**
