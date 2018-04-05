@@ -84,7 +84,7 @@ public class ClienteDTO extends UsuarioDTO
 	 */
 	public ClienteDTO( ClienteEntity clienteEntity )
 	{
-		super();
+		super(clienteEntity);
                 if(clienteEntity != null)
                 {
                     this.fecha_nacimiento = clienteEntity.getFecha_nacimiento();
