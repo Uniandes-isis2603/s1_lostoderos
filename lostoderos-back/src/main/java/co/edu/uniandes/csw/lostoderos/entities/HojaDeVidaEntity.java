@@ -50,7 +50,7 @@ public class HojaDeVidaEntity extends BaseEntity implements Serializable{
     private String referencias;
     
     @PodamExclude
-    @OneToOne(mappedBy = "hojaVida", cascade = CascadeType.PERSIST)
+    @OneToOne
     private ContratistaEntity contratista;
 
     /**

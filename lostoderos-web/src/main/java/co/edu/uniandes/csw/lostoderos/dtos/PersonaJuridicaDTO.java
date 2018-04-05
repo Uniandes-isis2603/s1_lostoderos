@@ -34,7 +34,6 @@ import co.edu.uniandes.csw.lostoderos.entities.PersonaJuridicaEntity;
  */
 public class PersonaJuridicaDTO extends ClienteDTO{
     
-    private long ID;
     private String NIT;
     
         /**
@@ -56,26 +55,12 @@ public class PersonaJuridicaDTO extends ClienteDTO{
             super();
             if(personajuridicaentity != null)
             {
-                this.ID = personajuridicaentity.getId();                     
                 this.NIT = personajuridicaentity.getNit();
             }
          }
         
         
-    /**
-     * @return El ID de la Persona Juridica
-     */
-    public long getID() {
-        return ID;
-    }
-
-    /**
-    * @param ID El nuevo id 
-    */
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
+ 
     /**
     * @return El NIT de la entidad PersonaJuridica
      */
@@ -96,13 +81,10 @@ public class PersonaJuridicaDTO extends ClienteDTO{
 	 * @return Un Entity con los valores del DTO
 	 */
 	public PersonaJuridicaEntity toEntity( )
-	{
-                super.toEntity();
+	{      
 		PersonaJuridicaEntity entity = new PersonaJuridicaEntity();
-                
-                entity.setId(this.ID);
+                super.toEntity(entity);
                 entity.setNit(this.NIT);
-                
                 return entity;
 	}
 }

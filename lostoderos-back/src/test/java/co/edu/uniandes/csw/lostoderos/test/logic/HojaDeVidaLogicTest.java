@@ -122,11 +122,19 @@ public class HojaDeVidaLogicTest {
         Assert.assertEquals(newEntity.getId(), 
                 entity.getId());
     }
+    
+    public HojaDeVidaEntity create()throws BusinessLogicException{ 
+        
+        HojaDeVidaEntity newEntity= factory.manufacturePojo(HojaDeVidaEntity.class);
+        newEntity.setContratista(contratistas.get(0));
+        HojaDeVidaEntity result = hojaVidaLogic.createHojaDeVida(newEntity);
+        return result;
+    }
    
     
     @Test
     public void getHojaDeVidaTest()throws BusinessLogicException{
-        HojaDeVidaEntity entity= data.get(0);
+        HojaDeVidaEntity entity= create();
         HojaDeVidaEntity result = hojaVidaLogic.getHojaDeVida(entity.getId());
         Assert.assertNotNull(result);
         Assert.assertEquals(entity.getId(), result.getId());

@@ -35,7 +35,6 @@ import co.edu.uniandes.csw.lostoderos.entities.PersonaNaturalEntity;
 
 public class PersonaNaturalDTO extends ClienteDTO {
     
-    private long ID;
     private String Cedula;
     
         /**
@@ -57,25 +56,12 @@ public class PersonaNaturalDTO extends ClienteDTO {
             super();
             if(personanaturalentity != null)
             {
-                this.ID = personanaturalentity.getId();                     
                 this.Cedula = personanaturalentity.getCedula();
             }
     }
          
-    /**
-     * @return El ID de la Persona Natural
-     */
-    public long getID() {
-        return ID;
-    }
 
-    /**
-    * @param ID El nuevo id 
-    */
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-    
+
     /**
      * @return la Cedula de la Persona Natural
      */
@@ -98,12 +84,9 @@ public class PersonaNaturalDTO extends ClienteDTO {
 	 */
 	public PersonaNaturalEntity toEntity( )
 	{
-                super.toEntity();
 		PersonaNaturalEntity entity = new PersonaNaturalEntity();
-                
-                entity.setId(this.ID);
+                super.toEntity(entity);
                 entity.setCedula(this.Cedula);
-                
                 return entity;
 	}    
     

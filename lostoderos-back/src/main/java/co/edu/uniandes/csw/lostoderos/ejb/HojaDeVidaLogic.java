@@ -60,8 +60,10 @@ public class HojaDeVidaLogic {
         if(contratista==null) throw new BusinessLogicException("El contratista que especificó no existe");
         entity.setContratista(contratista);
         persistence.create(entity);
+        
+        HojaDeVidaEntity resp = persistence.find(entity.getId());
         LOGGER.info("Termina proceso de creación de hoja de vida");
-        return entity;
+        return resp;
 
     }
 
@@ -75,6 +77,7 @@ public class HojaDeVidaLogic {
     public HojaDeVidaEntity getHojaDeVida(Long id) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de búsqueda de hoja de vida");
         HojaDeVidaEntity entity = persistence.find(id);
+        System.out.println("PRUEBA SYSOUT: "+entity);
         LOGGER.info("Termina proceso de búsqueda de hoja de vida");
         return entity;
     }
