@@ -50,7 +50,7 @@ public class ClienteLogic
             throw new BusinessLogicException("Ya existe un usuario que usa el correo: "+entity.getCorreo());
         }
         Date fechaMayoriaEdad = new Date(2000,0,1);
-        if(entity.getFecha_nacimiento().before(fechaMayoriaEdad))
+        if(entity.getFecha_nacimiento().after(fechaMayoriaEdad))
         {
             throw new BusinessLogicException("El cliente debe ser mayor de edad para poder registrarse");
         }
