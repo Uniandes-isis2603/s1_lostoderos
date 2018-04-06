@@ -50,8 +50,7 @@ import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
  *
  * @author sa.yepes
  */
-public class ContratistaDTO extends UsuarioDTO{
-
+public class ContratistaDTO extends UsuarioDTO {
 
     private String reputacion;
 
@@ -61,9 +60,8 @@ public class ContratistaDTO extends UsuarioDTO{
      * Constructor por defecto.
      */
     public ContratistaDTO() {
-       
+        super();
     }
-    
 
     /**
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
@@ -73,9 +71,10 @@ public class ContratistaDTO extends UsuarioDTO{
      */
     public ContratistaDTO(ContratistaEntity contratista) {
         super(contratista);
-        this.reputacion = contratista.getReputacion();
-        this.disponibilidad = contratista.getDisponibilidad();
-        
+        if (contratista != null) {
+            this.reputacion = contratista.getReputacion();
+            this.disponibilidad = contratista.getDisponibilidad();
+        }
     }
 
     /**
@@ -112,6 +111,7 @@ public class ContratistaDTO extends UsuarioDTO{
 
     /**
      * Convertir DTO a Entity
+     *
      * @return Un Entity con los valores del DTO
      */
     public ContratistaEntity toEntity() {

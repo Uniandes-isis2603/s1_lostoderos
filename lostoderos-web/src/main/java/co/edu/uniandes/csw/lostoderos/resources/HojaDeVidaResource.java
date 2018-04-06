@@ -30,6 +30,7 @@ import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -47,7 +48,8 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class HojaDeVidaResource {
-    
+      private static final Logger LOGGER = Logger.getLogger(HojaDeVidaResource.class.getName());
+
     @Inject
     HojaDeVidaLogic hojaVidaLogic;
     
@@ -115,11 +117,16 @@ public class HojaDeVidaResource {
      */
     @GET
     public List<HojaDeVidaDetailDTO> getHojasDeVida(){
-        List<HojaDeVidaDetailDTO> list = new ArrayList<>();
-        for(HojaDeVidaEntity entity:hojaVidaLogic.getHojasDeVida()){
-            list.add(new HojaDeVidaDetailDTO(entity));
+       
+        LOGGER.info("va a invocar la lógica");
+        List<HojaDeVidaEntity> list = hojaVidaLogic.getHojasDeVida();
+        LOGGER.info("va a convertir a dtos");
+         List<HojaDeVidaDetailDTO> listDTOs = new ArrayList<>();
+        for(HojaDeVidaEntity entity:list){
+            HojaDeVidaDetailDTO hv = new HojaDeVidaDetailDTO(entity);
+            listDTOs.add(hv);
         }
-        return list;
+        return listDTOs;
     }
     
     /**

@@ -31,10 +31,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Clase que extiende de {@link ContratistaDTO} para manejar la transformación 
+ * Clase que extiende de {@link ContratistaDTO} para manejar la transformación
  * entre los objetos JSON y las Entidades de la base da datos. Para conocer el
  * contenido de la ciudad vaya a la documentación de {@link ContratistaDTO}
- * 
+ *
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *  {
@@ -44,95 +44,97 @@ import java.util.List;
  *      "contraseña": string,
  *      "correo": string,
  *      "reputacion": string,
- *      "disponibilidad": string 
+ *      "disponibilidad": string
  *  }
  * </pre>
+ *
  * @author sa.yepes
  */
-public class ContratistaDetailDTO extends ContratistaDTO{
-    
+public class ContratistaDetailDTO extends ContratistaDTO {
+
     private List<ServicioDTO> servicios;
-    
+
     private List<SolicitudDTO> solicitudes;
-            
+
     private HojaDeVidaDTO hojaVida;
-    
+
     private List<CalificacionDTO> calificaciones;
-    
+
     private ContratoDTO contrato;
-    
+
     /**
      * Constructor por defecto.
      */
-    public ContratistaDetailDTO(){
-        
+    public ContratistaDetailDTO() {
+        super();
     }
-    
+
     /**
      * Constructor para transformar un Entity a un DTO
      *
-     * @param entity La entidad de contratista a partir de la cual se construye el objeto
+     * @param entity La entidad de contratista a partir de la cual se construye
+     * el objeto
      */
     public ContratistaDetailDTO(ContratistaEntity entity) {
         super(entity);
-        if(entity.getServicios()!=null){
+        if (entity.getServicios() != null) {
             servicios = new ArrayList<>();
-            for(ServicioEntity servicio:entity.getServicios()){
+            for (ServicioEntity servicio : entity.getServicios()) {
                 servicios.add(new ServicioDTO(servicio));
             }
         }
-        if(entity.getSolicitudes()!=null){
-            solicitudes=new ArrayList<>();
-            for(SolicitudEntity solicitud:entity.getSolicitudes()){
+        if (entity.getSolicitudes() != null) {
+            solicitudes = new ArrayList<>();
+            for (SolicitudEntity solicitud : entity.getSolicitudes()) {
                 solicitudes.add(new SolicitudDTO(solicitud));
             }
         }
-        if(entity.getCalificaciones()!=null){
-            calificaciones= new ArrayList<>();
-            for(CalificacionEntity calificacion:entity.getCalificaciones()){
+        if (entity.getCalificaciones() != null) {
+            calificaciones = new ArrayList<>();
+            for (CalificacionEntity calificacion : entity.getCalificaciones()) {
                 calificaciones.add(new CalificacionDTO(calificacion));
             }
         }
-        if(entity.getContrato()!=null){
-            contrato=new ContratoDTO(entity.getContrato());
-        }
-        else{
+        if (entity.getContrato() != null) {
+            contrato = new ContratoDTO(entity.getContrato());
+        } else {
             entity.setContrato(null);
         }
-        if(entity.getHojaVida()!=null){
-            hojaVida=new HojaDeVidaDTO(entity.getHojaVida());
-        }
-        else{
+        if (entity.getHojaVida() != null) {
+            hojaVida = new HojaDeVidaDTO(entity.getHojaVida());
+        } else {
             entity.setHojaVida(null);
         }
     }
-    
+
     /**
      * Transformar un DTO a un Entity
      *
-     * @return  La entidad construida a partir del DTO.
+     * @return La entidad construida a partir del DTO.
      */
     @Override
     public ContratistaEntity toEntity() {
         ContratistaEntity contratista = super.toEntity();
-        if(this.getSolicitudes()!=null){
-            List<SolicitudEntity> solicitudesEntity= new ArrayList<>();
-            for(SolicitudDTO s:getSolicitudes()){
+        if (this.getSolicitudes() != null) {
+            List<SolicitudEntity> solicitudesEntity = new ArrayList<>();
+            for (SolicitudDTO s : getSolicitudes()) {
                 solicitudesEntity.add(s.toEntity());
             }
             contratista.setSolicitudes(solicitudesEntity);
         }
-        if(this.getServicios()!=null){
-            List<ServicioEntity> serviciosEntity= new ArrayList<>();
-            for(ServicioDTO s:getServicios()){
+        if (this.getServicios() != null) {
+            List<ServicioEntity> serviciosEntity = new ArrayList<>();
+            for (ServicioDTO s : getServicios()) {
                 serviciosEntity.add(s.toEntity());
             }
             contratista.setServicios(serviciosEntity);
         }
-        if(this.getHojaVida()!=null){
+        if (this.getHojaVida() != null) {
             contratista.setHojaVida(this.hojaVida.toEntity());
         }
-        if(this.contrato!=null) contratista.setContrato(this.contrato.toEntity());
+        if (this.contrato != null) {
+            contratista.setContrato(this.contrato.toEntity());
+        }
         return contratista;
     }
 

@@ -23,13 +23,16 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.resources;
 
+import co.edu.uniandes.csw.lostoderos.dtos.ContratistaDTO;
 import co.edu.uniandes.csw.lostoderos.dtos.ContratistaDetailDTO;
 import co.edu.uniandes.csw.lostoderos.ejb.ContratistaLogic;
+import co.edu.uniandes.csw.lostoderos.ejb.HojaDeVidaLogic;
 import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -62,6 +65,8 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class ContratistaResource {
     
+     private static final Logger LOGGER = Logger.getLogger(ContratistaResource.class.getName());
+ 
     @Inject
     ContratistaLogic contratistaLogic;
     
@@ -88,8 +93,14 @@ public class ContratistaResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica cuando se intenta crear un contratista que ya existe.
      */
     @POST
-    public ContratistaDetailDTO createContratista(ContratistaDetailDTO contratista) throws BusinessLogicException{
-        return new ContratistaDetailDTO(contratistaLogic.createContratista(contratista.toEntity()));
+    public ContratistaDTO createContratista(ContratistaDTO contratista) throws BusinessLogicException{
+        LOGGER.info ("va a convertir a to entity"); 
+        ContratistaEntity entity = contratista.toEntity();
+        LOGGER.info ("va a llamar la lógica");
+        entity = contratistaLogic.createContratista(entity);
+        LOGGER.info ("va a convertir a DTO");
+        ContratistaDTO creado = new ContratistaDTO(entity);
+        return creado;
     }
     
      /**

@@ -20,13 +20,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+ */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
 
 /**
- *Clase que extiende de {@link HojaDeVidaDTO} para manejar la transformación
+ * Clase que extiende de {@link HojaDeVidaDTO} para manejar la transformación
  * entre los objetos JSON y las Entidades de la base de datos. Para conocer el
  * contenido de la hoja de vida vaya a la documentación de {@link HojaDeVidaDTO}
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
@@ -41,29 +41,31 @@ import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
  *      "referencias": string
  *  }
  * </pre>
+ *
  * @author sa.yepes
  */
 public class HojaDeVidaDetailDTO extends HojaDeVidaDTO {
-    
+
     private ContratistaDTO contratista;
-    
+
     /**
      * Constructor por defecto
      */
-    public HojaDeVidaDetailDTO(){
+    public HojaDeVidaDetailDTO() {
         super();
     }
+
     /**
      * Constructor para transformar un Entity a un DTO
      *
-     * @param entity La entidad de hoja de vida a partir de la cual se construye el objeto
+     * @param entity La entidad de hoja de vida a partir de la cual se construye
+     * el objeto
      */
     public HojaDeVidaDetailDTO(HojaDeVidaEntity entity) {
         super(entity);
-        if(entity.getContratista()!=null){
+        if (entity.getContratista() != null) {
             contratista = new ContratistaDTO(entity.getContratista());
-        }
-        else{
+        } else {
             entity.setContratista(null);
         }
     }
@@ -71,12 +73,14 @@ public class HojaDeVidaDetailDTO extends HojaDeVidaDTO {
     /**
      * Transformar un DTO a un Entity
      *
-     * @return  La entidad construida a partir del DTO.
+     * @return La entidad construida a partir del DTO.
      */
     @Override
     public HojaDeVidaEntity toEntity() {
         HojaDeVidaEntity hojaDeVidaE = super.toEntity();
-        if(this.contratista!=null) hojaDeVidaE.setContratista(this.contratista.toEntity());
+        if (this.contratista != null) {
+            hojaDeVidaE.setContratista(this.contratista.toEntity());
+        }
         return hojaDeVidaE;
     }
 
@@ -93,5 +97,5 @@ public class HojaDeVidaDetailDTO extends HojaDeVidaDTO {
     public void setContratista(ContratistaDTO contratista) {
         this.contratista = contratista;
     }
-    
+
 }
