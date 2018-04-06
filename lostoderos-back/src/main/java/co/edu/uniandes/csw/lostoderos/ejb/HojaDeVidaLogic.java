@@ -62,13 +62,9 @@ public class HojaDeVidaLogic {
             throw new BusinessLogicException("El contratista que especificó debe tener id para comprobar que existe en la base de datos");
         }
         ContratistaEntity contratista = contratistaPersistence.find(entity.getContratista().getId());
-        if (contratista == null) {
-            throw new BusinessLogicException("El contratista que especificó no existe");
-        }
-        
-        entity = persistence.create(entity);
-      
-        contratista.setHojaVida(entity);
+        if(contratista==null) throw new BusinessLogicException("El contratista que especificó no existe");
+        persistence.create(entity);
+        //entity.setContratista(contratista);
         LOGGER.info("Termina proceso de creación de hoja de vida");
         return entity;
 
