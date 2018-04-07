@@ -66,20 +66,13 @@ public class SolicitudResource {
 	 * </pre>
 	 *
 	 * @param solicitud {@link SolicitudDetailDTO} - La entidad de Solicitud que se desea guardar.
-         * @param idServicio {@link Long} - el id que se requiere
-         * @param clienteId {@link Long}
-         * @param cotizacionId {@link Long}
-         * @param facturaId {@link Long}
-         * @param calificacionId {@link Long}
-         * @param contratistaId {@link Long}
 	 * @return JSON {@link SolicitudDetailDTO}  - La entidad de Solicitud guardada con el atributo id autogenerado.
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad de Solicitud.
 	 */ 
     @POST
-    public SolicitudDetailDTO crearSolicitud(SolicitudDetailDTO solicitud, @PathParam("idServicio") Long idServicio, @PathParam("clienteId") Long clienteId, @PathParam("cotizacionId")Long cotizacionId,
-            @PathParam("facturaId")Long facturaId, @PathParam("clificacionId") Long calificacionId, @PathParam("contratistaId") Long contratistaId) throws BusinessLogicException{
+    public SolicitudDetailDTO crearSolicitud(SolicitudDetailDTO solicitud) throws BusinessLogicException{
         
-        return new SolicitudDetailDTO(solicitudLogic.create(solicitud.toEntity(), idServicio, clienteId, cotizacionId, facturaId, calificacionId, contratistaId));
+        return new SolicitudDetailDTO(solicitudLogic.crearSolicitud(solicitud.toEntity()));
     }
    
     
@@ -187,6 +180,8 @@ public class SolicitudResource {
         
         solicitudLogic.delete(id);
     }
+    
+   
     
     private List<SolicitudDetailDTO> listSoliciudEntityToDetailDTO(List<SolicitudEntity> entityList) {
         List<SolicitudDetailDTO> list = new ArrayList<>();
