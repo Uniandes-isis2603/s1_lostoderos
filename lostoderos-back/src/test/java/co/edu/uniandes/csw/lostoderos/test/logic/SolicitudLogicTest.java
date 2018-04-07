@@ -181,25 +181,84 @@ public class SolicitudLogicTest {
      * 
      * @throws BusinessLogicException 
      */
-   @Test
-   public void createSolicitudTest()throws BusinessLogicException{
+    /*@Test
+    public void createSolicitudTest()throws BusinessLogicException{
        
-       SolicitudEntity newEntity= factory.manufacturePojo(SolicitudEntity.class);
-       Long servicioId= servicios.get(0).getId();
-       Long clienteId= clientes.get(0).getId();
-       Long cotizacionId= cotizaciones.get(0).getId();
-       Long facturaId= facturas.get(0).getId();
-       Long calificacionId= calificaciones.get(0).getId();
-       Long contratistaId=contratistas.get(0).getId();
+        SolicitudEntity newEntity= factory.manufacturePojo(SolicitudEntity.class);
+        Long servicioId= servicios.get(0).getId();
+        Long clienteId= clientes.get(0).getId();
+        Long cotizacionId= cotizaciones.get(0).getId();
+        Long facturaId= facturas.get(0).getId();
+        Long calificacionId= calificaciones.get(0).getId();
+        Long contratistaId=contratistas.get(0).getId();
        
-       SolicitudEntity result= solicitudLogic.create(newEntity, servicioId, clienteId, cotizacionId, 
+        SolicitudEntity result= solicitudLogic.create(newEntity, servicioId, clienteId, cotizacionId, 
                facturaId, calificacionId, contratistaId);
-       Assert.assertNotNull(result);
-       SolicitudEntity entity= em.find(SolicitudEntity.class, result.getId());
-       Assert.assertEquals(newEntity.getId(), entity.getId());
-       Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertNotNull(result);
+        SolicitudEntity entity= em.find(SolicitudEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getName(), entity.getName());
         
-   }
+    }*/
+   
+    /**
+     * 
+     * @throws BusinessLogicException 
+     */
+    @Test
+    public void crearSolicitudTest()throws BusinessLogicException{
+       
+        SolicitudEntity newEntity= factory.manufacturePojo(SolicitudEntity.class);
+        ServicioEntity servicio = servicios.get(0);
+        ClienteEntity cliente = clientes.get(0);
+        ContratistaEntity contratistaEntity = contratistas.get(0);
+        
+        newEntity.setServicio(servicio);
+        newEntity.setCliente(cliente);
+        newEntity.setContratista(contratistaEntity);
+        
+        SolicitudEntity result= solicitudLogic.crearSolicitud(newEntity);
+        SolicitudEntity entity= em.find(SolicitudEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getName(), entity.getName());
+    }
+    
+    @Test
+    public void addCotizacionTest()throws BusinessLogicException{
+        
+        SolicitudEntity entity= data.get(0);
+        CotizacionEntity cotizacion= cotizaciones.get(0);
+        
+        CotizacionEntity result= solicitudLogic.addCotizacion(cotizacion, entity.getId());
+        Assert.assertNotNull(result);
+        Assert.assertNotNull(solicitudLogic.getById(entity.getId()).getCotizacion());
+    }
+    
+    @Test
+    public void addCalificacionTest()throws BusinessLogicException{
+        SolicitudEntity entity= data.get(0);
+        CalificacionEntity calificacion= calificaciones.get(0);
+        
+        CalificacionEntity result= solicitudLogic.addCalificacion(calificacion, entity.getId());
+        Assert.assertNotNull(result);
+        Assert.assertNotNull(solicitudLogic.getById(entity.getId()).getCalificacion());
+    }
+    
+    @Test
+    public void addFacturaTest() throws BusinessLogicException{
+        
+        SolicitudEntity entity= data.get(0);
+        CotizacionEntity cotizacion= cotizaciones.get(0);
+        entity.setCotizacion(cotizacion);
+        solicitudLogic.update(entity);
+        
+        FacturaEntity factura= facturas.get(0);
+        
+        FacturaEntity result= solicitudLogic.addFactura(factura, entity.getId());
+        Assert.assertNotNull(result);
+        Assert.assertNotNull(solicitudLogic.getById(entity.getId()).getFactura());
+        Assert.assertEquals(result.getSubtotal(), cotizacion.getValor());
+    }
    
    /**
     * 
@@ -247,5 +306,7 @@ public class SolicitudLogicTest {
         SolicitudEntity deleted = em.find(SolicitudEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
+    
+    
     
 }
