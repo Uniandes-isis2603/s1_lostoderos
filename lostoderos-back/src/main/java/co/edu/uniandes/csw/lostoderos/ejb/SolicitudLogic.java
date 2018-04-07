@@ -73,7 +73,7 @@ public class SolicitudLogic {
          * @return
          * @throws BusinessLogicException 
          */
-        public SolicitudEntity create(SolicitudEntity entity, Long servicioId, Long clienteId, Long cotizacionId,
+        /*public SolicitudEntity create(SolicitudEntity entity, Long servicioId, Long clienteId, Long cotizacionId,
         Long facturaId, Long calificacionId, Long contratistaId)throws BusinessLogicException{
             
             LOGGER.info("Inicia el proceso de creación de una enidad de Solicitud");
@@ -118,6 +118,50 @@ public class SolicitudLogic {
             persistence.create(entity);
             LOGGER.info("Creación exitosa");
             return entity;
+        }*/
+        
+        /**
+         * 
+         * @param entity
+         * @return
+         * @throws BusinessLogicException 
+         */
+        public SolicitudEntity crearSolicitud(SolicitudEntity entity)throws BusinessLogicException{
+            
+            LOGGER.info("Inicia el proceso de creación de una enidad de Solicitud");
+            
+            ServicioEntity servicio= entity.getServicio();
+            ContratistaEntity contratista= entity.getContratista();
+            ClienteEntity cliente= entity.getCliente();
+            
+            if(servicio  == null)
+                throw new BusinessLogicException("Debe especificar un servicio en la entidad");
+            if(servicioPersistence.find(servicio.getId())== null){
+                servicioPersistence.create(servicio);
+            }
+            
+            /*if(factura == null)
+                throw new BusinessLogicException("Debe especificar la entidad");
+            facturaPersistence.create(factura);
+            
+            if(cotizacion == null)
+                throw new BusinessLogicException("Debe especificar la entidad");
+            cotizacionPersistence.create(cotizacion);*/
+            
+            if(contratista == null)
+                throw new BusinessLogicException("Debe especificar un contrtista");
+            if(contratistaPersistence.find(contratista.getId()) == null)
+                throw new BusinessLogicException("Debe existir una entidad de contratista en la base de datos");
+            
+            if(cliente == null)
+                throw  new BusinessLogicException("Debe especifica el cliente");
+            if(clientePersistence.find(cliente.getId()) == null)
+                throw new BusinessLogicException("debe existir el cliente en la base de datos");
+            
+            persistence.create(entity);
+            LOGGER.info("Creación exitosa");
+            return entity;
+            
         }
         
         /**
@@ -165,9 +209,80 @@ public class SolicitudLogic {
         public void delete(Long id) throws BusinessLogicException{
             
             LOGGER.log(Level.INFO, "inicia proceso de borrado de la entidad Solicitud con id={0}", id);
-            //TODO: qué pasa si no existe una solicitud con ese id?
+            //TODO: qué pasa si no existe una solicitud con ese id? done
+            if(getById(id) == null) 
+                throw new BusinessLogicException("No existe la solicitud que se desea borrar");
             persistence.delete(id);
             LOGGER.log(Level.INFO, "Termina el proceso de borrado de la entidad Solicitud con id={0}", id);
+        }
+        
+        /**
+         * 
+         * @param cotizacion
+         * @param solicitudId
+         * @return
+         * @throws BusinessLogicException 
+         */
+        public CotizacionEntity addCotizacion(CotizacionEntity cotizacion, Long solicitudId) throws BusinessLogicException{
+            
+            LOGGER.log(Level.INFO, "Inicia el proceso de agregar una cotizacion a la entidad solicitud id = {0}", solicitudId);
+            SolicitudEntity entity =getById(solicitudId);
+            if(entity == null)
+                throw new BusinessLogicException("No existe esa solicitud");
+            cotizacionPersistence.create(cotizacion);
+            entity.setCotizacion(cotizacion);
+            update(entity);
+            return cotizacion;
+        }
+        
+        /**
+         * 
+         * @param factura
+         * @param solicitudId
+         * @return
+         * @throws BusinessLogicException 
+         */
+        public FacturaEntity addFactura(FacturaEntity factura, Long solicitudId)throws BusinessLogicException{
+            
+            LOGGER.log(Level.INFO, "Inicia el proceso de agregar una factura a la entidad solicitud id = {0}", solicitudId);
+            SolicitudEntity entity= getById(solicitudId);
+            if(entity == null)
+                throw new BusinessLogicException("No existe esa solicitud");
+            
+            CotizacionEntity cotizacion= entity.getCotizacion();
+            
+            if(cotizacion== null)
+                throw new BusinessLogicException("Para agregar una factura se necesita que haya una cotizacion");
+
+            if(cotizacion.getValor() != factura.getSubtotal())
+                factura.setSubtotal(cotizacion.getValor());
+            
+            facturaPersistence.create(factura);
+            entity.setFactura(factura);
+            update(entity);
+            return factura;
+        }
+        
+        /**
+         * 
+         * @param calificacion
+         * @param solicitudId
+         * @return
+         * @throws BusinessLogicException 
+         */
+        public CalificacionEntity addCalificacion(CalificacionEntity calificacion, Long solicitudId)throws BusinessLogicException{
+            
+            LOGGER.log(Level.INFO, "Inicia el proceso de agregar una calificacion a la entidad solicitud id = {0}", solicitudId);
+        
+            SolicitudEntity entity= getById(solicitudId);
+            if(entity == null)
+                throw new BusinessLogicException("No existe esa solicitud");
+            
+            calificacionPersistence.create(calificacion);
+            entity.setCalificacion(calificacion);
+            update(entity);
+            return calificacion;
+
         }
         
 //        /**
