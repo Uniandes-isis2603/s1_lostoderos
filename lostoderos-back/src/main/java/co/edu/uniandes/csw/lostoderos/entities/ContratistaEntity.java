@@ -59,7 +59,7 @@ public class ContratistaEntity extends UsuarioEntity implements Serializable{
     
     @PodamExclude
     @ManyToMany
-    private List<ServicioEntity> servicios = new ArrayList<ServicioEntity>();
+    private List<ServicioEntity> servicios = new ArrayList<>();
     
     @PodamExclude
     @OneToOne
