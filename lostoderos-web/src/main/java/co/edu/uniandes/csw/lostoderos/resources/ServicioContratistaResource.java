@@ -98,7 +98,7 @@ public class ServicioContratistaResource
      */
     @GET
     @Path("{contratistaId: \\d+}")
-    public ContratistaDetailDTO getContratistas(@PathParam("id")Long idServicio, @PathParam("contratistaId") Long contratistaId) {
+    public ContratistaDetailDTO getContratista(@PathParam("id")Long idServicio, @PathParam("contratistaId") Long contratistaId) {
         return new ContratistaDetailDTO(servicioLogic.getContratista(idServicio, contratistaId));
     }
 
@@ -122,7 +122,7 @@ public class ServicioContratistaResource
      */
     @POST
     @Path("{contratistaId: \\d+}")
-    public ContratistaDetailDTO addContratistas(@PathParam("id")Long idServicio, @PathParam("contratistaId") Long contratistaId) throws BusinessLogicException {
+    public ContratistaDetailDTO addContratista(@PathParam("id")Long idServicio, @PathParam("contratistaId") Long contratistaId) throws BusinessLogicException {
         return new ContratistaDetailDTO(servicioLogic.addContratista(idServicio, contratistaId));
     }
 
