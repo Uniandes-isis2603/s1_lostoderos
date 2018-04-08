@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
+import java.io.Serializable;
 
 /**
  * ServicioDTO Objeto de transferencia de datos de la entidad de Servicio. Los DTO contienen las
@@ -48,7 +49,7 @@ import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
  * </pre>
  * @author s.naranjop1
  */
-public class ServicioDTO 
+public class ServicioDTO implements Serializable
 {
         private Long id;
 

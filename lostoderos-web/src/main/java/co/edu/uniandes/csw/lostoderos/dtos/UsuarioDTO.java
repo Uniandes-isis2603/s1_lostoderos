@@ -54,7 +54,8 @@ import java.io.Serializable;
  *
  * @author s.naranjop1
  */
-public class UsuarioDTO implements Serializable{
+public class UsuarioDTO implements Serializable
+{
 
     protected Long id;
 
