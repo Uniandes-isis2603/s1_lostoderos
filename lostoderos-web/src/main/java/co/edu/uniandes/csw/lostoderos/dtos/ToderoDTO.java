@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.ToderoEntity;
+import java.io.Serializable;
 
 /**
  * ToderoDTO Objeto de transferencia de datos de la entidad de Todero. Los DTO contienen las
@@ -49,7 +50,7 @@ import co.edu.uniandes.csw.lostoderos.entities.ToderoEntity;
  *
  * @author ISIS2603
  */
-public class ToderoDTO
+public class ToderoDTO implements Serializable
 {
 	private Long id;
 

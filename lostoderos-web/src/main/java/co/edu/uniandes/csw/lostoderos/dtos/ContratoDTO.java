@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.ContratoEntity;
+import java.io.Serializable;
 
 /**
  * ContratoDTO Objeto de transferencia de datos de la entidad de
@@ -29,7 +30,7 @@ import co.edu.uniandes.csw.lostoderos.entities.ContratoEntity;
  *
  * @author s.blancoc
  */
-public class ContratoDTO {
+public class ContratoDTO implements Serializable{
     
     /**
      * Atributo que define el número de identificación del contrato

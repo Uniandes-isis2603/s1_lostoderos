@@ -29,6 +29,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
+import java.io.Serializable;
 
 
 /**
@@ -67,7 +68,7 @@ import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
  *
  * @author s.rangel
  */
-public class PagoDTO {
+public class PagoDTO implements Serializable{
     private Long id;
     private String numTarjeta;
     private String codigoTarjeta;

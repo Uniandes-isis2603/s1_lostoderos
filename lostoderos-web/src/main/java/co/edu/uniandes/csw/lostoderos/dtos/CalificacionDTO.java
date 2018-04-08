@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
+import java.io.Serializable;
 
 /**
  * CalificacionDTO Objeto de transferencia de datos de la entidad de
@@ -34,7 +35,7 @@ import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
  *
  * @author s.blancoc
  */
-public class CalificacionDTO {
+public class CalificacionDTO implements Serializable{
     
     /**
      * Numero de estrellas dadas por la calificación

@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
+import java.io.Serializable;
 
 /**
  * ServicioDTO Objeto de transferencia de datos de la entidad de Factura. Los DTO contienen las
@@ -54,7 +55,7 @@ import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
  *
  * @author s.rangel
  */
-public class FacturaDTO {
+public class FacturaDTO implements Serializable{
     private Long id;
     private String producto;
     private String formaPago;

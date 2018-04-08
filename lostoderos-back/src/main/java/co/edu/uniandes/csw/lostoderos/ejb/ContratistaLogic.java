@@ -6,12 +6,10 @@
 package co.edu.uniandes.csw.lostoderos.ejb;
 
 import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
-import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
-import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
+import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.ContratistaPersistence;
 import co.edu.uniandes.csw.lostoderos.persistence.HojaDeVidaPersistence;
-import co.edu.uniandes.csw.lostoderos.persistence.SolicitudPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +26,9 @@ public class ContratistaLogic {
  
     @Inject
     private ContratistaPersistence persistence;
+    
+    @Inject
+    private HojaDeVidaPersistence hojaPersistence;
     
     /**
      * Crea un contratista en la persistencia.
@@ -94,7 +95,51 @@ public class ContratistaLogic {
  
      */
     public void deleteContratista(Long id) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar una hoja de vida con id={0}", id);
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un contratista con id={0}", id);
         persistence.delete(id);    
+    }
+    
+    /**
+     * Obtiene la hoja de vida del contratista específico.
+     * @param id Identificador del contratista.
+     * @return Hoja de vida del contratista específico.
+     * @throws BusinessLogicException Lanza excepción si no eiste un contratista
+     * con el id dado o si el contratista no cuenta con una hoja de vida
+     */
+    public HojaDeVidaEntity getHojaDeVidaContratista(Long id)throws BusinessLogicException{
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar la hoja de vida del contratista con id={0}", id);
+        ContratistaEntity contratista = persistence.find(id);
+        if(contratista==null){
+            throw new BusinessLogicException("No existe un contratista con id: "+id);
+        }
+        HojaDeVidaEntity hoja = contratista.getHojaVida();
+        if(hoja==null){
+            throw new BusinessLogicException("El contratista con id: "+id+" no tiene una hoja de vida.");
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar la hoja de vida del contratista con id={0}", id);
+        return hoja;
+    }
+    
+    /**
+     * Actualiza la hoja de vida del contratista específico.
+     * @param id Identificador del contratista.
+     * @param entity Entidad que representa la nueva hoja de vida del contratista.
+     * @return La nueva hoja de vida del contratista.
+     * @throws BusinessLogicException Lanza excepción si el contratista no existe o si no tiene una hoja de vida asociada.
+     */
+    public HojaDeVidaEntity updateHojaDeVidaContratista(Long id, HojaDeVidaEntity entity)throws BusinessLogicException{
+        LOGGER.log(Level.INFO, "Inicia proceso de actualización de la hoja de vida del contratista con id={0}", id);
+        ContratistaEntity contratista = persistence.find(id);
+        if(contratista==null){
+            throw new BusinessLogicException("No existe un contratista con id: "+id);
+        }
+        HojaDeVidaEntity hoja = contratista.getHojaVida();
+        if(hoja==null){
+            throw new BusinessLogicException("El contratista con id: "+id+" no tiene una hoja de vida. Creéla en vez de actualizarla.");
+        }
+        entity.setId(hoja.getId());
+        hojaPersistence.update(entity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualización de la hoja de vida del contratista con id={0}", id);
+        return entity;
     }
 }

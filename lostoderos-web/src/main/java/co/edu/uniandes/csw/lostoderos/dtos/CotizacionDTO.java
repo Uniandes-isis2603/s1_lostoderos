@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.CotizacionEntity;
+import java.io.Serializable;
 
 /**
  *  * DTO Objeto de transferencia de datos de la entidad de Cotizacion. Los DTO contienen las
@@ -33,7 +34,7 @@ import co.edu.uniandes.csw.lostoderos.entities.CotizacionEntity;
  * 
  * @author m.saravia
  */
-public class CotizacionDTO  {
+public class CotizacionDTO implements Serializable {
     
     //atributos
     

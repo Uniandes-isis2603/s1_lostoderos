@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
+import java.io.Serializable;
 
 /**
  *
@@ -43,7 +44,7 @@ import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
  * </pre>
  * @author m.saravia
  */
-public class SolicitudDTO {
+public class SolicitudDTO implements Serializable{
     
     //atributos
     

@@ -8,9 +8,10 @@ package co.edu.uniandes.csw.lostoderos.dtos;
 import co.edu.uniandes.csw.lostoderos.entities.PersonaJuridicaEntity;
 
 /**
- * PersonaJuridicaDTO Objeto de transferencia de datos de la entidad de PersonaJuridica. Los DTO contienen las
- * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
- * 
+ * PersonaJuridicaDTO Objeto de transferencia de datos de la entidad de
+ * PersonaJuridica. Los DTO contienen las represnetaciones de los JSON que se
+ * transfieren entre el cliente y el servidor.
+ *
  * <p>
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
@@ -18,10 +19,10 @@ import co.edu.uniandes.csw.lostoderos.entities.PersonaJuridicaEntity;
  *      "id": Number,
  *      "NIT": String,
  *   }
- * </pre>
- * Por ejemplo una entidad de PersonaJuridica se representa asi:<br>
+ * </pre> Por ejemplo una entidad de PersonaJuridica se representa asi:<br>
  * <p>
- * <pre>
+ * <
+ * pre>
  *
  *   {
  *      "id": 15453,
@@ -29,64 +30,57 @@ import co.edu.uniandes.csw.lostoderos.entities.PersonaJuridicaEntity;
  *   }
  *
  * </pre>
- * 
+ *
  * @author na.morenoe
  */
-public class PersonaJuridicaDTO extends ClienteDTO{
-    
+public class PersonaJuridicaDTO extends ClienteDTO {
+
     private String NIT;
-    
-        /**
-	 * Constructor por defecto
-	 */
- 	public PersonaJuridicaDTO( )
-	{
-           
-	}  
-        
-            /**
-	 * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
-	 * la entidad que viene de argumento.
-	 *
-	 * @param personajuridicaentity: Es la entidad que se va a convertir a DTO
-	 */
-         public PersonaJuridicaDTO(PersonaJuridicaEntity personajuridicaentity) {
-            
-            super(personajuridicaentity);
-            if(personajuridicaentity != null)
-            {
-                this.NIT = personajuridicaentity.getNit();
-            }
-         }
-        
-        
- 
+
     /**
-    * @return El NIT de la entidad PersonaJuridica
+     * Constructor por defecto
+     */
+    public PersonaJuridicaDTO() {
+        super();
+    }
+
+    /**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     *
+     * @param personajuridicaentity: Es la entidad que se va a convertir a DTO
+     */
+    public PersonaJuridicaDTO(PersonaJuridicaEntity personajuridicaentity) {
+
+        super(personajuridicaentity);
+        if (personajuridicaentity != null) {
+            this.NIT = personajuridicaentity.getNit();
+        }
+    }
+
+    /**
+     * @return El NIT de la entidad PersonaJuridica
      */
     public String getNIT() {
         return NIT;
     }
 
     /**
-    * @param NIT El nuevo NIT
-    */
+     * @param NIT El nuevo NIT
+     */
     public void setNIT(String NIT) {
         this.NIT = NIT;
     }
-    
-            /**
-	 * Convertir DTO a Entity
-	 *
-	 * @return Un Entity con los valores del DTO
-	 */
-	public PersonaJuridicaEntity toEntity( )
-	{      
-		PersonaJuridicaEntity entity = new PersonaJuridicaEntity();
-                super.toEntity(entity);
-                entity.setNit(this.NIT);
-                return entity;
-	}
+
+    /**
+     * Convertir DTO a Entity
+     *
+     * @return Un Entity con los valores del DTO
+     */
+    public PersonaJuridicaEntity toEntity() {
+        PersonaJuridicaEntity entity = new PersonaJuridicaEntity();
+        super.toEntity(entity);
+        entity.setNit(this.NIT);
+        return entity;
+    }
 }
-
-
