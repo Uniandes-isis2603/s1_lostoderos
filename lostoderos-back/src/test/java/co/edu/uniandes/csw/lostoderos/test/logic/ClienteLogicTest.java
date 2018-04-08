@@ -110,7 +110,7 @@ public class ClienteLogicTest
     @Test
     public void createClienteTest() throws BusinessLogicException {
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
-        newEntity.setFecha_nacimiento(new Date(2000,1,1));
+        newEntity.setFecha_nacimiento(new Date(1999,1,1));
         ClienteEntity result = clienteLogic.create(newEntity);
         Assert.assertNotNull(result);
         ClienteEntity entity = em.find(ClienteEntity.class, result.getId());
