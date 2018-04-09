@@ -194,6 +194,34 @@ public class ContratistaResource {
     }
     
     /**
+     * Elimina la hoja de vida del contratista específico.
+     * @param id Identificador del contratista.
+     * @throws BusinessLogicException Lanza excepción si el contratista no existe
+     * o si no tiene una hoja de vida asociada.
+     */
+    @DELETE
+    @Path("{id:\\d+}/hojadevida")
+    public void deleteHojaDeVidaContratista(@PathParam("id")Long id)throws BusinessLogicException{
+        contratistaLogic.deleteHojaDeVidaContratista(id);
+    }
+    
+    /**
+     * Crea una hoja de vida para el contratista específico.
+     * @param id Identificador del contratista.
+     * @param hoja Entidad que representa la nueva hoja de vida del contratista.
+     * @return La nueva hoja de vida del contratista.
+     * @throws BusinessLogicException Lanza excepción si el contratista no existe o si ya tiene una hoja de vida asociada.
+     */
+    @POST
+    @Path("{id:\\d+}/hojadevida")
+    public HojaDeVidaDTO createHojaDeVidaContratista(@PathParam("id")Long id, HojaDeVidaDTO hoja)throws BusinessLogicException{
+        return new HojaDeVidaDTO(contratistaLogic.createHojaDeVidaContratista(id, hoja.toEntity()));
+    }
+    
+    
+    
+    
+    /**
      * <h1>DELETE /api/contratistas/{id} : Borrar contratista por id.</h1>
      * 
      * <pre>Borra el contratista con el id asociado recibido en la URL.
