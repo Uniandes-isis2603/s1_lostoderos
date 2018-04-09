@@ -86,9 +86,13 @@ public class CalificacionLogic {
      * @param id identificador que se desea consultar
      * @return entidad con el id deseado
      */
-    public CalificacionEntity getById(Long id){
+    public CalificacionEntity getById(Long id) throws BusinessLogicException{
+        CalificacionEntity calificacion = persistence.find(id);
+        if(calificacion == null){
+            throw new BusinessLogicException("No existe la calificacion con el id dado");
+        }
         
-        return persistence.find(id);
+        return calificacion;
     }
     
     /**
@@ -98,8 +102,8 @@ public class CalificacionLogic {
      * @throws BusinessLogicException si ya existe una entidad con el identificador
      */
     public CalificacionEntity update(CalificacionEntity entity, Long calificacionId)throws BusinessLogicException{
-        
-        if(persistence.find(calificacionId) == null)
+        CalificacionEntity newEntity = persistence.find(calificacionId);
+        if(newEntity == null)
             throw new BusinessLogicException("No existe una entidad de Calificacion con el id \""+entity.getId()+"\"");
         entity.setId(calificacionId);
         if(entity.getCliente()== null){
@@ -122,7 +126,8 @@ public class CalificacionLogic {
         if(contratistaPersistence.find(entity.getContratista().getId())==null){
             throw new BusinessLogicException("El contratista no existe");
         }
-        // TODO: Antes de actualizar validar las reglas de negocio
+        entity.setId(calificacionId);
+        
         return persistence.update(entity);
     }
     //TODO: ACtualizar la documentación
@@ -131,9 +136,12 @@ public class CalificacionLogic {
      * @param id identificador de la entidad que se desea borrar
      * @throws BusinessLogicException si la entidad no existe
      */
-    public void delete(Long id){
+    public void delete(Long id)throws BusinessLogicException{
         
         LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Calificacion con id={0}", id);
+        if(persistence.find(id)==null){
+            throw new BusinessLogicException("no existe la calificacion");
+        }
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Borrado exitoso", id);
     }

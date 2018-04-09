@@ -41,7 +41,7 @@ import javax.ws.rs.WebApplicationException;
  * @author s.blancoc
  */
 
-@Path("contratistas/{contratistaId: \\d+}/contrato")
+@Path("contratos")
 @Produces( "application/json" )
 @Consumes( "application/json" )
 @RequestScoped
@@ -74,9 +74,9 @@ public class ContratoResource {
 	 * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la entidad.
 	 */
 	@POST
-	public ContratoDetailDTO createContrato(@PathParam("contratistaId") Long contratistaId,ContratoDetailDTO dto ) throws BusinessLogicException
+	public ContratoDetailDTO createContrato(ContratoDetailDTO dto ) throws BusinessLogicException
 	{
-		return new ContratoDetailDTO(contratoLogic.create(contratistaId,dto.toEntity()));
+		return new ContratoDetailDTO(contratoLogic.create(dto.toEntity()));
 	}
         
 
@@ -98,8 +98,9 @@ public class ContratoResource {
      * @return JSON {@link ContratoDetailDTO} - El contrato buscado
      */
     @GET
-    public ContratoDetailDTO getContrato(@PathParam("contratistaId") Long contratistaId) throws BusinessLogicException {
-                ContratoEntity entity = contratoLogic.getContrato(contratistaId);
+    @Path("{contratoId: \\d+}")
+    public ContratoDetailDTO getContrato(@PathParam("contratoId") Long contratoId) throws BusinessLogicException {
+                ContratoEntity entity = contratoLogic.getContrato(contratoId);
         return new ContratoDetailDTO(entity);
     }
     
@@ -123,8 +124,8 @@ public class ContratoResource {
      */
     @PUT
     @Path("{contratoId: \\d+}")
-    public ContratoDetailDTO updateContrato(@PathParam("contratistaId") Long contratistaId, @PathParam("contratoId") Long contratoId, ContratoDetailDTO contrato) throws BusinessLogicException {
-        return new ContratoDetailDTO(contratoLogic.update(contratistaId,contratoId, contrato.toEntity()));
+    public ContratoDetailDTO updateContrato(@PathParam("contratoId") Long contratoId, ContratoDetailDTO contrato) throws BusinessLogicException {
+        return new ContratoDetailDTO(contratoLogic.update(contratoId, contrato.toEntity()));
     }
     
     /**
@@ -144,8 +145,8 @@ public class ContratoResource {
      */
     @DELETE
     @Path("{contratoId: \\d+}")
-     public void deleteContrato(@PathParam("contratistaId") Long contratistaId, @PathParam("contratoId") Long contratoId)throws BusinessLogicException {
-        contratoLogic.delete(contratistaId, contratoId);
+     public void deleteContrato(@PathParam("contratoId") Long contratoId)throws BusinessLogicException {
+        contratoLogic.delete(contratoId);
     }
 
     

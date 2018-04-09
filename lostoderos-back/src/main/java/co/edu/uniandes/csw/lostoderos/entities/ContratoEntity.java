@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.lostoderos.entities;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -19,7 +20,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ContratoEntity extends BaseEntity implements Serializable {
   
     @PodamExclude 
-    @OneToOne(mappedBy = "contrato", cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "contrato", fetch = FetchType.LAZY)
      private ContratistaEntity contratista;
 
     /**
