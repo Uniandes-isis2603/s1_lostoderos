@@ -142,7 +142,7 @@ public class CalificacionLogicTest {
      *
      */
     @Test
-    public void getCalificacionTest() {
+    public void getCalificacionTest() throws BusinessLogicException {
         CalificacionEntity entity = data.get(0);
         CalificacionEntity resultEntity = calificacionLogic.getById(entity.getId());
         Assert.assertNotNull(resultEntity);
@@ -175,7 +175,7 @@ public class CalificacionLogicTest {
      *
      */
     @Test
-    public void deleteCalificacionTest() {
+    public void deleteCalificacionTest() throws BusinessLogicException {
         CalificacionEntity entity = data.get(0);
         calificacionLogic.delete(entity.getId());
         CalificacionEntity deleted = em.find(CalificacionEntity.class, entity.getId());

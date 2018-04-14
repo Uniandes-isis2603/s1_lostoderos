@@ -5,7 +5,7 @@
        
         // Internal modules dependencies       
         'toderosModule',
-        
+        'contratistasModule'
 
     ]);
     // Resuelve problemas de las promesas

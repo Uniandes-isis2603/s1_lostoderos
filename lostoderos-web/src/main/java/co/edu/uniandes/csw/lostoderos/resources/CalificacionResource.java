@@ -99,7 +99,7 @@ public class CalificacionResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public CalificacionDetailDTO getCalificacion(@PathParam("id") Long id) {
+    public CalificacionDetailDTO getCalificacion(@PathParam("id") Long id) throws BusinessLogicException {
         CalificacionEntity entity = calificacionLogic.getById(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /calificaciones/" + id + " no existe.", 404);
