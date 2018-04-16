@@ -87,7 +87,11 @@ public class PersonaJuridicaLogic {
     public void delete(Long id)throws BusinessLogicException{
         
         LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Persona Juridica con id={0}", id);
-        //TODO: Qué pasa si no existe una persona juridica con ese id?
+        //TODO: Qué pasa si no existe una persona juridica con ese id
+        //OK
+        if(persistence.find(id) == null)
+            throw new BusinessLogicException("No existe una entidad de Persona Juridica con el id \""+id+"\"");
+        
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Borrado exitoso", id);
     }

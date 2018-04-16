@@ -88,6 +88,10 @@ public class PersonaNaturalLogic {
         
         LOGGER.log(Level.INFO, "Inicia el proceso de borrado en la entidad de Persona Natural con id={0}", id);
               //TODO: Qué pasa si no existe una persona Natural con ese id?
+              //OK
+        if(persistence.find(id) == null)
+            throw new BusinessLogicException("No existe una entidad de Persona Natural con el id \""+id+"\"");
+        
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Borrado exitoso", id);
     }
