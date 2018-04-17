@@ -5,7 +5,9 @@
         function ($scope, $http, contratistasContext) {
             $http.get('data/contratistas.json').then(function (response) {
                 $scope.contratistasRecords = response.data;
+                
             });
+            
         }
     ]);
 }
