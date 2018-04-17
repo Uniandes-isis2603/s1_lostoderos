@@ -4,7 +4,7 @@
     mod.controller('serviciosCtrl', ['$scope', '$http', 'serviciosContext',
         function ($scope, $http, serviciosContext) {
             $http.get('data/servicios.json').then(function (response) {
-                $scope.contratistasRecords = response.data;
+                $scope.serviciosRecords = response.data;
             });
         }
     ]);

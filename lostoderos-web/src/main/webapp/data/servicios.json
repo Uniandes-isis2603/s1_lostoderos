@@ -1,0 +1,39 @@
+[      
+ {
+       "nombre": "Plomería",
+       "categorias": "agua y tuberias",
+       "descripción": "Aqui va una descripcion detallada del servicio",
+       "imagen": "data/images/servicio1.png"
+ },
+ {
+       "nombre": "Electricidad",
+       "categorias": "Electricidad",
+       "descripción": "Aqui va una descripcion detallada del servicio",
+       "imagen": "data/images/servicio2.jpg"
+ },
+ {
+       "nombre": "Plomería",
+       "categorias": "agua y tuberias",
+       "descripción": "Aqui va una descripcion detallada del servicio",
+       "imagen": "data/images/servicio1.png"
+ },
+ {
+       "nombre": "Electricidad",
+       "categorias": "Electricidad",
+       "descripción": "Aqui va una descripcion detallada del servicio",
+       "imagen": "data/images/servicio2.jpg"
+ },
+ {
+       "nombre": "Plomería",
+       "categorias": "agua y tuberias",
+       "descripción": "Aqui va una descripcion detallada del servicio",
+       "imagen": "data/images/servicio1.png"
+ },
+ {
+       "nombre": "Electricidad",
+       "categorias": "Electricidad",
+       "descripción": "Aqui va una descripcion detallada del servicio",
+       "imagen": "data/images/servicio2.jpg"
+ }
+]
+

@@ -1,3 +1,10 @@
 <div class="container-fluid">
-   
+   <div class="row">
+      <div class="col-md-4" ng-repeat="servicio in serviciosRecords">
+         <div class="thumbnail">
+            <img class="img-responsive" ng-src='{{servicio.imagen}}'/>  
+            <h3 class="display">{{servicio.nombre}}</h3>
+         </div>
+      </div>
+   </div>
 </div>
