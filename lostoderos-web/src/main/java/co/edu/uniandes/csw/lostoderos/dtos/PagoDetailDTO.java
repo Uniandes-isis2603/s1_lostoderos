@@ -33,7 +33,7 @@ import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
- *      "id": Integer,
+ *      "id": Number,
  *      "codigoTarjeta": String,
  *      "comprobantePagoMedio": Boolean,
  *      "comprobantePagoTotal": Boolean,

@@ -1,0 +1,29 @@
+<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div class="container-fluid ">
+    <div class="h-100 row align-items-center">
+        <h1 style="color:#FFFFFF" class = "text text-center">Buscar Facturas</h1>
+        
+        <input class="form-control" id="facturaBuscarId" type="text" placeholder="id de la factura">
+        <table class = "table table-bordered">
+        <thead>
+        <tr class ="bg-primary">
+
+            <th>producto</th>
+            <th>subTotal</th>
+            <th>Total</th>
+            <th>formaPago</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr style="color:#000000" class ="active" ng-repeat="factura in facturasRecords | orderBy : 'producto'">
+                <td>{{factura.producto}}</td>
+                <td>{{factura.subTotal}}</td>
+                <td>{{factura.tota}}</td>
+                <td>{{factura.formaPago}}</td>
+
+            </tr>
+        </tbody>
+        
+    </table>
+    </div>
+</div>

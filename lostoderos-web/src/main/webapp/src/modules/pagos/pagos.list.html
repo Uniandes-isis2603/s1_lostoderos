@@ -1,0 +1,37 @@
+<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div class="container-fluid ">
+    <div class="h-100 row align-items-center">
+        <h1 style="color:#FFFFFF" class = "text text-center">Buscar pago</h1>
+        
+        <input class="form-control" id="pagoBuscarId" type="text" placeholder="id del pago...">
+        <table class = "table table-bordered">
+        <thead>
+        <tr class ="bg-primary">
+               "id": 12390813,
+ 
+             <th>Id</th>
+            <th>CodigoTarjeta</th>
+            <th>ComprobantePagoMedio</th>
+            <th>ComprobantePagoTotal</th>
+            <th>Descripcion</th>
+            <th>FechaTarjeta</th>
+            <th>NumTarjeta</th>            
+        </tr>
+        </thead>
+        <tbody>
+            <tr style="color:#000000" class ="active" ng-repeat="pago in pagosRecords | orderBy : 'numTarjeta'">
+                <td>{{pago.id}}</td>
+                <td>{{pago.codigoTarjeta}}</td>
+                <td>{{pago.comprobantePagoMedio}}</td>
+                <td>{{pago.comprobantePagoTotal}}</td>
+                <td>{{pago.descripcion}}</td>
+                <td>{{pago.fechaTarjeta}}</td>
+                <td>{{pago.numTarjeta}}</td>
+               
+                
+            </tr>
+        </tbody>
+        
+    </table>
+    </div>
+</div>

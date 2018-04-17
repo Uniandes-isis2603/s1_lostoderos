@@ -36,7 +36,7 @@ import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
  * <pre>
  *   {
  * 
- *      "id": number,
+ *      "id": Number,
  *      "producto": string,
  *      "formaPago": string,
  *      "total": number,

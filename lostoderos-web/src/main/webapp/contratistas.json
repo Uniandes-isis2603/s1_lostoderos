@@ -1,0 +1,21 @@
+[
+    {
+        "id": 1,
+        "name": "Jose Perez",
+        "especializacion":"Plomero",
+        "calificacion":"2.3"
+    },
+    {
+        "id": 3,
+        "name": "Alejandra Martínez",
+        "especializacion":"Plomero",
+        "calificacion":"5.0"
+    },
+    {
+        "id": 2,
+        "name": "Sergio Yepes",
+        "especializacion":"Cocinero",
+        "calificacion":"4.0"
+    }
+]
+ 

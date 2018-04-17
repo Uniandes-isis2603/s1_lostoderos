@@ -33,10 +33,11 @@ import java.io.Serializable;
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
- *      "id": Integer,
+ *      "id": Number,
  *      "producto": String,
+ *      "formaPago": String,
  *      "subTotal": Integer,
- *      "total": Integer
+ *      "total": Integer,
  * 
  *   }
  * </pre>
@@ -46,7 +47,8 @@ import java.io.Serializable;
  *
  *   {
  *     "id": 14654,
- *      "producto": Plomeria,
+ *      "producto": "Plomeria",
+ *      "formaPago": "tarjetaCredito",
  *      "subTotal": 1000000,
  *      "total": 10005467
  *   }
