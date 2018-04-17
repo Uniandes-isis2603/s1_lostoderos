@@ -1,12 +1,12 @@
 <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
 <div class="container-fluid ">
-    <div class="h-100 row align-items-center">
+            <div class="h-100 row align-items-center">
         <h1 style="color:#FFFFFF" class = "text text-center">Buscar contratista</h1>
         
         <input class="form-control" id="contratistaBuscarId" type="text" placeholder="Nombre del contratista...">
         <table class = "table table-bordered">
         <thead>
-        <tr class ="bg-primary">
+        <tr class ="bg-ACTIVE">
             
             <th>Nombre</th>
             <th>Especialización</th>
@@ -14,8 +14,8 @@
         </tr>
         </thead>
         <tbody>
-            <tr style="color:#000000" class ="active" ng-repeat="contratista in contratistasRecords | orderBy : 'name'">
-                <td>{{contratista.name}}</td>
+            <tr style="color:#000000" class ="table table-striped" ng-repeat="contratista in contratistasRecords | orderBy : 'name'">
+                <td><a ui-sref="contratistaDetail">{{contratista.name}}</a></td>
                 <td>{{contratista.especializacion}}</td>
                 <td>{{contratista.calificacion}}</td>
             </tr>
@@ -23,4 +23,5 @@
         
     </table>
     </div>
+    
 </div>
