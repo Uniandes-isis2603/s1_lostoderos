@@ -37,13 +37,12 @@
         
         <style>
             
-            body {
-            background-image: url("data/images/Background-TD.jpg");}
+            
             
             p.sansserif {
             font-family: Arial, Helvetica, sans-serif;
             size: 34px;
-            color:white;
+            color:black;
             }
             
             .box {       
@@ -80,18 +79,23 @@
                     <ul class="nav nav-tabs">
                         <!-- Enlace al estado de listar las entidades de losToderos 
                         
+                        
+                        -->
+                        <li ><a ui-sref="contratistasList" >Contratistas</a></li>
+                        
+                        <li><a ui-sref="serviciosList">Servicios</a></li>
+                        
                         <li><a ui-sref="contratosList">Contratos</a></li>
                         
                         <li><a ui-sref="calificacionesList">Calificaciones</a></li>
-                        -->
-                        <li ><a style="color:white; font-size:1vw" ui-sref="contratistasList" >Contratistas</a></li>
-                        
-                        <li><a style="color:white; font-size:1vw" ui-sref="serviciosList">Servicios</a></li>
                     </ul>
                 </div>
                  
             </div>
-            <div ui-view="mainView"></div> 
+                <div ui-view="mainView"></div>
+                <div ui-view="detailView"></div>
+            
+            
         </div>
         <!--
         <div class="box" style="opacity: 0.5;">

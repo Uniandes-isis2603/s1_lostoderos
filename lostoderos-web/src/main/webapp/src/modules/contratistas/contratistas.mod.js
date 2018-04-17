@@ -18,7 +18,22 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('contratistaDetail',{
+                url: '/contratistas/id/detail',
+                views:{
+                    'mainView': {
+                        templateUrl: basePath + 'contratistas.list.html',
+                        controller: 'contratistasCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'detailView':{
+                        templateUrl: basePath + 'contratistas.detail.html',
+                        controller: 'contratistasDetailCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
+            
         }
     ]);
 })(window.angular);
