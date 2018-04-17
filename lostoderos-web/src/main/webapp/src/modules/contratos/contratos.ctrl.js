@@ -5,10 +5,10 @@
  */
 
 (function (ng) {
-    var mod = ng.module("contratoModule");
-    mod.constant("contratoContext", "api/contratos");
-    mod.controller('contratoCtrl', ['$scope', '$http', 'contratoContext',
-        function ($scope, $http, contratoContext) {
+    var mod = ng.module("contratosModule");
+    mod.constant("contratosContext", "api/contratos");
+    mod.controller('contratosCtrl', ['$scope', '$http', 'contratosContext',
+        function ($scope, $http, contratosContext) {
             $http.get('data/contratos.json').then(function (response) {
                 $scope.contratosRecords = response.data;
             });

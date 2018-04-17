@@ -7,7 +7,8 @@
         'toderosModule',
         'contratistasModule',
         'clientesModule',
-        'serviciosModule'
+        'serviciosModule',
+        'contratosModule'
 
     ]);
     // Resuelve problemas de las promesas

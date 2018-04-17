@@ -1,5 +1,23 @@
-<!DOCTYPE html>
-<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
-<div class="container-fluid">
- 
+<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div class="container-fluid ">
+    <div class="h-100 row align-items-center">
+        <table class = "table table-bordered">
+        <thead>
+        <tr class ="bg-primary">
+            
+            <th>id</th>
+            <th>Cliente</th>
+            <th>Contratista</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr style="color:#000000" class ="active" ng-repeat="calificacion in calificacionesList">
+                <td>{{calificacion.id}}</td>
+                <td>{{calificacion.cliente}}</td>
+                <td>{{calificacion.contratista}}</td>
+            </tr>
+        </tbody>
+        
+    </table>
+    </div>
 </div>
