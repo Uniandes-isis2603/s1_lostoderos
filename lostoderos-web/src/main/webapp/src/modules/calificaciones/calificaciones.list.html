@@ -5,16 +5,16 @@
         <thead>
         <tr class ="bg-primary">
             
-            <th>id</th>
+            <th>Numero de estrellas</th>
             <th>Cliente</th>
             <th>Contratista</th>
         </tr>
         </thead>
         <tbody>
-            <tr style="color:#000000" class ="active" ng-repeat="calificacion in calificacionesList">
-                <td>{{calificacion.id}}</td>
-                <td>{{calificacion.cliente}}</td>
-                <td>{{calificacion.contratista}}</td>
+            <tr style="color:#000000" class ="active" ng-repeat="c in calificacionesRecords">
+                <td>{{c.numEstrellas}}</td>
+                <td>{{c.cliente.nombre}}</td>
+                <td>{{c.contratista.name}}</td>
             </tr>
         </tbody>
         

@@ -5,12 +5,18 @@
         <thead>
         <tr class ="bg-primary">
             
-            <th>ID</th>
+            <th>Fecha Incicio</th>
+            <th>Descripción</th>
+            <th>Contratista</th>
         </tr>
         </thead>
         <tbody>
             <tr style="color:#000000" class ="active" ng-repeat="contrato in contratosRecords">
-                <td>{{contrato.id}}</td>
+                <td>{{contrato.fechaInicio}}</td>
+                <td>{{contrato.descripcion}}</td>
+                <td>{{contrato.contratista.name}}</td>
+
+
             </tr>
         </tbody>
         

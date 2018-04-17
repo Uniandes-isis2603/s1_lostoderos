@@ -1,9 +1,17 @@
 [
     {
         "id":1,
-        "cliente": "test",
-        "contratista":"test"
-    }
+        "cliente":{
+            "id":2,
+            "nombre": "Santiago"
+        },
+        "contratista":{
+            "id": 1,
+            "name":"Fernando Mejia"
+        },
+        "numEstrellas": 3
+        
+        }
     
     
     
