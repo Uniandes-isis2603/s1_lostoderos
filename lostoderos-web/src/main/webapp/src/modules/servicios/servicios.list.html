@@ -1,9 +1,10 @@
 <div class="container-fluid">
-   <div class="row">
+   <div class="h-100 row align-items-center">
+      <h1 style="color:black; font-size:3vw" class = "text text-center">Servicios</h1>
       <div class="col-md-4" ng-repeat="servicio in serviciosRecords">
          <div class="thumbnail">
             <img class="img-responsive" ng-src='{{servicio.imagen}}'/>  
-            <h3 class="display">{{servicio.nombre}}</h3>
+            <h3 class="display" align="center">{{servicio.nombre}}</h3>
          </div>
       </div>
    </div>
