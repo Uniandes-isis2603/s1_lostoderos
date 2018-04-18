@@ -18,6 +18,20 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('servicioDetail',{
+                url: '/servicio/id/detail',
+                views:{
+                    'mainView': {
+                        templateUrl: basePath + 'servicios.list.html',
+                        controller: 'serviciosCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'detailView':{
+                        templateUrl: basePath + 'servicios.detail.html',
+                        controller: 'serviciosDetailCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }
     ]);

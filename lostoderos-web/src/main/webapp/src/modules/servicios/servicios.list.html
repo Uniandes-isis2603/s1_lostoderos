@@ -4,7 +4,7 @@
       <div class="col-md-4" ng-repeat="servicio in serviciosRecords">
          <div class="thumbnail">
             <img class="img-responsive" ng-src='{{servicio.imagen}}'/>  
-            <h3 class="display" align="center">{{servicio.nombre}}</h3>
+            <h3 class="display" align="center"><a ui-sref="servicioDetail">{{servicio.nombre}}</a></h3>
          </div>
       </div>
    </div>
