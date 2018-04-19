@@ -1,38 +1,44 @@
 [      
  {
+       "id": 1,
        "nombre": "Plomería",
        "categorias": "agua y tuberias",
-       "descripción": "Aqui va una descripcion detallada del servicio",
+       "descripcion": "Aqui va una descripcion detallada del servicio",
        "imagen": "data/images/servicio1.png"
  },
  {
+       "id": 2,
        "nombre": "Electricidad",
        "categorias": "Electricidad",
-       "descripción": "Aqui va una descripcion detallada del servicio",
+       "descripcion": "Aqui va una descripcion detallada del servicio",
        "imagen": "data/images/servicio2.jpg"
  },
  {
+       "id": 3,
        "nombre": "Plomería",
        "categorias": "agua y tuberias",
-       "descripción": "Aqui va una descripcion detallada del servicio",
+       "descripcion": "Aqui va una descripcion detallada del servicio",
        "imagen": "data/images/servicio1.png"
  },
  {
+       "id": 4,
        "nombre": "Electricidad",
        "categorias": "Electricidad",
-       "descripción": "Aqui va una descripcion detallada del servicio",
+       "descripcion": "Aqui va una descripcion detallada del servicio",
        "imagen": "data/images/servicio2.jpg"
  },
  {
+       "id": 5,
        "nombre": "Plomería",
        "categorias": "agua y tuberias",
-       "descripción": "Aqui va una descripcion detallada del servicio",
+       "descripcion": "Aqui va una descripcion detallada del servicio",
        "imagen": "data/images/servicio1.png"
  },
  {
+       "id": 6,
        "nombre": "Electricidad",
        "categorias": "Electricidad",
-       "descripción": "Aqui va una descripcion detallada del servicio",
+       "descripcion": "Aqui va una descripcion detallada del servicio",
        "imagen": "data/images/servicio2.jpg"
  }
 ]

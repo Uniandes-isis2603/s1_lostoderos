@@ -8,31 +8,41 @@
             
             $urlRouterProvider.otherwise("/serviciosList");
             
-            $stateProvider.state('serviciosList', {
-                
-                url: '/servicios/list',
+            $stateProvider.state('servicios', {
+                url: '/servicios',
+                abstract:true,
                  views: {
                     'mainView': {
-                        templateUrl: basePath + 'servicios.list.html',
+                        templateUrl: basePath + 'servicios.html',
                         controller: 'serviciosCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('serviciosList', {
+                url: '/list',
+                parent:'servicios',
+                 views: {
+                    'listView':{
+                        templateUrl:basePath+'servicios.list.html'
+                    }
+                }
             }).state('servicioDetail',{
-                url: '/servicio/id/detail',
+                url: '/{servicioId:int}/detail',
+                parent:'servicios',
+                param: {servicioId: null},
                 views:{
-                    'mainView': {
-                        templateUrl: basePath + 'servicios.list.html',
-                        controller: 'serviciosCtrl',
-                        controllerAs: 'ctrl'
+                    'listView': {
+                        templateUrl: basePath + 'servicios.list.html'
+                        
                     },
                     'detailView':{
                         templateUrl: basePath + 'servicios.detail.html',
-                        controller: 'serviciosDetailCtrl',
+                        controller: 'servicioDetailCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
             });
+            
         }
     ]);
 })(window.angular);
