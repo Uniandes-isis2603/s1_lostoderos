@@ -1,0 +1,42 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="thumb">
+                    <img class="img-responsive" ng-src="{{currentfactura.image}}"/>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <dl>     
+                    <dt>{{currentfactura.id}}</dt>
+                    <ul ng-repeat="pago in currentfactura.pago">
+                        <a ui-sref="pagoDetail({pagoId: pago.id})">id del pago es {{pago.id}}</a>
+                    </ul>
+                    <dt>Produco</dt>
+                    <dd>{{currentfactura.producto}}</dd>
+                    <hr>
+                    <dt>Forma de Pago</dt>
+                    <dd>{{currentfactura.formaPago}}</dd>
+                    <hr>
+                    <dt class="bold">SubTotal</dt>
+
+                    <dd>{{currentfactura.subTotal}}</dd>
+                    <hr>
+                    <dt class="bold">Total</dt>
+                    <dd>{{currentfactura.total}}</dd>
+
+                </dl>
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"> <a ui-sref="reviewsList({bookId: currentBook.id})">Reviews</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <div ui-view="childrenView"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

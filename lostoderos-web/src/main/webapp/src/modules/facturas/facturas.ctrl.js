@@ -4,7 +4,7 @@
     mod.controller('facturasCtrl', ['$scope', '$http', 'facturasContext',
         function ($scope, $http, facturasContext) {
             $http.get('data/facturas.json').then(function (response) {
-                $scope.contratistasRecords = response.data;
+                $scope.facturasRecords = response.data;
                 
             });
             
