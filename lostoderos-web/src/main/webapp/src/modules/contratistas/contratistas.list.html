@@ -4,18 +4,20 @@
         <h1 style="color:#FFFFFF" class = "text text-center">Buscar contratista</h1>
         
         <input class="form-control" id="contratistaBuscarId" type="text" placeholder="Nombre del contratista...">
-        <table class = "table table-bordered">
+        <table class ="table table-striped">
         <thead>
         <tr class ="bg-ACTIVE">
             
             <th>Nombre</th>
+            
             <th>Especialización</th>
             <th>Calificación</th>
         </tr>
         </thead>
         <tbody>
-            <tr style="color:#000000" class ="table table-striped" ng-repeat="contratista in contratistasRecords | orderBy : 'name'">
-                <td><a ui-sref="contratistaDetail">{{contratista.name}}</a></td>
+            <tr ng-repeat="contratista in contratistasRecords | orderBy : 'name'">
+                <td><a ui-sref="contratistaDetail({contratistaId: contratista.id})">{{contratista.name}}</a></td>
+                
                 <td>{{contratista.especializacion}}</td>
                 <td>{{contratista.calificacion}}</td>
             </tr>

@@ -1,4 +1,4 @@
-(function (ng) {
+    (function (ng) {
     var mod = ng.module("contratistasModule");
     mod.constant("contratistasContext", "api/contratistas");
     mod.controller('contratistasCtrl', ['$scope', '$http', 'contratistasContext',
