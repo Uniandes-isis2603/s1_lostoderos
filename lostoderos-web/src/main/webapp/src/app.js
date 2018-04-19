@@ -9,7 +9,9 @@
         'clientesModule',
         'serviciosModule',
         'contratosModule',
-        'calificacionesModule'
+        'calificacionesModule',
+        'facturasModule',
+        'pagosModule',
 
     ]);
     // Resuelve problemas de las promesas

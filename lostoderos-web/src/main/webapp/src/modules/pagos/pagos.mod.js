@@ -18,7 +18,15 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            });
+            }).state('pagosCreate', {
+                url: '/create',
+                parent: 'pagos',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/pagos.new.html',
+                        controller: 'pagoNewCtrl'
+                    }
+                }});
         }
     ]);
 })(window.angular);

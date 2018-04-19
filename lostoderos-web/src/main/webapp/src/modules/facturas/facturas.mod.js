@@ -18,6 +18,26 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('facturasDetail', {
+                url: '/{idFactura:int}/detail',
+                parent: 'facturas',
+                param: {
+                    idFactura: null
+                },
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'facturas.list.html',
+                        controller: 'facturasDetailCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'detailView': {
+                        templateUrl: basePath + 'facturas.detail.html',
+                        controller: 'facturasDetailCtrl',
+                        controllerAs: 'ctrl'
+                    }
+
+                }
+
             });
         }
     ]);
