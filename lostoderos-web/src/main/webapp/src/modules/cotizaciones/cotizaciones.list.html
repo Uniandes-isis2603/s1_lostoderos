@@ -21,7 +21,7 @@ and open the template in the editor.
         </thead>
         <tbody>
             <tr style="color:#000000" class ="table table-striped" ng-repeat="x in cotizacionesRecords | orderBy : 'id'">
-                <!--<td><a ui-sref="contratistaDetail">{{contratista.name}}</a></td>-->
+                <td><!--a ui-sref="contratistaDetail">-->{{x.name}}<!--</a>--></td>
                 <td>{{x.servicio}}</td>
                 <td>{{x.valor}}</td>
             </tr>

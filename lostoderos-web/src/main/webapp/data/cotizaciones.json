@@ -1,0 +1,79 @@
+[
+    {
+        "type": "cotizacionDetailDTO",
+        "descripcion": "arreglo de todos los bombillos de la casa",
+        "id": 1,
+        "servicio": "electricidad",
+        "valor": 75100
+    },
+    {
+        "type": "cotizacionDetailDTO",
+        "descripcion": "arreglo de todos los bombillos de la casa",
+        "id": 2,
+        "servicio": "electricidad",
+        "valor": 75100
+    },
+    {
+        "type": "cotizacionDetailDTO",
+        "descripcion": "Sed vel enim sit amet nunc viverra dapibus.",
+        "id": 3,
+        "servicio": "plomeria",
+        "valor": 16016
+    },
+    {
+        "type": "cotizacionDetailDTO",
+        "descripcion": "In blandit ultrices enim.",
+        "id": 4,
+        "servicio": "banio",
+        "valor": 46828
+    },
+    {
+        "type": "cotizacionDetailDTO",
+        "descripcion": "Nunc purus.",
+        "id": 5,
+        "servicio": "plomeria",
+        "valor": 4208
+    },
+    {
+        "type": "cotizacionDetailDTO",
+        "descripcion": "Morbi porttitor lorem id ligula.",
+        "id": 6,
+        "servicio": "banio",
+        "valor": 31469
+    },
+    {
+        "type": "cotizacionDetailDTO",
+        "descripcion": "Nulla ut erat id mauris vulputate elementum.",
+        "id": 7,
+        "servicio": "banio",
+        "valor": 72007
+    },
+    {
+        "type": "cotizacionDetailDTO",
+        "descripcion": "Donec dapibus.",
+        "id": 8,
+        "servicio": "electricidad",
+        "valor": 71021
+    },
+    {
+        "type": "cotizacionDetailDTO",
+        "descripcion": "Nullam molestie nibh in lectus.",
+        "id": 9,
+        "servicio": "servicio de hogar",
+        "valor": 76231
+    },
+    {
+        "type": "cotizacionDetailDTO",
+        "descripcion": "Morbi non lectus.",
+        "id": 10,
+        "servicio": "electricidad",
+        "valor": 61929
+    },
+    {
+        "type": "cotizacionDetailDTO",
+        "descripcion": "arreglo de todos los bombillos de la casa",
+        "id": 11,
+        "servicio": "electricidad",
+        "valor": 75100
+    }
+]

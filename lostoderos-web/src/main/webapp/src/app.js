@@ -12,6 +12,7 @@
         'calificacionesModule',
         'facturasModule',
         'pagosModule',
+        'cotizacionModule'
 
     ]);
     // Resuelve problemas de las promesas
