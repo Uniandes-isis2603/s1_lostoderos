@@ -1,45 +1,51 @@
 [      
  {
-       "id": 1,
-       "nombre": "Plomería",
-       "categorias": "agua y tuberias",
-       "descripcion": "Aqui va una descripcion detallada del servicio",
-       "imagen": "data/images/servicio1.png"
- },
- {
-       "id": 2,
-       "nombre": "Electricidad",
-       "categorias": "Electricidad",
-       "descripcion": "Aqui va una descripcion detallada del servicio",
-       "imagen": "data/images/servicio2.jpg"
- },
- {
-       "id": 3,
-       "nombre": "Plomería",
-       "categorias": "agua y tuberias",
-       "descripcion": "Aqui va una descripcion detallada del servicio",
-       "imagen": "data/images/servicio1.png"
- },
- {
-       "id": 4,
-       "nombre": "Electricidad",
-       "categorias": "Electricidad",
-       "descripcion": "Aqui va una descripcion detallada del servicio",
-       "imagen": "data/images/servicio2.jpg"
- },
- {
-       "id": 5,
-       "nombre": "Plomería",
-       "categorias": "agua y tuberias",
-       "descripcion": "Aqui va una descripcion detallada del servicio",
-       "imagen": "data/images/servicio1.png"
- },
- {
-       "id": 6,
-       "nombre": "Electricidad",
-       "categorias": "Electricidad",
-       "descripcion": "Aqui va una descripcion detallada del servicio",
-       "imagen": "data/images/servicio2.jpg"
- }
+        "id": 1,
+        "nombre": "Plomería",
+        "categorias": "agua y tuberias",
+        "descripcion": "Aqui va una descripcion detallada del servicio",
+        "imagen": "data/images/servicio1.png",
+        "contratistas": []
+    },
+    {
+        "id": 2,
+        "nombre": "Climatizacion",
+        "categorias": "Aire Acondicionado",
+        "descripcion": "Aqui va una descripcion detallada del servicio",
+        "imagen": "data/images/Acondicionamiento.png",
+        "contratistas": []
+    },
+    {
+        "id": 3,
+        "nombre": "Pintura",
+        "categorias": "Pintura",
+        "descripcion": "Aqui va una descripcion detallada del servicio",
+        "imagen": "data/images/Pintura.png",
+        "contratistas": []
+    },
+    {
+        "id": 4,
+        "nombre": "Gas",
+        "categorias": "Servicios Básicos",
+        "descripcion": "Aqui va una descripcion detallada del servicio",
+        "imagen": "data/images/Gas.png",
+        "contratistas": []
+    },
+    {
+        "id": 5,
+        "nombre": "Electricidad",
+        "categorias": "Servicios BÃ¡sicos",
+        "descripcion": "Aqui va una descripcion detallada del servicio",
+        "imagen": "data/images/Electricidad.jpg",
+        "contratistas": []
+    },
+    {
+        "id": 6,
+        "nombre": "Mudanza",
+        "categorias": "Servicios Premium",
+        "descripcion": "Aqui va una descripcion detallada del servicio",
+        "imagen": "data/images/Mudanza.png",
+        "contratistas": []
+    }
 ]
 
