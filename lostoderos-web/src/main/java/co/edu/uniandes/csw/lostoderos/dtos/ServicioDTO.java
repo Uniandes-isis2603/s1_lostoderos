@@ -59,6 +59,8 @@ public class ServicioDTO implements Serializable
         
         private String descripcion;
         
+        private String imagen;
+        
         /**
 	 * Constructor por defecto
 	 */
@@ -78,6 +80,7 @@ public class ServicioDTO implements Serializable
 		this.nombre = servicioEntity.getNombre();
                 this.categorias = servicioEntity.getCategorias();
                 this.descripcion = servicioEntity.getDescripcion();
+                this.imagen = servicioEntity.getImagen();
 	}
         
 	/**
@@ -144,6 +147,16 @@ public class ServicioDTO implements Serializable
 		this.descripcion = descripcion;
 	}
         
+        public String getImagen() 
+        {
+                return imagen;
+        }
+
+        public void setImagen(String imagen) 
+        {
+                this.imagen = imagen;
+        }
+        
         /**
 	 * Convertir DTO a Entity
 	 *
@@ -156,6 +169,7 @@ public class ServicioDTO implements Serializable
                 entity.setNombre(this.nombre);
 		entity.setCategorias(this.categorias);
                 entity.setDescripcion(this.descripcion);
+                entity.setImagen(this.imagen);
 		return entity;
 	}
 }

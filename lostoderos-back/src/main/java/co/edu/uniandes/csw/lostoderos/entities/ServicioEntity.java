@@ -42,6 +42,7 @@ public class ServicioEntity extends BaseEntity implements Serializable
     private String nombre;
     private String categorias;
     private String descripcion;
+    private String imagen;
     
     @PodamExclude
     @ManyToOne
@@ -101,5 +102,13 @@ public class ServicioEntity extends BaseEntity implements Serializable
         this.contratistas = contratistas;
     }
 
-    
+    public String getImagen() 
+    {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) 
+    {
+        this.imagen = imagen;
+    }
 }
