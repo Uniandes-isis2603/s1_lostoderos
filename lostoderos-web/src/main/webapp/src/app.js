@@ -13,7 +13,8 @@
         'facturasModule',
         'pagosModule',
         'cotizacionModule',
-        'registerModule'
+        'registerModule',
+        'hojadevidaModule'
 
     ]);
     // Resuelve problemas de las promesas

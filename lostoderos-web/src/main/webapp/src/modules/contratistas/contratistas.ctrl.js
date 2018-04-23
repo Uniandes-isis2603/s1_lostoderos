@@ -3,11 +3,9 @@
     mod.constant("contratistasContext", "api/contratistas");
     mod.controller('contratistasCtrl', ['$scope', '$http', 'contratistasContext',
         function ($scope, $http, contratistasContext) {
-            $http.get('data/contratistas.json').then(function (response) {
+            $http.get(contratistasContext).then(function (response) {
                 $scope.contratistasRecords = response.data;
-                
             });
-            
         }
     ]);
 }

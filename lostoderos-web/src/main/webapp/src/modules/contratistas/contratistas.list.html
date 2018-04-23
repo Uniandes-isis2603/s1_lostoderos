@@ -7,19 +7,14 @@
         <table class ="table table-striped">
         <thead>
         <tr class ="bg-ACTIVE">
-            
+            <th>ID</th>
             <th>Nombre</th>
-            
-            <th>Especialización</th>
-            <th>Calificación</th>
         </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="contratista in contratistasRecords | orderBy : 'name'">
-                <td><a ui-sref="contratistaDetail({contratistaId: contratista.id})">{{contratista.name}}</a></td>
-                
-                <td>{{contratista.especializacion}}</td>
-                <td>{{contratista.calificacion}}</td>
+            <tr ng-repeat="contratista in contratistasRecords | orderBy : 'id'">
+                <td><a ui-sref="contratistaDetail({contratistaId: contratista.id})">{{contratista.id}}</a></td>
+                <td>{{contratista.nombre}}</td>
             </tr>
         </tbody>
         
