@@ -52,15 +52,16 @@ public class PagoLogic {
     public PagoEntity createPago(PagoEntity entity) throws BusinessLogicException, Exception {
         LOGGER.info("Inicio de creación de la entidad pago");
         //TODO: NO hay ninguna regla de negocio? 
-        if (persistence.find(entity.getId())!=null) {
+     /**  if (persistence.find(entity.getId())!=null) {
             throw new Exception("Ya existe el pago que se desea crear");
 
         }
         else{
+        */
                     persistence.create(entity);
         LOGGER.info("Creacion exitosa");
 
-        }
+        
         return entity;
     }
 /**

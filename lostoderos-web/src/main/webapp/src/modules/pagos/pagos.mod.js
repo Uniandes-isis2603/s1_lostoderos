@@ -24,7 +24,7 @@
                 views: {
                     'detailView': {
                         templateUrl: basePath + '/new/pagos.new.html',
-                        controller: 'pagoNewCtrl'
+                        controller: 'pagosNewCtrl'
                     }
                 }});
         }

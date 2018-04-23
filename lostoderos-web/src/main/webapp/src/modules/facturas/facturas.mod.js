@@ -22,7 +22,7 @@
                 url: '/{idFactura:int}/detail',
                 parent: 'facturas',
                 param: {
-                    idFactura: null
+                    facturaId: null
                 },
                 views: {
                     'listView': {

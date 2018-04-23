@@ -11,7 +11,7 @@
         'contratosModule',
         'calificacionesModule',
         'facturasModule',
-        'pagosModule',
+        'pagosModule'
 
     ]);
     // Resuelve problemas de las promesas
