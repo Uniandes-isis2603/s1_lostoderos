@@ -1,5 +1,5 @@
-{
-       "id": 3654,
+[{
+       "id": 1,
        "requerimientos": "Cambiar los bombillos de la casa",
        "tipo_servicio": "Electricidad",
        "cantidad_contratistas": 1,
@@ -28,7 +28,38 @@
             "reputacion":"Aenean auctor gravida sem."
        }
        	
-
        
-    }
+    },
+    {
+       "id":2,
+       "requerimientos": "Cambiar los bombillos de la casa",
+       "tipo_servicio": "Plomeria",
+       "cantidad_contratistas": 3,
+       "cod_seguridad": 324,
+       "descripcion": "Hay que destapar las tuberias",
+       "fecha_inicio": "15/01/2018",
+ 
+       "servicio":{
+       	
+            "id": 2,
+            "nombre": "Plomeria",
+            "categorias": "In hac habitasse platea dictumst.",
+            "descripcion": "Aenean sit amet justo."
+       },
+       "cliente":{
+       	
+            "id":1,
+            "fecha_nacimianto":"30/11/2017",
+            "forma_pago":7,
+            "direccion":"64 Derek Terrace"
+       },
+       "contratista":{
+            "id":1,
+            "nombre":"Marlène",
+            "disponibilidad":true,
+            "reputacion":"Aenean auctor gravida sem."
+       }
+       	
+       
+    }]
 	
