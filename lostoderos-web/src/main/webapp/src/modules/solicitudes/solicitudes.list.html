@@ -4,8 +4,34 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
-<div class="container-fluid">
- 
-</div>
+<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div class="container-fluid ">
+    <div class="h-100 row align-items-center">
+        <h1 style="color:#FFFFFF" class = "text text-center">Buscar solicitud</h1>
+        
+        <table class = "table table-bordered">
+        <thead>
+        <tr class ="bg-primary">
+    
+            <th>ID</th>
+            <th>Servicio</th>
+            <th>Requerimientos</th>
 
+                       
+        </tr>
+        </thead>
+        <tbody>
+            <tr style="color:#000000" class ="active" ng-repeat="solicitud in solicitudesRecords | orderBy : 'id'">
+                <td><a ui-sref="solicitudDetail({solicitudId: solicitud.id})">{{solicitud.id}}</a></td>
+                <td>{{solicitud.tipo_servicio}}</td>
+                <td>{{solicitud.requerimientos}}</td>
+                
+               
+                
+            </tr>
+        </tbody>
+        
+    </table>
+    </div>
+    
+</div>
