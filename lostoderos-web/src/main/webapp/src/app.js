@@ -14,7 +14,7 @@
         'pagosModule',
         'cotizacionModule',
         'registerModule',
-        'hojadevidaModule'
+        'hojadevidaModule',
         'pagosModule'
 
     ]);
