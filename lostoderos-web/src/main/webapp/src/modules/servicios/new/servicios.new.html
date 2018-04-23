@@ -1,37 +1,46 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label ng-if="!edit" id="createAuthor">Create new Author</label>
+            <div class="panel-heading"><label ng-if="!edit" id="createServicio">Crear Nuevo Servicio</label>
                 <label ng-if="edit" id="editAuthor">Edit Author</label></div>
             <div class="panel-body">
-                <form name="author">
+                <form name="servicio">
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="authorName" class="col-sm-2">Name:</label>
-                            <input id="authorName" required ng-model="data.name" class="col-sm-6"/>
+                        <div class="col-md-10 inputGroupContainer">
+                            <div class="input-group">
+                                <label class="col-md-2" style="color:whitesmoke">Nombre:</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="Nombre" id="servicioNombre" placeholder="Nombre" required ng-model="data.nombre" class="form-control"  type="text">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="authorBirthDate" class="col-sm-2">Birth Date:</label>
-                            <input type="date" id="authorBirthDate" placeholder="DD/MM/YYYY" required ng-model="data.birthDate" class="col-sm-6"/>
+                        <div class="col-md-10 inputGroupContainer">
+                            <div class="input-group">
+                                <label class="col-md-2" style="color:whitesmoke">Categorias:</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="Categorias" id="servicioCategorias" placeholder="Categorias" required ng-model="data.categorias" class="form-control"  type="text">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="authorDescription" class="col-sm-2">Biography:</label>
-                            <textarea id="authorDescription" required ng-model="data.description" class="col-sm-6"></textarea>
+                        <div class="col-md-10 inputGroupContainer">
+                            <div class="input-group">
+                                <label class="col-md-2" style="color:whitesmoke">Descripción:</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="Descripcion" id="servicioDescripcion" placeholder="Descripción" required ng-model="data.descripcion" class="form-control"  type="text">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="authorImage" class="col-sm-2">Image:</label>
-                            <input id="authorImage" required ng-model="data.image" class="col-sm-6"/>
+                        <div class="col-md-10 inputGroupContainer">
+                            <div class="input-group">
+                                <label class="col-md-2" style="color:whitesmoke">Imagen:</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="Imagen" id="servicioImagen" placeholder="Imagen" required ng-model="data.imagen" class="form-control"  type="text">
+                            </div>
                         </div>
                     </div>
-
-                    <move-lists ng-if="edit" selected="selectedItems" available="availableItems"></move-lists>
-
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!author.$valid">
 
@@ -42,7 +51,7 @@
                     </div> 
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
-                            <input ng-show="author.$valid" ng-click="createAuthor()" value="Save" class="btn btn-success"/>
+                            <input ng-show="servicio.$valid" ng-click="createServicio()" value="Save" class="btn btn-success"/>
                             <a class="btn btn-info" ui-sref="serviciosList">Cancel</a>
                         </div>
                     </div>
