@@ -41,6 +41,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('createContratista',{
+                url:'/create',
+                parent:'contratistas',
+                views:{
+                    'createContratistaView':{
+                        templateUrl:basePath+'contratistas.create.html',
+                        controller: 'contratistasCtrl',
+                        controllerAs:'ctrl'
+                    }
+                }
             });
             
         }

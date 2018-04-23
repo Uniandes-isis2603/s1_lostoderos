@@ -1,16 +1,27 @@
 (function (ng) {
     var mod = ng.module("hojadevidaModule", ['ui.router', 'contratistasModule']);
+    mod.constant("contratistasContext", "api/contratistas");
+    mod.constant("hojadevidaContext", "api/hojasdevida");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlProvider) {
             var basePath = 'src/modules/hojadevida/';
             $urlProvider.otherwise("contratistasList");
             $stateProvider.state('hojadevida', {
-                param: {hojadevidaId: null},
-                url: '/hojadevida/{hojadevidaId}',
+                url: '/hojadevida',
                 parent: 'contratistaDetail',
-                
                 views: {
                     'hojaView': {
                         templateUrl: basePath + 'hojadevida.html',
+                        controller: 'hojadevidaCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('createHojadevida',{
+                url: '/hojadevida',
+                parent:'contratistaDetail',
+               
+                views: {
+                    'createHojaView': {
+                        templateUrl: basePath + 'hojadevida.create.html',
                         controller: 'hojadevidaCtrl',
                         controllerAs: 'ctrl'
                     }
