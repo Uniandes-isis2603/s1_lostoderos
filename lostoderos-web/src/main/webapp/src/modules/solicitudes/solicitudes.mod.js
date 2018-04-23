@@ -15,17 +15,42 @@
             
             $urlRouterProvider.otherwise("/solicitudesList");
             
-            $stateProvider.state('solicitudesList', {
+            $stateProvider.state('solicitudes', {
                 
-                url: '/solicitudes/list',
+                url: '/solicitudes',
+                abstract:true,
                  views: {
                     'mainView': {
                         templateUrl: basePath + 'solicitudes.list.html',
                         controller: 'solicitudCtrl',
                         controllerAs: 'ctrl'
                     }
+                }}).state('solicitudesList', {
+                url: '/list',
+                parent:'solicitudes',
+                 views: {
+                    'listView':{
+                        templateUrl:basePath+'solicitudes.list.html'
+                    }
+                }
+            }).state('soliictudDetail',{
+                url: '/{solicitudId:int}/detail',
+                parent:'solicitudes',
+                param: {servicioId: null},
+                views:{
+                    'listView': {
+                        templateUrl: basePath + 'solicitudes.list.html'
+                        
+                    },
+                    'detailView':{
+                        templateUrl: basePath + 'solicitudes.detail.html',
+                        controller: 'solicitudDetailCtrl',
+                        controllerAs: 'ctrl'
+                    }
                 }
             });
+            
         }
     ]);
 })(window.angular);
+

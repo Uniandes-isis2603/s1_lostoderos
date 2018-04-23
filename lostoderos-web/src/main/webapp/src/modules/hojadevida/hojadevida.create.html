@@ -1,0 +1,33 @@
+<div class ="container-fluid">
+    <div class ="panel-body">
+        <form ng-submit="ctrl.createHojadevida(hojadevida)" name = "hojadevida">
+            <div class = "form-group row">
+                
+                <div class = "form group col-sm-12">
+                    <label for="hojadevidaName" class ="col-sm-2">Nombre: </label>
+                    <input id = "hojadevidaName" required ng-model="hojadevida.nombre" class="col-sm-4">
+                    
+                </div>
+                <div class = "form group col-sm-12">
+                    <label for="hojadevidaEdad" class ="col-sm-2">Edad: </label>
+                    <input id = "hojadevidaEdad" required ng-model="hojadevida.edad" class="col-sm-4">
+                </div>
+               
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-sm-4" ng-if="!hojadevida.$valid">
+                    <div class="alert alert-warning" >
+                        <strong>¡Cuidado!</strong><p>Debe llenar todos los campos requeridos*</p>
+                    </div> 
+                </div> 
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-sm-12">
+                    <input ng-show="hojadevida.$valid" type="submit" value="Crear" class="btn btn-success"/>
+                    <a class="btn btn-info" ui-sref="contratistaDetail({contratistaId:currentContratista.id})">Cancel</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
