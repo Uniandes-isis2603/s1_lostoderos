@@ -1,10 +1,14 @@
 <div class="container-fluid">
-   <div class="h-100 row align-items-center">
-      <div class="col-md-4" ng-repeat="servicio in serviciosRecords">
-         <div class="thumbnail">
-            <img class="img-responsive" ng-src='{{servicio.imagen}}'alt="{{servicio.nombre}}"/>  
-            <h3 class="display" align="center"><a ui-sref="servicioDetail({servicioId: servicio.id})">{{servicio.nombre}}</a></h3>
-         </div>
-      </div>
-   </div>
+    <div class="h-100 row align-items-center">
+        <div class="col-md-4" ng-repeat="servicio in serviciosRecords">
+            <div class="thumbnail">
+                <img class="img-responsive" ng-src='{{servicio.imagen}}'alt="{{servicio.nombre}}"/>  
+                <h3 class="display" align="center"><a ui-sref="servicioDetail({servicioId: servicio.id})">{{servicio.nombre}}</a></h3>
+            </div>
+        </div>
+    </div>
+    <div class="btn-group mr-2" role="group" aria-label="First group">
+        <a class="btn btn-info" ui-sref="serviciosCreate">
+            <span class="glyphicon glyphicon-plus-sign"></span> Agregar Servicio</a>
+    </div>
 </div>
