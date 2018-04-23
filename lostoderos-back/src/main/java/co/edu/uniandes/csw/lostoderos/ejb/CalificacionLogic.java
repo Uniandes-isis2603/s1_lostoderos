@@ -13,6 +13,7 @@ import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.CalificacionPersistence;
 import co.edu.uniandes.csw.lostoderos.persistence.ClientePersistence;
 import co.edu.uniandes.csw.lostoderos.persistence.ContratistaPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -156,6 +157,22 @@ public class CalificacionLogic {
         LOGGER.info("Termina proceso de consultar todos los calificaciones");
         return calificaciones;
     }
+    
+        public List<CalificacionEntity> getCalificacionesContratista(Long contratistaId) throws BusinessLogicException {
+        List<CalificacionEntity> resp = new ArrayList<>();
+        LOGGER.info("Inicia proceso de consultar todos los calificaciones");
+        ContratistaEntity contratista = contratistaPersistence.find(contratistaId);
+        if(contratista==null){
+            throw new BusinessLogicException("El contratista no existe");
+        }
+        List<CalificacionEntity> calificacionesT = persistence.findAll();
+        for(CalificacionEntity actual: calificacionesT){
+            if (actual.getContratista().equals(contratista)){
+                resp.add(actual);
+            }
+        }
+        return resp;
+        }
     
 }
 

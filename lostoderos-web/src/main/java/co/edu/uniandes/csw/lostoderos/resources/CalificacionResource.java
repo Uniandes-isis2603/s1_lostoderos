@@ -123,6 +123,13 @@ public class CalificacionResource {
 	{
 		return listCalificacionEntity2DetailDTO(calificacionLogic.getCalificaciones());
 	}
+        
+        @GET
+        @Path("contratista/{contratistaId: \\d+}")
+	public List<CalificacionDetailDTO> getCalificacionesContratista( @PathParam("contratistaId") Long contratistaId) throws BusinessLogicException
+	{
+		return listCalificacionEntity2DetailDTO(calificacionLogic.getCalificacionesContratista(contratistaId));
+	}
     
     /**
      * <h1>PUT /api/calificaciones/{id} : Actualizar Calificacion con el id dado.</h1>

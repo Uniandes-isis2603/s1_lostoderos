@@ -1,25 +1,21 @@
 (function (ng) {
-    
-    var mod = ng.module("contratosModule", ['ui.router']);
-    
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            
+    var mod = ng.module("contratosModule", ['ui.router', 'contratistasModule']);
+    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlProvider) {
             var basePath = 'src/modules/contratos/';
-            
-            $urlRouterProvider.otherwise("/contratosList");
-            
-            $stateProvider.state('contratosList', {
+            $urlProvider.otherwise("contratistasList");
+            $stateProvider.state('contrato', {
+                param: {contratoId: null},
+                url: '/contrato/{contratoId}',
+                parent: 'contratistaDetail',
                 
-                url: '/contratos/list',
-                 views: {
-                    'mainView': {
-                        templateUrl: basePath + 'contratos.list.html',
+                views: {
+                    'contratoView': {
+                        templateUrl: basePath + 'contratos.html',
                         controller: 'contratosCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
             });
-        }
-    ]);
+        }]);
 })(window.angular);
 

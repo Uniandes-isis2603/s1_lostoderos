@@ -8,6 +8,10 @@
             <p>Usuario: {{currentContratista.usuario}}</p>
             <h2><a ui-sref="hojadevida({ hojadevidaId: currentContratista.hojaVida.id})">Hoja de vida:</a></h2>
             <div ui-view="hojaView"></div>
+            <h2><a ui-sref="contrato({contratoId:currentContratista.contrato.ID})">Contrato:</a></h2>
+            <div ui-view="contratoView"></div>
+            <h2> <a ui-sref="calificacionesList({contratistaId: currentContratista.id})">Calificaciones</a></h2>
+            <div ui-view="listaView"></div>
         </div>
     </div>
 </div>

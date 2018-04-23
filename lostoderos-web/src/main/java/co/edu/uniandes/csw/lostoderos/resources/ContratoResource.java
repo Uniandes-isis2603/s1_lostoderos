@@ -104,6 +104,12 @@ public class ContratoResource {
         return new ContratoDetailDTO(entity);
     }
     
+    @GET
+    public List<ContratoDetailDTO> getContratos() throws BusinessLogicException {
+        
+        return listContratoEntity2DetailDTO(contratoLogic.getContratos());
+    }
+    
     /**
      * <h1>PUT /api/contratos/{id} : Actualizar contrato con el id dado.</h1>
      * <pre>Cuerpo de petición: JSON {@link ContratoDetailDTO}.
@@ -147,6 +153,14 @@ public class ContratoResource {
     @Path("{contratoId: \\d+}")
      public void deleteContrato(@PathParam("contratoId") Long contratoId)throws BusinessLogicException {
         contratoLogic.delete(contratoId);
+    }
+     
+        private List<ContratoDetailDTO> listContratoEntity2DetailDTO(List<ContratoEntity> entityList) {
+        List<ContratoDetailDTO> list = new ArrayList<>();
+        for (ContratoEntity entity : entityList) {
+            list.add(new ContratoDetailDTO(entity));
+        }
+        return list;
     }
 
     
