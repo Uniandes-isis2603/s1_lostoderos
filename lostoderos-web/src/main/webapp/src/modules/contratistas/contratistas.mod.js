@@ -8,27 +8,36 @@
             
             $urlRouterProvider.otherwise("/contratistasList");
             
-            $stateProvider.state('contratistasList', {
-                
-                url: '/contratistas/list',
+            $stateProvider.state('contratistas', {
+                url: '/contratistas',
+                abstract:true,
                  views: {
                     'mainView': {
-                        templateUrl: basePath + 'contratistas.list.html',
+                        templateUrl: basePath + 'contratistas.html',
                         controller: 'contratistasCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('contratistasList', {
+                url: '/list',
+                parent:'contratistas',
+                 views: {
+                    'listView':{
+                        templateUrl:basePath+'contratistas.list.html'
+                    }
+                }
             }).state('contratistaDetail',{
-                url: '/contratistas/id/detail',
+                url: '/{contratistaId:int}/detail',
+                parent:'contratistas',
+                param: {contratistaId: null},
                 views:{
-                    'mainView': {
-                        templateUrl: basePath + 'contratistas.list.html',
-                        controller: 'contratistasCtrl',
-                        controllerAs: 'ctrl'
+                    'listView': {
+                        templateUrl: basePath + 'contratistas.list.html'
+                        
                     },
                     'detailView':{
                         templateUrl: basePath + 'contratistas.detail.html',
-                        controller: 'contratistasDetailCtrl',
+                        controller: 'contratistaDetailCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

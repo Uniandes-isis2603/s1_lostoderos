@@ -2,6 +2,11 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
   <persistence-unit name="LosToderosPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity</class>
+    <class>co.edu.uniandes.csw.lostoderos.entities.ClienteEntity</class>
+    <class>co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity</class>
+    <class>co.edu.uniandes.csw.lostoderos.entities.CotizacionEntity</class>
+    <class>co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>

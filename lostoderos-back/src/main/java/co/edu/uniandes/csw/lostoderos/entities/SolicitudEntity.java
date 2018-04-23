@@ -53,21 +53,21 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
     private Integer cantidad_contratistas;
     
     @PodamExclude
-    @OneToOne (cascade=CascadeType.PERSIST)
+    @OneToOne //(cascade=CascadeType.PERSIST)
     private ServicioEntity servicio;
     
     /**
      * 
      */
     @PodamExclude
-    @OneToOne (cascade=CascadeType.PERSIST)
+    @OneToOne //(cascade=CascadeType.PERSIST)
     private FacturaEntity factura;
     
     /**
      * 
      */
     @PodamExclude
-    @OneToOne (cascade=CascadeType.PERSIST)
+    @OneToOne //(cascade=CascadeType.PERSIST)
     private CotizacionEntity cotizacion;
     
     /**
@@ -88,7 +88,7 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
      * 
      */
     @PodamExclude
-    @OneToOne (cascade=CascadeType.PERSIST)
+    @OneToOne //(cascade=CascadeType.PERSIST)
     private CalificacionEntity calificacion;
     
     //constructor

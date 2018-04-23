@@ -1,0 +1,34 @@
+{
+       "id": 3654,
+       "requerimientos": "Cambiar los bombillos de la casa",
+       "tipo_servicio": "Electricidad",
+       "cantidad_contratistas": 1,
+       "cod_seguridad": 324,
+       "descripcion": "Se fundieron los bombillos en la casa y se desea cambiarlos",
+       "fecha_inicio": "15/01/2018",
+ 
+       "servicio":{
+       	
+            "id": 1,
+            "nombre": "servicio de hogar",
+            "categorias": "In hac habitasse platea dictumst.",
+            "descripcion": "Aenean sit amet justo."
+       },
+       "cliente":{
+       	
+            "id":1,
+            "fecha_nacimianto":"30/11/2017",
+            "forma_pago":7,
+            "direccion":"64 Derek Terrace"
+       },
+       "contratista":{
+            "id":1,
+            "nombre":"Marlène",
+            "disponibilidad":true,
+            "reputacion":"Aenean auctor gravida sem."
+       }
+       	
+
+       
+    }
+	

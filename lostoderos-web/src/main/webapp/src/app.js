@@ -11,6 +11,10 @@
         'contratosModule',
         'calificacionesModule',
         'facturasModule',
+        'pagosModule',
+        'cotizacionModule',
+        'registerModule',
+        'hojadevidaModule'
         'pagosModule'
 
     ]);

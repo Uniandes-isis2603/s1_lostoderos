@@ -114,8 +114,9 @@ public class HojaDeVidaLogicTest {
     @Test
     public void createHojaDeVidaTest()throws BusinessLogicException{ 
         
-        HojaDeVidaEntity newEntity= factory.manufacturePojo(HojaDeVidaEntity.class);
-        newEntity.setContratista(contratistas.get(0));
+        HojaDeVidaEntity newEntity= factory.manufacturePojo(HojaDeVidaEntity.class);;
+        ContratistaEntity contratista = factory.manufacturePojo(ContratistaEntity.class);
+        newEntity.setContratista(contratista);
         HojaDeVidaEntity result = hojaVidaLogic.createHojaDeVida(newEntity);
         Assert.assertNotNull(result);
         HojaDeVidaEntity entity = em.find(HojaDeVidaEntity.class,result.getId());
@@ -123,45 +124,7 @@ public class HojaDeVidaLogicTest {
                 entity.getId());
     }
     
-    public HojaDeVidaEntity create()throws BusinessLogicException{ 
-        
-        HojaDeVidaEntity newEntity= factory.manufacturePojo(HojaDeVidaEntity.class);
-        newEntity.setContratista(contratistas.get(0));
-        HojaDeVidaEntity result = hojaVidaLogic.createHojaDeVida(newEntity);
-        return result;
-    }
    
-    
-    @Test
-    public void getHojaDeVidaTest()throws BusinessLogicException{
-        HojaDeVidaEntity entity= create();
-        HojaDeVidaEntity result = hojaVidaLogic.getHojaDeVida(entity.getId());
-        Assert.assertNotNull(result);
-        Assert.assertEquals(entity.getId(), result.getId());
-    }
-    
-    
-    
-    @Test
-    public void deleteHojaDeVida()throws BusinessLogicException{
-        HojaDeVidaEntity entity = data.get(0);
-        hojaVidaLogic.deleteHojaDeVida(entity.getId());
-        HojaDeVidaEntity deleted= em.find(HojaDeVidaEntity.class, entity.getId());
-        Assert.assertNull(deleted);
-    }
-    
-    
-    @Test
-    public void updateHojaDeVidaTest()throws BusinessLogicException{
-        HojaDeVidaEntity entity = data.get(0);
-        HojaDeVidaEntity newEntity = factory.manufacturePojo(HojaDeVidaEntity.class);
-        newEntity.setId(entity.getId());
-        newEntity.setContratista(contratistas.get(0));
-        hojaVidaLogic.updateHojaDeVida(newEntity.getId(),newEntity);
-        HojaDeVidaEntity resp = em.find(HojaDeVidaEntity.class,entity.getId());
-        Assert.assertEquals(newEntity.getId(), resp.getId());
-        Assert.assertEquals(newEntity.getName(), resp.getName());
-    }
     
     
     
