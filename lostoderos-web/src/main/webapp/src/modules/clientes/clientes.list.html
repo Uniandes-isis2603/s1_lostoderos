@@ -1,6 +1,6 @@
 <div class="container-fluid ">
             <div class="h-100 row align-items-center">
-        <h1 style="color:#FFFFFF" class = "text text-center">Buscar contratista</h1>
+        <h1 style="color:black; padding-bottom: 10px" class = "text text-center">Buscar Cliente</h1>
         
         <input class="form-control" id="clienteBuscarId" type="text" placeholder="Nombre del contratista...">
         <table class ="table table-striped">
@@ -8,11 +8,15 @@
         <tr class ="bg-ACTIVE">
             <th>ID</th>
             <th>Username</th>
+            <th>Nombre</th>
+            <th>Fecha de Nacimiento</th>
         </tr>
         </thead>
         <tbody>
             <tr ng-repeat="cliente in clientesRecords | orderBy : 'id'">
                 <td><a ui-sref="clienteDetail({clienteId: cliente.id})">{{cliente.id}}</a></td>
                 <td>{{cliente.usuario}}</td>
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.fecha_nacimiento}}</td>
             </tr>
 </div>
