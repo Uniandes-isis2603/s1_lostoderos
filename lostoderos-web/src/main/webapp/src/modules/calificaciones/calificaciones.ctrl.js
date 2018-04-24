@@ -8,9 +8,9 @@
     var mod = ng.module("calificacionesModule");
     mod.constant("calificacionesContext", "api/calificaciones");
     mod.constant("contratistasContext", "contratista");
-    mod.controller('calificacionesCtrl', ['$scope', '$http','contratistasContext','$state', 'calificacionContext',
+    mod.controller('calificacionesCtrl', ['$scope', '$http','contratistasContext','$state', 'calificacionesContext',
         function ($scope, $http,contratistasContext,$state, calificacionesContext) {
-            $http.get(calificacionesContext + '/' + contratistasContext + $state.params.contratistaId).then(function (response) {
+            $http.get(calificacionesContext + '/' + 'contratista' + '/' + $state.params.contratistaId).then(function (response) {
                 $scope.calificacionesRecords = response.data;
             });
         }
