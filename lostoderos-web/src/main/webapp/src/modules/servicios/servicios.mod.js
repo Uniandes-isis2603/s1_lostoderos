@@ -50,6 +50,18 @@
                         controller: 'servicioNewCtrl'
                     }
                 }
+            }).state('servicioDelete', {
+                url: '/delete/{servicioId:int}',
+                parent: 'servicioDetail',
+                param: {
+                    servicioId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/delete/servicios.delete.html',
+                        controller: 'servicioDeleteCtrl'
+                    }
+                }
             });
 
         }

@@ -50,6 +50,18 @@
                         controller: 'registerCtrl'
                     }
                 }
+            }).state('clienteDelete', {
+                url: '/delete/{clienteId:int}',
+                parent: 'clientes',
+                param: {
+                    servicioId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/delete/clientes.delete.html',
+                        controller: 'clienteDeleteCtrl'
+                    }
+                }
             });
 
         }
