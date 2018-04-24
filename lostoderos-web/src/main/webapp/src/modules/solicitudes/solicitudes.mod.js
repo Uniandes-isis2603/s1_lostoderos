@@ -21,11 +21,12 @@
                 abstract:true,
                  views: {
                     'mainView': {
-                        templateUrl: basePath + 'solicitudes.list.html',
+                        templateUrl: basePath + 'solicitudes.html',
                         controller: 'solicitudCtrl',
                         controllerAs: 'ctrl'
                     }
-                }}).state('solicitudesList', {
+                }
+                }).state('solicitudesList', {
                 url: '/list',
                 parent:'solicitudes',
                  views: {

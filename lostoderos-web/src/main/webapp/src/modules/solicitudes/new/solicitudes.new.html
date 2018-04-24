@@ -5,16 +5,19 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <div class="container-fluid">
-    <div ng-if="isAuthenticated() && hasPermissions()" class="panel-group">
+    <div  class="panel-group" aligb="center">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label ng-if="!edit" id="createsolicitud">Crear solicitud</label>
-                <!--<label ng-if="edit" id="editsolicitud">Edit solicitud</label></div>-->
+            <div class="panel-heading"><label ng-if="!edit" id="createSolicitud">Crear solicitud</label>
+                <label ng-if="edit" id="editSolicitud">Editar solicitud</label></div>
             <div class="panel-body">
                 <form name="solicitud">
                     <div class="form-group row">
+                        <div class="col-md-10 inputGroupContainer">
                         <div class="form-group col-md-6">
                             <label for="solicitudReq" class="col-sm-2">Requerimientos:</label>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input id="solicitudReq" required ng-model="data.requerimientos" class="col-sm-6"/>
+                        </div>
                         </div>
                     </div>
                     <div class="form-group row">
