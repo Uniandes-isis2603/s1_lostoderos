@@ -15,18 +15,35 @@
             
             $urlRouterProvider.otherwise("/cotizacionesList");
             
-            $stateProvider.state('cotizacionesList', {
+            $stateProvider.state('cotizaciones', {
                 
                 url: '/cotizaciones/list',
+                abstract:true,
                  views: {
                     'mainView': {
-                        templateUrl: basePath + 'cotizaciones.list.html',
+                        templateUrl: basePath + 'cotizaciones.html',
                         controller: 'cotizacionCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('cotizacionesList', {
+                url: '/list',
+                parent:'cotizaciones',
+                 views: {
+                    'listView':{
+                        templateUrl:basePath+'cotizaciones.list.html'
+                    }
+                }
+            }).state('cotizacionesCreate', {
+                url: '/create',
+                parent: 'cotizaciones',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/cotizaciones.new.html',
+                        controller: 'cotizacionNewCtrl'
+                    }
+                }
             });
-        }
-    ]);
+        }]);
 })(window.angular);
 
