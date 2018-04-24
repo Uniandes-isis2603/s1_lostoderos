@@ -1,7 +1,7 @@
 [{
        "id": 1,
        "requerimientos": "Cambiar los bombillos de la casa",
-       "tipo_servicio": "Electricidad",
+       "tipo_servicio": 11,
        "cantidad_contratistas": 1,
        "cod_seguridad": 324,
        "descripcion": "Se fundieron los bombillos en la casa y se desea cambiarlos",
@@ -32,8 +32,8 @@
     },
     {
        "id":2,
-       "requerimientos": "Cambiar los bombillos de la casa",
-       "tipo_servicio": "Plomeria",
+       "requerimientos": "Destapar el baño",
+       "tipo_servicio": 11,
        "cantidad_contratistas": 3,
        "cod_seguridad": 324,
        "descripcion": "Hay que destapar las tuberias",
