@@ -15,6 +15,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('createContrato', {
+                url: '/contratos',
+                parent:'contratistaDetail',
+                views: {
+                    createContratoView: {
+                        templateUrl: basePath + 'contratos.create.html',
+                        controller: 'contratosCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }]);
 })(window.angular);

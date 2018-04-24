@@ -8,14 +8,13 @@
             <p>Reputacion: {{currentContratista.reputacion}}</p>
             <h2><a ui-sref="hojadevida({contratistaId:currentContratista.id})">Hoja de vida:</a></h2>
             <div ui-view="hojaView"></div>
-<<<<<<< HEAD
             <h2><a ui-sref="contrato({contratoId:currentContratista.contrato.ID})">Contrato:</a></h2>
             <div ui-view="contratoView"></div>
             <h2> <a ui-sref="calificacionesList({contratistaId: currentContratista.id})">Calificaciones</a></h2>
             <div ui-view="listaView"></div>
-=======
             <div ui-view="createHojaView"></div>
->>>>>>> 840ce083700d5c22118a0230cabebc9a9a15cb9c
+            <div ui-view="createContratoView"></div>
+
         </div>
     </div>
 </div>
