@@ -45,19 +45,19 @@
                 url: '/create',
                 parent: 'servicios',
                 views: {
-                    'detailView': {
+                    'createView': {
                         templateUrl: basePath + '/new/servicios.new.html',
                         controller: 'servicioNewCtrl'
                     }
                 }
-            }).state('servicioDelete', {
+            }).state('serviciosDelete', {
                 url: '/delete/{servicioId:int}',
-                parent: 'servicioDetail',
+                parent: 'servicios',
                 param: {
                     servicioId: null
                 },
                 views: {
-                    'detailView': {
+                    'deleteView': {
                         templateUrl: basePath + '/delete/servicios.delete.html',
                         controller: 'servicioDeleteCtrl'
                     }
