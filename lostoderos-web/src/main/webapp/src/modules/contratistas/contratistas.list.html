@@ -1,27 +1,28 @@
 <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
-<div class="container-fluid ">
-            <div class="h-100 row align-items-center">
+<div align="center" class="container-fluid ">
+    <div align="center">
         <h1 style="color:#FFFFFF" class = "text text-center">Buscar contratista</h1>
-        
+
         <input class="form-control" id="contratistaBuscarId" type="text" placeholder="Nombre del contratista...">
         <table class ="table table-striped">
-        <thead>
-        <tr class ="bg-ACTIVE">
-            <th>ID</th>
-            <th>Nombre</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="contratista in contratistasRecords | orderBy : 'id'">
-                <td><a ui-sref="contratistaDetail({contratistaId: contratista.id})">{{contratista.id}}</a></td>
-                <td>{{contratista.nombre}}</td>
-            </tr>
-        </tbody>
-        
-    </table>
-        <button>
-            <a ui-sref="createContratista">Crear contratista</a>
-        </button>
+            <thead>
+                <tr class ="bg-ACTIVE">
+                    <th>ID</th>
+                    <th>Nombre</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="contratista in contratistasRecords| orderBy : 'id'">
+                    <td><a ui-sref="contratistaDetail({contratistaId: contratista.id})">{{contratista.id}}</a></td>
+                    <td>{{contratista.nombre}}</td>
+                </tr>
+            </tbody>
+
+        </table>
     </div>
-    
+    <button>
+        <a ui-sref="createContratista">Crear contratista</a>
+    </button>
+
+
 </div>
