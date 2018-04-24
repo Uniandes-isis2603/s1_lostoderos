@@ -13,7 +13,6 @@
         'facturasModule',
         'pagosModule',
         'cotizacionModule',
-        'registerModule',
         'hojadevidaModule',
         'pagosModule'
 

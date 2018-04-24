@@ -1,36 +1,15 @@
 (function (ng) {
-    var mod = ng.module("registerModule");
-    mod.controller('registerCtrl', ['$scope', '$http', '$state', '$rootScope',
-        function ($scope, $http, $state, $rootScope) {
+    var mod = ng.module("clientesModule");
+    mod.constant("clientesContext", "api/clientes");
+    mod.controller('registerCtrl', ['$scope', '$http', 'clientesContext', '$state', '$rootScope',
+        function ($scope, $http,clientesContext, $state, $rootScope) {
+            $rootScope.edit = false;
 
-            $scope.user = {};
             $scope.data = {};
-            
-            $http.get('data/users.json').then(function (response) {
-                $scope.users = response.data;
-            });
-
-            $scope.autenticar = function () {
-                var flag = false;
-                $http.post('api/login',$scope.data).then(function(response){
-
-                for (var item in $scope.users) {
-                    if ($scope.users[item].user === response.data.username && $scope.users[item].password === response.data.password && $scope.users[item].rol === response.data.rol) {
-                        flag = true;
-                        $scope.user = $scope.users[item];
-                        $state.go('booksList', {}, {reload: true});
-                        break;
-                    }
-                }
-                if (!flag) {
-                    $rootScope.alerts.push({type: "danger", msg: "Incorrect username or password."});
-                } else {
-                    sessionStorage.token = $scope.user.token;
-                    sessionStorage.setItem("username", $scope.user.user);
-                    sessionStorage.setItem("name", $scope.user.name);
-                    sessionStorage.setItem("rol", $scope.user.rol);
-                    $rootScope.currentUser = $scope.user.name; 
-                }
+          
+            $scope.createServicio = function () {
+                $http.post(clientesContext, $scope.data).then(function (response) {
+                    $state.go('clientesList', {clienteId: response.data.id}, {reload: true});
                 });
             };
         }
