@@ -23,7 +23,7 @@ and open the template in the editor.
         <tbody>
             <tr style="color:#000000" class ="active" ng-repeat="solicitud in solicitudesRecords | orderBy : 'id'">
                 <td><a ui-sref="solicitudDetail({solicitudId: solicitud.id})">{{solicitud.id}}</a></td>
-                <td>{{solicitud.tipo_servicio}}</td>
+                <td>{{solicitud.servicio.nombre}}</td>
                 <td>{{solicitud.requerimientos}}</td>
                 
                
