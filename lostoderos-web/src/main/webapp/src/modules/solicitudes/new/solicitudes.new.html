@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div class="container-fluid">
+    <div ng-if="isAuthenticated() && hasPermissions()" class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createsolicitud">Crear solicitud</label>
+                <!--<label ng-if="edit" id="editsolicitud">Edit solicitud</label></div>-->
+            <div class="panel-body">
+                <form name="solicitud">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="solicitudReq" class="col-sm-2">Requerimientos:</label>
+                            <input id="solicitudReq" required ng-model="data.requerimientos" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="solicitudService" class="col-sm-2">Tipo de servicio:</label>
+                            <input id="solicitudService" required ng-model="data.tipo_servicio" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="solicitudNumContratistas" class="col-sm-2">Cantidad de contratsitas:</label>
+                            <input id="solicitudNumContratistas" required ng-model="data.cantidad_contratistas" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="solicitudCodSeguridad" class="col-sm-2">Codigo de seguridad:</label>
+                            <input id="solicitudCodSeguridad" required ng-model="data.cod_seguridad" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="solicitudDescription" class="col-sm-2">Descripcion:</label>
+                            <textarea id="solicitudDescription" required ng-model="data.descripcion" class="col-sm-6"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="solicitudFechaInicio" class="col-sm-2"> Fecha de inicio:</label>
+                            <input type="date" id="solicitudFechaInicio" placeholder="DD/MM/YYYY" required ng-model="data.fecha_inicio" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <move-lists ng-if="edit" selected="selectedItems" available="availableItems"></move-lists>
+
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!solicitud.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>All inputs are required*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <!-- Button -->
+                    <!--<div class="form-group">
+                        <label class="col-md-4 control-label"></label>
+                            <div class="col-md-4"><br>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                            </div>
+                    </div>-->
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input ng-show="solicitud.$valid" ng-click="createSolicitud()" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="solicitudesList">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!--<div class="center-block well text-center" ng-if="isAuthenticated() && !hasPermissions()">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <h1 class="float-left display-3 mr-4">403 Forbidden</h1>
+                    <h4 >You do not have permission for this action.</h4>
+                    <p >Contact the administrator to obtain permission.</p>
+                </div>
+            </div>
+        </div>
+    </div>-->
+</div>
+
+

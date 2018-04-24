@@ -47,6 +47,14 @@
                         controller: 'solicitudDetailCtrl',
                         controllerAs: 'ctrl'
                     }
+                } }).state('solicitudesCreate', {
+                url: '/create',
+                parent: 'solicitudes',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/solicitudes.new.html',
+                        controller: 'solicitudNewCtrl'
+                    }
                 }
             });
             
