@@ -14,6 +14,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('createCalificacion', {
+                url: '/calificaciones',
+                parent:'contratistaDetail',
+                views: {
+                    createCalificacionView: {
+                        templateUrl: basePath + 'calificaciones.create.html',
+                        controller: 'calificacionesCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }]);
 })(window.angular);
