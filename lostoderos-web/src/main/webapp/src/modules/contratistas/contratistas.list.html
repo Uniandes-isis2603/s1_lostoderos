@@ -1,24 +1,35 @@
+<style>
+    thead{
+        background: orange;
+    }
+    br{
+        margin-bottom: 15px;
+    }
+</style>
 <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
 <div align="center" class="container-fluid ">
     <div align="center">
         <h1 style="color:#FFFFFF" class = "text text-center">Buscar contratista</h1>
+        <form>
+            <input type="text" class="form-control" ng-model="nombre" placeholder="Buscar">
+            <br>
+            <table class ="table table-bordered">
+                <thead>
+                    <tr class ="bg-ACTIVE">
+                        <th>ID</th>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="contratista in list| filter:nombre |orderBy:'id' ">
+                        <td><a ui-sref="contratistaDetail({contratistaId: contratista.id})">{{contratista.id}}</a></td>
+                        <td>{{contratista.nombre}}</td>
+                    </tr>
+                </tbody>
 
-        <input class="form-control" id="contratistaBuscarId" type="text" placeholder="Nombre del contratista...">
-        <table class ="table table-striped">
-            <thead>
-                <tr class ="bg-ACTIVE">
-                    <th>ID</th>
-                    <th>Nombre</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="contratista in contratistasRecords| orderBy : 'id'">
-                    <td><a ui-sref="contratistaDetail({contratistaId: contratista.id})">{{contratista.id}}</a></td>
-                    <td>{{contratista.nombre}}</td>
-                </tr>
-            </tbody>
+            </table>
+        </form>
 
-        </table>
     </div>
     <button>
         <a ui-sref="createContratista">Crear contratista</a>
