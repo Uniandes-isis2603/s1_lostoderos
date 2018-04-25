@@ -15,7 +15,8 @@
         'cotizacionModule',
         'hojadevidaModule',
         'pagosModule',
-        'solicitudModule'
+        'solicitudModule',
+        'iniciosesionModule'
 
     ]);
     // Resuelve problemas de las promesas

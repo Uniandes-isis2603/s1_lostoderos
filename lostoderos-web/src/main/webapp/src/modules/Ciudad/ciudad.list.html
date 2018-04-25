@@ -1,31 +1,33 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<head>
-        <style>        
-            body {
-            background-image: url("data/images/Background-TD.jpg");}
-            
-            p.sansserif {
-            font-family: Arial, Helvetica, sans-serif;
-            size: 34px;
-            color:white;
-            }
-            
-            .box {       
-            background-color:#000000;
-            align-content: center;
-            align-items: center;
-            font-weight:bold;
-            margin:120px auto;
-            height:250px;        
-            width: 400px;
-            }
-        </style>
-</head>        
-        <div class="box" style="opacity: 0.5;">
-            <p>Escoje una ciudad</p>
-        </div>
+<div class="container">
+   <form class="well form-horizontal" action=" " method="post"  id="contact_form" style="background-color:#FFFFFF;">
+      <fieldset>
+         <!-- Form Name -->
+         <legend>
+            <center>
+               <h2><b style="color:black">Bienvenido</b></h2>
+            </center>
+         </legend>
+         <br>
+         <!-- Text input-->
+         <div class="form-group">
+            <label class="col-md-4 control-label" style="color:black">Username</label>  
+            <div class="col-md-4 inputGroupContainer">
+               <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input  name="username" placeholder="Username" class="form-control"  type="text">
+               </div>
+            </div>
+         </div>
+         
+         <!-- Select Basic -->
+         <!-- Button -->
+         <div class="form-group">
+            <label class="col-md-4 control-label"></label>
+            <div class="col-md-4"><br>
+               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning" >Empezar <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+            </div>
+         </div>
+      </fieldset>
+   </form>
+</div>
+<!-- /.container -->
