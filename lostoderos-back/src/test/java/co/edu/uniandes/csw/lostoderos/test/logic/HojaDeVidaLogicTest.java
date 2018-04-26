@@ -20,7 +20,6 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +34,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class HojaDeVidaLogicTest {
     
-    private final PodamFactory factory = new PodamFactoryImpl();
+    private PodamFactory factory = new PodamFactoryImpl();
     
     @Inject
     private HojaDeVidaLogic hojaVidaLogic;
@@ -81,22 +80,6 @@ public class HojaDeVidaLogicTest {
         }
     }
     
-    private void configData() {
-        try {
-            utx.begin();
-            clearData();
-            insertData();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-        }
-    }
-    
     /**
      * Limpia las tablas que están implicadas en la prueba.
      *
@@ -119,6 +102,7 @@ public class HojaDeVidaLogicTest {
         }
         for (int i = 0; i < 3; i++) {
             HojaDeVidaEntity entity = factory.manufacturePojo(HojaDeVidaEntity.class);
+            
             em.persist(entity);
             data.add(entity);
         }
@@ -126,8 +110,11 @@ public class HojaDeVidaLogicTest {
         
     }
     
-    /** Se omite este Test porque si se coloca hace que las demás preubas no funcionen.
+    /* Se omite este Test porque si se coloca hace que las demás preubas no funcionan. Según
+    parece es porque en el mismo método se crea la elación entre contratista y hoja de vida.
      * Para probar que el método create de HojaDeVidaTest está bien, debe descomentar el test.
+    */
+    /*
     @Test
     public void create()throws BusinessLogicException{
         HojaDeVidaEntity newEntity= factory.manufacturePojo(HojaDeVidaEntity.class);
@@ -140,6 +127,9 @@ public class HojaDeVidaLogicTest {
     }
     */
     
+    /**
+     * 
+     */
     @Test
     public void getAll(){
         
