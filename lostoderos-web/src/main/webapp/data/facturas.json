@@ -15,6 +15,40 @@
        "numTarjeta": "123456629723"
   
    }
+    },
+        {
+        "id": 14655,
+       "producto": "Electrico",
+       "formaPago": "efectivo",
+       "subTotal": 10000,
+       "total": 10077,
+        "pago":    {
+       "id": 12390814,
+       "codigoTarjeta": 123,
+       "comprobantePagoMedio": true,
+       "comprobantePagoTotal": false,
+       "descripcion": "un pago correspondiente a tal servicio",
+       "fechaTarjeta": "10/09/2018",
+       "numTarjeta": "123456629723"
+  
+   }
+    },    {
+        "id": 14656,
+       "producto": "Limpieza",
+       "formaPago": "tarjetaCredito",
+       "subTotal": 11111,
+       "total": 11112,
+        "pago":    {
+       "id": 12390815,
+       "codigoTarjeta": 123,
+       "comprobantePagoMedio": true,
+       "comprobantePagoTotal": false,
+       "descripcion": "un pago correspondiente a tal servicio",
+       "fechaTarjeta": "10/09/2018",
+       "numTarjeta": "123456629723"
+  
+   }
     }
+    
 ]
  

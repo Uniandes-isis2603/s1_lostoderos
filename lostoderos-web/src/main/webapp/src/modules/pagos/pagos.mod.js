@@ -22,11 +22,15 @@
                 url: '/create',
                 parent: 'pagos',
                 views: {
-                    'detailView': {
+                    'createView': {
                         templateUrl: basePath + '/new/pagos.new.html',
                         controller: 'pagosNewCtrl'
                     }
-                }});
+                }
+            
+            });
+            
+             
         }
     ]);
 })(window.angular);

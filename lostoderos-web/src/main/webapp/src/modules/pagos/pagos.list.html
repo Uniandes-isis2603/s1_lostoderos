@@ -1,13 +1,18 @@
 <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+
+<head>
+<style>
+
+</style>
+</head>
 <div class="container-fluid ">
     <div class="h-100 row align-items-center">
-        <h1 style="color:#FFFFFF" class = "text text-center">Buscar pago</h1>
         
-        <table class = "table table-bordered">
-        <thead>
+        <table class = "table table-bordered" >
+        <thead style="background:orange">
         <tr class ="bg-primary">
     
- 
+            <th>ID</th>
             <th>CodigoTarjeta</th>
             <th>ComprobantePagoMedio</th>
             <th>ComprobantePagoTotal</th>
@@ -18,6 +23,8 @@
         </thead>
         <tbody>
             <tr style="color:#000000" class ="active" ng-repeat="pago in pagosRecords | orderBy : 'numTarjeta'">
+                
+                <td>{{pago.id}}</td>
                 <td>{{pago.codigoTarjeta}}</td>
                 <td>{{pago.comprobantePagoMedio}}</td>
                 <td>{{pago.comprobantePagoTotal}}</td>
@@ -32,6 +39,8 @@
     </table>
     </div>
     <div class="btn-group mr-2" role="group" aria-label="First group">
-    <a class="btn btn-info" ui-sref="pagosCreate"><span class="glyphicon glyphicon-plus-sign"></span>Realizar pago</a>
+    <a class="btn btn-warning" ui-sref="pagosCreate">
+        <span class="glyphicon glyphicon-plus-sign"></span>Realizar pago</a>
 </div>
+   
 </div>

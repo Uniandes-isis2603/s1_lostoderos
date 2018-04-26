@@ -8,6 +8,27 @@
        "fechaTarjeta": "10/09/2018",
        "numTarjeta": "123456629723"
   
+   },
+   {
+       "id": 12390814,
+       "codigoTarjeta": 123,
+       "comprobantePagoMedio": true,
+       "comprobantePagoTotal": false,
+       "descripcion": "un pago correspondiente a tal servicio",
+       "fechaTarjeta": "10/09/2018",
+       "numTarjeta": "123456629723"
+  
+   },
+     
+         {
+       "id": 12390815,
+       "codigoTarjeta": 123,
+       "comprobantePagoMedio": true,
+       "comprobantePagoTotal": false,
+       "descripcion": "un pago correspondiente a tal servicio",
+       "fechaTarjeta": "10/09/2018",
+       "numTarjeta": "123456629723"
+  
    }
 ]
  
