@@ -53,6 +53,23 @@
                         controllerAs:'ctrl'
                     }
                 }
+            }).state('contratistaInfo',{
+                url:'info',
+                parent:'contratistaDetail',
+                views:{
+                    'listView': {
+                        templateUrl: basePath + 'contratistas.list.html'
+                        
+                    },
+                    'detailView':{
+                        templateUrl: basePath + 'contratistas.detail.html'
+                    },
+                    'infoContratistaView':{
+                        templateUrl:basePath+'contratistas.detail.info.html',
+                        controller: 'contratistasCtrl',
+                        controllerAs:'ctrl'
+                    }
+                }
             });
             
         }

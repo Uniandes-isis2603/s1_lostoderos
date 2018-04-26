@@ -1,22 +1,38 @@
-<div>
-    <div class = "row">
-        <div class ="col-lg-12">
-            <h1>Nombre del contratista: {{currentContratista.nombre}}</h1>
-            <p>Identificacion: {{currentContratista.id}}</p>
-            <p>Usuario: {{currentContratista.usuario}}</p>
-            <p>Correo: {{currentContratista.correo}}</p>
-            <p>Reputacion: {{currentContratista.reputacion}}</p>
-            <h2><a ui-sref="hojadevida({contratistaId:currentContratista.id})">Hoja de vida:</a></h2>
-            <div ui-view="hojaView"></div>
-            <div ui-view="createHojaView"></div>
-            <h2><a ui-sref="contrato({contratoId:currentContratista.contrato.ID})">Contrato:</a></h2>
-            <div ui-view="contratoView"></div>
-            <h2> <a ui-sref="calificacionesList({contratistaId: currentContratista.id})">Calificaciones</a></h2>
-            <div ui-view="listaView"></div>
-            
-            <div ui-view="createContratoView"></div>
-            <div ui-view="createCalificacionView"></div>
+<style>
+    .br{
+        margin-bottom: 15px;
+    }
+    p{
+        font-size: 20;
+    }
+    .panel
+    {
+        background: white;
+    }
+</style>
+<br>
+
+<div class = "row">
+    
+    <div class="container-fluid col-sm-4">
+        <div class="panel panel-default">
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action" ui-sref="contratistaInfo"><p>Información Personal</p></a>
+            <a class="list-group-item list-group-item-action" ui-sref="hojadevida({contratistaId:currentContratista.id})"><p>Hoja de Vida</p></a>
+            <a class="list-group-item list-group-item-action" ui-sref="contrato({contratoId:currentContratista.contrato.ID})"><p>Contrato</p></a>
+            <a class="list-group-item list-group-item-action" ui-sref="calificacionesList({contratistaId: currentContratista.id})"><p>Calificaciones</p></a>
         </div>
-        
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="panel panel-default">
+            <div style="margin-left:15px;" ui-view="infoContratistaView"></div>
+            <div style="margin-left:15px;" ui-view="hojaView"></div>
+            <div style="margin-left:15px;" ui-view="createHojaView"></div>
+            <div style="margin-left:15px;" ui-view="contratoView"></div>
+            <div style="margin-left:15px;" ui-view="createContratoView"></div>
+            <div style="margin-left:15px;" ui-view="listaView"></div>
+            <div style="margin-left:15px;" ui-view="createCalificacionView"></div>
+        </div>
     </div>
 </div>

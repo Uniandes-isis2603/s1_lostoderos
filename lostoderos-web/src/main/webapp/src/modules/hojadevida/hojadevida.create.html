@@ -1,14 +1,20 @@
 <style>
-    panel
+    .br{
+        margin-bottom: 15px;
+    }
+    .panel
     {
         background: white;
     }
     .panel-body {
         background:white;
     }
+    .div{
+        margin-left: 1px;
+    }
 </style>
 
-<div class ="container-fluid">
+<div style="margin-left:15px;" class ="container-fluid">
     <div class ="panel-body">
         <form ng-submit="ctrl.createHojadevida(hojadevida)" name = "hojadevida">
             <div class = "form-group row">
@@ -18,6 +24,7 @@
                     <input id = "hojadevidaName" required ng-model="hojadevida.nombre" class="col-sm-4">
                     
                 </div>
+                <br style="margin-bottom:15px;">
                 <div class = "form group col-sm-12">
                     <label for="hojadevidaEdad" class ="col-sm-2">Edad: </label>
                     <input id = "hojadevidaEdad" required ng-model="hojadevida.edad" class="col-sm-4">
@@ -25,7 +32,7 @@
                
             </div>
             <div class="form-group row">
-                <div class="form-group col-sm-4" ng-if="!hojadevida.$valid">
+                <div class="form-group col-sm-12" ng-if="!hojadevida.$valid">
                     <div class="alert alert-warning" >
                         <strong>¡Cuidado!</strong><p>Debe llenar todos los campos requeridos*</p>
                     </div> 

@@ -2,14 +2,13 @@
     thead{
         background: orange;
     }
-    br{
+    .br{
         margin-bottom: 15px;
     }
+    
 </style>
-<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
-<div align="center" class="container-fluid ">
-    <div align="center">
-        <h1 style="color:#FFFFFF" class = "text text-center">Buscar contratista</h1>
+<div  class="container-fluid ">
+    <br>
         <form>
             <input type="text" class="form-control" ng-model="nombre" placeholder="Buscar">
             <br>
@@ -26,14 +25,10 @@
                         <td>{{contratista.nombre}}</td>
                     </tr>
                 </tbody>
-
             </table>
         </form>
-
-    </div>
+   
     <button>
         <a ui-sref="createContratista">Crear contratista</a>
     </button>
-
-
 </div>
