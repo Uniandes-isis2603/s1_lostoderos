@@ -75,7 +75,7 @@ public class HojaDeVidaResource {
     
     public HojaDeVidaDetailDTO createHojaDeVida(HojaDeVidaDetailDTO hoja) throws BusinessLogicException{
         
-        return new HojaDeVidaDetailDTO(hojaVidaLogic.createHojaDeVida(hoja.toEntity()));
+        return new HojaDeVidaDetailDTO(hojaVidaLogic.create(hoja.toEntity()));
     } 
     
     /**
@@ -98,7 +98,7 @@ public class HojaDeVidaResource {
     @GET
     @Path("{id: \\d+}")
     public HojaDeVidaDetailDTO getHojaDeVida(@PathParam("id") Long id)throws BusinessLogicException{
-        HojaDeVidaEntity entity = hojaVidaLogic.getHojaDeVida(id);
+        HojaDeVidaEntity entity = hojaVidaLogic.findById(id);
         if(entity ==null) throw new BusinessLogicException("No existe una hoja de vida con id:"+id );
         return new HojaDeVidaDetailDTO(entity);
     }
@@ -119,7 +119,7 @@ public class HojaDeVidaResource {
     public List<HojaDeVidaDetailDTO> getHojasDeVida(){
        
         LOGGER.info("va a invocar la lógica");
-        List<HojaDeVidaEntity> list = hojaVidaLogic.getHojasDeVida();
+        List<HojaDeVidaEntity> list = hojaVidaLogic.getAll();
         LOGGER.info("va a convertir a dtos");
          List<HojaDeVidaDetailDTO> listDTOs = new ArrayList<>();
         for(HojaDeVidaEntity entity:list){
@@ -150,7 +150,7 @@ public class HojaDeVidaResource {
     @PUT
     @Path("{id: \\d+}")
     public HojaDeVidaDetailDTO updateHojaDeVida(@PathParam("id") Long id,HojaDeVidaDetailDTO hoja)throws BusinessLogicException{
-        return new HojaDeVidaDetailDTO(hojaVidaLogic.updateHojaDeVida(id,hoja.toEntity()));
+        return new HojaDeVidaDetailDTO(hojaVidaLogic.update(id,hoja.toEntity()));
     }
    
     /**
@@ -171,6 +171,6 @@ public class HojaDeVidaResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deleteHojaDeVida(@PathParam("id") Long id)throws BusinessLogicException{
-        hojaVidaLogic.deleteHojaDeVida(id);
+        hojaVidaLogic.delete(id);
     }
 }

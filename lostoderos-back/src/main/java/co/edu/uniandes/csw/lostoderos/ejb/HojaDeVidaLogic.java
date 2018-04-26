@@ -38,7 +38,7 @@ public class HojaDeVidaLogic {
      *
      * @return Lista de entidades de tipo hoja de vida.
      */
-    public List<HojaDeVidaEntity> getHojasDeVida() {
+    public List<HojaDeVidaEntity> getAll() {
         LOGGER.info("Inicia proceso de consultar todas las hojas  de vida");
         List<HojaDeVidaEntity> hojasDeVida = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todos las hojas de vida");
@@ -52,7 +52,7 @@ public class HojaDeVidaLogic {
      * @return
      * @throws BusinessLogicException
      */
-    public HojaDeVidaEntity createHojaDeVida(HojaDeVidaEntity entity) throws BusinessLogicException {
+    public HojaDeVidaEntity create(HojaDeVidaEntity entity) throws BusinessLogicException {
 
         LOGGER.info("Inicia proceso de creación de hoja de vida");
         if (entity.getContratista() == null) {
@@ -80,7 +80,7 @@ public class HojaDeVidaLogic {
      * @return Instancia de HojaDeVida del Contratista.
      * @throws BusinessLogicException Si la hoja de vida no existe.
      */
-    public HojaDeVidaEntity getHojaDeVida(Long id) throws BusinessLogicException {
+    public HojaDeVidaEntity findById(Long id) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de búsqueda de hoja de vida");
         HojaDeVidaEntity entity = persistence.find(id);
         System.out.println("PRUEBA SYSOUT: " + entity);
@@ -99,7 +99,7 @@ public class HojaDeVidaLogic {
      * vida
      * @return la hoja de vida con los cambios actualizados en la base de datos.
      */
-    public HojaDeVidaEntity updateHojaDeVida(Long id, HojaDeVidaEntity entity) throws BusinessLogicException {
+    public HojaDeVidaEntity update(Long id, HojaDeVidaEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar una hoja de vida");
         //No existe ninguna regla de negocio para actualizar la hoja de vida.
         HojaDeVidaEntity newEntity = persistence.find(id);
@@ -133,7 +133,7 @@ public class HojaDeVidaLogic {
      * vida para ese contratista
      *
      */
-    public void deleteHojaDeVida(Long id) throws BusinessLogicException {
+    public void delete(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar una hoja de vida con id={0}", id);
         HojaDeVidaEntity entity = persistence.find(id);
         if (entity == null) {
