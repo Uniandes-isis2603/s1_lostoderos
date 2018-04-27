@@ -1,21 +1,29 @@
 <style>
     .jumbotron{
         margin-bottom:0;
+        background: linear-gradient(45deg, rgba(21,64,117,1) 0%, rgba(252,208,141,1) 100%);
+        border:none;
+    }
+    h1{
+        font-weight: bold;
+        color: rgb(0,0,0);
+        font-size: 32px;
     }
 </style>
 <div>
     <div class="jumbotron">
         <div class="container text-center">
-            <h1>Contratistas</h1>
+            <h1 style="font-weight: bold;color: white;font-size: 40px;">Contratistas</h1>
         </div>
     </div>
     <div class="container-fluid">
+        
         <div  class="row">
             <div>
-                <div  class="col-sm-6" ui-view="listView"></div>
-            <div class="col-sm-6" ui-view="detailView"></div>
+                <div  class="col-sm-3" ui-view="listView"></div>
+                <div class="col-sm-9" ui-view="detailView"></div>
             </div>
-            
+
         </div>
         <div align ="center" class ="row">
             <div  class =" col-sm-12" ui-view="createContratistaView"></div>

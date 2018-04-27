@@ -95,6 +95,7 @@ public class HojaDeVidaLogicTest {
      *
      */
     private void insertData() {
+        
         for (int i = 0; i < 3; i++) {
             ContratistaEntity entity = factory.manufacturePojo(ContratistaEntity.class);
             em.persist(entity);
@@ -102,73 +103,52 @@ public class HojaDeVidaLogicTest {
         }
         for (int i = 0; i < 3; i++) {
             HojaDeVidaEntity entity = factory.manufacturePojo(HojaDeVidaEntity.class);
-            
+            entity.setContratista(contratistas.get(i));
             em.persist(entity);
             data.add(entity);
-        }
-        
-        
+        }        
     }
     
     /* Se omite este Test porque si se coloca hace que las demás preubas no funcionan. Según
-    parece es porque en el mismo método se crea la elación entre contratista y hoja de vida.
+    parece, es porque en el mismo método se crea la relación entre contratista y hoja de vida.
      * Para probar que el método create de HojaDeVidaTest está bien, debe descomentar el test.
     */
     /*
+    
+    */
     @Test
-    public void create()throws BusinessLogicException{
+    public void createTest()throws BusinessLogicException{
         HojaDeVidaEntity newEntity= factory.manufacturePojo(HojaDeVidaEntity.class);
-        ContratistaEntity contratista = contratistas.get(0);
-        newEntity.setContratista(contratista);
-        HojaDeVidaEntity result = hojaVidaLogic.create(newEntity);
+        HojaDeVidaEntity result = hojaVidaLogic.create(contratistas.get(0).getId(),newEntity);
         Assert.assertNotNull(result);
         HojaDeVidaEntity entity = em.find(HojaDeVidaEntity.class,result.getId());
         Assert.assertEquals(newEntity.getId(),entity.getId());
     }
-    */
-    
-    /**
-     * 
-     */
-    @Test
-    public void getAll(){
-        
-        List<HojaDeVidaEntity> list = hojaVidaLogic.getAll();
-        Assert.assertEquals(data.size(), list.size());
-        for(HojaDeVidaEntity entity:list){
-            boolean found = false;
-            for(HojaDeVidaEntity storedEntity:data){
-                if(entity.getId().equals(storedEntity.getId())) found =true;
-            }
-            Assert.assertTrue(found);
-        }
-    }
     
     @Test
-    public void findById() throws BusinessLogicException{
+    public void findByIdContratistaTest() throws BusinessLogicException{
         
         HojaDeVidaEntity entity = data.get(0);
-        HojaDeVidaEntity resultEntity = hojaVidaLogic.findById(entity.getId());
+        HojaDeVidaEntity resultEntity = hojaVidaLogic.findByIdContratista(contratistas.get(0).getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getName(), resultEntity.getName());
+        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
     }
     
     @Test
-    public void delete()throws BusinessLogicException{
+    public void deleteTest()throws BusinessLogicException{
         HojaDeVidaEntity entity = data.get(0);
-        hojaVidaLogic.delete(entity.getId());
+        hojaVidaLogic.delete(contratistas.get(0).getId());
         HojaDeVidaEntity deleted = em.find(HojaDeVidaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
     
     @Test
-    public void updateContratistaTest()throws BusinessLogicException {
+    public void updateTest()throws BusinessLogicException {
         HojaDeVidaEntity entity = data.get(0);
         HojaDeVidaEntity pojoEntity = factory.manufacturePojo(HojaDeVidaEntity.class);
-        pojoEntity.setContratista(contratistas.get(0));
         pojoEntity.setId(entity.getId());
-        hojaVidaLogic.update(pojoEntity.getId(), pojoEntity);
+        hojaVidaLogic.update(entity.getContratista().getId(), pojoEntity);
         HojaDeVidaEntity resp = em.find(HojaDeVidaEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());

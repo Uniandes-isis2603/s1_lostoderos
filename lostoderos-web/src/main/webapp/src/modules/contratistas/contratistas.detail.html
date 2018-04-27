@@ -3,7 +3,7 @@
         margin-bottom: 15px;
     }
     p{
-        font-size: 20;
+        font-size: 20px;
     }
     .panel
     {
@@ -12,20 +12,39 @@
 </style>
 <br>
 
-<div class = "row">
+    <div class="container">
+        <div class="row">
+            <nav  class="col-sm-3">
+                <ul  class="nav nav-pills nav-stacked">
+                    <li style="background: linear-gradient(45deg, rgba(21,64,117,1) 0%, rgba(252,208,141,1) 100%);" ><a style="color:white" ui-sref="contratistaInfo">Información personal</a></li>
+                    <li style="background: linear-gradient(45deg, rgba(21,64,117,1) 0%, rgba(252,208,141,1) 100%);"><a style="color:white" ui-sref="hojadevida({contratistaId:currentContratista.id})">Hoja de vida</a></li>
+                    <li style="background: linear-gradient(45deg, rgba(21,64,117,1) 0%, rgba(252,208,141,1) 100%);"><a style="color:white" ui-sref="contrato({contratoId:currentContratista.contrato.ID})">Contrato</a></li>
+                    <li style="background: linear-gradient(45deg, rgba(21,64,117,1) 0%, rgba(252,208,141,1) 100%);"><a style="color:white" ui-sref="calificacionesList({contratistaId: currentContratista.id})">Calificaciones</a></li>
+                </ul>
+            </nav>
+            <div class="col-sm-9">
+                <div ui-view="infoContratistaView"></div>
+                <div ui-view="hojaView"></div>
+                <div ui-view="createHojaView"></div>
+                <div ui-view="contratoView"></div>
+            <div  ui-view="createContratoView"></div>
+            <div ui-view="listaView"></div>
+            <div ui-view="createCalificacionView"></div>
+            </div>
+        </div>
+    </div>
+
+<!--
+<div class = "panel panel-default">
     
-    <div class="container-fluid col-sm-4">
-        <div class="panel panel-default">
-        <div class="list-group">
+    <div class="list-group">
             <a class="list-group-item list-group-item-action" ui-sref="contratistaInfo"><p>Información Personal</p></a>
             <a class="list-group-item list-group-item-action" ui-sref="hojadevida({contratistaId:currentContratista.id})"><p>Hoja de Vida</p></a>
             <a class="list-group-item list-group-item-action" ui-sref="contrato({contratoId:currentContratista.contrato.ID})"><p>Contrato</p></a>
             <a class="list-group-item list-group-item-action" ui-sref="calificacionesList({contratistaId: currentContratista.id})"><p>Calificaciones</p></a>
         </div>
-        </div>
-    </div>
-    <div class="col-sm-8">
-        <div class="panel panel-default">
+    
+    <div >
             <div style="margin-left:15px;" ui-view="infoContratistaView"></div>
             <div style="margin-left:15px;" ui-view="hojaView"></div>
             <div style="margin-left:15px;" ui-view="createHojaView"></div>
@@ -34,5 +53,13 @@
             <div style="margin-left:15px;" ui-view="listaView"></div>
             <div style="margin-left:15px;" ui-view="createCalificacionView"></div>
         </div>
+    <div class="container-fluid col-sm-2">
+        <div class="panel panel-default">
+        
+        </div>
+    </div>
+    <div class="col-sm-10">
+        
     </div>
 </div>
+-->

@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -62,7 +63,7 @@ public class ContratistaEntity extends UsuarioEntity implements Serializable{
     private List<ServicioEntity> servicios = new ArrayList<>();
     
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy="contratista", fetch = FetchType.LAZY)
     private HojaDeVidaEntity hojaVida;
 
     /**
