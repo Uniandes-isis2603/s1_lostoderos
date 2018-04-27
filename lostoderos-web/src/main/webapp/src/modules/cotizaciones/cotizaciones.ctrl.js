@@ -10,7 +10,7 @@
     mod.constant("cotizacionContext", "api/cotizaciones");
     mod.controller('cotizacionCtrl', ['$scope', '$http', 'cotizacionContext',
         function ($scope, $http, cotizacionContext) {
-            $http.get('data/cotizaciones.json').then(function (response) {
+            $http.get(cotizacionContext).then(function (response) {
                 $scope.cotizacionesRecords = response.data;
             });
         }

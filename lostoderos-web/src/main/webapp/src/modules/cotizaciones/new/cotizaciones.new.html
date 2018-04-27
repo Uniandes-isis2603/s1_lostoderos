@@ -8,15 +8,10 @@ and open the template in the editor.
     <div class="panel-group" align="center">
         <div class="panel panel-primary">
             <div class="panel-heading"><label ng-if="!edit" id="createCotizacion">Crear cotizacion</label>
-                <!--<label ng-if="edit" id="editcotizacion">Edit cotizacion</label></div>-->
+                <label ng-if="edit" id="editcotizacion">Edit cotizacion</label></div>
             <div class="panel-body">
                 <form name="cotizacion">
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="cotizacionId" class="col-sm-2">ID:</label>
-                            <input id="cotizacionId" required ng-model="data.id" class="col-sm-6"/>
-                        </div>
-                    </div>
+                    <
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="cotizacionService" class="col-sm-2">Servicio:</label>
@@ -27,6 +22,12 @@ and open the template in the editor.
                         <div class="form-group col-md-6">
                             <label for="cotizacionDescription" class="col-sm-2">Descripcion:</label>
                             <textarea id="cotizacionDescription" required ng-model="data.descripcion" class="col-sm-6"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="cotizacionValue" class="col-sm-2">Valor:</label>
+                            <textarea id="cotizacionValue" required ng-model="data.valor" class="col-sm-6"></textarea>
                         </div>
                     </div>
 

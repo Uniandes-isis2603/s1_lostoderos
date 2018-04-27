@@ -7,7 +7,6 @@ and open the template in the editor.
 <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
 <div class="container-fluid ">
             <div class="h-100 row align-items-center">
-        <h1 style="color:#FFFF00" class = "text text-center">Cotizaciones</h1>
         
         <input class="form-control" id="buscarId" type="text" placeholder="Cotizacion">
         <table class = "table table-bordered">
@@ -28,6 +27,14 @@ and open the template in the editor.
         </tbody>
         
     </table>
+        
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+        <a class="btn btn-info" ui-sref="cotizacionesCreate">
+            <span class="glyphicon glyphicon-plus-sign"></span>Agregar</a>
+    </div>
     </div>
     
-</div>
+    
+    </div>
+    
+    
