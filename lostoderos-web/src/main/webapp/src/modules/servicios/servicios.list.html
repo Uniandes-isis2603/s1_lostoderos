@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <div class="h-100 row align-items-center">
         <div class="col-md-4" ng-repeat="servicio in serviciosRecords">
-            <div class="thumbnail">
-                <img class="img-responsive" ng-src='{{servicio.imagen}}'alt="{{servicio.nombre}}"/>  
+            <div class="thumbnail animated filter spray">
+                <img class="img-responsive" ng-src='{{servicio.imagen}}' alt="{{servicio.nombre}}"/>  
                 <h3 class="display" align="center"><a ui-sref="servicioDetail({servicioId: servicio.id})">{{servicio.nombre}}</a></h3>
             </div>
         </div>
@@ -12,3 +12,33 @@
             <span class="glyphicon glyphicon-plus-sign"></span> Agregar Servicio</a>
     </div>
 </div>
+<!--
+<div id="portfolio" class="container-fluid text-center bg-grey">
+  <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+          <h1 class="jumbotron">Los Angeles</h1>
+        <div class="carousel-caption">
+        <p>LA is always so much fun!</p>
+      </div>
+      </div>
+      <div class="item" ng-repeat="servicio in serviciosRecords">
+        <div class="thumbnail">
+                <img class="img-responsive" ng-src='{{servicio.imagen}}'alt="{{servicio.nombre}}"/>  
+                <h3 class="display" align="center"><a ui-sref="servicioDetail({servicioId: servicio.id})">{{servicio.nombre}}</a></h3>
+            </div>
+      </div>
+    </div>
+
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+-->
