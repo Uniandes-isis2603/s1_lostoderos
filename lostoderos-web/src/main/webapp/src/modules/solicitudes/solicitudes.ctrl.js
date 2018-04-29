@@ -9,7 +9,7 @@
     mod.constant("solicitudContext", "api/solicitudes");
     mod.controller('solicitudCtrl', ['$scope', '$http', 'solicitudContext',
         function ($scope, $http, solicitudContext) {
-            $http.get('data/solicitudes.json').then(function (response) {
+            $http.get(solicitudContext).then(function (response) {
                 $scope.solicitudesRecords = response.data;
             });
         }
