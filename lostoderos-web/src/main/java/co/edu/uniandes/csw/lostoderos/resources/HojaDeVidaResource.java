@@ -23,14 +23,13 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.resources;
 
+import co.edu.uniandes.csw.lostoderos.dtos.HojaDeVidaDTO;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
 
 import co.edu.uniandes.csw.lostoderos.dtos.HojaDeVidaDetailDTO;
 import co.edu.uniandes.csw.lostoderos.ejb.HojaDeVidaLogic;
 import co.edu.uniandes.csw.lostoderos.entities.HojaDeVidaEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
@@ -49,8 +48,6 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class HojaDeVidaResource {
-
-    private static final Logger LOGGER = Logger.getLogger(HojaDeVidaResource.class.getName());
 
     @Inject
     HojaDeVidaLogic hojaVidaLogic;
@@ -80,13 +77,14 @@ public class HojaDeVidaResource {
      * Vida.
      */
     @POST
-    public HojaDeVidaDetailDTO create(@PathParam("id_contratista")Long id_contratista,HojaDeVidaDetailDTO hoja) throws BusinessLogicException {
+    public HojaDeVidaDetailDTO create(@PathParam("id_contratista") Long id_contratista, HojaDeVidaDTO hoja) throws BusinessLogicException {
 
-        return new HojaDeVidaDetailDTO(hojaVidaLogic.create(id_contratista,hoja.toEntity()));
+        return new HojaDeVidaDetailDTO(hojaVidaLogic.create(id_contratista, hoja.toEntity()));
     }
 
     /**
-     * <h1> GET /api/contratistas/{id_contratista}/hojadevida : Obtener hoja de vida por id. </h1>
+     * <h1> GET /api/contratistas/{id_contratista}/hojadevida : Obtener hoja de
+     * vida por id. </h1>
      *
      * <pre> Busca la hoja de vida con el id asociado recibido en la URL y la devuelve.
      *
@@ -108,14 +106,14 @@ public class HojaDeVidaResource {
     public HojaDeVidaDetailDTO getHojaDeVida(@PathParam("id_contratista") Long id_contratista) throws BusinessLogicException {
         HojaDeVidaEntity entity = hojaVidaLogic.findByIdContratista(id_contratista);
         if (entity == null) {
-            throw new BusinessLogicException("El contratista con id: "+id_contratista+" no tiene una hoja de vida.");
+            throw new BusinessLogicException("El contratista con id: " + id_contratista + " no tiene una hoja de vida.");
         }
         return new HojaDeVidaDetailDTO(entity);
     }
 
     /**
-     * <h1>PUT /api/contratistas/{id_contratista}/hojadevida : Actualizar la hoja de vida con el id
-     * dado. </h1>
+     * <h1>PUT /api/contratistas/{id_contratista}/hojadevida : Actualizar la
+     * hoja de vida con el id dado. </h1>
      * <pre>Cuerpo de petición: JSON {@link HojaDeVidaDetailDTO}.
      *
      * Actualiza la hoja de vida con el id recibido en la URL con la información que se recibe en el cuerpo de la petición.
@@ -143,7 +141,8 @@ public class HojaDeVidaResource {
     }
 
     /**
-     * <h1>DELETE /api/contratistas/{id_contratista}/hojadevida : Borrar hoja de vida por el id del contratista. </h1>
+     * <h1>DELETE /api/contratistas/{id_contratista}/hojadevida : Borrar hoja de
+     * vida por el id del contratista. </h1>
      *
      * <pre>Borra la hoja de vida con el id asociado recibido en la URL.
      *

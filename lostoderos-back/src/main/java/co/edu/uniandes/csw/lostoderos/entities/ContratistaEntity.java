@@ -47,7 +47,7 @@ public class ContratistaEntity extends UsuarioEntity implements Serializable{
     private Boolean disponibilidad;
     
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy="contratista", fetch = FetchType.LAZY)
     private ContratoEntity contrato;
     
     @PodamExclude
