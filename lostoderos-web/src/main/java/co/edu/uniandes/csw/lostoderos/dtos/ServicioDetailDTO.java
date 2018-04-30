@@ -29,10 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Clase que extiende de {@link ServicioDTO} para manejar la transformacion entre
- * los objetos JSON y las Entidades de la base de datos. Para conocer el
+ * Clase que extiende de {@link ServicioDTO} para manejar la transformacion
+ * entre los objetos JSON y las Entidades de la base de datos. Para conocer el
  * contenido del servicio vaya a la documentacion de {@link ServicioDTO}
- * 
+ *
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
@@ -40,7 +40,7 @@ import java.util.List;
  *      "nombre": string,
  *      "categorias": string,
  *      "descripcion": string,
- *      "contratistas": 
+ *      "contratistas":
  *      [
  *         {
  *           "id": number,
@@ -56,8 +56,7 @@ import java.util.List;
  *         }
  *      ]
  *   }
- * </pre>
- * Por ejemplo una entidad de Servicio se representa asi:<br>
+ * </pre> Por ejemplo una entidad de Servicio se representa asi:<br>
  * <pre>
  *
  *   {
@@ -65,7 +64,7 @@ import java.util.List;
  *      "nombre": "Plomería",
  *      "categorias": "agua y tuberias",
  *      "descripción": "Aqui va una descripcion detallada del servicio",
- *      "contratistas": 
+ *      "contratistas":
  *      [
  *         {
  *           "id": 91364,
@@ -83,69 +82,61 @@ import java.util.List;
  *   }
  *
  * </pre>
+ *
  * @author s.naranjop1
  */
-public class ServicioDetailDTO extends ServicioDTO
-{
-        private List<ContratistaDTO> contratistas;
-        
-        /**
-	 * Constructor por defecto
-	 */
-	public ServicioDetailDTO( )
-	{
-            super();
-	}
-        
-        /**
-	 * Constructor para transformar un Entity a un DTO
-	 *
-	 * @param entity La entidad de Servicio a partir de la cual se construye el objeto
-	 */
-	public ServicioDetailDTO( ServicioEntity entity )
-	{
-		super( entity );
-                if(entity != null)
-                {
-                    if(entity.getContratistas() != null)
-                    {
-                        contratistas = new ArrayList<>();
-                        for(ContratistaEntity entityContratista: entity.getContratistas())
-                        {
-                            contratistas.add(new ContratistaDTO(entityContratista));
-                        }
-                    }
-                }
-	}
-        
-        public List<ContratistaDTO> getContratistas()
-        {
-                return contratistas;
-        }
+public class ServicioDetailDTO extends ServicioDTO {
 
-        public void setContratistas(List<ContratistaDTO> contratistas) 
-        {
-                this.contratistas = contratistas;
-        }
-        
-        /**
-	 * Transformar un DTO a un Entity
-	 *
-	 * @return La entidad construida a partir del DTO.
-	 */
-	@Override
-	public ServicioEntity toEntity( )
-	{
-		ServicioEntity servicioEntity = super.toEntity( );
-                if(contratistas != null)
-                {
-                    List<ContratistaEntity> contratistasEntity = new ArrayList<>();
-                    for (ContratistaDTO dtoContratista : contratistas)
-                    {
-                        contratistasEntity.add(dtoContratista.toEntity());
-                    }
-                    servicioEntity.setContratistas(contratistasEntity);
+    private List<ContratistaDTO> contratistas;
+
+    /**
+     * Constructor por defecto
+     */
+    public ServicioDetailDTO() {
+        // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
+    }
+
+    /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param entity La entidad de Servicio a partir de la cual se construye el
+     * objeto
+     */
+    public ServicioDetailDTO(ServicioEntity entity) {
+        super(entity);
+        if (entity != null) {
+            if (entity.getContratistas() != null) {
+                contratistas = new ArrayList<>();
+                for (ContratistaEntity entityContratista : entity.getContratistas()) {
+                    contratistas.add(new ContratistaDTO(entityContratista));
                 }
-		return servicioEntity;
-	}
+            }
+        }
+    }
+
+    public List<ContratistaDTO> getContratistas() {
+        return contratistas;
+    }
+
+    public void setContratistas(List<ContratistaDTO> contratistas) {
+        this.contratistas = contratistas;
+    }
+
+    /**
+     * Transformar un DTO a un Entity
+     *
+     * @return La entidad construida a partir del DTO.
+     */
+    @Override
+    public ServicioEntity toEntity() {
+        ServicioEntity servicioEntity = super.toEntity();
+        if (contratistas != null) {
+            List<ContratistaEntity> contratistasEntity = new ArrayList<>();
+            for (ContratistaDTO dtoContratista : contratistas) {
+                contratistasEntity.add(dtoContratista.toEntity());
+            }
+            servicioEntity.setContratistas(contratistasEntity);
+        }
+        return servicioEntity;
+    }
 }

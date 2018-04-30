@@ -24,10 +24,8 @@ import co.edu.uniandes.csw.lostoderos.entities.PersonaJuridicaEntity;
  * <
  * pre>
  *
- *   {
- *      "id": 15453,
- *      "NIT": "900642461-4",
- *   }
+ * {
+ * "id": 15453, "NIT": "900642461-4", }
  *
  * </pre>
  *
@@ -41,7 +39,7 @@ public class PersonaJuridicaDTO extends ClienteDTO {
      * Constructor por defecto
      */
     public PersonaJuridicaDTO() {
-        super();
+        // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
     }
 
     /**

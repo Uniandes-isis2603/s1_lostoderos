@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+ */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.ToderoEntity;
@@ -28,40 +28,39 @@ import co.edu.uniandes.csw.lostoderos.entities.ToderoEntity;
 /**
  * Clase que extiende de {@link ToderoDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
- * contenido de la entidad de Todero vaya a la documentacion de {@link ToderoDTO}
+ * contenido de la entidad de Todero vaya a la documentacion de
+ * {@link ToderoDTO}
  *
  * @author ISIS2603
  */
-public class ToderoDetailDTO extends ToderoDTO
-{
+public class ToderoDetailDTO extends ToderoDTO {
 
-	/**
-	 * Constructor por defecto
-	 */
-	public ToderoDetailDTO( )
-	{
-	}
+    /**
+     * Constructor por defecto
+     */
+    public ToderoDetailDTO() {
+        // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
+    }
 
-	/**
-	 * Constructor para transformar un Entity a un DTO
-	 *
-	 * @param entity La entidad de Todero a partir de la cual se construye el objeto
-	 */
-	public ToderoDetailDTO( ToderoEntity entity )
-	{
-		super( entity );
-	}
+    /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param entity La entidad de Todero a partir de la cual se construye el
+     * objeto
+     */
+    public ToderoDetailDTO(ToderoEntity entity) {
+        super(entity);
+    }
 
-	/**
-	 * Transformar un DTO a un Entity
-	 *
-	 * @return La entidad construida a partir del DTO.
-	 */
-	@Override
-	public ToderoEntity toEntity( )
-	{
-		ToderoEntity toderoEntity = super.toEntity( );
-		return toderoEntity;
-	}
+    /**
+     * Transformar un DTO a un Entity
+     *
+     * @return La entidad construida a partir del DTO.
+     */
+    @Override
+    public ToderoEntity toEntity() {
+        ToderoEntity toderoEntity = super.toEntity();
+        return toderoEntity;
+    }
 
 }

@@ -26,23 +26,23 @@ package co.edu.uniandes.csw.lostoderos.dtos;
 import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
 
-
 /**
- * Clase que extiende de {@link FacturaDetailDTO} para manejar la transformacion entre
- * los objetos JSON y las Entidades de la base de datos. Para conocer el
+ * Clase que extiende de {@link FacturaDetailDTO} para manejar la transformacion
+ * entre los objetos JSON y las Entidades de la base de datos. Para conocer el
  * contenido del cliente vaya a la documentacion de {@link FacturaDetailDTO}
- * @author s.rangel
- *  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ *
+ * @author s.rangel * Al serializarse como JSON esta clase implementa el
+ * siguiente modelo: <br>
  * <pre>
  *   {
- * 
+ *
  *      "id": Number,
  *      "producto": string,
  *      "formaPago": string,
  *      "total": number,
  *      "subTotal": number,
- *      "pago": 
- *      
+ *      "pago":
+ *
  *         {
  *           "id": Integer,
  *           "codigoTarjeta": String,
@@ -53,8 +53,7 @@ import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
  *           "numTarjeta": String,
  *         }
  *   }
- * </pre>
- * Por ejemplo una entidad de Factura se representa asi:<br>
+ * </pre> Por ejemplo una entidad de Factura se representa asi:<br>
  * <pre>
  *
  *   {
@@ -63,7 +62,7 @@ import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
  *      "formaPago": "efectivo",
  *      "total": 300000,
  *      "subTotal": 304000,
- *      "pago": 
+ *      "pago":
  *         {
  *      "id": 12390813,
  *      "codigoTarjeta": "123",
@@ -72,20 +71,22 @@ import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
  *      "descripcion": "un pago correspondiente a tal servicio",
  *      "fechaTarjeta": "10/18",
  *      "numTarjeta":" 123456629723"
- * 
+ *
  *         }
- *      
+ *
  *   }
- * 
+ *
  */
-public class FacturaDetailDTO extends FacturaDTO{
+public class FacturaDetailDTO extends FacturaDTO {
 
-     private PagoDTO pago;
-     public FacturaDetailDTO( )
-	{
-		super( );
-	}
-       /**
+    private PagoDTO pago;
+
+    public FacturaDetailDTO() {
+        // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
+
+    }
+
+    /**
      * Crea un objeto FacturaDetailDTO a partir de un objeto FacturaEntity
      * incluyendo los atributos de FacturaDTO.
      *
@@ -93,17 +94,15 @@ public class FacturaDetailDTO extends FacturaDTO{
      * objeto.
      *
      */
-    public FacturaDetailDTO( FacturaEntity entity)
-	{
-		super(entity );
-                if (entity!=null) {
-                PagoDTO pagoE = new PagoDTO(entity.getPago());
-                this.setPago(pagoE);
+    public FacturaDetailDTO(FacturaEntity entity) {
+        super(entity);
+        if (entity != null) {
+            PagoDTO pagoE = new PagoDTO(entity.getPago());
+            this.setPago(pagoE);
 
-                    
+        }
+    }
 
-            }
-	} 
     public PagoDTO getPago() {
         return pago;
     }
@@ -111,25 +110,21 @@ public class FacturaDetailDTO extends FacturaDTO{
     public void setPago(PagoDTO pago) {
         this.pago = pago;
     }
-     
-    
-     
-        /**
-	 * Transformar un DTO a un Entity
-	 *
-	 * @return La entidad construida a partir del DTO.
-	 */
-	@Override
-	public FacturaEntity toEntity( )
-	{
-		FacturaEntity facturaEntity = super.toEntity( );
-                PagoEntity pagoE = facturaEntity.getPago();
-                if (pagoE!=null) {
-                                facturaEntity.setPago(pagoE);
 
-            }
-		return facturaEntity;
-	}
-    
-  
+    /**
+     * Transformar un DTO a un Entity
+     *
+     * @return La entidad construida a partir del DTO.
+     */
+    @Override
+    public FacturaEntity toEntity() {
+        FacturaEntity facturaEntity = super.toEntity();
+        PagoEntity pagoE = facturaEntity.getPago();
+        if (pagoE != null) {
+            facturaEntity.setPago(pagoE);
+
+        }
+        return facturaEntity;
+    }
+
 }

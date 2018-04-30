@@ -32,7 +32,7 @@ import java.util.List;
  * Clase que extiende de {@link ClienteDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
  * contenido del cliente vaya a la documentacion de {@link ClienteDTO}
- * 
+ *
  * * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
@@ -68,8 +68,7 @@ import java.util.List;
  *         }
  *      ]
  *   }
- * </pre>
- * Por ejemplo una entidad de Servicio se representa asi:<br>
+ * </pre> Por ejemplo una entidad de Servicio se representa asi:<br>
  * <pre>
  *
  *   {
@@ -107,69 +106,61 @@ import java.util.List;
  *   }
  *
  * </pre>
+ *
  * @author s.naranjop1
  */
-public class ClienteDetailDTO extends ClienteDTO 
-{
-        private List<SolicitudDTO> solicitudes;    
-    
-         /**
-	 * Constructor por defecto
-	 */
-	public ClienteDetailDTO( )
-	{
-            super();
-	}
-        
-         /**
-	 * Constructor para transformar un Entity a un DTO
-	 *
-	 * @param entity La entidad de Cliente a partir de la cual se construye el objeto
-	 */
-	public ClienteDetailDTO( ClienteEntity entity )
-	{
-		super( entity );
-                if(entity != null)
-                {
-                    if(entity.getSolicitudes() != null)
-                    {
-                        solicitudes = new ArrayList<>();
-                        for(SolicitudEntity entitySolicitud: entity.getSolicitudes())
-                        {
-                            solicitudes.add(new SolicitudDTO(entitySolicitud));
-                        }
-                    }
-                }
-	}
-        
-        public List<SolicitudDTO> getSolicitudes()
-        {
-                return solicitudes;
-        }
+public class ClienteDetailDTO extends ClienteDTO {
 
-        public void setSolicitudes(List<SolicitudDTO> solicitudes) 
-        {
-                this.solicitudes = solicitudes;
-        }
-        
-        /**
-	 * Transformar un DTO a un Entity
-	 *
-	 * @return La entidad construida a partir del DTO.
-	 */
-	@Override
-	public ClienteEntity toEntity( )
-	{
-		ClienteEntity servicioEntity = super.toEntity( );
-                if(solicitudes != null)
-                {
-                    List<SolicitudEntity>solicitudesEntity = new ArrayList<>();
-                    for (SolicitudDTO dtoSolicitud : solicitudes)
-                    {
-                        solicitudesEntity.add(dtoSolicitud.toEntity());
-                    }
-                    servicioEntity.setSolicitudes(solicitudesEntity);
+    private List<SolicitudDTO> solicitudes;
+
+    /**
+     * Constructor por defecto
+     */
+    public ClienteDetailDTO() {
+        // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
+    }
+
+    /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param entity La entidad de Cliente a partir de la cual se construye el
+     * objeto
+     */
+    public ClienteDetailDTO(ClienteEntity entity) {
+        super(entity);
+        if (entity != null) {
+            if (entity.getSolicitudes() != null) {
+                solicitudes = new ArrayList<>();
+                for (SolicitudEntity entitySolicitud : entity.getSolicitudes()) {
+                    solicitudes.add(new SolicitudDTO(entitySolicitud));
                 }
-		return servicioEntity;
-	}
+            }
+        }
+    }
+
+    public List<SolicitudDTO> getSolicitudes() {
+        return solicitudes;
+    }
+
+    public void setSolicitudes(List<SolicitudDTO> solicitudes) {
+        this.solicitudes = solicitudes;
+    }
+
+    /**
+     * Transformar un DTO a un Entity
+     *
+     * @return La entidad construida a partir del DTO.
+     */
+    @Override
+    public ClienteEntity toEntity() {
+        ClienteEntity servicioEntity = super.toEntity();
+        if (solicitudes != null) {
+            List<SolicitudEntity> solicitudesEntity = new ArrayList<>();
+            for (SolicitudDTO dtoSolicitud : solicitudes) {
+                solicitudesEntity.add(dtoSolicitud.toEntity());
+            }
+            servicioEntity.setSolicitudes(solicitudesEntity);
+        }
+        return servicioEntity;
+    }
 }

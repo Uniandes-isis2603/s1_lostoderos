@@ -10,9 +10,10 @@ import co.edu.uniandes.csw.lostoderos.entities.PersonaJuridicaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.UsuarioEntity;
 
 /**
- * PersonaJuridicaDTO Objeto de transferencia de datos de la entidad de PersonaJuridica. Los DTO contienen las
- * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
- * 
+ * PersonaJuridicaDTO Objeto de transferencia de datos de la entidad de
+ * PersonaJuridica. Los DTO contienen las represnetaciones de los JSON que se
+ * transfieren entre el cliente y el servidor.
+ *
  * <p>
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
@@ -20,10 +21,10 @@ import co.edu.uniandes.csw.lostoderos.entities.UsuarioEntity;
  *      "id": Number,
  *      "NIT": String,
  *   }
- * </pre>
- * Por ejemplo una entidad de PersonaJuridica se representa asi:<br>
+ * </pre> Por ejemplo una entidad de PersonaJuridica se representa asi:<br>
  * <p>
- * <pre>
+ * <
+ * pre>
  *
  *   {
  *      "id": 15453,
@@ -31,40 +32,37 @@ import co.edu.uniandes.csw.lostoderos.entities.UsuarioEntity;
  *   }
  *
  * </pre>
- * 
+ *
  * @author na.morenoe
  */
 public class PersonaJuridicaDetailDTO extends PersonaJuridicaDTO {
 
     /**
-    * Constructor por defecto
-    */
+     * Constructor por defecto
+     */
     public PersonaJuridicaDetailDTO() {
-        
-        super();
-        
+        // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.        
     }
-  
-         /**
-	 * Constructor para transformar un Entity a un DTO
-	 *
-	 * @param entity La entidad de PersonaJuridica a partir de la cual se construye el objeto
-	 */
-	public PersonaJuridicaDetailDTO( PersonaJuridicaEntity entity )
-	{
-		super( entity );
-	}    
-    
-        /**
-	 * Transformar un DTO a un Entity
-	 *
-	 * @return La entidad construida a partir del DTO.
-	 */
-	@Override
-	public PersonaJuridicaEntity toEntity( )
-	{
-		PersonaJuridicaEntity personajuridicaEntity = super.toEntity( );
-		return personajuridicaEntity;
-	}        
-        
+
+    /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param entity La entidad de PersonaJuridica a partir de la cual se
+     * construye el objeto
+     */
+    public PersonaJuridicaDetailDTO(PersonaJuridicaEntity entity) {
+        super(entity);
+    }
+
+    /**
+     * Transformar un DTO a un Entity
+     *
+     * @return La entidad construida a partir del DTO.
+     */
+    @Override
+    public PersonaJuridicaEntity toEntity() {
+        PersonaJuridicaEntity personajuridicaEntity = super.toEntity();
+        return personajuridicaEntity;
+    }
+
 }

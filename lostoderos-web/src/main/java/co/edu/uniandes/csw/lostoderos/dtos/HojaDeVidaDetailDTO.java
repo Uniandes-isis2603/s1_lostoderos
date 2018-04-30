@@ -52,7 +52,8 @@ public class HojaDeVidaDetailDTO extends HojaDeVidaDTO {
      * Constructor por defecto
      */
     public HojaDeVidaDetailDTO() {
-        super();
+        // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
+
     }
 
     /**
