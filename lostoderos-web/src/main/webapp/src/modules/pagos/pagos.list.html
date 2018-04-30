@@ -12,25 +12,25 @@
         <thead style="background:orange">
         <tr class ="bg-primary">
     
-            <th>ID</th>
+            <th>NumTarjeta</th> 
             <th>CodigoTarjeta</th>
             <th>ComprobantePagoMedio</th>
             <th>ComprobantePagoTotal</th>
             <th>Descripcion</th>
             <th>FechaTarjeta</th>
-            <th>NumTarjeta</th>            
+                    
         </tr>
         </thead>
         <tbody>
             <tr style="color:#000000" class ="active" ng-repeat="pago in pagosRecords | orderBy : 'numTarjeta'">
                 
-                <td>{{pago.id}}</td>
+                <td>{{pago.numTarjeta}}</td>
                 <td>{{pago.codigoTarjeta}}</td>
                 <td>{{pago.comprobantePagoMedio}}</td>
                 <td>{{pago.comprobantePagoTotal}}</td>
                 <td>{{pago.descripcion}}</td>
                 <td>{{pago.fechaTarjeta}}</td>
-                <td>{{pago.numTarjeta}}</td>
+              
                
                 
             </tr>
@@ -38,9 +38,8 @@
         
     </table>
     </div>
-    <div class="btn-group mr-2" role="group" aria-label="First group">
-    <a class="btn btn-warning" ui-sref="pagosCreate">
-        <span class="glyphicon glyphicon-plus-sign"></span>Realizar pago</a>
-</div>
-   
+
+     <button>
+        <a ui-sref="pagosCreate">Crear Pago</a>
+    </button>
 </div>

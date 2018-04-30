@@ -63,16 +63,16 @@ public class FacturaLogic {
           LOGGER.info("Inicio de creación de la entidad factura");    
           //TODO: NO hay ninguna regla de negocio? 
         
-        if (getById(entity.getId())==null) {
-              persistence.create(entity);
+       // if (getById(entity.getId())==null) {
+        persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
-        }
+       /* }
       else
         {
             throw new Exception("ya esta esa factura en el sistema");
         }
-        
+        */
     }
 
     /**
