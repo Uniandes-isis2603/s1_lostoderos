@@ -17,9 +17,3 @@ insert into USUARIOENTITY (id,dtype ,nombre, correo, usuario, contrasena, reputa
 insert into USUARIOENTITY (id,dtype ,nombre, correo, usuario, contrasena, reputacion) values (8,'ContratistaEntity' , 'Redford Hugle', 'rhugle7@google.cn', 'rhugle7', 'UxYmUlEAm', null);
 insert into USUARIOENTITY (id,dtype ,nombre, correo, usuario, contrasena, reputacion) values (9,'ContratistaEntity' , 'Catrina Currie', 'ccurrie8@quantcast.com', 'ccurrie8', 'pfWjXOB', null);
 insert into USUARIOENTITY (id, dtype,nombre, correo, usuario, contrasena, reputacion) values (10,'ContratistaEntity' , 'Karalynn Feveryear', 'kfeveryear9@fc2.com', 'kfeveryear9', 'ty4ew9k5fq', null);
-
---insert into SolicitudEntity (id, cantidad_contratistas, cod_seguridad, descripcion, fecha_inicio, requerimientos, tipo_servicio) values (23, 2, 351, 'servicio de baño', '05/03/2018', 'plomeria', 12)
---insert into SolicitudEntity (id, cantidad_contratistas, cod_seguridad, descripcion, fecha_inicio, requerimientos, tipo_servicio) values (24, 3, 323, 'servicio de antena', '05/03/2018', 'electricidad', 11)
---insert into SolicitudEntity (id, cantidad_contratistas, cod_seguridad, descripcion, fecha_inicio, requerimientos, tipo_servicio) values (25, 1, 452, 'servicio de lavamanos', '05/03/2018', 'plomeria', 12)
---insert into SolicitudEntity (id, cantidad_contratistas, cod_seguridad, descripcion, fecha_inicio, requerimientos, tipo_servicio) values (26, 2, 362, 'arreglar conexiones de cbles', '05/03/2018', 'electricidad', 11)
---insert into SolicitudEntity (id, cantidad_contratistas, cod_seguridad, descripcion, fecha_inicio, requerimientos, tipo_servicio) values (27, 2, 145, 'servicio de baño', '05/03/2018', 'plomeria', 12)

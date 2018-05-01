@@ -1,12 +1,73 @@
+<style>
+    .thumbnail img {
+        height:150px;
+        width:150px;
+    }
+    .thumbnail
+    {
+        background: #1c314c;
+    }
+
+    .thumb img{
+        height:200px;
+        width:200px;
+    }
+    .panel
+    {
+        background: #222;
+    }
+    .panel-body {
+        background: rgba(21,64,117,0.5);
+        border:none;
+    }
+
+    .panel >.panel-heading{
+        background-color:orange;
+    }
+    a {
+        color: whitesmoke;
+    }
+
+    .btn {
+        position: relative;
+        border: none;
+        text-align: center;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        text-decoration: none;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .btn:after {
+        content: "";
+        background: #90EE90;
+        display: block;
+        position: absolute;
+        padding-top: 300%;
+        padding-left: 350%;
+        margin-left: -20px!important;
+        margin-top: -120%;
+        opacity: 0;
+        transition: all 0.8s
+    }
+
+    .btn:active:after {
+        padding: 0;
+        margin: 0;
+        opacity: 1;
+        transition: 0s
+    }
+</style>
 <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
 <div class="container-fluid">
     <div class="row">
-        <h1 style="color:black; font-size:3vw; padding-bottom: 10px;" class = "text text-center">Servicios</h1>
+        <h1 style="color:whitesmoke; font-size:4.5vw; padding-bottom: 10px;" class = "text text-center">Servicios</h1>
     </div>
     <div class="row" style="padding-left: 300px; padding-right: 300px">
         <div ui-view="deleteView"></div>
     </div>
-    <div class="row" style="padding-left: 250px; padding-right: 250px">
+    <div class="row" style="padding-left: 400px; padding-right: 400px">
         <div ui-view="createView"></div>
     </div>
     <div class="row" style="padding-bottom: 10px; padding-left: 450px; padding-right: 450px">

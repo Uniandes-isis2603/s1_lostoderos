@@ -1,8 +1,9 @@
+
 <div class="container-fluid">
     <div class="h-100 row align-items-center">
         <div class="col-md-4" ng-repeat="servicio in serviciosRecords">
             <div class="thumbnail animated filter spray">
-                <img class="img-responsive" ng-src='{{servicio.imagen}}' alt="{{servicio.nombre}}"/>  
+                <a ui-sref="servicioDetail({servicioId: servicio.id})"><img class="img-responsive" ng-src='{{servicio.imagen}}' alt="{{servicio.nombre}}"/></a>  
                 <h3 class="display" align="center"><a ui-sref="servicioDetail({servicioId: servicio.id})">{{servicio.nombre}}</a></h3>
             </div>
         </div>
