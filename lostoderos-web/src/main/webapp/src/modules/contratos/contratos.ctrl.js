@@ -1,11 +1,10 @@
 (function (ng) {
     var mod = ng.module("contratosModule");
-    mod.constant("contratosContext", "api/contratos");
-    mod.controller('contratosCtrl', ['$scope', '$http', 'contratosContext', '$state', '$filter',
-        function ($scope, $http, contratosContext, $state) {
-            
+    mod.controller('contratosCtrl', ['$scope', '$http', '$state', '$filter',
+        function ($scope, $http, $state) {
+            var context = "api/contratistas/" + $scope.currentContratista.id + "/contrato";
             if (($scope.currentContratista.contrato !== undefined) && ($scope.currentContratista.contrato !== null)) {
-                $http.get(contratosContext + '/' + $state.params.contratoId).then(function (response) {
+                $http.get(context).then(function (response) {
                     $scope.contrato = response.data;
                     
                 });
@@ -15,7 +14,7 @@
             this.createContrato = function(){
                 contrato = $scope.contrato;
                 contrato.contratista={id:$scope.currentContratista.id};
-                return $http.post(contratosContext,contrato).then(function(){
+                return $http.post(context,contrato).then(function(){
                     $state.go('contratistasList');
             });
         };

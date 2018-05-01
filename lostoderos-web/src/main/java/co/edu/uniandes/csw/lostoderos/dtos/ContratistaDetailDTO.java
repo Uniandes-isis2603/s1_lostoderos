@@ -66,7 +66,7 @@ public class ContratistaDetailDTO extends ContratistaDTO {
      * Constructor por defecto.
      */
     public ContratistaDetailDTO() {
-        super();
+        // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
     }
 
     /**

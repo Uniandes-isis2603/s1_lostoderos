@@ -10,7 +10,7 @@ import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
 /**
  * Clase que extiende de {@link CalificacionDTO} para manejar la transformacion
  * entre los objetos JSON y las Entidades de la base de datos. Para conocer el
- * contenido de la entidad de Calificacion vaya a la documentacion 
+ * contenido de la entidad de Calificacion vaya a la documentacion
  * de{@link CalificacionDTO}
  *
  *  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
@@ -20,7 +20,7 @@ import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
  *      "numEstrellas": number,
  *      "comentario": string,
  *      "tipoServicio": string,
- *      "cliente": 
+ *      "cliente":
  *         {
  *           "id": number,
  *           "fecha_nacimiento": string,
@@ -28,8 +28,7 @@ import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
  *           "direccion": string
  *         }
  *   }
- * </pre>
- * Por ejemplo una entidad de calificacion se representa asi:<br>
+ * </pre> Por ejemplo una entidad de calificacion se representa asi:<br>
  * <pre>
  *
  *   {
@@ -37,7 +36,7 @@ import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
  *      "numEstrellas": 3,
  *      "comentario": "Muy buen servicio",
  *      "tipoServicio": "Plomeria",
- *      "cliente": 
+ *      "cliente":
  *         {
  *           "id": 1232,
  *           "fecha_nacimiento": "12/21/1981",
@@ -51,18 +50,19 @@ import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
  * @author s.blancoc
  */
 public class CalificacionDetailDTO extends CalificacionDTO {
-    
+
     private ContratistaDTO contratista;
-    
+
     private ClienteDTO cliente;
-    
+
     /**
      * Cnstructor vacio
      */
-    public CalificacionDetailDTO(){
-        super();
+    public CalificacionDetailDTO() {
+        // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
     }
-    public CalificacionDetailDTO(CalificacionEntity entity){
+
+    public CalificacionDetailDTO(CalificacionEntity entity) {
         super(entity);
         if (entity.getContratista() != null) {
             this.contratista = new ContratistaDTO(entity.getContratista());
@@ -71,14 +71,14 @@ public class CalificacionDetailDTO extends CalificacionDTO {
         }
         if (entity.getCliente() != null) {
             this.cliente = new ClienteDTO(entity.getCliente());
-            }
-        else{
+        } else {
             entity.setCliente(null);
         }
     }
-    
-     /**
+
+    /**
      * Transformar el DTO a una entidad
+     *
      * @return La entidad que representa la calificacion.
      */
     @Override
@@ -92,7 +92,6 @@ public class CalificacionDetailDTO extends CalificacionDTO {
         }
         return entity;
     }
-    
 
     /**
      * @return the contratista
@@ -121,5 +120,5 @@ public class CalificacionDetailDTO extends CalificacionDTO {
     public void setCliente(ClienteDTO cliente) {
         this.cliente = cliente;
     }
-    
+
 }

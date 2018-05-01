@@ -1,0 +1,77 @@
+<style>
+
+    panel
+    {
+        background: white;
+    }
+    .panel-body {
+        background:white;
+    }
+    div.alert-warning{
+        background:orange;
+        color:white;
+    }
+    div.input-group{
+        margin-bottom: 15px;
+    }
+    h2{
+        font-size: 20px;
+    }
+    img{
+        width: 50%;
+    }
+</style>
+<div  class ="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+            <div align="left">
+                <h1>Crear un nuevo pago</h1>
+                <h2>¡Llena los espacios requeridos y listo!</h2>
+            </div>
+            <br style="margin-bottom:15px;">
+            <div align ="center">
+                <img src ="data/images/Casco.png" class="img-responsive" alt="Casco">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <form ng-submit="ctrl.createPago(contratista)" name = "contratista">
+                <div class ="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id = "contratistaName" required ng-model="contratista.nombre" type="text" class="form-control col-sm-4" placeholder="Nombre">
+                </div>
+                <div class ="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
+                    <input id = "contratistaUsuario" required ng-model="contratista.usuario" type="text" class="form-control col-sm-4" placeholder="Usuario">
+                </div>
+                <div class ="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                    <input id = "contratistaCorreo" required ng-model="contratista.correo" type="text" class="form-control col-sm-4" placeholder="Correo">
+                </div>
+                <div class ="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input id = "contratistaContrasena" required ng-model="contratista.contrasena" type="password" class="form-control col-sm-4" placeholder="Contraseña">
+                </div>
+                <div class="form-group row">
+                    <div class="form-group col-sm-4" ng-if="!pago.$valid">
+                        <div class="alert alert-warning" >
+                            <strong>¡Cuidado!</strong><p>Debe llenar todos los campos requeridos*</p>
+                        </div> 
+                    </div> 
+                </div>
+                <div class="form-group row">
+                    <div class="form-group col-sm-12">
+                        <input ng-show="pago.$valid" type="submit" value="Crear" class="btn btn-success"/>
+                        <a class="btn btn-info" ui-sref="pagosList">Cancelar</a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+    
+
+

@@ -3,7 +3,6 @@
     <div class="h-100 row align-items-center">        
         <table class = "table table-bordered">
         <thead>
-             <th>Id</th>
             <th>Producto</th>
             <th>SubTotal</th>
             <th>Total</th>
@@ -13,8 +12,7 @@
         <tbody>
             <tr  class ="active" ng-repeat="factura in facturasRecords | orderBy : 'producto'">
                 
-              <td id="{{$index}}-name"><a ui-sref="facturasDetail({facturaId: factura.id})">{{factura.id}}</a></td>
-                <td>{{factura.producto}}</td>
+                <td>{{factura.producto}}<a ui-sref="facturasDetail({facturaProducto: factura.producto})">{{factura.id}}</a></td>
                 <td>{{factura.subTotal}}</td>
                 <td>{{factura.total}}</td>
                 <td>{{factura.formaPago}}</td>

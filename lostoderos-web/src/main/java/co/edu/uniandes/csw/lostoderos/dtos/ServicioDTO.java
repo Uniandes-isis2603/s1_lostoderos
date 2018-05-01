@@ -27,17 +27,17 @@ import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import java.io.Serializable;
 
 /**
- * ServicioDTO Objeto de transferencia de datos de la entidad de Servicio. Los DTO contienen las
- * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
- * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * ServicioDTO Objeto de transferencia de datos de la entidad de Servicio. Los
+ * DTO contienen las represnetaciones de los JSON que se transfieren entre el
+ * cliente y el servidor. Al serializarse como JSON esta clase implementa el
+ * siguiente modelo: <br>
  * <pre>
  *   {
  *      "nombre": string,
  *      "categorias": string,
  *      "descripcion": string
  *   }
- * </pre>
- * Por ejemplo una entidad de Servicio se representa asi:<br>
+ * </pre> Por ejemplo una entidad de Servicio se representa asi:<br>
  * <pre>
  *
  *   {
@@ -47,129 +47,118 @@ import java.io.Serializable;
  *   }
  *
  * </pre>
+ *
  * @author s.naranjop1
  */
-public class ServicioDTO implements Serializable
-{
-        private Long id;
+public class ServicioDTO implements Serializable {
 
-	private String nombre;
+    private Long id;
 
-	private String categorias;
-        
-        private String descripcion;
-        
-        private String imagen;
-        
-        /**
-	 * Constructor por defecto
-	 */
-	public ServicioDTO( )
-	{
-	}
+    private String nombre;
 
-        /**
-	 * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
-	 * la entidad que viene de argumento.
-	 *
-	 * @param servicioEntity: Es la entidad que se va a convertir a DTO
-	 */
-	public ServicioDTO( ServicioEntity servicioEntity )
-	{
-		this.id = servicioEntity.getId( );
-		this.nombre = servicioEntity.getNombre();
-                this.categorias = servicioEntity.getCategorias();
-                this.descripcion = servicioEntity.getDescripcion();
-                this.imagen = servicioEntity.getImagen();
-	}
-        
-	/**
-	 * @return El ID de la entidad Servicio
-	 */
-	public Long getId( )
-	{
-		return id;
-	}
+    private String categorias;
 
-	/**
-	 * @param id El nuevo ID
-	 */
-	public void setId( Long id )
-	{
-		this.id = id;
-	}
+    private String descripcion;
 
-	/**
-	 * @return El nombre de la entidad Servicio
-	 */
-	public String getNombre( )
-	{
-		return nombre;
-	}
+    private String imagen;
 
-	/**
-	 * @param nombre El nuevo nombre
-	 */
-	public void setNombre( String nombre )
-	{
-		this.nombre = nombre;
-	}
+    /**
+     * Constructor por defecto
+     */
+    public ServicioDTO() {
+        // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
+    }
 
-	/**
-	 * @return Categorias de la entidad Servicio
-	 */
-	public String getCategorias( )
-	{
-		return categorias;
-	}
+    /**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     *
+     * @param servicioEntity: Es la entidad que se va a convertir a DTO
+     */
+    public ServicioDTO(ServicioEntity servicioEntity) {
+        this.id = servicioEntity.getId();
+        this.nombre = servicioEntity.getNombre();
+        this.categorias = servicioEntity.getCategorias();
+        this.descripcion = servicioEntity.getDescripcion();
+        this.imagen = servicioEntity.getImagen();
+    }
 
-	/**
-	 * @param categorias Las nuevas categorias de la entidad Servicio
-	 */
-	public void setCategorias( String categorias )
-	{
-		this.categorias = categorias;
-	}
+    /**
+     * @return El ID de la entidad Servicio
+     */
+    public Long getId() {
+        return id;
+    }
 
-        /**
-	 * @return La descripion de la entidad Servicio
-	 */
-	public String getDescripcion( )
-	{
-		return descripcion;
-	}
+    /**
+     * @param id El nuevo ID
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	/**
-	 * @param descripcion La nueva descripcion de la entidad Servicio
-	 */
-	public void setDescripcion( String descripcion )
-	{
-		this.descripcion = descripcion;
-	}
-        
-        public String getImagen() 
-        {
-                return imagen;
-        }
+    /**
+     * @return El nombre de la entidad Servicio
+     */
+    public String getNombre() {
+        return nombre;
+    }
 
-        public void setImagen(String imagen) 
-        {
-                this.imagen = imagen;
-        }
-        
-        /**
-	 * Convertir DTO a Entity
-	 *
-	 * @return Un Entity con los valores del DTO
-	 */
-	public ServicioEntity toEntity( )
-	{
-		ServicioEntity entity = new ServicioEntity( );
-		entity.setId( this.id );
-                entity.setNombre(this.nombre);
-		entity.setCategorias(this.categorias);
-                entity.setDescripcion(this.descripcion);
-                entity.setImagen(this.imagen);
-		return entity;
-	}
+    /**
+     * @param nombre El nuevo nombre
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return Categorias de la entidad Servicio
+     */
+    public String getCategorias() {
+        return categorias;
+    }
+
+    /**
+     * @param categorias Las nuevas categorias de la entidad Servicio
+     */
+    public void setCategorias(String categorias) {
+        this.categorias = categorias;
+    }
+
+    /**
+     * @return La descripion de la entidad Servicio
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * @param descripcion La nueva descripcion de la entidad Servicio
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    /**
+     * Convertir DTO a Entity
+     *
+     * @return Un Entity con los valores del DTO
+     */
+    public ServicioEntity toEntity() {
+        ServicioEntity entity = new ServicioEntity();
+        entity.setId(this.id);
+        entity.setNombre(this.nombre);
+        entity.setCategorias(this.categorias);
+        entity.setDescripcion(this.descripcion);
+        entity.setImagen(this.imagen);
+        return entity;
+    }
 }

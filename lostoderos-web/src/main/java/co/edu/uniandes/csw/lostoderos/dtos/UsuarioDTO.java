@@ -54,8 +54,7 @@ import java.io.Serializable;
  *
  * @author s.naranjop1
  */
-public class UsuarioDTO implements Serializable
-{
+public class UsuarioDTO implements Serializable {
 
     protected Long id;
 
@@ -66,11 +65,13 @@ public class UsuarioDTO implements Serializable
     protected String contrasena;
 
     protected String correo;
+    
 
     /**
      * Constructor por defecto
      */
     public UsuarioDTO() {
+        // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
     }
 
     /**
@@ -174,6 +175,5 @@ public class UsuarioDTO implements Serializable
             entity.setCorreo(this.correo);
         }
         return entity;
-
     }
 }

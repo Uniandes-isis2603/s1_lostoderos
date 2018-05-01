@@ -14,12 +14,11 @@ import co.edu.uniandes.csw.lostoderos.entities.CotizacionEntity;
 public class CotizacionDetailDTO extends CotizacionDTO {
 
     public CotizacionDetailDTO() {
-        
-        super();
+
+        // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
     }
-    
-    public CotizacionDetailDTO(CotizacionEntity entity){
-        
+
+    public CotizacionDetailDTO(CotizacionEntity entity) {
         super(entity);
     }
 
@@ -32,7 +31,5 @@ public class CotizacionDetailDTO extends CotizacionDTO {
     public String toString() {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
+
 }

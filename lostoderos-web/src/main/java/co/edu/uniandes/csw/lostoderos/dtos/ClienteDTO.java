@@ -27,9 +27,10 @@ import co.edu.uniandes.csw.lostoderos.entities.ClienteEntity;
 import java.util.Date;
 
 /**
- * ServicioDTO Objeto de transferencia de datos de la entidad de Servicio. Los DTO contienen las
- * representaciones de los JSON que se transfieren entre el cliente y el servidor.
- * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * ServicioDTO Objeto de transferencia de datos de la entidad de Servicio. Los
+ * DTO contienen las representaciones de los JSON que se transfieren entre el
+ * cliente y el servidor. Al serializarse como JSON esta clase implementa el
+ * siguiente modelo: <br>
  * <pre>
  *   {
  *      "id": number,
@@ -40,10 +41,9 @@ import java.util.Date;
  *      "fecha_nacimiento" string,
  *      "forma_pago" string,
  *      "direccion": string
- * 
+ *
  *   }
- * </pre>
- * Por ejemplo una entidad de Servicio se representa asi:<br>
+ * </pre> Por ejemplo una entidad de Servicio se representa asi:<br>
  * <pre>
  *
  *   {
@@ -57,115 +57,105 @@ import java.util.Date;
  *   }
  *
  * </pre>
+ *
  * @author s.naranjop1
  */
-public class ClienteDTO extends UsuarioDTO
-{
-    
-        private Date fecha_nacimiento;
-        
-        private String forma_pago;
-        
-        private String direccion;
-        
-        /**
-	 * Constructor por defecto
-	 */
-	public ClienteDTO( )
-	{
-            
-	}
-        
-        /**
-	 * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
-	 * la entidad que viene de argumento.
-	 *
-	 * @param clienteEntity: Es la entidad que se va a convertir a DTO
-	 */
-	public ClienteDTO( ClienteEntity clienteEntity )
-	{
-		super(clienteEntity);
-                if(clienteEntity != null)
-                {
-                    this.fecha_nacimiento = clienteEntity.getFecha_nacimiento();
-                            
-                    this.direccion = clienteEntity.getDireccion();
-                    
-                    this.forma_pago = clienteEntity.getForma_pago();
-                }
-	}
-        
-        /**
-	 * @return La fecha de nacimiento de la entidad Cliente
-	 */
-        public Date getFecha_nacimiento() 
-        {
-                return fecha_nacimiento;
-        }
+public class ClienteDTO extends UsuarioDTO {
 
-        /**
-	 * @param fecha_nacimiento La nueva fecha de nacimiento
-	 */
-        public void setFecha_nacimiento(Date fecha_nacimiento) 
-        {
-                this.fecha_nacimiento = fecha_nacimiento;
-        }
+    private Date fecha_nacimiento;
 
-        /**
-	 * @return La forma de pago de la entidad Cliente
-	 */
-        public String getForma_pago() 
-        {
-                return forma_pago;
-        }
+    private String forma_pago;
 
-        /**
-	 * @param forma_pago La nueva forma de pago
-	 */
-        public void setForma_pago(String forma_pago) 
-        {
-                this.forma_pago = forma_pago;
-        }
+    private String direccion;
 
-        /**
-	 * @return La direccion de la entidad Cliente
-	 */
-        public String getDireccion() 
-        {
-                return direccion;
-        }
+    /**
+     * Constructor por defecto
+     */
+    public ClienteDTO() {
+        // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.    
+    }
 
-        /**
-	 * @param direccion La nueva direccion
-	 */
-        public void setDireccion(String direccion) 
-        {
-                this.direccion = direccion;
+    /**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     *
+     * @param clienteEntity: Es la entidad que se va a convertir a DTO
+     */
+    public ClienteDTO(ClienteEntity clienteEntity) {
+        super(clienteEntity);
+        if (clienteEntity != null) {
+            this.fecha_nacimiento = clienteEntity.getFecha_nacimiento();
+
+            this.direccion = clienteEntity.getDireccion();
+
+            this.forma_pago = clienteEntity.getForma_pago();
         }
-        
-        /**
-	 * Convertir DTO a Entity
-	 *@param entity Entidad de la subclase
-	 * @return Un Entity con los valores del DTO
-	 */
-	public ClienteEntity toEntity(ClienteEntity entity )
-	{
-                super.toEntity(entity);
-                entity.setFecha_nacimiento(this.fecha_nacimiento);
-                entity.setDireccion(this.direccion);
-                entity.setForma_pago(this.forma_pago);
-                
-                return entity;
-	}
-        
-        public ClienteEntity toEntity( )
-	{
-                ClienteEntity entity = new ClienteEntity();
-                super.toEntity(entity);
-                entity.setFecha_nacimiento(this.fecha_nacimiento);
-                entity.setDireccion(this.direccion);
-                entity.setForma_pago(this.forma_pago);
-                
-                return entity;
-	}
+    }
+
+    /**
+     * @return La fecha de nacimiento de la entidad Cliente
+     */
+    public Date getFecha_nacimiento() {
+        return fecha_nacimiento;
+    }
+
+    /**
+     * @param fecha_nacimiento La nueva fecha de nacimiento
+     */
+    public void setFecha_nacimiento(Date fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+
+    /**
+     * @return La forma de pago de la entidad Cliente
+     */
+    public String getForma_pago() {
+        return forma_pago;
+    }
+
+    /**
+     * @param forma_pago La nueva forma de pago
+     */
+    public void setForma_pago(String forma_pago) {
+        this.forma_pago = forma_pago;
+    }
+
+    /**
+     * @return La direccion de la entidad Cliente
+     */
+    public String getDireccion() {
+        return direccion;
+    }
+
+    /**
+     * @param direccion La nueva direccion
+     */
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    /**
+     * Convertir DTO a Entity
+     *
+     * @param entity Entidad de la subclase
+     * @return Un Entity con los valores del DTO
+     */
+    public ClienteEntity toEntity(ClienteEntity entity) {
+        super.toEntity(entity);
+        entity.setFecha_nacimiento(this.fecha_nacimiento);
+        entity.setDireccion(this.direccion);
+        entity.setForma_pago(this.forma_pago);
+
+        return entity;
+    }
+
+    public ClienteEntity toEntity() {
+        ClienteEntity entity = new ClienteEntity();
+        super.toEntity(entity);
+        entity.setFecha_nacimiento(this.fecha_nacimiento);
+        entity.setDireccion(this.direccion);
+        entity.setForma_pago(this.forma_pago);
+
+        return entity;
+    }
 }

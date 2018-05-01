@@ -27,17 +27,17 @@ import co.edu.uniandes.csw.lostoderos.entities.ToderoEntity;
 import java.io.Serializable;
 
 /**
- * ToderoDTO Objeto de transferencia de datos de la entidad de Todero. Los DTO contienen las
- * represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
- * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * ToderoDTO Objeto de transferencia de datos de la entidad de Todero. Los DTO
+ * contienen las represnetaciones de los JSON que se transfieren entre el
+ * cliente y el servidor. Al serializarse como JSON esta clase implementa el
+ * siguiente modelo: <br>
  * <pre>
  *   {
  *      "id": number,
  *      "name: string,
  *      "atributo": string
  *   }
- * </pre>
- * Por ejemplo una entidad de Todero se representa asi:<br>
+ * </pre> Por ejemplo una entidad de Todero se representa asi:<br>
  * <pre>
  *
  *   {
@@ -50,94 +50,86 @@ import java.io.Serializable;
  *
  * @author ISIS2603
  */
-public class ToderoDTO implements Serializable
-{
-	private Long id;
+public class ToderoDTO implements Serializable {
 
-	private String name;
+    private Long id;
 
-	private String atributo;
+    private String name;
 
-	/**
-	 * Constructor por defecto
-	 */
-	public ToderoDTO( )
-	{
-	}
+    private String atributo;
 
-	/**
-	 * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
-	 * la entidad que viene de argumento.
-	 *
-	 * @param toderoEntity: Es la entidad que se va a convertir a DTO
-	 */
-	public ToderoDTO( ToderoEntity toderoEntity )
-	{
-		this.id = toderoEntity.getId( );
-		this.name = toderoEntity.getName( );
-		this.atributo = toderoEntity.getAtributo( );
+    /**
+     * Constructor por defecto
+     */
+    public ToderoDTO() {
+        // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
+    }
 
-	}
+    /**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     *
+     * @param toderoEntity: Es la entidad que se va a convertir a DTO
+     */
+    public ToderoDTO(ToderoEntity toderoEntity) {
+        this.id = toderoEntity.getId();
+        this.name = toderoEntity.getName();
+        this.atributo = toderoEntity.getAtributo();
 
-	/**
-	 * @return El ID de la entidad Todero
-	 */
-	public Long getId( )
-	{
-		return id;
-	}
+    }
 
-	/**
-	 * @param id El nuevo ID
-	 */
-	public void setId( Long id )
-	{
-		this.id = id;
-	}
+    /**
+     * @return El ID de la entidad Todero
+     */
+    public Long getId() {
+        return id;
+    }
 
-	/**
-	 * @return El nombre de la entidad Todero
-	 */
-	public String getName( )
-	{
-		return name;
-	}
+    /**
+     * @param id El nuevo ID
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	/**
-	 * @param name El nuevo nombre
-	 */
-	public void setName( String name )
-	{
-		this.name = name;
-	}
+    /**
+     * @return El nombre de la entidad Todero
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * @return El atrinuto de la entidad Todero
-	 */
-	public String getAtributo( )
-	{
-		return atributo;
-	}
+    /**
+     * @param name El nuevo nombre
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	/**
-	 * @param atributo El nuevo atributo de la entidad Todero
-	 */
-	public void setAtributo( String atributo )
-	{
-		this.atributo = atributo;
-	}
+    /**
+     * @return El atrinuto de la entidad Todero
+     */
+    public String getAtributo() {
+        return atributo;
+    }
 
-	/**
-	 * Convertir DTO a Entity
-	 *
-	 * @return Un Entity con los valores del DTO
-	 */
-	public ToderoEntity toEntity( )
-	{
-		ToderoEntity entity = new ToderoEntity( );
-		entity.setId( this.id );
-		entity.setName( this.name );
-		entity.setAtributo( this.atributo );
-		return entity;
-	}
+    /**
+     * @param atributo El nuevo atributo de la entidad Todero
+     */
+    public void setAtributo(String atributo) {
+        this.atributo = atributo;
+    }
+
+    /**
+     * Convertir DTO a Entity
+     *
+     * @return Un Entity con los valores del DTO
+     */
+    public ToderoEntity toEntity() {
+        ToderoEntity entity = new ToderoEntity();
+        entity.setId(this.id);
+        entity.setName(this.name);
+        entity.setAtributo(this.atributo);
+        return entity;
+    }
 }

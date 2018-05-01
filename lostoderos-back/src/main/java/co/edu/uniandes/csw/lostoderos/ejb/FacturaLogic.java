@@ -59,20 +59,12 @@ public class FacturaLogic {
      * @return La entiddad de la factura luego de persistirla.
      * @throws BusinessLogicException Si la factura a persistir ya existe.
      */
-    public FacturaEntity createFactura(FacturaEntity entity) throws BusinessLogicException, Exception {
+    public FacturaEntity createFactura(FacturaEntity entity) throws BusinessLogicException {
           LOGGER.info("Inicio de creación de la entidad factura");    
-          //TODO: NO hay ninguna regla de negocio? 
-        
-        if (getById(entity.getId())==null) {
-              persistence.create(entity);
+          //TODO: NO hay ninguna regla de negocio?  
+        persistence.create(entity);
         LOGGER.info("Creacion exitosa");
         return entity;
-        }
-      else
-        {
-            throw new Exception("ya esta esa factura en el sistema");
-        }
-        
     }
 
     /**

@@ -1,25 +1,22 @@
 {
-	"id": "d1891a22-6574-4c81-92e3-1596b5879333",
+	"id": "e7640100-9631-455b-b900-5f2ebb88a6ad",
 	"name": "ContratistaTest",
 	"description": "",
 	"auth": null,
 	"events": null,
 	"variables": null,
 	"order": [
-		"56d3ca24-8ac1-4089-b134-25265e3ce6d3",
-		"d4820612-d458-41c2-a21b-45771d79ecab",
-		"a84c4c35-6e89-478a-a548-2d4b7cda06cf",
-		"876e722f-7046-4482-87b8-f1faf8d82d42",
-		"66599648-e201-4908-8aef-38d4509a5880",
-		"18edd50a-a5aa-4112-8811-ec29e92012d3",
-		"93a7dc5e-bf30-4a17-8ab5-dd53374f9795",
-		"6fbbdbdd-a0f0-47c2-8f55-5a017440d938"
+		"6090fe7d-cf81-4f14-9313-72801a459455",
+		"4119bfc8-b50b-4c8b-a243-b39cfbe10ded",
+		"30017e9f-7e2e-4cdb-9aff-438e0fad2170",
+		"218e2a71-16d6-443a-9044-7628f7e9e146",
+		"e1241829-a1e6-4e06-9a66-f3654e9b6a7d"
 	],
 	"folders_order": [],
 	"folders": [],
 	"requests": [
 		{
-			"id": "18edd50a-a5aa-4112-8811-ec29e92012d3",
+			"id": "218e2a71-16d6-443a-9044-7628f7e9e146",
 			"name": "Borrar un contratista",
 			"url": "http://localhost:8080/lostoderos-web/api/contratistas/{{new_id_e}}",
 			"description": null,
@@ -55,113 +52,7 @@
 			"pathVariables": {}
 		},
 		{
-			"id": "56d3ca24-8ac1-4089-b134-25265e3ce6d3",
-			"name": "Obtener contratista",
-			"url": "http://localhost:8080/lostoderos-web/api/contratistas/{{new_id_e}}",
-			"description": null,
-			"data": [],
-			"dataMode": "params",
-			"headerData": [],
-			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "8e755477-799c-4568-82a7-21c02783ce6b",
-						"type": "text/javascript",
-						"exec": [
-							"console.log(responseBody);",
-							"var data = JSON.parse(responseBody);",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"folder": null,
-			"headers": "",
-			"pathVariables": {}
-		},
-		{
-			"id": "66599648-e201-4908-8aef-38d4509a5880",
-			"name": "Editar una hoja de vida del contratista",
-			"url": "http://localhost:8080/lostoderos-web/api/contratistas/{{new_id_e}}/hojadevida",
-			"description": null,
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "PUT",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "3e6634dc-c2a4-4fd1-9115-d005f636b800",
-						"type": "text/javascript",
-						"exec": [
-							"console.log(responseBody);",
-							"var data = JSON.parse(responseBody);",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"folder": null,
-			"rawModeData": "{\r\n  \"name\":\"Nuevo nombre\"\r\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "6fbbdbdd-a0f0-47c2-8f55-5a017440d938",
-			"name": "Crear una hoja de vida contratista",
-			"url": "http://localhost:8080/lostoderos-web/api/contratistas/{{new_id_e}}/hojadevida",
-			"description": null,
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "d293f0ef-ce31-4d4f-a7ca-93239d0a6068",
-						"type": "text/javascript",
-						"exec": [
-							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_e\",data.id);",
-							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"folder": null,
-			"rawModeData": "{\n\t\"nombre\":\"Nombre del contratista\"\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "876e722f-7046-4482-87b8-f1faf8d82d42",
+			"id": "30017e9f-7e2e-4cdb-9aff-438e0fad2170",
 			"name": "Editar un contratista",
 			"url": "http://localhost:8080/lostoderos-web/api/contratistas/{{new_id_e}}",
 			"description": null,
@@ -199,45 +90,7 @@
 			"pathVariables": {}
 		},
 		{
-			"id": "93a7dc5e-bf30-4a17-8ab5-dd53374f9795",
-			"name": "Crear un contratista primera vez",
-			"url": "http://localhost:8080/lostoderos-web/api/contratistas",
-			"description": null,
-			"data": [],
-			"dataMode": "raw",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"method": "POST",
-			"pathVariableData": [],
-			"queryParams": [],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "d293f0ef-ce31-4d4f-a7ca-93239d0a6068",
-						"type": "text/javascript",
-						"exec": [
-							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_e\",data.id);",
-							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"folder": null,
-			"rawModeData": "{\n\t\"nombre\":\"Sergio\",\n\t\"reputacion\":\"Buena\",\n\t\"disponibilidad\":\"Está disponible\"\n}",
-			"headers": "Content-Type: application/json\n",
-			"pathVariables": {}
-		},
-		{
-			"id": "a84c4c35-6e89-478a-a548-2d4b7cda06cf",
+			"id": "4119bfc8-b50b-4c8b-a243-b39cfbe10ded",
 			"name": "Obtener contratistas",
 			"url": "http://localhost:8080/lostoderos-web/api/contratistas",
 			"description": null,
@@ -274,9 +127,9 @@
 			"pathVariables": {}
 		},
 		{
-			"id": "d4820612-d458-41c2-a21b-45771d79ecab",
-			"name": "Obtener hoja de vida contratista",
-			"url": "http://localhost:8080/lostoderos-web/api/contratistas/{{new_id_e}}/hojadevida",
+			"id": "6090fe7d-cf81-4f14-9313-72801a459455",
+			"name": "Obtener contratista",
+			"url": "http://localhost:8080/lostoderos-web/api/contratistas/{{new_id_e}}",
 			"description": null,
 			"data": [],
 			"dataMode": "params",
@@ -301,6 +154,44 @@
 			],
 			"folder": null,
 			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "e1241829-a1e6-4e06-9a66-f3654e9b6a7d",
+			"name": "Crear un contratista primera vez",
+			"url": "http://localhost:8080/lostoderos-web/api/contratistas",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d293f0ef-ce31-4d4f-a7ca-93239d0a6068",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\n\t\"nombre\":\"Sergio\",\n\t\"reputacion\":\"Buena\",\n\t\"disponibilidad\":\"Está disponible\"\n}",
+			"headers": "Content-Type: application/json\n",
 			"pathVariables": {}
 		}
 	]

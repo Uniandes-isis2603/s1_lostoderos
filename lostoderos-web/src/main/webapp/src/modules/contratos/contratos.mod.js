@@ -5,7 +5,7 @@
             $urlProvider.otherwise("contratistasList");
             $stateProvider.state('contrato', {
                 param: {contratoId: null},
-                url: '/contrato/{contratoId}',
+                url: '/contrato',
                 parent: 'contratistaDetail',
                 
                 views: {
@@ -16,7 +16,7 @@
                     }
                 }
             }).state('createContrato', {
-                url: '/contratos',
+                url: '/contrato',
                 parent:'contratistaDetail',
                 views: {
                     createContratoView: {

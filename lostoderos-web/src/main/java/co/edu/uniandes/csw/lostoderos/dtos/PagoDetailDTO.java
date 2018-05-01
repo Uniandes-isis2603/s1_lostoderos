@@ -26,11 +26,12 @@ package co.edu.uniandes.csw.lostoderos.dtos;
 import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
 
 /**
- * Clase que extiende de {@link PagoDetailDTO} para manejar la transformacion entre
- * los objetos JSON y las Entidades de la base de datos. Para conocer el
+ * Clase que extiende de {@link PagoDetailDTO} para manejar la transformacion
+ * entre los objetos JSON y las Entidades de la base de datos. Para conocer el
  * contenido del cliente vaya a la documentacion de {@link PagoDetailDTO}
- * @author s.rangel
- * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ *
+ * @author s.rangel Al serializarse como JSON esta clase implementa el siguiente
+ * modelo: <br>
  * <pre>
  *   {
  *      "id": Number,
@@ -40,14 +41,13 @@ import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
  *      "descripcion": String,
  *      "fechaTarjeta": String,
  *      "numTarjeta": String
- *     
- *         
- *      
- * 
+ *
+ *
+ *
+ *
  *   }
- * </pre>
- * Por ejemplo una entidad de Servicio se representa asi:<br>
- * 
+ * </pre> Por ejemplo una entidad de Servicio se representa asi:<br>
+ *
  * <pre>
  *
  *   {
@@ -58,19 +58,17 @@ import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
  *      "descripcion": "un pago correspondiente a tal servicio",
  *      "fechaTarjeta": "09/18",
  *      "numTarjeta": "123456629723"
- * 
+ *
  *   }
  *
  * </pre>
  *
  */
 public class PagoDetailDTO extends PagoDTO {
-    
-   
 
     /**
-     * Crea un objeto PagoDetailDTO a partir de un objeto PagoEntity
-     * incluyendo los atributos de PagoDTO.
+     * Crea un objeto PagoDetailDTO a partir de un objeto PagoEntity incluyendo
+     * los atributos de PagoDTO.
      *
      * @param entity Entidad PagoEntity desde la cual se va a crear el nuevo
      * objeto.
@@ -78,33 +76,21 @@ public class PagoDetailDTO extends PagoDTO {
      */
     public PagoDetailDTO(PagoEntity entity) {
         super(entity);
-        
+    }
 
-        }
-      public PagoDetailDTO() {
-        super();
-        
+    public PagoDetailDTO() {
+        // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
+    }
 
-        }
-/**
-	 * Transformar un DTO a un Entity
-	 *
-	 * @return La entidad construida a partir del DTO.
-	 */
-	@Override
-	public PagoEntity toEntity( )
-	{
-		PagoEntity pagoEntity = super.toEntity( );
-		return pagoEntity;
-	}
-        
-        
-        
-        
-        
-        
-        
+    /**
+     * Transformar un DTO a un Entity
+     *
+     * @return La entidad construida a partir del DTO.
+     */
+    @Override
+    public PagoEntity toEntity() {
+        PagoEntity pagoEntity = super.toEntity();
+        return pagoEntity;
+    }
+
 }
-   
-
-
