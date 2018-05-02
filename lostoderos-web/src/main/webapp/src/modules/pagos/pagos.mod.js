@@ -30,11 +30,11 @@
                 }
             }).state('pagosCreate',{
                 url:'/create',
-                parent:'pagos',
+               // parent:'pagos',
                 views:{
                     
                     
-                    'createPagoView':{
+                    'detailView':{
                         templateUrl:basePath+'pagos.create.html',
                         controller: 'pagosCtrl',
                         controllerAs:'ctrl'
@@ -51,7 +51,7 @@
                     'detailView':{
                         templateUrl: basePath + 'pagos.detail.html'
                     },
-                    'infoContratistaView':{
+                    'infoPagosView':{
                         templateUrl:basePath+'pagos.detail.info.html',
                         controller: 'pagosCtrl',
                         controllerAs:'ctrl'
