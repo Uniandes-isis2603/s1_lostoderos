@@ -20,3 +20,6 @@ insert into USUARIOENTITY (id, dtype,nombre, correo, usuario, contrasena, reputa
 
 delete from FACTURAENTITY;
 insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('Efectivo', 'name','Plomeria',100, 110, null);
+insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('Efectivo', 'name','Plomeria',100, 110, null);
+insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('TarjetaCredito', 'ayuda','Limpieza',200, 110, null);
+insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('TarjetaDebito', 'ayuda','Lavanderia',200, 110, null);
