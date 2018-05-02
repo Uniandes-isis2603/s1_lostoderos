@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-lg-6">
             <div align="left">
-                <h1>Crear un nuevo pago</h1>
+                <h1>Crear una Factura</h1>
                 <h2>¡Llena los espacios requeridos y listo!</h2>
             </div>
             <br style="margin-bottom:15px;">
@@ -34,25 +34,25 @@
             </div>
         </div>
         <div class="col-lg-6">
-            <form ng-submit="ctrl.createPago(pago)" name = "pago">
+            <form ng-submit="ctrl.createFactura(factura)" name = "factura">
                 <div class ="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input id = "contratistaName" required ng-model="pago.numTarjeta" type="text" class="form-control col-sm-4" placeholder="NumeroTarjeta">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
+                    <input id = "contratistaName" required ng-model="factura.producto" type="text" class="form-control col-sm-4" placeholder="producto">
                 </div>
                 <div class ="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
-                    <input id = "contratistaUsuario" required ng-model="contratista.codigoTarjeta" type="text" class="form-control col-sm-4" placeholder="Usuario">
+                    <input id = "contratistaUsuario" required ng-model="factura.formaPago" type="text" class="form-control col-sm-4" placeholder="formaPago">
                 </div>
                 <div class ="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                    <input id = "contratistaCorreo" required ng-model="contratista.correo" type="text" class="form-control col-sm-4" placeholder="Correo">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                    <input id = "contratistaCorreo" required ng-model="factura.subTotal" type="number" class="form-control col-sm-4" placeholder="subTotal">
                 </div>
                 <div class ="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id = "contratistaContrasena" required ng-model="contratista.contrasena" type="password" class="form-control col-sm-4" placeholder="Contraseña">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                    <input id = "contratistaContrasena" required ng-model="factura.total" type="number" class="form-control col-sm-4" placeholder="total">
                 </div>
                 <div class="form-group row">
-                    <div class="form-group col-sm-4" ng-if="!pago.$valid">
+                    <div class="form-group col-sm-4" ng-if="!factura.$valid">
                         <div class="alert alert-warning" >
                             <strong>¡Cuidado!</strong><p>Debe llenar todos los campos requeridos*</p>
                         </div> 
@@ -60,8 +60,8 @@
                 </div>
                 <div class="form-group row">
                     <div class="form-group col-sm-12">
-                        <input ng-show="pago.$valid" type="submit" value="Crear" class="btn btn-success"/>
-                        <a class="btn btn-info" ui-sref="pagosList">Cancelar</a>
+                        <input ng-show="factura.$valid" type="submit" value="Crear" class="btn btn-success"/>
+                        <a class="btn btn-info" ui-sref="facturasList">Cancelar</a>
                     </div>
                 </div>
             </form>
@@ -71,7 +71,3 @@
     </div>
 
 </div>
-
-    
-
-

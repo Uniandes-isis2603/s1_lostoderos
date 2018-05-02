@@ -8,37 +8,70 @@
             
             $urlRouterProvider.otherwise("/facturasList");
             
-            $stateProvider.state('facturasList', {
-                
-                url: '/facturas/list',
+            $stateProvider.state('facturas', {
+                url: '/facturas',
+                abstract:true,
                  views: {
                     'mainView': {
-                        templateUrl: basePath + 'facturas.list.html',
+                        templateUrl: basePath + 'facturas.html',
                         controller: 'facturasCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('facturasDetail', {
-                url: '/{idFactura:int}/detail',
-                parent: 'facturas',
-                param: {
-                    facturaId: null
-                },
-                views: {
+            }).state('facturasList', {
+                url: '/list',
+                parent:'facturas',
+                 views: {
+                    'listView':{
+                        templateUrl:basePath+'facturas.list.html'
+                    }
+                }
+            }).state('facturasDetail',{
+                url: '/{facturaId:int}/detail',
+                parent:'facturas',
+                param: {facturaId: null},
+                views:{
                     'listView': {
-                        templateUrl: basePath + 'facturas.list.html',
-                        controller: 'facturasDetailCtrl',
-                        controllerAs: 'ctrl'
+                        templateUrl: basePath + 'facturas.list.html'
+                        
                     },
-                    'detailView': {
+                    'detailView':{
                         templateUrl: basePath + 'facturas.detail.html',
                         controller: 'facturasDetailCtrl',
                         controllerAs: 'ctrl'
                     }
-
                 }
-
+            }).state('createFacturas',{
+                url:'/create',
+                parent:'facturas',
+                views:{
+                    
+                    
+                    'createFacturasView':{
+                        templateUrl:basePath+'facturas.create.html',
+                        controller: 'facturasCtrl',
+                        controllerAs:'ctrl'
+                    }
+                }
+            }).state('facturasInfo',{
+                url:'info',
+                parent:'facturasDetail',
+                views:{
+                    'listView': {
+                        templateUrl: basePath + 'facturas.list.html'
+                        
+                    },
+                    'detailView':{
+                        templateUrl: basePath + 'facturas.detail.html'
+                    },
+                    'infoFacturasView':{
+                        templateUrl:basePath+'facturas.detail.info.html',
+                        controller: 'facturasCtrl',
+                        controllerAs:'ctrl'
+                    }
+                }
             });
+            
         }
     ]);
 })(window.angular);

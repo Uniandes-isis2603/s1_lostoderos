@@ -7,12 +7,12 @@
                 $scope.facturasRecords = response.data;
                 $scope.list=response.data;
             });
-           /* this.createPago = function () {
-                pago = $scope.pago;
-                return $http.post(pagosContext, pago).then(function () {
-                    $state.go('pagosList');
+            this.createFactura = function () {
+                factura = $scope.pago;
+                return $http.post(facturasContext, factura).then(function () {
+                    $state.go('facturasList');
                 });
-            }*/;
+            };
         }
     ]);
 }

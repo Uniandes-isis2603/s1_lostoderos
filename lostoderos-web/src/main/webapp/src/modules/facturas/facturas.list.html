@@ -1,30 +1,50 @@
-<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
-<div class="container-fluid ">
-    <div class="h-100 row align-items-center">        
-        <table class = "table table-bordered">
-        <thead>
-            <th>Producto</th>
-            <th>SubTotal</th>
-            <th>Total</th>
-            <th>Forma de Pago</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr  class ="active" ng-repeat="factura in facturasRecords | orderBy : 'producto'">
-                
-                <td>{{factura.producto}}<a ui-sref="facturasDetail({facturaProducto: factura.producto})">{{factura.id}}</a></td>
-                <td>{{factura.subTotal}}</td>
-                <td>{{factura.total}}</td>
-                <td>{{factura.formaPago}}</td>
-
-            </tr>
-       
-                          
+<style>
+    thead{
+        background: linear-gradient(45deg, rgba(21,64,117,1) 0%, 
+            rgba(252,208,141,1) 100%);
+        border:none;
+    }
+    th{
+        color:white;
+    }
+    tr{
+         color:tomato;
+    }
+    .br{
+        margin-bottom: 15px;
+    }
+    
+</style>
+<div  class="container-fluid ">
+    <br>
+        <form>
+            <input type="text" class="form-control" ng-model="producto" placeholder="Buscar">
+            <br>
+            <table class ="table table-bordered">
+                <thead>
+                    <tr class ="bg-ACTIVE">
+                        <th>Id</th>                        
+                        <th>Producto</th>
+                        <th>FormaPago</th>
+                        <th>SubTotal</th>
+                        <th>Total</th>
                         
-        </tbody>
-        
-    </table>
-    </div>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="factura in list">
+                        <td><a ui-sref="facturasDetail({facturaId: factura.id})">{{factura.id}}</a></td>
+                        <td>{{factura.producto}}</td>
+                        <td>{{factura.formaPago}}</td>
+                        <td>{{factura.subTotal}}</td>
+                        <td>{{factura.total}}</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+   
+    <button>
+        <a ui-sref="createFacturas">Crear factura</a>
+    </button>
 </div>
-
- 

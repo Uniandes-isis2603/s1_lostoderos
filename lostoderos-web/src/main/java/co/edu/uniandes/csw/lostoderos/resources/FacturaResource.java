@@ -9,6 +9,7 @@ package co.edu.uniandes.csw.lostoderos.resources;
  *
  * @author s.rangel
  */
+import co.edu.uniandes.csw.lostoderos.dtos.FacturaDTO;
 import co.edu.uniandes.csw.lostoderos.dtos.FacturaDetailDTO;
 import co.edu.uniandes.csw.lostoderos.ejb.FacturaLogic;
 import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
@@ -82,9 +83,15 @@ public class FacturaResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la factura.
      */
     @POST
-	public FacturaDetailDTO createFactura( FacturaDetailDTO dto ) throws BusinessLogicException, Exception 
+	public FacturaDTO createFactura( FacturaDTO dto ) throws BusinessLogicException, Exception 
 	{
-            return new FacturaDetailDTO(facturaLogic.createFactura(dto.toEntity()));
+             LOGGER.info ("va a convertir a to entity"); 
+        FacturaEntity entity = dto.toEntity();
+        LOGGER.info ("va a llamar la lógica");
+        entity = facturaLogic.createFactura(entity);
+        LOGGER.info ("va a convertir a DTO");
+        FacturaDTO creado = new FacturaDTO(entity);
+        return creado;
 
 	}
          /**

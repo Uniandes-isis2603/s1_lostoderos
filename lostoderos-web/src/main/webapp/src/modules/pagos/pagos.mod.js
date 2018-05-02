@@ -19,22 +19,35 @@
                     }
                 }
             }).state('pagosList', {
-                
-                url: '/pagos/list',
+                url: '/list',
+                parent:'pagos',
                  views: {
-                    'mainView': {
-                        templateUrl: basePath + 'pagos.list.html',
-                        controller: 'pagosCtrl',
+                    'listView':{
+                        templateUrl:basePath+'pagos.list.html'
+                    }
+                }
+            }).state('pagosDetail',{
+                url: '/{pagoId:int}/detail',
+                parent:'pagos',
+                param: {pagoId: null},
+                views:{
+                    'listView': {
+                        templateUrl: basePath + 'pagos.list.html'
+                        
+                    },
+                    'detailView':{
+                        templateUrl: basePath + 'pagos.detail.html',
+                        controller: 'pagosDetailCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('pagosCreate',{
+            }).state('createPagos',{
                 url:'/create',
-               // parent:'pagos',
+                parent:'pagos',
                 views:{
                     
                     
-                    'detailView':{
+                    'createPagosView':{
                         templateUrl:basePath+'pagos.create.html',
                         controller: 'pagosCtrl',
                         controllerAs:'ctrl'
@@ -59,7 +72,6 @@
                 }
             });
             
-             
         }
     ]);
 })(window.angular);
