@@ -181,10 +181,11 @@ public class PagoResource {
      * </code>
      * </pre>
      * @param id Identificador del pago que se desea borrar. Este debe ser una cadena de dígitos.
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
 @DELETE
 @Path( "{id: \\d+}" )
-public PagoDetailDTO deletePago( @PathParam( "id" ) Long id ) throws Exception
+public PagoDetailDTO deletePago( @PathParam( "id" ) Long id ) throws BusinessLogicException
 	{
 		  PagoEntity entity = pagoLogic.getById(id);
         if (entity == null) {
