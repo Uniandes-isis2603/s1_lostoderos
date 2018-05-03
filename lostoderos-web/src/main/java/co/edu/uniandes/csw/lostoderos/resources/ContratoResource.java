@@ -11,8 +11,6 @@ import co.edu.uniandes.csw.lostoderos.ejb.ContratoLogic;
 import co.edu.uniandes.csw.lostoderos.entities.ContratoEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.mappers.BusinessLogicExceptionMapper;
-import java.util.ArrayList;
-import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
