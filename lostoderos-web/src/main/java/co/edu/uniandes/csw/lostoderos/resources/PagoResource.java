@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.lostoderos.resources;
 
+import co.edu.uniandes.csw.lostoderos.dtos.PagoDTO;
 import co.edu.uniandes.csw.lostoderos.dtos.PagoDetailDTO;
 import co.edu.uniandes.csw.lostoderos.ejb.PagoLogic;
 import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
@@ -79,9 +80,9 @@ public class PagoResource {
     private static final Logger LOGGER = Logger.getLogger(PagoPersistence.class.getName());
 
     @POST
-	public PagoDetailDTO createPago( PagoDetailDTO dto ) throws BusinessLogicException, Exception 
+	public PagoDTO createPago( PagoDTO dto )  
 	{
-	        return new PagoDetailDTO(pagoLogic.createPago(dto.toEntity()));
+	        return new PagoDTO(pagoLogic.createPago(dto.toEntity()));
 
 	}
          /**
@@ -96,7 +97,7 @@ public class PagoResource {
      * @return JSONArray {@link PagoDetailDTO} - Los pagos encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<PagoDetailDTO> getPagos() throws Exception {
+    public List<PagoDetailDTO> getPagos() throws BusinessLogicException {
         return listEntity2DetailDTO(pagoLogic.getPagos());
     }
         /**

@@ -49,7 +49,7 @@
                     
                     'createFacturasView':{
                         templateUrl:basePath+'facturas.create.html',
-                        controller: 'facturasCtrl',
+                        controller: 'facturasNewCtrl',
                         controllerAs:'ctrl'
                     }
                 }

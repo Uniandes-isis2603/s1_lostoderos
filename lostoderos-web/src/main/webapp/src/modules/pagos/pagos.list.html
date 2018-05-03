@@ -1,45 +1,53 @@
-<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
-
-<head>
 <style>
-
-</style>
-</head>
-<div class="container-fluid ">
-    <div class="h-100 row align-items-center">
-        
-        <table class = "table table-bordered" >
-        <thead style="background:orange">
-        <tr class ="bg-primary">
+    thead{
+        background: linear-gradient(45deg, rgba(21,64,117,1) 0%, 
+            rgba(252,208,141,1) 100%);
+        border:none;
+    }
+    th{
+        color:white;
+    }
+    tr{
+         color:tomato;
+    }
+    .br{
+        margin-bottom: 15px;
+    }
     
-            <th>NumTarjeta</th> 
-            <th>CodigoTarjeta</th>
-            <th>ComprobantePagoMedio</th>
-            <th>ComprobantePagoTotal</th>
-            <th>Descripcion</th>
-            <th>FechaTarjeta</th>
-                    
-        </tr>
-        </thead>
-        <tbody>
-            <tr style="color:#000000" class ="active" ng-repeat="pago in pagosRecords | orderBy : 'numTarjeta'">
-                
-                <td>{{pago.numTarjeta}}</td>
-                <td>{{pago.codigoTarjeta}}</td>
-                <td>{{pago.comprobantePagoMedio}}</td>
-                <td>{{pago.comprobantePagoTotal}}</td>
-                <td>{{pago.descripcion}}</td>
-                <td>{{pago.fechaTarjeta}}</td>
-              
-               
-                
-            </tr>
-        </tbody>
-        
-    </table>
-    </div>
-
-     <button>
+</style>
+<div  class="container-fluid ">
+    <br>
+        <form>
+            <br>
+            <table class ="table table-bordered">
+                <thead>
+                    <tr class ="bg-ACTIVE">
+                        <th>Id</th>                        
+                        <th>Numero de Tarjeta</th>
+                        <th>Codigo de Tarjeta</th>
+                        <th>Fecha de Tarjeta</th>
+                        <th>Comprobante de Pago Medio</th>
+                        <th>Comprobante de Pago Total</th>
+                        <th>Descripcion</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="pago in list">
+                        <td>{{pago.ID}}</td>
+                        <td>{{pago.codigoTarjeta}}</td>
+                        <td>{{pago.numTarjeta}}</td>
+                        <td>{{pago.fechaTarjeta}}</td>
+                        <td>{{pago.comprobantePagoMedio}}</td>
+                        <td>{{pago.comprobantePagoTotal}}</td>
+                        <td>{{pago.descripcion}}</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+   
+    <button>
         <a ui-sref="createPagos">Crear Pago</a>
     </button>
 </div>

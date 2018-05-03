@@ -49,7 +49,7 @@ public class PagoLogic {
      * @return La entiddad del pago luego de persistirla.
      * @throws BusinessLogicException Si el pago a persistir ya existe.
      */
-    public PagoEntity createPago(PagoEntity entity) throws BusinessLogicException, Exception {
+    public PagoEntity createPago(PagoEntity entity)  {
         LOGGER.info("Inicio de creación de la entidad pago");
         //TODO: NO hay ninguna regla de negocio? 
      /**  if (persistence.find(entity.getId())!=null) {
@@ -80,13 +80,13 @@ public class PagoLogic {
      *
      * @return una lista de pagos.
      */
-    public List<PagoEntity> getPagos() throws Exception {
+    public List<PagoEntity> getPagos() throws BusinessLogicException {
         LOGGER.info("Inicia proceso de consultar todas los pagos");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
         List<PagoEntity> pagos = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todas los pagos");
         if (pagos ==null) {
-            throw new Exception("No hay pagos");
+            throw new BusinessLogicException("No hay pagos");
         }
         else
         {
@@ -124,6 +124,9 @@ public class PagoLogic {
      */
     public PagoEntity updatePago(PagoEntity entity) throws BusinessLogicException {
     
+        if (persistence.find(entity.getId())== null) {
+            throw new BusinessLogicException("No existe el pago que se desea modificar");
+        }
         return persistence.update(entity);
     }
 
@@ -132,12 +135,12 @@ public class PagoLogic {
      *
      * @param id: id del pago a borrar
      */
-    public void deletePago(Long id) throws Exception   {
+    public void deletePago(Long id) throws BusinessLogicException   {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar factura con id={0}", id);
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
         //TODO: qué pasa si no hay un pago con ese id?
         if (persistence.find(id)== null) {
-            throw new Exception("No existe el pago que se quiere borrar");
+            throw new BusinessLogicException("No existe el pago que se quiere borrar");
         }
         else
         {

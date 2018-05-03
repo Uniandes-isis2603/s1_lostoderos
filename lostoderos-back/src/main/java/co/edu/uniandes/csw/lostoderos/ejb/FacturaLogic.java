@@ -136,7 +136,7 @@ public class FacturaLogic {
      */
      public FacturaEntity updateFactura(FacturaEntity entity) throws BusinessLogicException {
           if(persistence.find(entity.getId()) == null)
-            throw new BusinessLogicException("No existe una entidad de Servicio con el id \""+entity.getId()+"\"");
+            throw new BusinessLogicException("No existe una entidad de Factura con el id \""+entity.getId()+"\"");
         //TODO: NO hay ninguna regla de negocio? 
         return persistence.update(entity);
     }
@@ -146,12 +146,12 @@ public class FacturaLogic {
      *
      * @param id: id de la factura a borrar
      */
-    public void deleteFactura(Long id) throws Exception {
+    public void deleteFactura(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar factura con id={0}", id);
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
        //TODO:  Qué pasa si no existe la factura que se quiere borrar?
         if (getById(id)==null) {
-            throw new Exception("No esta la factura que se desea borrar");
+            throw new BusinessLogicException("No existe la factura que se desea borrar");
         }
         else
         {

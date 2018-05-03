@@ -1,3 +1,4 @@
+
 <style>
     thead{
         background: linear-gradient(45deg, rgba(21,64,117,1) 0%, 
@@ -10,15 +11,12 @@
     tr{
          color:tomato;
     }
-    .br{
-        margin-bottom: 15px;
-    }
+
     
 </style>
 <div  class="container-fluid ">
     <br>
         <form>
-            <input type="text" class="form-control" ng-model="producto" placeholder="Buscar">
             <br>
             <table class ="table table-bordered">
                 <thead>
@@ -33,10 +31,10 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="factura in list">
-                        <td><a ui-sref="facturasDetail({facturaId: factura.id})">{{factura.id}}</a></td>
+                        <td><a ui-sref="facturasDetail({facturaId: factura.id})">{{factura.ID}}</a></td>
                         <td>{{factura.producto}}</td>
                         <td>{{factura.formaPago}}</td>
-                        <td>{{factura.subTotal}}</td>
+                        <td>{{factura.subtotal}}</td>
                         <td>{{factura.total}}</td>
                         
                     </tr>
@@ -45,6 +43,6 @@
         </form>
    
     <button>
-        <a ui-sref="createFacturas">Crear factura</a>
+        <a class="btn btn-warning" ui-sref="createFacturas">Crear factura</a>
     </button>
 </div>

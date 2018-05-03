@@ -18,8 +18,16 @@ insert into USUARIOENTITY (id,dtype ,nombre, correo, usuario, contrasena, reputa
 insert into USUARIOENTITY (id,dtype ,nombre, correo, usuario, contrasena, reputacion) values (9,'ContratistaEntity' , 'Catrina Currie', 'ccurrie8@quantcast.com', 'ccurrie8', 'pfWjXOB', null);
 insert into USUARIOENTITY (id, dtype,nombre, correo, usuario, contrasena, reputacion) values (10,'ContratistaEntity' , 'Karalynn Feveryear', 'kfeveryear9@fc2.com', 'kfeveryear9', 'ty4ew9k5fq', null);
 
+
+delete from PAGOENTITY;
+insert into PAGOENTITY (ID, CODIGOTARJETA, COMPROBANTEPAGOMEDIO, COMPROBANTEPAGOTOTAL, DESCRIPCION, FECHATARJETA,NAME, NUMTARJETA) values (100, '123', false, true,  'pago de tarjeta con codigo 123',  '19/02/2018', null, '123456789123');
+
+
+
 delete from FACTURAENTITY;
 insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('Efectivo', 'name','Plomeria',100, 110, null);
 insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('Efectivo', 'name','Plomeria',100, 110, null);
 insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('TarjetaCredito', 'ayuda','Limpieza',200, 110, null);
 insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('TarjetaDebito', 'ayuda','Lavanderia',200, 110, null);
+
+

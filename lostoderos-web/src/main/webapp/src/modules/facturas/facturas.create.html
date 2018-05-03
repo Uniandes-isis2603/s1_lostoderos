@@ -1,73 +1,63 @@
-<style>
 
-    panel
-    {
-        background: white;
-    }
-    .panel-body {
-        background:white;
-    }
-    div.alert-warning{
-        background:orange;
-        color:white;
-    }
-    div.input-group{
-        margin-bottom: 15px;
-    }
-    h2{
-        font-size: 20px;
-    }
-    img{
-        width: 50%;
-    }
-</style>
-<div  class ="container-fluid">
-    <div class="row">
-        <div class="col-lg-6">
-            <div align="left">
-                <h1>Crear una Factura</h1>
-                <h2>¡Llena los espacios requeridos y listo!</h2>
-            </div>
-            <br style="margin-bottom:15px;">
-            <div align ="center">
-                <img src ="data/images/Casco.png" class="img-responsive" alt="Casco">
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <form ng-submit="ctrl.createFactura(factura)" name = "factura">
-                <div class ="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
-                    <input id = "contratistaName" required ng-model="factura.producto" type="text" class="form-control col-sm-4" placeholder="producto">
-                </div>
-                <div class ="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
-                    <input id = "contratistaUsuario" required ng-model="factura.formaPago" type="text" class="form-control col-sm-4" placeholder="formaPago">
-                </div>
-                <div class ="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
-                    <input id = "contratistaCorreo" required ng-model="factura.subTotal" type="number" class="form-control col-sm-4" placeholder="subTotal">
-                </div>
-                <div class ="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
-                    <input id = "contratistaContrasena" required ng-model="factura.total" type="number" class="form-control col-sm-4" placeholder="total">
-                </div>
-                <div class="form-group row">
-                    <div class="form-group col-sm-4" ng-if="!factura.$valid">
-                        <div class="alert alert-warning" >
-                            <strong>¡Cuidado!</strong><p>Debe llenar todos los campos requeridos*</p>
+<div class="container-fluid">
+    <div class="panel-group" align="center">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createFactura">Crear Factura</label>
+                <label ng-if="edit" id="editAuthor">Editar Factura</label></div>
+            <div class="panel-body">
+                <form name="factura">
+                    <div class="form-group row">
+                        <div class="col-lg-12 inputGroupContainer">
+                            <div class="input-group">
+                                <label class="col-lg-12" style="color:whitesmoke">Producto:</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
+                                <input name="Producto" id="producto" placeholder="Producto:" required ng-model="data.producto" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12 inputGroupContainer">
+                            <div class="input-group">
+                                <label class="col-lg-12" style="color:whitesmoke">Forma de Pago:</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
+                                <input name="FormaPago" id="formaPago" placeholder="Forma de Pago:" required ng-model="data.formaPago" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12 inputGroupContainer">
+                            <div class="input-group">
+                                <label class="col-lg-12" style="color:whitesmoke">SubTotal:</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                                <input name="SubTotal:" id="SubTotal:" placeholder="SubTotal:" required ng-model="data.subtotal" class="form-control"  type="number">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12 inputGroupContainer">
+                            <div class="input-group">
+                                <label class="col-lg-2" style="color:whitesmoke">Total:</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                                <input name="total" id="total" placeholder="Total:" required ng-model="data.total" class="form-control"  type="number">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group" ng-if="!factura.$valid" align="center" style="padding-left: 400px; padding-right: 400px">
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>All inputs are required*</p>
+                            </div> 
                         </div> 
                     </div> 
-                </div>
-                <div class="form-group row">
-                    <div class="form-group col-sm-12">
-                        <input ng-show="factura.$valid" type="submit" value="Crear" class="btn btn-success"/>
-                        <a class="btn btn-info" ui-sref="facturasList">Cancelar</a>
+                    <div class="form-group row">
+                        <div class="form-group col-lg-12"> 
+                            <input ng-show="factura.$valid" ng-click="createFactura1()" value="Save" class="btn btn-warning"/>
+                            <a class="btn btn-danger" ui-sref="facturasList">Cancel</a>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
 
+            </div>
         </div>
-
     </div>
-
 </div>

@@ -7,6 +7,9 @@
                 $scope.facturasRecords = response.data;
                 $scope.list=response.data;
             });
+            
+              
+            
             this.createFactura = function () {
                 factura = $scope.pago;
                 return $http.post(facturasContext, factura).then(function () {

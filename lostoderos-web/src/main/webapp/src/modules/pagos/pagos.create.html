@@ -1,77 +1,80 @@
-<style>
-
-    panel
-    {
-        background: white;
-    }
-    .panel-body {
-        background:white;
-    }
-    div.alert-warning{
-        background:orange;
-        color:white;
-    }
-    div.input-group{
-        margin-bottom: 15px;
-    }
-    h2{
-        font-size: 20px;
-    }
-    img{
-        width: 50%;
-    }
-</style>
-<div  class ="container-fluid">
-    <div class="row">
-        <div class="col-lg-6">
-            <div align="left">
-                <h1>Crear un nuevo pago</h1>
-                <h2>¡Llena los espacios requeridos y listo!</h2>
-            </div>
-            <br style="margin-bottom:15px;">
-            <div align ="center">
-                <img src ="data/images/Casco.png" class="img-responsive" alt="Casco">
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <form ng-submit="ctrl.createPago(pago)" name = "pago">
-                <div class ="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input id = "contratistaName" required ng-model="pago.numTarjeta" type="text" class="form-control col-sm-4" placeholder="NumeroTarjeta">
-                </div>
-                <div class ="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
-                    <input id = "contratistaUsuario" required ng-model="contratista.codigoTarjeta" type="text" class="form-control col-sm-4" placeholder="Usuario">
-                </div>
-                <div class ="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                    <input id = "contratistaCorreo" required ng-model="contratista.correo" type="text" class="form-control col-sm-4" placeholder="Correo">
-                </div>
-                <div class ="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id = "contratistaContrasena" required ng-model="contratista.contrasena" type="password" class="form-control col-sm-4" placeholder="Contraseña">
-                </div>
-                <div class="form-group row">
-                    <div class="form-group col-sm-4" ng-if="!pago.$valid">
-                        <div class="alert alert-warning" >
-                            <strong>¡Cuidado!</strong><p>Debe llenar todos los campos requeridos*</p>
+<div class="container-fluid">
+    <div class="panel-group" align="center">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createPago">Crear Pago</label>
+                <label ng-if="edit" id="editPago">Editar Pago</label></div>
+            <div class="panel-body">
+                <form name="pago">
+                    <div class="form-group row">
+                        <div class="col-lg-12 inputGroupContainer">
+                            <div class="input-group">
+                                <label class="col-lg-12" style="color:whitesmoke">NumeroTarjeta:</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
+                                <input name="NumeroTarjeta" id="NumeroTarjeta" placeholder="NumeroTarjeta:" required ng-model="data.numeroTarjeta" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12 inputGroupContainer">
+                            <div class="input-group">
+                                <label class="col-lg-12" style="color:whitesmoke">CodigoTarjeta:</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
+                                <input name="CodigoTarjeta" id="CodigoTarjeta" placeholder="CodigoTarjeta:" required ng-model="data.codigoTarjeta" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12 inputGroupContainer">
+                            <div class="input-group">
+                                <label class="col-lg-12" style="color:whitesmoke">FechaTarjeta:</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                                <input name="FechaTarjeta" id="FechaTarjeta" placeholder="FechaTarjeta:" required ng-model="data.fechaTarjeta" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12 inputGroupContainer">
+                            <div class="input-group">
+                                <label class="col-lg-2" style="color:whitesmoke">Descripcion:</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                                <input name="Descripcion:" id="Descripcion:" placeholder="Descripcion:" required ng-model="data.descripcion" class="form-control"  type="text">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                        <div class="col-lg-12 inputGroupContainer">
+                            <div class="input-group">
+                                <label class="col-lg-2" style="color:whitesmoke">ComprobantePagoTotal</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                                <input name="ComprobantePagoTotal" id="ComprobantePagoTotal" placeholder="ComprobantePagoTotal:" required ng-model="data.ComprobantePagoTotal" class="form-control"  type="boolean">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                        <div class="col-lg-12 inputGroupContainer">
+                            <div class="input-group">
+                                <label class="col-lg-2" style="color:whitesmoke">ComprobantePagoMedio</label>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-bitcoin"></i></span>
+                                <input name="ComprobantePagoMedio" id="ComprobantePagoMedio" placeholder="ComprobantePagoMedio:" required ng-model="data.comprobantePagoMedio" class="form-control"  type="boolean">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group" ng-if="!pago.$valid" align="center" style="padding-left: 400px; padding-right: 400px">
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>All inputs are required*</p>
+                            </div> 
                         </div> 
                     </div> 
-                </div>
-                <div class="form-group row">
-                    <div class="form-group col-sm-12">
-                        <input ng-show="pago.$valid" type="submit" value="Crear" class="btn btn-success"/>
-                        <a class="btn btn-info" ui-sref="pagosList">Cancelar</a>
+                    <div class="form-group row">
+                        <div class="form-group col-lg-12"> 
+                            <input ng-show="pago.$valid" ng-click="createPago()" value="Save" class="btn btn-warning"/>
+                            <a class="btn btn-danger" ui-sref="pagosList">Cancel</a>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
 
+            </div>
         </div>
-
     </div>
-
 </div>
-
-    
-
-

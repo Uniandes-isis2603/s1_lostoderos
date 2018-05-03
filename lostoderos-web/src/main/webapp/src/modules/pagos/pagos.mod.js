@@ -49,7 +49,7 @@
                     
                     'createPagosView':{
                         templateUrl:basePath+'pagos.create.html',
-                        controller: 'pagosCtrl',
+                        controller: 'pagos.new.Ctrl',
                         controllerAs:'ctrl'
                     }
                 }
