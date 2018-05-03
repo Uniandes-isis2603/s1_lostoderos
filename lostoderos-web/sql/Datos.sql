@@ -7,6 +7,8 @@ insert into ServicioEntity  (nombre, categorias, descripcion, imagen) values ('G
 insert into ServicioEntity  (nombre, categorias, descripcion, imagen) values ('Electricidad', 'Servicios Básicos', 'Aqui va una descripcion detallada del servicio', 'data/images/Electricidad.jpg');
 insert into ServicioEntity  (nombre, categorias, descripcion, imagen) values ('Mudanza', 'Servicios Premium', 'Aqui va una descripcion detallada del servicio', 'data/images/Mudanza.png');
 
+
+delete from USUARIOENTITY;
 insert into USUARIOENTITY (id, dtype,nombre, correo, usuario, contrasena, reputacion) values (1,'ContratistaEntity' ,'Christi Lamanby', 'clamanby0@youtube.com', 'clamanby0', 'FmAhX0zkz9WQ', null);
 insert into USUARIOENTITY (id,dtype ,nombre, correo, usuario, contrasena, reputacion) values (2, 'ContratistaEntity' ,'Gill Heisman', 'gheisman1@nymag.com', 'gheisman1', 'LOUAd68', null);
 insert into USUARIOENTITY (id,dtype ,nombre, correo, usuario, contrasena, reputacion) values (3,'ContratistaEntity' , 'Saundra Bonhan', 'sbonhan2@mashable.com', 'sbonhan2', 'CjeMX5YG', null);
