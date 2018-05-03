@@ -1,7 +1,6 @@
 <style>
     thead{
-        background: linear-gradient(45deg, rgba(21,64,117,1) 0%, 
-            rgba(252,208,141,1) 100%);
+        background: rgba(21,64,117,0.5); 
         border:none;
     }
     th{
@@ -10,7 +9,6 @@
     .br{
         margin-bottom: 15px;
     }
-    
 </style>
 <div  class="container-fluid ">
     <br>
@@ -27,7 +25,7 @@
                 <tbody>
                     <tr ng-repeat="contratista in list| filter:nombre |orderBy:'id' ">
                         <td><a ui-sref="contratistaDetail({contratistaId: contratista.id})">{{contratista.id}}</a></td>
-                        <td>{{contratista.nombre}}</td>
+                        <td style="color:white;">{{contratista.nombre}}</td>
                     </tr>
                 </tbody>
             </table>
