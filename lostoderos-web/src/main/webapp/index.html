@@ -106,43 +106,71 @@
 
             .navbar-brand,
             .navbar-nav li a {
-                line-height: 80px;
-                height: 80px;
+                line-height: 70px;
+                height: 70px;
                 padding-top: 0;
+            }
+
+            .navbar-inverse .navbar-nav > li {
+                color: white;
+                float: left;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .navbar-inverse .navbar-nav > li::after {
+                background-color: white;
+                content: "";
+                width: 0;
+                height: 3px;
+                left: 0;
+                bottom: 0;
+                transition: width 0.35s ease 0s;
+                position: absolute;
+            }
+
+            .navbar-inverse .navbar-nav > li:hover::after {
+                width: 100%;
+            }
+
+            .navbar-inverse .navbar-nav >ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
             }
 
         </style>
 
     </head>
 
-    <body class="span4" background="data/images/Background-TD2.jpg">
+    <body class="span4" background="data/images/Background-TD3.jpg">
         <div class="container-fluid">
 
             <div class="row"> 
                 <div>
-                    <nav class="navbar" style="background: rgba(21,64,117,0.5); border:none;">
+                    <nav class="navbar navbar-inverse" style="background: rgba(21,64,117,0.5); border:none;">
                         <div class="container-fluid">
                             <ul class="nav navbar-nav">
-                                <span class="navbar-brand"><img src="data/images/logotod.png" alt="logo" style="height:70px; width:70px;" class="img-responsive logo"/></span>
+                                <span class="navbar-brand"><a ui-sref="serviciosList"><img src="data/images/logotod.png" alt="logo" style="height:70px; width:70px;" class="img-responsive logo"/></a></span>
 
-                                <li><a style="color:white; font-size:1.1vw; font-family:optima, sans-serif" ui-sref="contratistasList" >Contratistas</a></li>
+                                <li class="nav-item"><a style=" font-size:1vw" ui-sref="contratistasList" >Contratistas</a></li>
 
-                                <li><a style="color:white; font-size:1.1vw" ui-sref="serviciosList">Servicios</a></li>                              
+                                <li class="nav-item"><a style=" font-size:1vw" ui-sref="serviciosList">Servicios</a></li>                              
 
-                                <li><a style="color:white; font-size:1.1vw" ui-sref="facturasList">Facturas</a></li>
+                                <li class="nav-item"><a style=" font-size:1vw" ui-sref="facturasList">Facturas</a></li>
 
-                                <li><a style="color:white; font-size:1.1vw" ui-sref="pagosList">Pagos</a></li>
+                                <li class="nav-item"><a style=" font-size:1vw" ui-sref="pagosList">Pagos</a></li>
 
-                                <li><a style="color:white; font-size:1.1vw" ui-sref="clientesList">Clientes</a></li>
+                                <li class="nav-item"><a style=" font-size:1vw" ui-sref="clientesList">Clientes</a></li>
 
-                                <li><a style="color:white; font-size:1.1vw" ui-sref="solicitudesList">Solicitudes</a></li>
+                                <li class="nav-item"><a style=" font-size:1vw" ui-sref="solicitudesList">Solicitudes</a></li>
 
-                                <li><a style="color:white; font-size:1.1vw" ui-sref="cotizacionesList">Cotizaciones</a></li>
+                                <li class="nav-item"><a style=" font-size:1vw" ui-sref="cotizacionesList">Cotizaciones</a></li>
 
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a style="color:whitesmoke; font-size:1.1vw;" ui-sref="iniciosesion"><span class="glyphicon glyphicon-user"></span> Iniciar Sesion   </a></li>
-                                <li><a style="color:whitesmoke; font-size:1.1vw" ui-sref="register"><span class="glyphicon glyphicon-log-in"></span> Registrarse  </a></li>
+                                <li><a style="color:whitesmoke; font-size:1vw;" ui-sref="iniciosesion"><span class="glyphicon glyphicon-user"></span> Iniciar Sesion   </a></li>
+                                <li><a style="color:whitesmoke; font-size:1vw" ui-sref="register"><span class="glyphicon glyphicon-log-in"></span> Registrarse  </a></li>
                             </ul>
                         </div>
                     </nav>

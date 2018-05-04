@@ -1,16 +1,35 @@
+<style>
+    thead{
+        background: rgb(205,149,87); 
+        border:none;
+    }
+    th{
+        color:white;
+    }
+    .br{
+        margin-bottom: 15px;
+    }
+    button{
+        background: rgb(205,149,87);
+        border:none;
+    }
+    a{
+        color:white;
+    }
+</style>
 <div class="container-fluid ">
     <div class="h-100 row align-items-center">
-        <h1 style="color:black; padding-bottom: 10px" class = "text text-center">Buscar Cliente</h1>
+        <h1 style="color:white; padding-bottom: 10px" class = "text text-center">Buscar Cliente</h1>
 
         <div class="container" style="padding-bottom: 30px">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Buscar cliente...">
                 <span class="input-group-btn">
-                    <button class="btn btn-search" style="background-color: #222; color:whitesmoke" type="button"><i class=""></i> Search</button>
+                    <button class="btn btn-search" type="button"><i class=""></i> Search</button>
                 </span>
             </div>
         </div>
-        <table class ="table table-hover">
+        <table class ="table table-bordered">
             <thead>
                 <tr class ="bg-ACTIVE">
                     <th>ID</th>
@@ -22,9 +41,9 @@
             <tbody>
                 <tr ng-repeat="cliente in clientesRecords| orderBy : 'id'">
                     <td><a ui-sref="clienteDetail({clienteId: cliente.id})">{{cliente.id}}</a></td>
-                    <td>{{cliente.usuario}}</td>
-                    <td>{{cliente.nombre}}</td>
-                    <td>{{cliente.fecha_nacimiento}}</td>
+                    <td style="color:white">{{cliente.usuario}}</td>
+                    <td style="color:white">{{cliente.nombre}}</td>
+                    <td style="color:white">{{cliente.fecha_nacimiento}}</td>
                     <td><a class="btn btn-danger btn-sm" ui-sref="clienteDelete({clienteId: cliente.id})"><span class="glyphicon glyphicon-trash"></span></a></td>
                 </tr>
             </tbody>
