@@ -28,12 +28,11 @@
                 }
             }).state('contratistaDetail',{
                 url: '/{contratistaId:int}/detail',
-                parent:'contratistas',
+                parent:'contratistasList',
                 param: {contratistaId: null},
                 views:{
-                    'listView': {
-                        templateUrl: basePath + 'contratistas.list.html'
-                        
+                    'listView':{
+                        templateUrl:basePath+'contratistas.list.html'
                     },
                     'detailView':{
                         templateUrl: basePath + 'contratistas.detail.html',
@@ -45,27 +44,8 @@
                 url:'/create',
                 parent:'contratistas',
                 views:{
-                    
-                    
                     'createContratistaView':{
                         templateUrl:basePath+'contratistas.create.html',
-                        controller: 'contratistasCtrl',
-                        controllerAs:'ctrl'
-                    }
-                }
-            }).state('contratistaInfo',{
-                url:'info',
-                parent:'contratistaDetail',
-                views:{
-                    'listView': {
-                        templateUrl: basePath + 'contratistas.list.html'
-                        
-                    },
-                    'detailView':{
-                        templateUrl: basePath + 'contratistas.detail.html'
-                    },
-                    'infoContratistaView':{
-                        templateUrl:basePath+'contratistas.detail.info.html',
                         controller: 'contratistasCtrl',
                         controllerAs:'ctrl'
                     }

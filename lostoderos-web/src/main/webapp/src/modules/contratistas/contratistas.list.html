@@ -16,29 +16,78 @@
     a{
         color:white;
     }
+    td{
+        color:white;
+    }
+    .glyphicon-star{
+        font-size: 25px;
+    }
+    .half {
+        position: relative;
+        color:yellow;
+    }
+    .half::before {
+        position: relative;
+        z-index: 9;
+        width: 47%;
+        display: block;
+        overflow: hidden;
+    }
+    .half::after {
+        content: '\e006';
+        position: absolute;
+        z-index: 8;
+        color: #bdc3c7;
+        top: 0;
+        left: 0;
+    }
+
+    .ratingNum{
+        font-size:25px;
+        margin-left: 15px;
+    }
+
+    .full{
+        color:yellow;
+    }
+    .empty{
+        color:#ccc;
+    }
+
 </style>
+{{ctrl.calcularCalificaciones()}}
 <div  class="container-fluid ">
     <br>
-        <form>
-            <input type="text" class="form-control" ng-model="nombre" placeholder="Buscar">
-            <br>
+    <h1 class="text-center" style="font-weight: bold;color: white;font-size: 40px;">Buscar Contratista</h1>
+    <input type="text" class="form-control" ng-model="nombre" placeholder="Buscar">
+    <br>
+    <div class="row">
+        <div class="col-sm-8">
             <table class ="table table-bordered">
                 <thead>
                     <tr class ="bg-ACTIVE">
                         <th>ID</th>
                         <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Calificación</th>
+                        <th>Perfil</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="contratista in list| filter:nombre |orderBy:'id' ">
-                        <td><a ui-sref="contratistaDetail({contratistaId: contratista.id})">{{contratista.id}}</a></td>
-                        <td style="color:white;">{{contratista.nombre}}</td>
+                    <tr ng-repeat="contratista in contratistasRecords| filter:nombre |orderBy:'id'">
+                        <td>{{contratista.id}}</td>
+                        <td>{{contratista.nombre}}</td>
+                        <td>{{contratista.correo}}</td>
+                        <td><div id='rating{{contratista.id}}'></div></td>
+                        <td style="text-align:center;"><a ui-sref="contratistaDetail({contratistaId: contratista.id})"><button class ="btn btn-lg">Ver</button></a></td>
                     </tr>
                 </tbody>
             </table>
-        </form>
-   
-    <button>
-        <a ui-sref="createContratista">Crear contratista</a>
-    </button>
+        </div>
+        <br><br>
+        <div class="col-sm-4">
+            <div  ui-view="detailView"></div>
+        </div>
+    </div>
 </div>
+
