@@ -1,98 +1,100 @@
-<style>a {
+<style>
+    a {
         color: whitesmoke;
-    }</style>
+    }
+</style>
 <div class="container-fluid">
-   <form class="well form-horizontal" action=" " method="post"  id="contact_form" style="background-color: #1c314c">
-      <fieldset>
-         <!-- Form Name -->
-         <legend>
-            <center>
-               <h2><b style="color:white">Registro</b></h2>
-            </center>
-         </legend>
-         <br>
-         <!-- Text input-->
-         <div class="form-group">
-            <label class="col-md-4 control-label" style="color:white">Nombre</label>  
-            <div class="col-md-4 inputGroupContainer">
-               <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input  name="Nombre" placeholder="Nombre" class="form-control" required ng-model="data.nombre" type="text">
-               </div>
+    <form class="well form-horizontal" action=" " method="post"  id="contact_form" style="background-color: #1c314c">
+        <fieldset>
+            <!-- Form Name -->
+            <legend>
+                <center>
+                    <h2><b style="color:white">Registro</b></h2>
+                </center>
+            </legend>
+            <br>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Nombre</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  name="Nombre" placeholder="Nombre" class="form-control" required ng-model="data.nombre" type="text">
+                    </div>
+                </div>
             </div>
-         </div>
-         
-         <!-- Text input-->
-         <div class="form-group">
-            <label class="col-md-4 control-label" style="color:white">Username</label>  
-            <div class="col-md-4 inputGroupContainer">
-               <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input  name="username" placeholder="Username" class="form-control" required ng-model="data.usuario" type="text">
-               </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Username</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  name="username" placeholder="Username" class="form-control" required ng-model="data.usuario" type="text">
+                    </div>
+                </div>
             </div>
-         </div>
-         <!-- Text input-->
-         <div class="form-group">
-            <label class="col-md-4 control-label" style="color:white">Contraseña</label> 
-            <div class="col-md-4 inputGroupContainer">
-               <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                  <input name="Contraseña" placeholder="Contraseña" class="form-control" required ng-model="data.contrasena" type="password">
-               </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Contraseña</label> 
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input name="Contraseña" placeholder="Contraseña" class="form-control" required ng-model="data.contrasena" type="password">
+                    </div>
+                </div>
             </div>
-         </div>
-         <!-- Text input-->
-         <div class="form-group">
-            <label class="col-md-4 control-label" style="color:white">Confirmar contraseña</label> 
-            <div class="col-md-4 inputGroupContainer">
-               <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                  <input name="Confirmar_contraseña" placeholder="Confirmar Contraseña" class="form-control"  type="password">
-               </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Confirmar contraseña</label> 
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input name="Confirmar_contraseña" placeholder="Confirmar Contraseña" class="form-control"  type="password">
+                    </div>
+                </div>
             </div>
-         </div>
-         <!-- Text input-->
-         <div class="form-group">
-            <label class="col-md-4 control-label" style="color:white">E-Mail</label>  
-            <div class="col-md-4 inputGroupContainer">
-               <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                  <input name="email" placeholder="E-Mail" class="form-control" required ng-model="data.correo" type="email">
-               </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">E-Mail</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input name="email" placeholder="E-Mail" class="form-control" required ng-model="data.correo" type="email">
+                    </div>
+                </div>
             </div>
-         </div>
-         
-         <!-- Text input-->
-         <div class="form-group">
-            <label class="col-md-4 control-label" style="color:white">Dirección</label>  
-            <div class="col-md-4 inputGroupContainer">
-               <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                  <input name="Direccion" placeholder="Direccion" class="form-control" required ng-model="data.direccion" type="text">
-               </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Dirección</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                        <input name="Direccion" placeholder="Direccion" class="form-control" required ng-model="data.direccion" type="text">
+                    </div>
+                </div>
             </div>
-         </div>
-         
-         <!-- Date input-->
-         <div class="form-group">
-            <label class="col-md-4 control-label" style="color:white">Fecha de Nacimiento</label>  
-            <div class="col-md-4 inputGroupContainer">
-               <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                  <input name="Fecha_nacimiento" class="form-control" required ng-model="data.fecha_nacimiento" type="date">
-               </div>
+
+            <!-- Date input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Fecha de Nacimiento</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input name="Fecha_nacimiento" class="form-control" required ng-model="data.fecha_nacimiento" type="date">
+                    </div>
+                </div>
             </div>
-         </div>
-         
-         <!-- Select Basic -->
-         <!-- Button -->
-         <div class="form-group">
-            <label class="col-md-4 control-label"></label>
-            <div class="col-md-4"><br>
-               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" ng-click="createServicio()" value="Save" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a ui-sref="serviciosList">SUBMIT</a> <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+
+            <!-- Select Basic -->
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4"><br>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" ng-click="createCliente()" value="Save" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a ui-sref="serviciosList">SUBMIT</a> <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                </div>
             </div>
-         </div>
-      </fieldset>
-   </form>
+        </fieldset>
+    </form>
 </div>

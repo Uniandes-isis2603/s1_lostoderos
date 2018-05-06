@@ -31,10 +31,6 @@
                 parent: 'servicios',
                 param: {servicioId: null},
                 views: {
-                    'listView': {
-                        templateUrl: basePath + 'servicios.list.html'
-
-                    },
                     'detailView': {
                         templateUrl: basePath + 'servicios.detail.html',
                         controller: 'servicioDetailCtrl',

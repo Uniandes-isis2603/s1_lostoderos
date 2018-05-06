@@ -182,6 +182,7 @@ public class ServicioLogic
              throw new BusinessLogicException("No existe un contratista con el id: "+ contratistaId);
         }
         servicioEntity.getContratistas().add(contratistaEntity);
+        contratistaEntity.getServicios().add(servicioEntity);
         return getContratista(idServicio, contratistaId);
     }
 
@@ -218,5 +219,6 @@ public class ServicioLogic
              throw new BusinessLogicException("No existe un contratista con el id: "+ contratistaId);
         }
         entity.getContratistas().remove(contratistaEntity);
+        contratistaEntity.getServicios().remove(entity);
     }
 }
