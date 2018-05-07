@@ -1,23 +1,24 @@
-<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<style>
+</style>
 <div class="container-fluid ">
     <div class="h-100 row align-items-center">
         <table class = "table table-bordered">
-        <thead>
-        <tr class ="bg-primary">
-            
-            <th>Numero de estrellas</th>
-            <th>Cliente</th>
-            <th>Comentario</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr style="color:#000000" class ="active" ng-repeat="c in calificacionesRecords">
-                <td>{{c.numEstrellas}}</td>
-                <td>{{c.cliente.nombre}}</td>
-                <td>{{c.comentario}}</td>
-            </tr>
-        </tbody>
+            <thead>
+                <tr class ="bg-ACTIVE">
+                    <th>Numero de estrellas</th>
+                    <th>Cliente</th>
+                    <th>Comentario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="c in calificacionesRecords">
+                    <td class="filterable-cell">{{c.numEstrellas}}</td>
+                    <td class="filterable-cell">{{c.cliente.nombre}}</td>
+                    <td class="filterable-cell">{{c.comentario}}</td>
+                </tr>
+            </tbody>
+
+        </table>
         
-    </table>
     </div>
 </div>

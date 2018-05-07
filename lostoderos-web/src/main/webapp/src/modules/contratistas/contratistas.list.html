@@ -74,7 +74,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="contratista in contratistasRecords| filter:nombre |orderBy:'id'">
+                    <tr ng-repeat="contratista in contratistasRecords| orderBy:'id'">
                         <td>{{contratista.id}}</td>
                         <td>{{contratista.nombre}}</td>
                         <td>{{contratista.correo}}</td>

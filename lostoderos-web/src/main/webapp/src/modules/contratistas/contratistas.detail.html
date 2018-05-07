@@ -43,6 +43,9 @@
     .h2{
         color:white;
     }
+    .btn-lg{
+        color:white;
+    }
 </style>
 <div class="container">
     <div class="row">
@@ -61,6 +64,13 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="num"><b>#</b></i>{{currentContratista.calificaciones.length}}</span>
                 </div>
+                <div class="input-group">
+                    <div ui-view="listaView"></div>
+                    <a ng-show="!mostrarVer" ng-click="mostrarVer=true" ui-sref="calificacionesList({contratistaId:currentContratista.id})"><button class ="btn btn-lg">Ver</button></a>
+                </div>
+                <div class="input-group">
+            <a ui-sref="contratistaDetail({contratistaId:currentContratista.id})"><button ng-show="mostrarVer" ng-click="mostrarVer=false" class ="btn btn-lg">Cerrar</button></a>
+        </div>
             </div>
             <div>
                 <h2 class="h2">Servicios</h2>

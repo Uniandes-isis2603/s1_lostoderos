@@ -4,8 +4,10 @@
     mod.controller('contratistasCtrl', ['$scope', '$state', '$http', 'contratistasContext',
         function ($scope, $state, $http, contratistasContext) {
             var records = [];
+            $scope.mostrarVer=false;
             $http.get(contratistasContext).then(function (response) {
                 records = $scope.contratistasRecords = response.data;
+                
             });
             this.createContratista = function () {
                 contratista = $scope.contratista;
@@ -46,7 +48,7 @@
                             }
                             guarda= guarda-1;
                         }
-                        html = html+'<i class="ratingNum">'+rating+'</i>';
+                        html = html+'<i class="ratingNum">'+`${Math.round(porcentaje/10)*10}`/20+'</i>';
                        instruccion.innerHTML = html;
                     }
                 });
