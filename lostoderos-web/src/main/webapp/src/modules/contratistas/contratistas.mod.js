@@ -27,13 +27,11 @@
                     }
                 }
             }).state('contratistaDetail',{
-                url: '/{contratistaId:int}/detail',
-                parent:'contratistasList',
+                url: 'contratistas/{contratistaId:int}/detail',
                 param: {contratistaId: null},
+                parent:'contratistas',
                 views:{
-                    'listView':{
-                        templateUrl:basePath+'contratistas.list.html'
-                    },
+                   
                     'detailView':{
                         templateUrl: basePath + 'contratistas.detail.html',
                         controller: 'contratistaDetailCtrl',

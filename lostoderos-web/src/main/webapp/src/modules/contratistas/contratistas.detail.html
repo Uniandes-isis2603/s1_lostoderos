@@ -1,6 +1,23 @@
 <style>
+    thead{
+        background: rgb(205,149,87); 
+        border:none;
+    }
+    th{
+        color:white;
+    }
     .br{
-        margin-bottom: 5px;
+        margin-bottom: 15px;
+    }
+    button{
+        background: rgb(205,149,87);
+        border:none;
+    }
+    a{
+        color:white;
+    }
+    td{
+        color:white;
     }
     p{
         font-size: 20px;
@@ -49,7 +66,7 @@
 </style>
 <div class="container">
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-4">
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i>{{currentContratista.nombre}}</span>
             </div>
@@ -59,6 +76,8 @@
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i>{{currentContratista.correo}}</span>
             </div>
+        </div>
+        <div class="col-sm-8">
             <div>
                 <h2 class="h2">Calificaciones</h2>
                 <div class="input-group">
@@ -66,18 +85,15 @@
                 </div>
                 <div class="input-group">
                     <div ui-view="listaView"></div>
-                    <a ng-show="!mostrarVer" ng-click="mostrarVer=true" ui-sref="calificacionesList({contratistaId:currentContratista.id})"><button class ="btn btn-lg">Ver</button></a>
+                    <a ng-show="!mostrarVer" ng-click="mostrarVer = true" ui-sref="calificacionesList({contratistaId:currentContratista.id})"><button class ="btn btn-lg">Ver</button></a>
                 </div>
                 <div class="input-group">
-            <a ui-sref="contratistaDetail({contratistaId:currentContratista.id})"><button ng-show="mostrarVer" ng-click="mostrarVer=false" class ="btn btn-lg">Cerrar</button></a>
-        </div>
+                    <a ui-sref="contratistaDetail({contratistaId:currentContratista.id})"><button ng-show="mostrarVer" ng-click="mostrarVer = false" class ="btn btn-lg">Cerrar</button></a>
+                </div> 
             </div>
             <div>
                 <h2 class="h2">Servicios</h2>
             </div>
-
-
         </div>
     </div>
-
 </div>
