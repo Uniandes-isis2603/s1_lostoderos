@@ -43,7 +43,7 @@
                  */
                 $rootScope.isAuthenticated = function () {
 
-                    if (sessionStorage.getItem("username") != null) {
+                    if (sessionStorage.getItem("username") !== null) {
                         $rootScope.currentUser = sessionStorage.getItem("name");
                         return true;
                     } else {
@@ -60,7 +60,7 @@
                  * @returns {Boolean} Verdadero si el usuario tiene permisos.
                  */
                 $rootScope.hasPermissions = function () {
-                    if (($rootScope.isAuthenticated) && (roles.indexOf(sessionStorage.getItem("rol")) > -1)) {
+                    if (($rootScope.isAuthenticated) && (sessionStorage.getItem("rol") === "admin")) {
                         return true;
                     } else {
                         return false;

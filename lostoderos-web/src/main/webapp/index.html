@@ -162,7 +162,7 @@
 
                                 <li class="nav-item"><a style=" font-size:1vw" ui-sref="pagosList">Pagos</a></li>
 
-                                <li class="nav-item"><a style=" font-size:1vw" ui-sref="clientesList">Clientes</a></li>
+                                <li class="nav-item" ng-if="isAuthenticated() && hasPermissions()"><a style=" font-size:1vw" ui-sref="clientesList">Clientes</a></li>
 
                                 <li class="nav-item"><a style=" font-size:1vw" ui-sref="solicitudesList">Solicitudes</a></li>
 
@@ -174,7 +174,7 @@
                                 <li><a style="color:whitesmoke; font-size:1vw" ui-sref="register"><span class="glyphicon glyphicon-log-in"></span> Registrarse  </a></li>
                             </ul>
                             <ul ng-if="isAuthenticated()" class="nav navbar-nav navbar-right">
-                                <li class="nav-item">Hola, {{currentUser}}</li>
+                                <li><a>{{currentUser}}</a></li>
                                 <li><a ui-sref="logout">Logout</a></li>
                             </ul>
                         </div>
