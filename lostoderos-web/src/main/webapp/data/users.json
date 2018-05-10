@@ -1,106 +1,106 @@
 [
     {
-        "contrasena": "LGP6NIL5FX3E",
-        "correo": "mubee0@sakura.ne.jp",
-        "id": 11,
-        "nombre": "Malva Ubee",
-        "usuario": "mubee0",
-        "fecha_nacimiento": "1957-03-31T00:00:00-05:00",
-        "rol": "cliente",
-        "token": 123
-    },
-    {
-        "contrasena": "UXRBQhR",
-        "correo": "gbarles1@spotify.com",
-        "id": 12,
-        "nombre": "Gearalt Barles",
-        "usuario": "gbarles1",
-        "fecha_nacim{iento": "1987-04-18T00:00:00-05:00",
-        "rol": "cliente",
-        "token": 213
-    },
-    {
-        "contrasena": "8tDcDTtQA3",
-        "correo": "pfradson2@google.com",
-        "id": 13,
-        "nombre": "Patrick Fradson",
-        "usuario": "pfradson2",
-        "fecha_nacimiento": "1989-10-27T00:00:00-05:00",
-        "rol": "cliente",
-        "token": 312
-    },
-    {
-        "contrasena": "NGRcAg28pI",
-        "correo": "ftrue3@wikipedia.org",
-        "id": 14,
-        "nombre": "Frederic True",
-        "usuario": "ftrue3",
-        "fecha_nacimiento": "1978-01-02T00:00:00-05:00",
-        "rol": "cliente",
-        "token": 321
-    },
-    {
-        "contrasena": "Nxl5Re0",
-        "correo": "fmassen4@ning.com",
-        "id": 15,
-        "nombre": "Farrah Massen",
-        "usuario": "fmassen4",
-        "fecha_nacimiento": "1995-08-08T00:00:00-05:00",
-        "rol": "cliente",
-        "token": 132
-    },
-    {
-        "contrasena": "admin",
+        "password": "admin",
         "id": 22,
-        "nombre": "Sergio Naranjo Puentes",
-        "usuario": "s.naranjop1",
+        "name": "Sergio Naranjo Puentes",
+        "user": "s.naranjop1",
         "direccion": "Carrera 5 #62-08",
         "fecha_nacimiento": "1999-04-14T00:00:00-05:00",
         "rol": "admin",
         "token": 1
     },
     {
-        "contrasena": "FmAhX0zkz9WQ",
+        "password": "LGP6NIL5FX3E",
+        "correo": "mubee0@sakura.ne.jp",
+        "id": 11,
+        "name": "Malva Ubee",
+        "user": "mubee0",
+        "fecha_nacimiento": "1957-03-31T00:00:00-05:00",
+        "rol": "cliente",
+        "token": 123
+    },
+    {
+        "password": "UXRBQhR",
+        "correo": "gbarles1@spotify.com",
+        "id": 12,
+        "name": "Gearalt Barles",
+        "user": "gbarles1",
+        "fecha_nacim{iento": "1987-04-18T00:00:00-05:00",
+        "rol": "cliente",
+        "token": 213
+    },
+    {
+        "password": "8tDcDTtQA3",
+        "correo": "pfradson2@google.com",
+        "id": 13,
+        "name": "Patrick Fradson",
+        "user": "pfradson2",
+        "fecha_nacimiento": "1989-10-27T00:00:00-05:00",
+        "rol": "cliente",
+        "token": 312
+    },
+    {
+        "password": "NGRcAg28pI",
+        "correo": "ftrue3@wikipedia.org",
+        "id": 14,
+        "name": "Frederic True",
+        "user": "ftrue3",
+        "fecha_nacimiento": "1978-01-02T00:00:00-05:00",
+        "rol": "cliente",
+        "token": 321
+    },
+    {
+        "password": "Nxl5Re0",
+        "correo": "fmassen4@ning.com",
+        "id": 15,
+        "name": "Farrah Massen",
+        "user": "fmassen4",
+        "fecha_nacimiento": "1995-08-08T00:00:00-05:00",
+        "rol": "cliente",
+        "token": 132
+    },
+    {
+        "password": "FmAhX0zkz9WQ",
         "correo": "clamanby0@youtube.com",
         "id": 1,
-        "nombre": "Christi Lamanby",
-        "usuario": "clamanby0",
+        "name": "Christi Lamanby",
+        "user": "clamanby0",
         "rol": "contratista",
         "token": 987
     },
     {
-        "contrasena": "LOUAd68",
+        "password": "LOUAd68",
         "correo": "gheisman1@nymag.com",
         "id": 2,
-        "nombre": "Gill Heisman",
-        "usuario": "gheisman1",
+        "name": "Gill Heisman",
+        "user": "gheisman1",
         "rol": "contratista",
         "token": 978
     },
     {
-        "contrasena": "CjeMX5YG",
+        "password": "CjeMX5YG",
         "correo": "sbonhan2@mashable.com",
         "id": 3,
-        "nombre": "Saundra Bonhan",
-        "usuario": "sbonhan2",
+        "name": "Saundra Bonhan",
+        "user": "sbonhan2",
         "rol": "contratista",
         "token": 879
     },
     {
-        "contrasena": "tr2esTLJ",
+        "password": "tr2esTLJ",
         "correo": "sivanenko3@friendfeed.com",
         "id": 4,
-        "nombre": "Sybil Ivanenko",
-        "usuario": "sivanenko3",
+        "name": "Sybil Ivanenko",
+        "user": "sivanenko3",
         "rol": "contratista",
         "token": 897
     },
     {
-        "contrasena": "XS6EEX9E",
+        "password": "XS6EEX9E",
         "correo": "rskerman4@odnoklassniki.ru",
         "id": 5,
-        "nombre": "Reuben Skerman",
-        "usuario": "rskerman4",
+        "name": "Reuben Skerman",
+        "user": "rskerman4",
         "rol": "contratista",
         "token": 789
     }

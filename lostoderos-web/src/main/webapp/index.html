@@ -73,6 +73,7 @@
 
         <script src="src/modules/iniciosesion/iniciosesion.mod.js" type="text/javascript"></script>
         <script src="src/modules/iniciosesion/iniciosesion.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/iniciosesion/logout.ctrl.js" type="text/javascript"></script>
 
         <!-- hoja de vida -->
         <script src="src/modules/hojadevida/hojadevida.mod.js" type="text/javascript"></script>
@@ -138,7 +139,7 @@
                 padding: 0;
                 margin: 0;
             }
-            
+
         </style>
 
     </head>
@@ -168,9 +169,13 @@
                                 <li class="nav-item"><a style=" font-size:1vw" ui-sref="cotizacionesList">Cotizaciones</a></li>
 
                             </ul>
-                            <ul class="nav navbar-nav navbar-right">
+                            <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
                                 <li><a style="color:whitesmoke; font-size:1vw;" ui-sref="iniciosesion"><span class="glyphicon glyphicon-user"></span> Iniciar Sesion   </a></li>
                                 <li><a style="color:whitesmoke; font-size:1vw" ui-sref="register"><span class="glyphicon glyphicon-log-in"></span> Registrarse  </a></li>
+                            </ul>
+                            <ul ng-if="isAuthenticated()" class="nav navbar-nav navbar-right">
+                                <li class="nav-item">Hola, {{currentUser}}</li>
+                                <li><a ui-sref="logout">Logout</a></li>
                             </ul>
                         </div>
                     </nav>
