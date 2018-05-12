@@ -4,7 +4,7 @@
 
             var basePath = 'src/modules/iniciosesion/';
 
-            $urlRouterProvider.otherwise("/iniciosesion");
+            $urlRouterProvider.otherwise("");
 
 
             $stateProvider.state('iniciosesion', {
