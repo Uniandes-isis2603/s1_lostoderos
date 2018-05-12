@@ -1,5 +1,5 @@
 <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
-<div class="container-fluid">
+<div ng-if="isAuthenticated() && hasPermissions()" class="container-fluid">
     <div class="row">
         <div style="padding-left: 300px; padding-right: 300px" ui-view="detailView"></div>
         <div ui-view="listView"></div>

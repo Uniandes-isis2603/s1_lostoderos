@@ -108,3 +108,5 @@ insert into CALIFICACIONENTITY (numEstrellas, tipoServicio, comentario, contrati
 insert into CALIFICACIONENTITY (numEstrellas, tipoServicio, comentario, contratista_id, cliente_id) values (4, 'Plomeria', 'Mauris sit amet eros.', 7, 19);
 insert into CALIFICACIONENTITY (numEstrellas, tipoServicio, comentario, contratista_id, cliente_id) values (5, 'Electricidad', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.', 5, 11);
 insert into CALIFICACIONENTITY (numEstrellas, tipoServicio, comentario, contratista_id, cliente_id) values (3, 'Plomeria', 'Nulla tempus.', 9, 14);
+
+INSERT INTO USUARIOENTITY_SERVICIOENTITY (servicios_ID, contratistas_ID) VALUES (3, 5);

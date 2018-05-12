@@ -1,43 +1,65 @@
-<div class="container">
-   <form class="well form-horizontal" action=" " method="post"  id="contact_form" style="background:linear-gradient(45deg, rgba(21,64,117,1) 0%, rgba(252,208,141,1) 100%);">
-      <fieldset>
-         <!-- Form Name -->
-         <legend>
-            <center>
-               <h2><b style="color:white">Inicio de Sesión</b></h2>
-            </center>
-         </legend>
-         <br>
-         <!-- Text input-->
-         <div class="form-group">
-            <label class="col-md-4 control-label" style="color:white">Username</label>  
-            <div class="col-md-4 inputGroupContainer">
-               <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input  name="username" placeholder="Username" class="form-control"  type="text">
-               </div>
+<style>
+  .vertical-center {
+  min-height: 100%;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+}
+</style>
+<div ng-if="!isAuthenticated()" class="container vertical-center">
+    <form class="well form-horizontal" action=" "  id="contact_form" style="background:#1c314c">
+        <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+        <fieldset>
+            <!-- Form Name -->
+            <legend>
+                <center>
+                    <h2><b style="color:white">Inicio de Sesión</b></h2>
+                </center>
+            </legend>
+            <br>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Username:</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  name="username" placeholder="Username" class="form-control"  type="text" ng-model="data.username">
+                    </div>
+                </div>
             </div>
-         </div>
-         <!-- Text input-->
-         <div class="form-group">
-            <label class="col-md-4 control-label" style="color:white">Contraseña</label> 
-            <div class="col-md-4 inputGroupContainer">
-               <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input name="Contraseña" placeholder="Contraseña" class="form-control"  type="password">
-               </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Contraseña:</label> 
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input name="password" placeholder="Contraseña" class="form-control"  type="password" ng-model="data.password">
+                    </div>
+                </div>
             </div>
-         </div>
-         
-         <!-- Select Basic -->
-         <!-- Button -->
-         <div class="form-group">
-            <label class="col-md-4 control-label"></label>
-            <div class="col-md-4"><br>
-               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning" >Iniciar Sesión <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Rol:</label> 
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <select class="form-control" name="rol" ng-model="data.rol" required="true">
+                            <option value="">--- Please select rol ---</option> <!-- not selected / blank option -->
+                            <option value="admin">Administrator</option>
+                            <option value="cliente">Cliente</option>
+                            <option value="contratista">Contratista</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-         </div>
-      </fieldset>
-   </form>
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4"><br>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning"  ng-click="autenticar()">Iniciar Sesión <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
 </div>
 <!-- /.container -->

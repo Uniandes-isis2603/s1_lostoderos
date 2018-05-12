@@ -8,14 +8,31 @@
 
 
             $stateProvider.state('iniciosesion', {
-                url: '/iniciosesion',
+                url: '/login',
+                data: {
+                    requireLogin: false
+                },
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'iniciosesion.html',
                         controller: 'iniciosesionCtrl'
                     }
                 }
+            }).state('logout', {
+                url: '/logout',
+                data: {
+                    requireLogin: false,
+                    roles: []
+                }
+                ,
+                views: {
+                    'mainView': {
+                        templateUrl: basePath + 'logout.html',
+                        controller: 'logoutCtrl'
+                    }
+                }
             });
+
         }
     ]);
 })(window.angular);

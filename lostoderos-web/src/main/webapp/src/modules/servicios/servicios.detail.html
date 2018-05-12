@@ -52,7 +52,6 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Correo</th>
-                                <th>Calificación</th>
                                 <th>Perfil</th>
                             </tr>
                         </thead>
@@ -61,7 +60,6 @@
                                 <td>{{contratista.id}}</td>
                                 <td>{{contratista.nombre}}</td>
                                 <td>{{contratista.correo}}</td>
-                                <td><div id='rating{{contratista.id}}'></div></td>
                                 <td style="text-align:center;"><a ui-sref="contratistaDetail({contratistaId: contratista.id})"><button class ="btn btn-lg">Ver</button></a></td>
                             </tr>
                         </tbody>
