@@ -47,6 +47,32 @@
                         controllerAs:'ctrl'
                     }
                 }
+            }).state('informacionContratista',{
+                url:'/informacion',
+                parent:'contratistaDetail',
+                views:{
+                    'detailView':{
+                        templateUrl: basePath + 'contratistas.detail.html',
+                    },
+                    'informacionView':{
+                        templateUrl: basePath + 'contratistas.detail.informacion.html',
+                        controller: 'contratistaDetailCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('ratingContratista',{
+                url:'/rating',
+                parent:'contratistaDetail',
+                views:{
+                    'detailView':{
+                        templateUrl: basePath + 'contratistas.detail.html',
+                    },
+                    'ratingView':{
+                        templateUrl: basePath + 'contratistas.detail.rating.html',
+                        controller: 'contratistaDetailCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
             
         }

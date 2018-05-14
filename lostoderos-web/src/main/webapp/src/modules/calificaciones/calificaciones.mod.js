@@ -6,7 +6,6 @@
             $stateProvider.state('calificacionesList', {
                 url: '/calificaciones/list',
                 parent: 'contratistaDetail',
-                
                 views: {
                     'listaView': {
                         templateUrl: basePath + 'calificaciones.list.html',

@@ -1,0 +1,57 @@
+<style>
+    
+    .accordion li i.glyphicon-star{
+        font-size: 18px;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        
+    }
+    .half { 
+        color:yellow;
+    }
+    .half::before {
+        position: relative;
+        z-index: 9;
+        width: 47%;
+        display: block;
+        overflow: hidden;
+    }
+    .half::after {
+        content: '\e006';
+        position: absolute;
+        z-index: 8;
+        color: #bdc3c7;
+        top: 0;
+        left: 0;
+    }
+
+    .accordion li i.ratingNum{
+        font-size:18px;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        margin-left: 2px;
+        color:white;
+    }
+
+    .full{
+        color:yellow;
+    }
+    .empty{
+        color:#bdc3c7;
+    }
+    .li{
+        
+    }
+    .boton{
+      
+      margin: 0 0 0;
+    }
+    
+</style>
+{{ctrl.calcularEstrellasContratista()}}
+<ul class="submenu">
+    <li style="text-align:center; margin-right: 25px;"><a ui-sref="contratistaDetail"><div id="rating"></div></a></li>
+    <li style="text-align:center;"><button class="btn-o boton" ui-sref="calificacionesList({contratistaId:currentContratista.id})">Ver</button></li>
+</ul>
