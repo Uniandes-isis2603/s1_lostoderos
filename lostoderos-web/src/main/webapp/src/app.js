@@ -23,7 +23,7 @@
     app.config(['$qProvider', function ($qProvider) {
             $qProvider.errorOnUnhandledRejections(false);
         }]);
-    
+    /*
     app.run(['$rootScope', '$transitions', function ($rootScope, $transitions) {
 
             $transitions.onSuccess({to: '*'}, function (trans) {
@@ -40,7 +40,7 @@
                  * @description Esta función define si el usuario se encuentra
                  * dentro de su cuenta.
                  * @returns {Boolean} Verdadero si está dentro de su cuenta.
-                 */
+                 
                 $rootScope.isAuthenticated = function () {
 
                     if (sessionStorage.getItem("username") !== null) {
@@ -58,7 +58,7 @@
                  * @description Esta función define si el usuario tiene permisos
                  * para acceder a la aplicación.
                  * @returns {Boolean} Verdadero si el usuario tiene permisos.
-                 */
+                 
                 $rootScope.hasPermissions = function () {
                     if (($rootScope.isAuthenticated) && (sessionStorage.getItem("rol") === "admin")) {
                         return true;
@@ -91,7 +91,7 @@
                  * @description Esta función define si el usuario se encuentra
                  * dentro de su cuenta.
                  * @returns {Boolean} Verdadero si está dentro de su cuenta.
-                 */
+                 
                 $rootScope.isAuthenticated = function () {
 
                     if (sessionStorage.getItem("username") !== null) {
@@ -109,7 +109,7 @@
                  * @description Esta función define si el usuario tiene permisos
                  * para acceder a la aplicación.
                  * @returns {Boolean} Verdadero si el usuario tiene permisos.
-                 */
+                 
                 $rootScope.hasPermissions = function () {
                     if (($rootScope.isAuthenticated) && (sessionStorage.getItem("rol") === "admin")) {
                         return true;
@@ -125,6 +125,6 @@
             });
 
         }]);
-        
+        */
 })(window.angular);
 

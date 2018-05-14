@@ -7,9 +7,7 @@
         box-sizing: border-box;
     }
 
-    body {
-        font-family: 'Open Sans', Arial, Helvetica, Sans-serif, Verdana, Tahoma;
-    }
+    
     thead{
         background: rgb(205,149,87); 
         border:none;
@@ -249,8 +247,24 @@
         -o-transition: all 0.25s ease;
         transition: all 0.25s ease;
     }
-
-
+    .accordion li i.ratingNum{
+        font-size:17px;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        margin-left: 20px;
+        color:white;
+    }
+    .boton{
+        display: block;
+        text-decoration: none;
+        color: #d9d9d9;
+        
+        margin-left: 42px;
+        -webkit-transition: all 0.25s ease;
+        -o-transition: all 0.25s ease;
+        transition: all 0.25s ease;
+    }
 
 </style>
 
@@ -258,114 +272,41 @@
 
     <div class="row">
         <!-- Contenedor -->
-        <ul id="accordion" class="accordion">
-            <li>
-                <div class="col col_4 iamgurdeep-pic">
-                    <img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="https://www.w3schools.com/bootstrap4/img_avatar3.png">
-
-                    <div class="username">
-                        <h2>{{currentContratista.nombre}}</h2>
-                        <p><i class="glyphicon glyphicon-briefcase"></i> Contratista</p>
-                        <a ng-if="isAutenticated()" href="crearCalificacion" class="btn-o"><i class="glyphicon glyphicon-thumbs-up"></i> Calificar</a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <a ui-sref="informacionContratista"><div class="link"><i class="glyphicon glyphicon-globe"></i>Información</div></a>
-                <div ui-view="informacionView"></div>
-            </li>
-            <li>
-                <a ui-sref="ratingContratista"><div class="link"><i class="glyphicon glyphicon-comment"></i>Calificación</div></a>
-                <div ui-view="ratingView"></div>
-
-            </li>
-            <li>
-                <div class="link"><i class="glyphicon glyphicon-home"></i>Servicios</div>
-            </li>
-            <li>
-
-            </li>
-
-        </ul>
-        <div ui-view="listaView"></div> 
-    </div>
-
-</div>
-
-<!--
-<div class="container">
-    <div class="row">
         <div class="col-sm-4">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i>{{currentContratista.nombre}}</span>
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i>{{currentContratista.usuario}}</span>
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i>{{currentContratista.correo}}</span>
-            </div>
-        </div>
-        <div class="col-sm-8">
-            <div>
-                <h2 class="h2">Calificaciones</h2>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="num"><b>#</b></i>{{currentContratista.calificaciones.length}}</span>
-                </div>
+            <ul id="accordion" class="accordion">
+                <li>
+                    <div class="col col_4 iamgurdeep-pic">
+                        <img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="https://www.w3schools.com/bootstrap4/img_avatar3.png">
 
-                <div class="container-fluid ">
-                    <div class="h-100 row align-items-center">
-                        <table class = "table table-bordered">
-                            <thead>
-                                <tr class ="bg-ACTIVE">
-                                    <th>Numero de estrellas</th>
-                                    <th>Cliente</th>
-                                    <th>Comentario</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="c in currentContratista.calificaciones">
-                                    <td class="filterable-cell">{{c.numEstrellas}}</td>
-                                    <td class="filterable-cell">{{c.tipoServicio}}</td>
-                                    <td class="filterable-cell">{{c.comentario}}</td>
-                                </tr>
-                            </tbody>
-
-                        </table>
-
+                        <div class="username">
+                            <h2>{{currentContratista.nombre}}</h2>
+                            <p><i class="glyphicon glyphicon-briefcase"></i> Contratista</p>
+                            
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div>
-                <h2 class="h2">Servicios</h2>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="num"><b>#</b></i>{{currentContratista.servicios.length}}</span>
-                </div>
+                </li>
+                <li>
+                    <a ui-sref="informacionContratista"><div class="link"><i class="glyphicon glyphicon-globe"></i>Información</div></a>
+                    <div ui-view="informacionView"></div>
+                </li>
+                <li>
+                    <a ui-sref="ratingContratista"><div class="link"><i class="glyphicon glyphicon-comment"></i>Calificación</div></a>
+                    <div ui-view="ratingView"></div>
 
-                <div class="container-fluid ">
-                    <div class="h-100 row align-items-center">
-                        <table class = "table table-bordered">
-                            <thead>
-                                <tr class ="bg-ACTIVE">
-                                    <th>Nombre</th>
-                                    <th>Categoria</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="s in currentContratista.servicios">
-                                    <td class="filterable-cell">{{s.nombre}}</td>
-                                    <td class="filterable-cell">{{s.categorias}}</td>
-                                </tr>
-                            </tbody>
+                </li>
+                <li>
+                    <a ui-sref="serviciosContratista"><div class="link"><i class="glyphicon glyphicon-home"></i>Servicios</div></a>
+                    <div ui-view="serviciosView"></div>
+                </li>
+                <li>
+                    <div class="link"><i class="glyphicon glyphicon-duplicate"></i>Contrato</div>
+                </li>
 
-                        </table>
-
-                    </div>
-                </div>
-            </div>
+            </ul>
         </div>
+        <div class="col-sm-8" ui-view="listaView"></div>
+        <div class="col-sm-8" ui-view="serviciosListView"></div>
+        <div class="col-sm-8" ui-view="createCalificacionView"></div> 
     </div>
+
 </div>
--->
-
-

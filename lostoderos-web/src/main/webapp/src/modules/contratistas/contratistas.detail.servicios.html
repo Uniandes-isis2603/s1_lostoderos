@@ -1,0 +1,4 @@
+<ul class="submenu">
+    <li><a ui-sref="contratistaDetail">Total servicios: {{currentContratista.servicios.length}}</a></li>
+    <li><button ng-if="currentContratista.servicios.length>0" class="btn-o boton" ui-sref="serviciosContratistaList">Ver</button></li>
+</ul>

@@ -1,11 +1,11 @@
 <style>
-    
+
     .accordion li i.glyphicon-star{
         font-size: 18px;
         position: relative;
         top: 0px;
         left: 0px;
-        
+
     }
     .half { 
         color:yellow;
@@ -26,32 +26,27 @@
         left: 0;
     }
 
-    .accordion li i.ratingNum{
-        font-size:18px;
+    .accordion li i.glyphicon-list-alt{
+        font-size:20px;
         position: relative;
         top: 0px;
         left: 0px;
         margin-left: 2px;
         color:white;
     }
-
     .full{
         color:yellow;
     }
     .empty{
         color:#bdc3c7;
     }
-    .li{
-        
-    }
-    .boton{
-      
-      margin: 0 0 0;
-    }
     
+
 </style>
 {{ctrl.calcularEstrellasContratista()}}
 <ul class="submenu">
-    <li style="text-align:center; margin-right: 25px;"><a ui-sref="contratistaDetail"><div id="rating"></div></a></li>
-    <li style="text-align:center;"><button class="btn-o boton" ui-sref="calificacionesList({contratistaId:currentContratista.id})">Ver</button></li>
+
+    <li><a ui-sref="contratistaDetail"><div id="rating"></div></a></li>
+    <li><a ui-sref="contratistaDetail">Total calificaciones: {{currentContratista.calificaciones.length}}</a></li>
+    <li><button ng-if="currentContratista.calificaciones.length>0" class="btn-o boton" ui-sref="calificacionesList({contratistaId:currentContratista.id})">Ver</button><button ng-if="isAuthenticated()" class="btn-o boton" ui-sref="createCalificacion">Calificar</button></li>
 </ul>

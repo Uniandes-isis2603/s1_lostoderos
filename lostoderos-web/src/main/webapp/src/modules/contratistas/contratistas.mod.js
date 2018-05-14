@@ -65,10 +65,36 @@
                 parent:'contratistaDetail',
                 views:{
                     'detailView':{
-                        templateUrl: basePath + 'contratistas.detail.html',
+                        templateUrl: basePath + 'contratistas.detail.html'
                     },
                     'ratingView':{
                         templateUrl: basePath + 'contratistas.detail.rating.html',
+                        controller: 'contratistaDetailCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('serviciosContratista',{
+                url:'/servicios',
+                parent:'contratistaDetail',
+                views:{
+                    'detailView':{
+                        templateUrl: basePath + 'contratistas.detail.html'
+                    },
+                    'serviciosView':{
+                        templateUrl: basePath + 'contratistas.detail.servicios.html',
+                        controller: 'contratistaDetailCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('serviciosContratistaList',{
+                url:'/servicios/list',
+                parent:'contratistaDetail',
+                views:{
+                    'detailView':{
+                        templateUrl: basePath + 'contratistas.detail.html'
+                    },
+                    'serviciosListView':{
+                        templateUrl: basePath + 'contratistas.detail.servicios.list.html',
                         controller: 'contratistaDetailCtrl',
                         controllerAs: 'ctrl'
                     }

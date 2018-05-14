@@ -9,16 +9,16 @@
         <table class = "table table-bordered">
             <thead>
                 <tr class ="bg-ACTIVE">
-                    <th>Numero de estrellas</th>
-                    <th>Cliente</th>
-                    <th>Comentario</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Descripción</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="c in calificacionesRecords">
-                    <td class="filterable-cell">{{c.numEstrellas}}</td>
-                    <td class="filterable-cell">{{c.cliente.nombre}}</td>
-                    <td class="filterable-cell">{{c.comentario}}</td>
+                <tr ng-repeat="s in currentContratista.servicios">
+                    <td class="filterable-cell">{{s.nombre}}</td>
+                    <td class="filterable-cell">{{s.categorias}}</td>
+                    <td class="filterable-cell">{{s.descripcion}}</td>
                 </tr>
             </tbody>
 
@@ -26,7 +26,6 @@
 
     </div>
     <div style="text-align:center;">
-        
         <button class="btn-o" ui-sref="contratistaDetail">Cerrar</button>
     </div>
 

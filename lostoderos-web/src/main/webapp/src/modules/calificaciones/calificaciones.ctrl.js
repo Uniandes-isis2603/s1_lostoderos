@@ -19,7 +19,9 @@
         }
         this.createCalificacion = function(){
                 calificacion = $scope.calificacion;
+                
                 calificacion.contratista={id:$scope.currentContratista.id};
+                console.log(calificacion);
                 return $http.post(calificacionesContext,calificacion).then(function(){
                     $state.go('contratistasList');
         });
