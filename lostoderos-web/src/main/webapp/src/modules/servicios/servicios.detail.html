@@ -67,11 +67,11 @@
                 </div>
                 <br><br>
             </div>
-            <div class="btn-group mr-2" role="group" aria-label="Second group">
+            <div ng-if="isAuthenticated() && hasPermissions()" class="btn-group mr-2" role="group" aria-label="Second group">
                 <a class="btn btn-danger" ui-sref="serviciosDelete({servicioId: currentServicio.id})">
                     <span class="glyphicon glyphicon-trash"></span> Eliminar Servicio</a>
             </div>
-            <div class="btn-group mr-2" role="group" aria-label="First group">
+            <div ng-if="isAuthenticated() && hasPermissions()" class="btn-group mr-2" role="group" aria-label="First group">
                 <a class="btn btn-warning" ui-sref="serviciosCreate">
                     <span class="glyphicon glyphicon-plus-sign"></span> Agregar Contratista</a>
             </div>

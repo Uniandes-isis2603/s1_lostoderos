@@ -19,8 +19,8 @@
                     }
                 },
                 data: {
-                    requireLogin: true,
-                    roles: ['admin','cliente','contratista']
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('clientesList', {
                 url: '/list',
@@ -31,8 +31,8 @@
                     }
                 },
                 data: {
-                    requireLogin: true,
-                    roles: ['admin','cliente','contratista']
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('clienteDetail', {
                 url: '/{clienteId:int}/detail',
@@ -50,8 +50,8 @@
                     }
                 },
                 data: {
-                    requireLogin: true,
-                    roles: ['admin','cliente','contratista']
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('register', {
                 url: '/create',
@@ -63,8 +63,8 @@
                     }
                 },
                 data: {
-                    requireLogin: true,
-                    roles: ['admin']
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('clienteDelete', {
                 url: '/delete/{clienteId:int}',
@@ -79,8 +79,8 @@
                     }
                 },
                 data: {
-                    requireLogin: true,
-                    roles: ['admin']
+                    requireLogin: false,
+                    roles: []
                 }
             });
 
