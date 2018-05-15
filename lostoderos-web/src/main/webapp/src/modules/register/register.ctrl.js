@@ -9,7 +9,7 @@
           
             $scope.createCliente = function () {
                 $http.post(clientesContext, $scope.data).then(function (response) {
-                    $state.go('clientesList', {clienteId: response.data.id}, {reload: true});
+                    $state.go('serviciosList', {clienteId: response.data.id}, {reload: true});
                 });
             };
         }

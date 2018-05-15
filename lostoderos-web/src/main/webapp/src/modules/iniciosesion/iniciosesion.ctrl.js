@@ -29,7 +29,10 @@
                     sessionStorage.setItem("username", $scope.user.user);
                     sessionStorage.setItem("name", $scope.user.name);
                     sessionStorage.setItem("rol", $scope.user.rol);
-                    $rootScope.currentUser = $scope.user.name; 
+                    $rootScope.currentUser = $scope.user.name;
+                    $rootScope.currentUsername = $scope.user.user;
+                    $rootScope.currentDireccion = $scope.user.direccion;
+                    $rootScope.currentFechaNac = $scope.user.fecha_nacimiento;
                 }
                 });
             };

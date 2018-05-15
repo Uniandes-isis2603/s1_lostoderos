@@ -5,7 +5,7 @@
         "name": "Sergio Naranjo Puentes",
         "user": "s.naranjop1",
         "direccion": "Carrera 5 #62-08",
-        "fecha_nacimiento": "1999-04-14T00:00:00-05:00",
+        "fecha_nacimiento": "1999/04/14",
         "rol": "admin",
         "token": 1
     },
@@ -15,7 +15,7 @@
         "id": 11,
         "name": "Malva Ubee",
         "user": "mubee0",
-        "fecha_nacimiento": "1957-03-31T00:00:00-05:00",
+        "fecha_nacimiento": "1957/03/31",
         "rol": "cliente",
         "token": 123
     },
@@ -25,7 +25,7 @@
         "id": 12,
         "name": "Gearalt Barles",
         "user": "gbarles1",
-        "fecha_nacim{iento": "1987-04-18T00:00:00-05:00",
+        "fecha_nacimiento": "1987/04/18",
         "rol": "cliente",
         "token": 213
     },
@@ -35,7 +35,7 @@
         "id": 13,
         "name": "Patrick Fradson",
         "user": "pfradson2",
-        "fecha_nacimiento": "1989-10-27T00:00:00-05:00",
+        "fecha_nacimiento": "1989/10/27",
         "rol": "cliente",
         "token": 312
     },
