@@ -3,6 +3,7 @@ package co.edu.uniandes.csw.lostoderos.entities;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -27,9 +28,8 @@ public class FacturaEntity extends BaseEntity implements Serializable {
     @OneToOne
     private PagoEntity pago;
     
-    @OneToOne
     @PodamExclude
-    @OneToMany( mappedBy = "factura", cascade = CascadeType.PERSIST)
+    @OneToOne( mappedBy = "factura", fetch = FetchType.LAZY)
     private SolicitudEntity solicitud;
     
     
