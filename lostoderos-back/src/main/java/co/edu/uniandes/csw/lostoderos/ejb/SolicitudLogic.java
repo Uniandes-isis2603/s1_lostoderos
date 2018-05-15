@@ -153,6 +153,19 @@ public class SolicitudLogic {
             if(clienteP == null){
                 throw new BusinessLogicException("cliente no existe");
             }
+        //    for(ContratistaEntity e: servicioP.getContratistas()){
+          //      if(e.getDisponibilidad()){
+            //        entity.setContratista(e);
+              //      e.setDisponibilidad(false);
+                //}
+            //}
+                if(servicioP.getContratistas().isEmpty()){
+                throw new BusinessLogicException("No existe un contratista disponible para la solicitud");
+            }
+            ContratistaEntity contratista = servicioP.getContratistas().get(0);
+            entity.setContratista(contratista);
+            contratista.setDisponibilidad(false);
+
    
             return persistence.create(entity);
             }
