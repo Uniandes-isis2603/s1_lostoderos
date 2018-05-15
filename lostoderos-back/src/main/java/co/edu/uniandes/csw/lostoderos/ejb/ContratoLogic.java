@@ -50,6 +50,7 @@ public class ContratoLogic {
         if (contratista == null) {
             throw new BusinessLogicException("El contratista que especificó no existe");
         }
+        
         entity.setContratista(contratista);
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de contrato");
