@@ -131,48 +131,32 @@ public class SolicitudLogic {
             LOGGER.info("Inicia el proceso de creación de una entidad de Solicitud");
             
             ServicioEntity servicio= entity.getServicio();
-            ContratistaEntity contratista= entity.getContratista();
-            ClienteEntity cliente= entity.getCliente();
-            
-//            if(servicio  == null && entity.getTipo_servicio()== null)
-//                throw new BusinessLogicException("Debe especificar un servicio en la entidad");
             if(servicio == null){
-                Long id= entity.getTipo_servicio().longValue();
-                ServicioEntity nuevo= servicioPersistence.find(id);
-                entity.setServicio(nuevo);
-                crearSolicitud(entity);
+                throw new BusinessLogicException("Servicio no encontrado");
             }
-            if(servicioPersistence.find(servicio.getId())== null){
-                servicioPersistence.create(servicio);
+            if(servicio.getId()== null){
+                throw new BusinessLogicException("id del servicio invalido");
+            }
+            ServicioEntity servicioP = servicioPersistence.find(servicio.getId());
+            if(servicioP == null){
+                throw new BusinessLogicException("el servicio no existe");
             }
             
-            
-            
-            
-            
-            /*if(factura == null)
-                throw new BusinessLogicException("Debe especificar la entidad");
-            facturaPersistence.create(factura);
-            
-            if(cotizacion == null)
-                throw new BusinessLogicException("Debe especificar la entidad");
-            cotizacionPersistence.create(cotizacion);*/
-            
-            if(contratista == null)
-                throw new BusinessLogicException("Debe especificar un contrtista");
-            if(contratistaPersistence.find(contratista.getId()) == null)
-                throw new BusinessLogicException("Debe existir una entidad de contratista en la base de datos");
-            
-            if(cliente == null)
-                throw  new BusinessLogicException("Debe especifica el cliente");
-            if(clientePersistence.find(cliente.getId()) == null)
-                throw new BusinessLogicException("debe existir el cliente en la base de datos");
-            
-            persistence.create(entity);
-            LOGGER.info("Creación exitosa");
-            return entity;
-            
-        }
+            ClienteEntity cliente= entity.getCliente();
+            if(cliente == null){
+                throw new BusinessLogicException("cliente no encontrado");
+            }
+            if(cliente.getId()== null){
+                throw new BusinessLogicException("id del cliente invalido");
+            }
+            ClienteEntity clienteP = clientePersistence.find(cliente.getId());
+            if(clienteP == null){
+                throw new BusinessLogicException("cliente no existe");
+            }
+   
+            return persistence.create(entity);
+            }
+ 
         
         /**
          * encuentra todas las entidades de Solicitud
