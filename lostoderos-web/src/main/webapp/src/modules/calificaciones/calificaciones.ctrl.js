@@ -22,14 +22,11 @@
 
                 $scope.data.contratista = {id: $scope.currentContratista.id};
                 $scope.data.cliente = {id: $rootScope.currentId};
-                console.log('Num estrellas:'+$scope.data.numEstrellas);
-                console.log('Id:'+$rootScope.currentId);
-                console.log('Nombre:'+$rootScope.currentUser);
-                /*
+                
                 $http.post(calificacionesContext, $scope.data).then(function (response) {
                     $state.go('contratistaDetail', {contratistaId: response.data.contratista.id}, {reload: true});
                 });
-                */
+                
             };
 
         }
