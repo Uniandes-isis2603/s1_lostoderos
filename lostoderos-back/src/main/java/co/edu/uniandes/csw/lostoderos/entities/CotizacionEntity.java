@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -38,7 +39,7 @@ public class CotizacionEntity extends BaseEntity implements Serializable{
     private Integer valor;
     
     @PodamExclude
-    @OneToOne(mappedBy = "cotizacion", cascade=CascadeType.PERSIST)
+    @OneToOne(mappedBy="contratista", fetch = FetchType.LAZY)
     private SolicitudEntity solicitud;
 
     //constructor
