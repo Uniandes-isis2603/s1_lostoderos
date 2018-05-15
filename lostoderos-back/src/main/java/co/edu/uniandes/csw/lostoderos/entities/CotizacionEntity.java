@@ -39,7 +39,7 @@ public class CotizacionEntity extends BaseEntity implements Serializable{
     private Integer valor;
     
     @PodamExclude
-    @OneToOne(mappedBy="contratista", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy="cotizacion", fetch = FetchType.LAZY)
     private SolicitudEntity solicitud;
 
     //constructor
