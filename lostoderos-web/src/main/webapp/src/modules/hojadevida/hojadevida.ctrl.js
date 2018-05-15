@@ -5,6 +5,7 @@
         function ($scope, $http, $state) {
             var context = "api/contratistas/" + $scope.currentContratista.id + "/hojadevida";
             var hoja = {};
+            $scope.data = {};
             if ($scope.currentContratista.hojaVida !== undefined && $scope.currentContratista.hojaVida !== null) {
                 $http.get(context).then(function (response) {
                     $scope.hojadevida = response.data;
@@ -13,11 +14,19 @@
             } else {
                 $state.go('createHojadevida');
             }
-            this.createHojadevida = function () {
-                hojadevida = $scope.hojadevida;
-                hojadevida.contratista = {id: $scope.currentContratista.id};
-                return $http.post(context, hojadevida).then(function () {
-                    $state.go('contratistasList');
+
+            $scope.updateHojadevida = function () {
+                $scope.data.contratista = $scope.hojadevida.contratista;
+                $scope.data.id=$scope.hojadevida.id;
+                $http.put(context+'/'+$scope.data.id, $scope.data).then(function (response) {
+                    $state.go('contratistaDetail', {contratistaId: response.data.contratista.id}, {reload: true});
+                });
+            };
+            $scope.createHojadevida = function () {
+                $scope.data.contratista = $scope.hojadevida.contratista;
+                $scope.data.id=$scope.hojadevida.id;
+                $http.post(context, $scope.data).then(function (response) {
+                    $state.go('contratistaDetail', {contratistaId: response.data.contratista.id}, {reload: true});
                 });
             };
         }

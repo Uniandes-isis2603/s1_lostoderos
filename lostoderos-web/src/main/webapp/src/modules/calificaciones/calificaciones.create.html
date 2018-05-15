@@ -1,56 +1,63 @@
 <style>
-    .panel-body
-    {
-        background: white;
-        margin: 30px auto 20px;
-    }
-    .fila{
-        margin-bottom: 10px;
-    }
-    .form-group{
-        margin:0 0 0;
+    a {
+        color: whitesmoke;
+        
     }
 </style>
-<div class ="container-fluid">
-    <div class ="panel panel-body">
-        <form ng-submit="ctrl.createCalificacion(calificacion)" name = "calificacion">
-            <div class = "form-group row">
-
-                <div class = "fila form group col-sm-12">
-                    <label for="calificacionComentario" class ="col-sm-3">Comentario *</label>
-                    <input id = "calificacionComentario" required ng-model="calificacion.comentario" class="col-sm-4">
-
-                </div>
-                <div class = "fila form group col-sm-12">
-                    <label for="calificacionTipoServicio" class ="col-sm-3">Tipo Servicio *</label>
-                    <input id = "calificacionTipoServicio" required ng-model="calificacion.tipoServicio" class="col-sm-4">
-                </div>
-
-                <div class = "fila form group col-sm-12">
-                    <label for="calificacionNumEstrellas" class ="col-sm-3">Numero de Estrellas *</label>
-                    <select required ng-model="calificacion.numEstrellas" class="col-sm-4" id="calificacionNumEstrellas" >
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>           
-            </div>
-            <div class="form-group row">
-                <div class="form-group col-sm-4" ng-if="!calificacion.$valid">
-                    <div class="alert alert-warning" >
-                        <strong>¡Cuidado!</strong><p>Debe llenar todos los campos requeridos*</p>
-                    </div> 
-                </div> 
-            </div>
-            <div class="form-group row">
-                <div class="form-group col-sm-12">
-                    <input ng-show="calificacion.$valid" type="submit" value="Crear" class="btn btn-success"/>
-                    <a class="btn btn-info" ui-sref="contratistaDetail({contratistaId:currentContratista.id})">Cancel</a>
+<div class="container-fluid">
+    <form class="well form-horizontal" action=" " method="put"  id="contact_form" style="background-color: #1c314c">
+        <fieldset>
+            <!-- Form Name -->
+            <legend>
+                <center>
+                    <h2><b style="color:white">Calificación</b></h2>
+                </center>
+            </legend>
+            <br>
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Tipo de servicio*</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  name="tipoServicio" placeholder="Plomería, climatización, etc." class="form-control" required ng-model="data.tipoServicio" type="text">
+                    </div>
                 </div>
             </div>
-
-        </form>
-    </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Comentario*</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  name="comentario" placeholder="Comentario" class="form-control" required ng-model="data.comentario" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Calificación*</label> 
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <select class="form-control" name="numEstrellas" ng-model="data.numEstrellas" required="true">
+                            <option value="">5</option>
+                            <option value="">4</option>
+                            <option value="">3</option>
+                            <option value="">2</option>
+                            <option value="">1</option>
+                            
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- Select Basic -->
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4"><br>
+                    <button type="submit" ng-click="createCalificacion()" value="Save" class="btn-o hoja" ><a ui-sref="contratistaDetail">SUBMIT</a> <span class="glyphicon glyphicon-send"></span></button>
+                    <button class="btn-o hoja" ><a ui-sref="hojadevida">Cancelar</a></button>
+                </div>
+            </div>
+            
+        </fieldset>
+    </form>
 </div>

@@ -17,6 +17,9 @@
                 url: '/calificaciones',
                 parent:'contratistaDetail',
                 views: {
+                    'detailView':{
+                        templateUrl:'src/modules/contratistas/contratistas.detail.html'
+                    },
                     createCalificacionView: {
                         templateUrl: basePath + 'calificaciones.create.html',
                         controller: 'calificacionesCtrl',

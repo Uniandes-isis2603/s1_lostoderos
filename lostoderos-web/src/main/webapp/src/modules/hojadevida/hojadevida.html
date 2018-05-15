@@ -1,8 +1,8 @@
 <style>
     #inner {
         padding: 10px 80px;
-        margin: 80px auto;
-        background: #f5f5f5;
+        margin: 30px auto 20px;
+        background: #1c314c;
         border: solid #666;
         border-width: 8px 0 2px 0;
     }
@@ -11,7 +11,8 @@
         text-transform: uppercase;
         letter-spacing: 3px;
         text-align: left;
-        color:black;
+        color:white;
+        color:white;
     }
     #inner > h1 {
         font-family: oswald;
@@ -21,37 +22,33 @@
         position: relative;
         text-shadow: 1px 1px 2px #000000;
         text-transform: uppercase;
+        color:white;
     }
     #hd {
-        margin: 2.5em 0 3em 0;
-        padding-bottom: 1.5em;
+        margin: 0 0 0 0;
+        
         border-bottom: 1px solid #ccc;
     }
-    .hoja{
-        background-color: rgba(0, 0, 0, 0.1);
-        color: black !important;
+    
+    h3{
+        color:white;
+        font-size: 15px;
+        margin-top: 8px;
+        margin-bottom: 15px;
     }
-    .contact-info {
-    margin-top: 7px;
-}
 </style>
-
-<div id="inner">
+<!--ng-if="hojadevida !== null" -->
+<div  id="inner">
     <div id="hd">
-        <div class="yui-gc">
-            <div class="yui-u first">
-                <h1 class="titulo">{{hojadevida.nombre}}</h1>
-                <h2>Contratista</h2>
-            </div>
-            <div class="yui-u">
-                <div class="contact-info">
-                    
-                </div>
-            </div>
-        </div>
+        <h1 class="titulo">{{hojadevida.nombre}}</h1>
+        <h2 style="font-size:20px;color:white;">Contratista</h2>
     </div>
     <div id="bd">
-        
+        <h3 ng-if="hojadevida.empleos!==null"><strong>Empleos: </strong>{{hojadevida.empleos}}</h3>
+        <h3 ng-if="hojadevida.referencias!==null"><strong>Referencias: </strong>{{hojadevida.referencias}}</h3>
+        <h3 ng-if="hojadevida.especialidad!==null"><strong>Especialidad: </strong>{{hojadevida.especialidad}}</h3>
+        <h3 ng-if="hojadevida.experiencia!==null"><strong>Experiencia: </strong>{{hojadevida.experiencia}}</h3>
+        <a ui-sref="updateHojadevida"><button class="btn-o hoja">Editar</button></a>
         <a ui-sref="contratistaDetail"><button class="btn-o hoja">Cerrar</button></a>
     </div>
 </div>

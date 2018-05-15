@@ -8,25 +8,27 @@
     var mod = ng.module("calificacionesModule");
     mod.constant("calificacionesContext", "api/calificaciones");
     mod.constant("contratistasContext", "contratista");
-    mod.controller('calificacionesCtrl', ['$scope', '$http','contratistasContext','$state', 'calificacionesContext',
-        function ($scope, $http,contratistasContext,$state, calificacionesContext) {
+    mod.controller('calificacionesCtrl', ['$scope', '$http', 'contratistasContext', '$state', 'calificacionesContext', '$rootScope',
+        function ($scope, $http, contratistasContext, $state, calificacionesContext, $rootScope) {
             if (($scope.currentContratista.calificaciones[0] !== undefined) && ($scope.currentContratista.calificaciones[0] !== null)) {
-            $http.get(calificacionesContext + '/' + 'contratista' + '/' + $state.params.contratistaId).then(function (response) {
-                $scope.calificacionesRecords = response.data;
-            });
-        }else{
-            $state.go('createCalificacion');
+                $http.get(calificacionesContext + '/' + 'contratista' + '/' + $state.params.contratistaId).then(function (response) {
+                    $scope.calificacionesRecords = response.data;
+                });
+            } else {
+                $state.go('createCalificacion');
+            }
+            ;
+            $scope.createCalificacion = function () {
+
+                $scope.data.contratista = {id: $scope.currentContratista.id};
+                $scope.data.cliente = {id: $rootScope.currentId};
+
+                $http.post(calificacionesContext, $scope.data).then(function (response) {
+                    $state.go('contratistaDetail', {contratistaId: response.data.contratista.id}, {reload: true});
+                });
+            };
+
         }
-        this.createCalificacion = function(){
-                calificacion = $scope.calificacion;
-                
-                calificacion.contratista={id:$scope.currentContratista.id};
-                console.log(calificacion);
-                return $http.post(calificacionesContext,calificacion).then(function(){
-                    $state.go('contratistasList');
-        });
-    };
-   }
     ]);
 }
 )(window.angular);

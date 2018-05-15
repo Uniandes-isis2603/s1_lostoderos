@@ -26,6 +26,19 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('updateHojadevida',{
+                url:'/hojadevida/update',
+                parent:'contratistaDetail',
+                views:{
+                    'detailView':{
+                        templateUrl:'src/modules/contratistas/contratistas.detail.html'
+                    },
+                    'updateHojaView':{
+                        templateUrl: basePath + 'hojadevida.update.html',
+                        controller: 'hojadevidaCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }]);
 })(window.angular);
