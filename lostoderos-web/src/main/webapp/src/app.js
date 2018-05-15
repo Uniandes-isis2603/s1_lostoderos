@@ -45,7 +45,7 @@
                     
                     if (sessionStorage.getItem("username") != null) {
                         $rootScope.currentUser = sessionStorage.getItem("name");
-                        $rootScope.currentUserName = sessionStorage.getItem("username");
+                        $rootScope.currentUsername = sessionStorage.getItem("username");
                         $rootScope.currentDireccion = sessionStorage.getItem("direccion");
                         $rootScope.currentFechaNac = sessionStorage.getItem("fecha_nacimiento");
                         $rootScope.currentId = sessionStorage.getItem("id");
@@ -62,7 +62,7 @@
                     else{
                         return false;
                     }
-                }
+                };
                 
                 /**
                  * @ngdoc function
