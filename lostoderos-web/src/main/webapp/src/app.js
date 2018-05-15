@@ -42,7 +42,7 @@
                  * @returns {Boolean} Verdadero si está dentro de su cuenta.
                  */
                 $rootScope.isAuthenticated = function () {
-
+                    
                     if (sessionStorage.getItem("username") != null) {
                         $rootScope.currentUser = sessionStorage.getItem("name");
                         return true;
@@ -50,6 +50,15 @@
                         return false;
                     }
                 };
+                
+                $rootScope.isContratista = function(){
+                    if(($rootScope.isAuthenticated)&&(sessionStorage.getItem("rol") === "contratista")){
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
+                }
                 
                 /**
                  * @ngdoc function

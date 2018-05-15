@@ -9,6 +9,9 @@
                 parent: 'contratistaDetail',
                 
                 views: {
+                    detailView:{
+                        templateUrl: 'src/modules/constratistas/contratistas.detail.html',
+                    },
                     'contratoView': {
                         templateUrl: basePath + 'contratos.html',
                         controller: 'contratosCtrl',

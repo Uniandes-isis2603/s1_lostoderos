@@ -4,9 +4,11 @@
     mod.controller('hojadevidaCtrl', ['$scope', '$http', '$state',
         function ($scope, $http, $state) {
             var context = "api/contratistas/" + $scope.currentContratista.id + "/hojadevida";
+            var hoja = {};
             if ($scope.currentContratista.hojaVida !== undefined && $scope.currentContratista.hojaVida !== null) {
                 $http.get(context).then(function (response) {
                     $scope.hojadevida = response.data;
+                    hoja = $scope.hojadevida;
                 });
             } else {
                 $state.go('createHojadevida');
