@@ -12,6 +12,10 @@
                         controller: 'calificacionesCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('createCalificacion', {
                 url: '/calificaciones',
@@ -25,6 +29,10 @@
                         controller: 'calificacionesCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             });
         }]);

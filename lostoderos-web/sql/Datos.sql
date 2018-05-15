@@ -9,16 +9,16 @@ insert into ServicioEntity  (nombre, categorias, descripcion, imagen) values ('M
 
 
 delete from USUARIOENTITY;
-insert into USUARIOENTITY (dtype,nombre, correo, usuario, contrasena, reputacion) values ('ContratistaEntity' ,'Christi Lamanby', 'clamanby0@youtube.com', 'clamanby0', 'FmAhX0zkz9WQ', null);
-insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, reputacion) values ( 'ContratistaEntity' ,'Gill Heisman', 'gheisman1@nymag.com', 'gheisman1', 'LOUAd68', null);
-insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, reputacion) values ('ContratistaEntity' , 'Saundra Bonhan', 'sbonhan2@mashable.com', 'sbonhan2', 'CjeMX5YG', null);
-insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, reputacion) values ('ContratistaEntity' ,'Sybil Ivanenko', 'sivanenko3@friendfeed.com', 'sivanenko3', 'tr2esTLJ', null);
-insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, reputacion) values ('ContratistaEntity' ,'Reuben Skerman', 'rskerman4@odnoklassniki.ru', 'rskerman4', 'XS6EEX9E', null);
-insert into USUARIOENTITY (dtype,nombre, correo, usuario, contrasena, reputacion) values ('ContratistaEntity' , 'Francis Mum', 'fmum5@loc.gov', 'fmum5', 'DKKORXeqYPni', null);
-insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, reputacion) values ('ContratistaEntity' ,'Noam Leeds', 'nleeds6@free.fr', 'nleeds6', 'yWFNDCET9TAU', null);
-insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, reputacion) values ('ContratistaEntity' , 'Redford Hugle', 'rhugle7@google.cn', 'rhugle7', 'UxYmUlEAm', null);
-insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, reputacion) values ('ContratistaEntity' , 'Catrina Currie', 'ccurrie8@quantcast.com', 'ccurrie8', 'pfWjXOB', null);
-insert into USUARIOENTITY (dtype,nombre, correo, usuario, contrasena, reputacion) values ('ContratistaEntity' , 'Karalynn Feveryear', 'kfeveryear9@fc2.com', 'kfeveryear9', 'ty4ew9k5fq', null);
+insert into USUARIOENTITY (dtype,nombre, correo, usuario, contrasena, disponibilidad) values ('ContratistaEntity' ,'Christi Lamanby', 'clamanby0@youtube.com', 'clamanby0', 'FmAhX0zkz9WQ', 1);
+insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, disponibilidad) values ( 'ContratistaEntity' ,'Gill Heisman', 'gheisman1@nymag.com', 'gheisman1', 'LOUAd68', 1);
+insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, disponibilidad) values ('ContratistaEntity' , 'Saundra Bonhan', 'sbonhan2@mashable.com', 'sbonhan2', 'CjeMX5YG', 1);
+insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, disponibilidad) values ('ContratistaEntity' ,'Sybil Ivanenko', 'sivanenko3@friendfeed.com', 'sivanenko3', 'tr2esTLJ', 1);
+insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, disponibilidad) values ('ContratistaEntity' ,'Reuben Skerman', 'rskerman4@odnoklassniki.ru', 'rskerman4', 'XS6EEX9E', 1);
+insert into USUARIOENTITY (dtype,nombre, correo, usuario, contrasena, disponibilidad) values ('ContratistaEntity' , 'Francis Mum', 'fmum5@loc.gov', 'fmum5', 'DKKORXeqYPni', 1);
+insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, disponibilidad) values ('ContratistaEntity' ,'Noam Leeds', 'nleeds6@free.fr', 'nleeds6', 'yWFNDCET9TAU', 1);
+insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, disponibilidad) values ('ContratistaEntity' , 'Redford Hugle', 'rhugle7@google.cn', 'rhugle7', 'UxYmUlEAm', 1);
+insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, disponibilidad) values ('ContratistaEntity' , 'Catrina Currie', 'ccurrie8@quantcast.com', 'ccurrie8', 'pfWjXOB', 1);
+insert into USUARIOENTITY (dtype,nombre, correo, usuario, contrasena, disponibilidad) values ('ContratistaEntity' , 'Karalynn Feveryear', 'kfeveryear9@fc2.com', 'kfeveryear9', 'ty4ew9k5fq', 1);
 
 insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('3/31/2018', 'sigma cum laude', 1);
 insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('2/31/2018', 'una descripcion', 2);
