@@ -54,7 +54,7 @@ public class ServicioEntity extends BaseEntity implements Serializable
     private List<ContratistaEntity> contratistas = new ArrayList<ContratistaEntity>();
     
     @PodamExclude
-    @OneToOne( mappedBy = "servicios", cascade = CascadeType.PERSIST)
+    @OneToOne( mappedBy = "servicio", cascade = CascadeType.PERSIST)
     private SolicitudEntity solicitud;
 
     public String getNombre() 

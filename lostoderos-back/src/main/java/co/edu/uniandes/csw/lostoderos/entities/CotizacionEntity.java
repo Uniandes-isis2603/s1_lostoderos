@@ -38,7 +38,7 @@ public class CotizacionEntity extends BaseEntity implements Serializable{
     private Integer valor;
     
     @PodamExclude
-    @OneToOne(mappedBy = "cotizaciones", cascade=CascadeType.PERSIST)
+    @OneToOne(mappedBy = "cotizacion", cascade=CascadeType.PERSIST)
     private SolicitudEntity solicitud;
 
     //constructor
