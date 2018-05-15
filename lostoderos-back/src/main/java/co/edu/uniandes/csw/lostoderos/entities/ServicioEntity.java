@@ -30,6 +30,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -51,6 +52,10 @@ public class ServicioEntity extends BaseEntity implements Serializable
     @PodamExclude
     @ManyToMany( mappedBy = "servicios", cascade = CascadeType.PERSIST)
     private List<ContratistaEntity> contratistas = new ArrayList<ContratistaEntity>();
+    
+    @PodamExclude
+    @OneToOne( mappedBy = "servicio", cascade = CascadeType.PERSIST)
+    private SolicitudEntity solicitud;
 
     public String getNombre() 
     {
@@ -110,5 +115,19 @@ public class ServicioEntity extends BaseEntity implements Serializable
     public void setImagen(String imagen) 
     {
         this.imagen = imagen;
+    }
+
+    /**
+     * @return the solicitud
+     */
+    public SolicitudEntity getSolicitud() {
+        return solicitud;
+    }
+
+    /**
+     * @param solicitud the solicitud to set
+     */
+    public void setSolicitud(SolicitudEntity solicitud) {
+        this.solicitud = solicitud;
     }
 }

@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
+import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
 
 /**
  * Clase que extiende de {@link FacturaDetailDTO} para manejar la transformacion
@@ -80,7 +81,7 @@ import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
 public class FacturaDetailDTO extends FacturaDTO {
 
     private PagoDTO pago;
-
+    private SolicitudDTO solicitud;
     public FacturaDetailDTO() {
         // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
 
@@ -103,6 +104,15 @@ public class FacturaDetailDTO extends FacturaDTO {
         }
     }
 
+    public SolicitudDTO getSolicitud() {
+        return solicitud;
+    }
+
+    public void setSolicitud(SolicitudDTO solicitud) {
+        this.solicitud = solicitud;
+    }
+
+    
     public PagoDTO getPago() {
         return pago;
     }
@@ -120,9 +130,14 @@ public class FacturaDetailDTO extends FacturaDTO {
     public FacturaEntity toEntity() {
         FacturaEntity facturaEntity = super.toEntity();
         PagoEntity pagoE = facturaEntity.getPago();
+        SolicitudEntity solE = facturaEntity.getSolicitud();
         if (pagoE != null) {
             facturaEntity.setPago(pagoE);
-
+            
+        }
+        if (solE != null) {
+            facturaEntity.setSolicitud(solE);
+            
         }
         return facturaEntity;
     }

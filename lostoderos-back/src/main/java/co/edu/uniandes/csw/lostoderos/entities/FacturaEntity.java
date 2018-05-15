@@ -1,7 +1,9 @@
 package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -25,7 +27,11 @@ public class FacturaEntity extends BaseEntity implements Serializable {
     @OneToOne
     private PagoEntity pago;
     
+    @OneToOne
+    @PodamExclude
+    @OneToMany( mappedBy = "factura", cascade = CascadeType.PERSIST)
     private SolicitudEntity solicitud;
+    
     
     
     /**
@@ -104,5 +110,14 @@ public class FacturaEntity extends BaseEntity implements Serializable {
     public void setPago(PagoEntity pago) {
         this.pago = pago;
     }
+
+    public SolicitudEntity getSolicitud() {
+        return solicitud;
+    }
+
+    public void setSolicitud(SolicitudEntity solicitud) {
+        this.solicitud = solicitud;
+    }
+    
 
 }
