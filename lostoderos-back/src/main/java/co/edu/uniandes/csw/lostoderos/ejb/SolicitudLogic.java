@@ -273,27 +273,6 @@ public class SolicitudLogic {
             return factura;
         }
         
-        /**
-         * 
-         * @param calificacion
-         * @param solicitudId
-         * @return
-         * @throws BusinessLogicException 
-         */
-        public CalificacionEntity addCalificacion(CalificacionEntity calificacion, Long solicitudId)throws BusinessLogicException{
-            
-            LOGGER.log(Level.INFO, "Inicia el proceso de agregar una calificacion a la entidad solicitud id = {0}", solicitudId);
-        
-            SolicitudEntity entity= getById(solicitudId);
-            if(entity == null)
-                throw new BusinessLogicException("No existe esa solicitud");
-            
-            calificacionPersistence.create(calificacion);
-            entity.setCalificacion(calificacion);
-            update(entity);
-            return calificacion;
-
-        }
         
 //        /**
 //         * 
