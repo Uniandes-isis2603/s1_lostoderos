@@ -31,6 +31,19 @@
                         controller: 'logoutCtrl'
                     }
                 }
+            }).state('profile', {
+                url: '/profile',
+                data: {
+                    requireLogin: true,
+                    roles: []
+                }
+                ,
+                views: {
+                    'mainView': {
+                        templateUrl: basePath + 'profile.html',
+                        controller: 'iniciosesionCtrl'
+                    }
+                }
             });
 
         }

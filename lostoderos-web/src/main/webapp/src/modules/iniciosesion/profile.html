@@ -1,0 +1,77 @@
+<style>
+    a{
+        color:black;
+    }
+</style>
+<div class="main-content" style="padding-left: 200px">
+    <div class="container">
+        <h3 class="site-title" style="color:whitesmoke">Mi Perfil</h3>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="panel" style=" background-color: #1c314c">
+                        <div class=" panel-body ">
+
+                            <div class="col-md-5">
+                                <img class="img-responsive" src="https://www.w3schools.com/bootstrap4/img_avatar3.png" style="width:50%;">
+                                <div class=" clearfix">
+                                    <h3 style="color: white">{{currentUser}}</h3>
+                                    <div class="profile-ratings">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <h4 style="color: white">{{currentUsername}}</h4>
+                                    <button ui-sref="logout" type="button" class="btn btn-warning btn-md pull-center">Cerrar Sesión</button>
+                                    <hr>
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="profile-block">
+                                    <ul class="list-group">
+                                        <a ui-sref="pagosList"><li class="list-group-item">Mis Pagos <span class="badge badge-secondary">New</span></li></a>
+                                        <a ui-sref="facturasList"><li class="list-group-item">Mis Facturas <span class="badge badge-secondary">New</span></li></a>
+                                        <a ui-sref="solicitudesList"><li class="list-group-item">Mis Solicitudes <span class="badge badge-secondary">New</span></li></a>
+                                        <a ui-sref="cotizacionesList"><li class="list-group-item">Mis Cotizaciones <span class="badge badge-secondary">New</span></li></a>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel" style=" background-color: #1c314c">
+                        <div class=" panel-body ">
+                            <div class="col-md-12">
+
+                                <ul class="list-inline">
+                                    <li><h5 style="color: white"><strong>Dirección: </strong> </h5> </li>
+                                    <li style="color: white">{{currentDireccion}}</li>
+                                </ul>
+                                <ul class="list-inline">
+                                    <li><h5 style="color: white"><strong>Fecha de Nacimiento: </strong></h5></li>
+                                    <li style="color: white">{{currentFechaNac}}</li>
+                                </ul>
+                                <hr >
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

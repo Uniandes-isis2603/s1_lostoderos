@@ -235,16 +235,6 @@ public class SolicitudLogicTest {
     }
     
     @Test
-    public void addCalificacionTest()throws BusinessLogicException{
-        SolicitudEntity entity= data.get(0);
-        CalificacionEntity calificacion= calificaciones.get(0);
-        
-        CalificacionEntity result= solicitudLogic.addCalificacion(calificacion, entity.getId());
-        Assert.assertNotNull(result);
-        Assert.assertNotNull(solicitudLogic.getById(entity.getId()).getCalificacion());
-    }
-    
-    @Test
     public void addFacturaTest() throws BusinessLogicException{
         
         SolicitudEntity entity= data.get(0);

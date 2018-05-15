@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.lostoderos.resources;
 
 import co.edu.uniandes.csw.lostoderos.dtos.SolicitudDetailDTO;
-import co.edu.uniandes.csw.lostoderos.dtos.SolicitudDTO;
 
 import co.edu.uniandes.csw.lostoderos.ejb.SolicitudLogic;
 import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
@@ -176,7 +175,7 @@ public class SolicitudResource {
 	
         SolicitudEntity entity= solicitudLogic.getById(id);
         if(entity == null)
-            throw new WebApplicationException("El recurso /calificaciones/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /solicitudes/" + id + " no existe.", 404);
         
         solicitudLogic.delete(id);
     }

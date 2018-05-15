@@ -6,7 +6,13 @@
 package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -30,6 +36,10 @@ public class CotizacionEntity extends BaseEntity implements Serializable{
      * Valor de la cotizacion
      */
     private Integer valor;
+    
+    @PodamExclude
+    @OneToOne(mappedBy = "cotizaciones", cascade=CascadeType.PERSIST)
+    private SolicitudEntity solicitud;
 
     //constructor
     public CotizacionEntity() {
@@ -87,5 +97,19 @@ public class CotizacionEntity extends BaseEntity implements Serializable{
     @Override
     public String toString() {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * @return the solicitud
+     */
+    public SolicitudEntity getSolicitud() {
+        return solicitud;
+    }
+
+    /**
+     * @param solicitud the solicitud to set
+     */
+    public void setSolicitud(SolicitudEntity solicitud) {
+        this.solicitud = solicitud;
     }
 }

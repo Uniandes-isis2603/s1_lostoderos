@@ -23,7 +23,7 @@
 
         <div class="container" style="padding-bottom: 30px">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Buscar cliente...">
+                <input type="text" class="form-control" placeholder="Buscar cliente..." ng-model="search.nombre">
                 <span class="input-group-btn">
                     <button class="btn btn-search" type="button"><i class=""></i> Search</button>
                 </span>
@@ -39,7 +39,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="cliente in clientesRecords| orderBy : 'id'">
+                <tr ng-repeat="cliente in clientesRecords| orderBy : 'id' | filter:search">
                     <td><a ui-sref="clienteDetail({clienteId: cliente.id})">{{cliente.id}}</a></td>
                     <td style="color:white">{{cliente.usuario}}</td>
                     <td style="color:white">{{cliente.nombre}}</td>

@@ -1,11 +1,48 @@
-<div class="center-block well">
-        <div class = "row">
-            <div>
-                <h1 align="center">Nombre del Cliente: {{currentCliente.nombre}}</h1>
-                <p>Identificacion: {{currentCliente.id}}</p>
-                <p>Usuario: {{currentCliente.usuario}}</p>
-                <p>Correo: {{currentCliente.correo}}</p>
-                <p>Fecha de Nacimiento: {{currentCliente.fecha_nacimiento}}</p>
-            </div>
-        </div>
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: whitesmoke;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+<h2 style="text-align:center; color: white">Cliente</h2>
+
+<div class="card">
+  <img src="https://www.w3schools.com/bootstrap4/img_avatar3.png" alt="John" style="width:100%">
+  <h1 style="color: whitesmoke">{{currentCliente.nombre}}</h1>
+  <p class="title">{{currentCliente.usuario}}</p>
+  <p style="color: whitesmoke">{{currentCliente.correo}}</p>
+  <p style="color: whitesmoke">{{currentCliente.fecha_nacimiento}}</p>
+  <div style="margin: 24px 0;">
+    <a href="#"><i class="fa fa-dribbble"></i></a> 
+    <a href="#"><i class="fa fa-twitter"></i></a>  
+    <a href="#"><i class="fa fa-linkedin"></i></a>  
+    <a href="#"><i class="fa fa-facebook"></i></a> 
+ </div>
+ <p><button>Contact</button></p>
+ <p><button ui-sref="clientesList">Regresar</button></p>
 </div>

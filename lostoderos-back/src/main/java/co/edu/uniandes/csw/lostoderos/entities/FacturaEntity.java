@@ -24,7 +24,10 @@ public class FacturaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToOne
     private PagoEntity pago;
-
+    
+    private SolicitudEntity solicitud;
+    
+    
     /**
      * construcor por defecto
      */

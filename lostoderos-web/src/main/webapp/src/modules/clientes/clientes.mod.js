@@ -39,10 +39,6 @@
                 parent: 'clientes',
                 param: {servicioId: null},
                 views: {
-                    'listView': {
-                        templateUrl: basePath + 'clientes.list.html'
-
-                    },
                     'detailView': {
                         templateUrl: basePath + 'clientes.detail.html',
                         controller: 'clienteDetailCtrl',
