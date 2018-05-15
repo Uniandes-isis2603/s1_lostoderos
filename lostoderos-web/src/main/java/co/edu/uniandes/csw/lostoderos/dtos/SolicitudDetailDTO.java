@@ -37,11 +37,6 @@ public class SolicitudDetailDTO extends SolicitudDTO {
     /**
      *
      */
-    private CalificacionDTO calificacion;
-
-    /**
-     *
-     */
     private ClienteDTO cliente;
 
     public SolicitudDetailDTO() {
@@ -50,12 +45,6 @@ public class SolicitudDetailDTO extends SolicitudDTO {
 
     public SolicitudDetailDTO(SolicitudEntity entity) {
 
-        super(entity);
-        if (entity.getCalificacion() != null) {
-            this.calificacion = new CalificacionDTO(entity.getCalificacion());
-        } else {
-            entity.setCalificacion(null);
-        }
 
         if (entity.getCliente() != null) {
             this.cliente = new ClienteDTO(entity.getCliente());
@@ -153,13 +142,6 @@ public class SolicitudDetailDTO extends SolicitudDTO {
         this.contratista = contratista;
     }
 
-    public CalificacionDTO getCalificacion() {
-        return calificacion;
-    }
-
-    public void setCalificacion(CalificacionDTO calificacion) {
-        this.calificacion = calificacion;
-    }
 
     public ClienteDTO getCliente() {
         return cliente;
@@ -171,16 +153,13 @@ public class SolicitudDetailDTO extends SolicitudDTO {
 
     @Override
     public String toString() {
-        return "SolicitudDetailDTO{" + "servicio=" + servicio + ", factura=" + factura + ", cotizacion=" + cotizacion + ", contratista=" + contratista + ", calificacion=" + calificacion + ", cliente=" + cliente + '}';
+        return "SolicitudDetailDTO{" + "servicio=" + servicio + ", factura=" + factura + ", cotizacion=" + cotizacion + ", contratista=" + contratista  + ", cliente=" + cliente + '}';
     }
 
     @Override
     public SolicitudEntity toEntity() {
         //To change body of generated methods, choose Tools | Templates.
         SolicitudEntity solicitud = super.toEntity();
-        if (this.calificacion != null) {
-            solicitud.setCalificacion(calificacion.toEntity());
-        }
 
         if (this.cliente != null) {
             solicitud.setCliente(cliente.toEntity());
