@@ -87,14 +87,28 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Rol:</label> 
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <select class="form-control" name="rol" ng-model="data.rol" required="true">
+                            <option value="">--- Please select rol ---</option> <!-- not selected / blank option -->
+                            <option value="cliente">Cliente</option>
+                            <option value="contratista">Contratista</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <!-- Select Basic -->
             <!-- Button -->
             <div class="form-group">
                 <label class="col-md-4 control-label"></label>
                 <div class="col-md-4"><br>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" ng-click="createCliente()" value="Save" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a ui-sref="serviciosList">SUBMIT</a> <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" ng-click="createUsuario()" value="Save" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a ui-sref="serviciosList">SUBMIT</a> <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
                 </div>
             </div>
+            
         </fieldset>
     </form>
 </div>
