@@ -29,6 +29,9 @@
                     sessionStorage.setItem("username", $scope.user.user);
                     sessionStorage.setItem("name", $scope.user.name);
                     sessionStorage.setItem("rol", $scope.user.rol);
+                    sessionStorage.setItem("direccion", $scope.user.direccion);
+                    sessionStorage.setItem("fecha_nacimiento", $scope.user.fecha_nacimiento);
+                    sessionStorage.setItem("id", $scope.user.id);
                     $rootScope.currentUser = $scope.user.name;
                     $rootScope.currentUsername = $scope.user.user;
                     $rootScope.currentDireccion = $scope.user.direccion;

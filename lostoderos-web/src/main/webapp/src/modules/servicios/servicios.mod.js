@@ -17,6 +17,10 @@
                         controller: 'serviciosCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('serviciosList', {
                 url: '/list',
@@ -25,6 +29,10 @@
                     'listView': {
                         templateUrl: basePath + 'servicios.list.html'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('servicioDetail', {
                 url: '/{servicioId:int}/detail',
@@ -36,6 +44,10 @@
                         controller: 'servicioDetailCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('serviciosCreate', {
                 url: '/create',
@@ -45,6 +57,10 @@
                         templateUrl: basePath + '/new/servicios.new.html',
                         controller: 'servicioNewCtrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('serviciosDelete', {
                 url: '/delete/{servicioId:int}',
@@ -57,6 +73,10 @@
                         templateUrl: basePath + '/delete/servicios.delete.html',
                         controller: 'servicioDeleteCtrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             });
 
