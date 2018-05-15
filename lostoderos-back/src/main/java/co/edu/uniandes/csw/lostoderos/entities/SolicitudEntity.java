@@ -82,25 +82,10 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToOne 
     private ClienteEntity cliente;
-
-    /**
-     * 
-     */
-    @PodamExclude
-    @OneToOne //(cascade=CascadeType.PERSIST)
-    private CalificacionEntity calificacion;
     
     //constructor
     public SolicitudEntity() {
         
-    }
-
-    /**
-     * 
-     * @return calificacion
-     */
-    public CalificacionEntity getCalificacion() {
-        return calificacion;
     }
 
     /**
@@ -149,14 +134,6 @@ public class SolicitudEntity extends BaseEntity implements Serializable{
      */
     public Integer getTipo_servicio() {
         return tipo_servicio;
-    }
-
-    /**
-     * establece la calificacion
-     * @param calificacion 
-     */
-    public void setCalificacion(CalificacionEntity calificacion) {
-        this.calificacion = calificacion;
     }
 
     /**

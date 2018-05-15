@@ -9,8 +9,8 @@
     <name>s1_lostoderos</name>
 
     <modules>
-        <module>lostoderos-web</module>
         <module>lostoderos-back</module>
+        <module>lostoderos-web</module>
     </modules>
     
     <repositories>

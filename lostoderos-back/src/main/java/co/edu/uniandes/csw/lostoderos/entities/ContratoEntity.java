@@ -5,10 +5,15 @@
  */
 package co.edu.uniandes.csw.lostoderos.entities;
 
+import co.edu.uniandes.csw.lostoderos.podam.DateStrategy;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -20,6 +25,13 @@ public class ContratoEntity extends BaseEntity implements Serializable {
     @PodamExclude 
     @OneToOne
      private ContratistaEntity contratista;
+    
+    
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
+    private Date fechaInicio;
+    
+    private String descripcion;
 
     /**
      * @return the contratista
@@ -33,6 +45,34 @@ public class ContratoEntity extends BaseEntity implements Serializable {
      */
     public void setContratista(ContratistaEntity contratista) {
         this.contratista = contratista;
+    }
+
+    /**
+     * @return the fechaInicio
+     */
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    /**
+     * @param fechaInicio the fechaInicio to set
+     */
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    /**
+     * @return the descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * @param descripcion the descripcion to set
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
     
     

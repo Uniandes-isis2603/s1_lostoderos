@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.lostoderos.dtos;
 
 import co.edu.uniandes.csw.lostoderos.entities.ContratoEntity;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * ContratoDTO Objeto de transferencia de datos de la entidad de contrato. Los
@@ -35,6 +36,10 @@ public class ContratoDTO implements Serializable {
      * Atributo que define el número de identificación del contrato
      */
     private Long id;
+    
+    private Date fechaInicio;
+    
+    private String descripcion;
 
     /**
      * COnstructor de la clase
@@ -47,6 +52,8 @@ public class ContratoDTO implements Serializable {
     public ContratoDTO(ContratoEntity entity) {
         if (entity != null) {
             this.id = entity.getId();
+            this.fechaInicio = entity.getFechaInicio();
+            this.descripcion = entity.getDescripcion();
         }
 
     }
@@ -54,6 +61,8 @@ public class ContratoDTO implements Serializable {
     public ContratoEntity toEntity() {
         ContratoEntity entity = new ContratoEntity();
         entity.setId(this.id);
+        entity.setFechaInicio(getFechaInicio());
+        entity.setDescripcion(getDescripcion());
         return entity;
     }
 
@@ -72,6 +81,34 @@ public class ContratoDTO implements Serializable {
      */
     public void setID(Long id) {
         this.id = id;
+    }
+
+    /**
+     * @return the fechaInicio
+     */
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    /**
+     * @param fechaInicio the fechaInicio to set
+     */
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    /**
+     * @return the descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * @param descripcion the descripcion to set
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
 }

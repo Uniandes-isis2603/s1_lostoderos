@@ -20,6 +20,17 @@ insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, reputacio
 insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, reputacion) values ('ContratistaEntity' , 'Catrina Currie', 'ccurrie8@quantcast.com', 'ccurrie8', 'pfWjXOB', null);
 insert into USUARIOENTITY (dtype,nombre, correo, usuario, contrasena, reputacion) values ('ContratistaEntity' , 'Karalynn Feveryear', 'kfeveryear9@fc2.com', 'kfeveryear9', 'ty4ew9k5fq', null);
 
+insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('3/31/2018', 'sigma cum laude', 1);
+insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('2/31/2018', 'una descripcion', 2);
+insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('4/31/2018', ' Colibri', 3);
+insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('1/31/2018', 'iPhone 8', 4);
+insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('3/12/2018', 'Uniandes', 5);
+insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('2/12/2018', 'Raberata ushna', 6);
+insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('4/12/2018', 'Pavarotti Lasso', 7);
+insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('1/12/2018', 'Lasrana risno', 8);
+insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('3/25/2018', 'Poscotif lae sun', 9);
+insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('2/14/2018', 'Laude cum sigma', 10);
+
 insert into USUARIOENTITY (nombre, usuario, contrasena, correo, fecha_nacimiento, forma_pago, direccion, dtype) values ('Malva Ubee', 'mubee0', 'LGP6NIL5FX3E', 'mubee0@sakura.ne.jp', '3/31/1957', 'Energy', '076 New Castle Center', 'ClienteEntity');
 insert into USUARIOENTITY (nombre, usuario, contrasena, correo, fecha_nacimiento, forma_pago, direccion, dtype) values ('Gearalt Barles', 'gbarles1', 'UXRBQhR', 'gbarles1@spotify.com', '4/18/1987', 'Technology', '145 Superior Parkway', 'ClienteEntity');
 insert into USUARIOENTITY (nombre, usuario, contrasena, correo, fecha_nacimiento, forma_pago, direccion, dtype) values ('Patrick Fradson', 'pfradson2', '8tDcDTtQA3', 'pfradson2@google.com', '10/27/1989', 'Consumer Services', '68885 Thierer Park', 'ClienteEntity');
