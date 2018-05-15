@@ -128,17 +128,27 @@ public class SolicitudLogic {
          */
         public SolicitudEntity crearSolicitud(SolicitudEntity entity)throws BusinessLogicException{
             
-            LOGGER.info("Inicia el proceso de creación de una enidad de Solicitud");
+            LOGGER.info("Inicia el proceso de creación de una entidad de Solicitud");
             
             ServicioEntity servicio= entity.getServicio();
             ContratistaEntity contratista= entity.getContratista();
             ClienteEntity cliente= entity.getCliente();
             
-            if(servicio  == null)
-                throw new BusinessLogicException("Debe especificar un servicio en la entidad");
+//            if(servicio  == null && entity.getTipo_servicio()== null)
+//                throw new BusinessLogicException("Debe especificar un servicio en la entidad");
+            if(servicio == null){
+                Long id= entity.getTipo_servicio().longValue();
+                ServicioEntity nuevo= servicioPersistence.find(id);
+                entity.setServicio(nuevo);
+                crearSolicitud(entity);
+            }
             if(servicioPersistence.find(servicio.getId())== null){
                 servicioPersistence.create(servicio);
             }
+            
+            
+            
+            
             
             /*if(factura == null)
                 throw new BusinessLogicException("Debe especificar la entidad");
