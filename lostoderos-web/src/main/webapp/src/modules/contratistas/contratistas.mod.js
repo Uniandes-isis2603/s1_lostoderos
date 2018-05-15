@@ -17,6 +17,10 @@
                         controller: 'contratistasCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('contratistasList', {
                 url: '/list',
@@ -25,6 +29,10 @@
                     'listView':{
                         templateUrl:basePath+'contratistas.list.html'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('contratistaDetail',{
                 url: '/{contratistaId:int}',
@@ -36,6 +44,10 @@
                         controller: 'contratistaDetailCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('createContratista',{
                 url:'/create',
@@ -46,6 +58,10 @@
                         controller: 'contratistasCtrl',
                         controllerAs:'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('informacionContratista',{
                 url:'/informacion',
@@ -59,6 +75,10 @@
                         controller: 'contratistaDetailCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('ratingContratista',{
                 url:'/rating',
@@ -72,6 +92,10 @@
                         controller: 'contratistaDetailCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('serviciosContratista',{
                 url:'/servicios',
@@ -85,6 +109,10 @@
                         controller: 'contratistaDetailCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('serviciosContratistaList',{
                 url:'/servicios/list',
@@ -98,6 +126,10 @@
                         controller: 'contratistaDetailCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             });
             

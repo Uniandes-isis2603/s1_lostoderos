@@ -7,7 +7,7 @@
         box-sizing: border-box;
     }
 
-    
+
     thead{
         background: rgb(205,149,87); 
         border:none;
@@ -60,10 +60,7 @@
         position: static;
     }
 
-    a:focus {
-        outline: none;
-        outline-offset: 0px;
-    }
+
     .tags {
         background: rgba(255, 255, 255, 0.1) none repeat scroll 0 0;
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -94,7 +91,7 @@
 
 
     .btn-o {
-
+        
         background-color: rgba(255, 255, 255, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.5);
         border-radius: 2px;
@@ -129,12 +126,7 @@
         padding: 2px;
         width: 60px;
     }
-    .photosgurdeep > a {
-        background: #ffffff none repeat scroll 0 0;
-        border-radius: 50%;
-        display: inline-block !important;
-        padding: 0 !important;
-    }
+
     .view-all {
         background: rgba(255, 255, 255, 0.1) none repeat scroll 0 0 !important;
         border: 1px solid;
@@ -259,7 +251,7 @@
         display: block;
         text-decoration: none;
         color: #d9d9d9;
-        
+
         margin-left: 42px;
         -webkit-transition: all 0.25s ease;
         -o-transition: all 0.25s ease;
@@ -281,7 +273,8 @@
                         <div class="username">
                             <h2>{{currentContratista.nombre}}</h2>
                             <p><i class="glyphicon glyphicon-briefcase"></i> Contratista</p>
-                            
+                            <a ng-if="(isContratista() || hasPermissions()) && currentContratista.hojaVida !== null" ui-sref="hojadevida" target="_parent" class="btn-o">Hoja de vida</a>
+                            <a ng-if="(isContratista() || hasPermissions()) && currentContratista.contrato !== null" ui-sref="contrato" target="_parent" class="btn-o">Contrato</a>
                         </div>
                     </div>
                 </li>
@@ -298,12 +291,12 @@
                     <a ui-sref="serviciosContratista"><div class="link"><i class="glyphicon glyphicon-home"></i>Servicios</div></a>
                     <div ui-view="serviciosView"></div>
                 </li>
-                <li>
-                    <div class="link"><i class="glyphicon glyphicon-duplicate"></i>Contrato</div>
-                </li>
+
 
             </ul>
         </div>
+        <div class="col-sm-8" ui-view="hojaView"></div>
+        <div class="col-sm-8" ui-view="contratoView"></div>
         <div class="col-sm-8" ui-view="listaView"></div>
         <div class="col-sm-8" ui-view="serviciosListView"></div>
         <div class="col-sm-8" ui-view="createCalificacionView"></div> 
