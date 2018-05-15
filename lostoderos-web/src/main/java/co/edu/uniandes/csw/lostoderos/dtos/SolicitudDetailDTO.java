@@ -44,6 +44,7 @@ public class SolicitudDetailDTO extends SolicitudDTO {
     }
 
     public SolicitudDetailDTO(SolicitudEntity entity) {
+        super(entity);
 
 
         if (entity.getCliente() != null) {
