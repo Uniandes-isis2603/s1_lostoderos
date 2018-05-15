@@ -33,6 +33,7 @@
                     $rootScope.currentUsername = $scope.user.user;
                     $rootScope.currentDireccion = $scope.user.direccion;
                     $rootScope.currentFechaNac = $scope.user.fecha_nacimiento;
+                    $rootScope.currentId = $scope.user.id;
                 }
                 });
             };
