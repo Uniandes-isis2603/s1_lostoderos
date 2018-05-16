@@ -16,6 +16,7 @@
         "name": "Malva Ubee",
         "user": "mubee0",
         "fecha_nacimiento": "1957/03/31",
+        "direccion": "Carrera 5 #62-08",
         "rol": "cliente",
         "token": 123
     },
@@ -66,6 +67,8 @@
         "name": "Christi Lamanby",
         "user": "clamanby0",
         "rol": "contratista",
+        "direccion": "Carrera 5 #62-08",
+        "fecha_nacimiento": "1999/04/14",
         "token": 987
     },
     {
@@ -75,6 +78,8 @@
         "name": "Gill Heisman",
         "user": "gheisman1",
         "rol": "contratista",
+        "direccion": "Carrera 5 #62-08",
+        "fecha_nacimiento": "1999/04/14",
         "token": 978
     },
     {
@@ -84,6 +89,8 @@
         "name": "Saundra Bonhan",
         "user": "sbonhan2",
         "rol": "contratista",
+        "direccion": "Carrera 5 #62-08",
+        "fecha_nacimiento": "1999/04/14",
         "token": 879
     },
     {
@@ -93,6 +100,8 @@
         "name": "Sybil Ivanenko",
         "user": "sivanenko3",
         "rol": "contratista",
+        "direccion": "Carrera 5 #62-08",
+        "fecha_nacimiento": "1999/04/14",
         "token": 897
     },
     {
@@ -102,6 +111,8 @@
         "name": "Reuben Skerman",
         "user": "rskerman4",
         "rol": "contratista",
+        "direccion": "Carrera 5 #62-08",
+        "fecha_nacimiento": "1999/04/14",
         "token": 789
     }
 ]
