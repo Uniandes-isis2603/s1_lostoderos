@@ -46,6 +46,9 @@ import co.edu.uniandes.csw.lostoderos.entities.ContratoEntity;
  */
 public class ContratoDetailDTO extends ContratoDTO {
 
+    /**
+     * contratista que le corresponde el contrato
+     */
     private ContratistaDTO contratista;
 
     /**
@@ -56,6 +59,10 @@ public class ContratoDetailDTO extends ContratoDTO {
 
     }
 
+    /**
+     * Metodo constructor de in obj json de contrato
+     * @param entity entidad que se va mostrar como ibj json en el front
+     */
     public ContratoDetailDTO(ContratoEntity entity) {
         super(entity);
         if (entity.getContratista() != null) {
@@ -65,6 +72,11 @@ public class ContratoDetailDTO extends ContratoDTO {
         }
     }
 
+    /**
+     * metodo que convierte un obj json a una entidad de contrato
+     * @return entidad formada de contrato
+     */
+    @Override
     public ContratoEntity toEntity() {
         ContratoEntity entity = new ContratoEntity();
         if (this.getContratista() != null) {

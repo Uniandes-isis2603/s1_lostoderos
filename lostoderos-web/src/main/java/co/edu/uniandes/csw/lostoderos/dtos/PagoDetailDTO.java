@@ -78,6 +78,9 @@ public class PagoDetailDTO extends PagoDTO {
         super(entity);
     }
 
+    /**
+     * constructor vacio
+     */
     public PagoDetailDTO() {
         // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
     }

@@ -69,12 +69,39 @@ import java.io.Serializable;
  */
 public class PagoDTO implements Serializable {
 
+    /**
+     * id del pago que se va realizar
+     */
     private Long id;
+    
+    /**
+     * tarjeta del pago a realizar
+     */
     private String numTarjeta;
+    
+    /**
+     * codigode la tarjeta de pago
+     */
     private String codigoTarjeta;
+    
+    /**
+     * fecha de vencimiento de la tarjeta
+     */
     private String fechaTarjeta;
+    
+    /**
+     * descripcion de la tarjeta
+     */
     private String descripcion;
+    
+    /**
+     * comprobante de pago de la tarjeta
+     */
     private Boolean comprobantePagoMedio;
+    
+    /**
+     * compribante de pago total
+     */
     private Boolean comprobantePagoTotal;
 
     /**

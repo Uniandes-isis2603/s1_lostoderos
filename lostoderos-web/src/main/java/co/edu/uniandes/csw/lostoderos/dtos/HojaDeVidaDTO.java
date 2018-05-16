@@ -36,18 +36,39 @@ import java.io.Serializable;
  */
 public class HojaDeVidaDTO implements Serializable {
 
+    /**
+     * id de la hoja de vida
+     */
     private Long id;
 
+    /**
+     * nombre del perteneciente de la hoja de vida
+     */
     private String nombre;
 
+    /**
+     * edada del perteneciente de la hoja de vida
+     */
     private Integer edad;
 
+    /**
+     * especialidad del contratista que le corresponde a hoja de vida
+     */
     private String especialidad;
 
+    /**
+     * empleos registrados en la hoja de vida
+     */
     private String empleos;
 
+    /**
+     * experiencia del contratista
+     */
     private String experiencia;
 
+    /**
+     * referencias del contratista
+     */
     private String referencias;
 
     /**
@@ -181,7 +202,7 @@ public class HojaDeVidaDTO implements Serializable {
     }
 
     /**
-     * @param referencia La nueva referencia.
+     * @param referencias La nueva referencia.
      */
     public void setReferencias(String referencias) {
         this.referencias = referencias;

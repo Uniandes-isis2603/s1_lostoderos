@@ -52,14 +52,29 @@ import java.io.Serializable;
  */
 public class ServicioDTO implements Serializable {
 
+    /**
+     * Id del servicio
+     */
     private Long id;
 
+    /**
+     * Nombre del servicio a prestar
+     */
     private String nombre;
 
+    /**
+     * categorias a las que pertenece el servicio
+     */
     private String categorias;
 
+    /**
+     * descri´pcion del servicio
+     */
     private String descripcion;
 
+    /**
+     * imagen del servicio
+     */
     private String imagen;
 
     /**
@@ -139,10 +154,18 @@ public class ServicioDTO implements Serializable {
         this.descripcion = descripcion;
     }
 
+    /**
+     * 
+     * @return img del servicio
+     */
     public String getImagen() {
         return imagen;
     }
 
+    /**
+     * 
+     * @param imagen img que se va a establecer
+     */
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }

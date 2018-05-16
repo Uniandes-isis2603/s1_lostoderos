@@ -51,8 +51,14 @@ import co.edu.uniandes.csw.lostoderos.entities.CalificacionEntity;
  */
 public class CalificacionDetailDTO extends CalificacionDTO {
 
+    /**
+     * Contratista perteneciente a la calificacion
+     */
     private ContratistaDTO contratista;
 
+    /**
+     * Cliente perteneciente a la calificacion
+     */
     private ClienteDTO cliente;
 
     /**
@@ -62,6 +68,10 @@ public class CalificacionDetailDTO extends CalificacionDTO {
         // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
     }
 
+    /**
+     * Constructor de calificacion
+     * @param entity entidad que pasa a ser el json que se muestra en el front
+     */
     public CalificacionDetailDTO(CalificacionEntity entity) {
         super(entity);
         if (entity.getContratista() != null) {

@@ -56,14 +56,29 @@ import java.io.Serializable;
  */
 public class UsuarioDTO implements Serializable {
 
+    /**
+     * id del usuario
+     */
     protected Long id;
 
+    /**
+     * nombre del usuario
+     */
     protected String nombre;
 
+    /**
+     * login del usuario
+     */
     protected String usuario;
 
+    /**
+     * contraseña del usuario
+     */
     protected String contrasena;
 
+    /**
+     * correo del usuario
+     */
     protected String correo;
     
 

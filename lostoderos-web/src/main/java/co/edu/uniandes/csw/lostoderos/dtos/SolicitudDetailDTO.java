@@ -15,34 +15,41 @@ import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
 public class SolicitudDetailDTO extends SolicitudDTO {
 
     /**
-     *
+     * servicio que se va prestar en la solicitud
      */
     private ServicioDTO servicio;
 
     /**
-     *
+     * factura que se va prestar en la solicitud
      */
     private FacturaDTO factura;
 
     /**
-     *
+     * cotizacion que le corresponde a la solicitud
      */
     private CotizacionDTO cotizacion;
 
     /**
-     *
+     * contratistas que van a atender a la solicitud
      */
     private ContratistaDTO contratista;
 
     /**
-     *
+     * cliente que realiza la solicitu
      */
     private ClienteDTO cliente;
 
+    /**
+     * constructor vacio
+     */
     public SolicitudDetailDTO() {
         // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
     }
 
+    /**
+     * constructor de solicitud
+     * @param entity entidad de solcitud
+     */
     public SolicitudDetailDTO(SolicitudEntity entity) {
         super(entity);
 
@@ -81,7 +88,7 @@ public class SolicitudDetailDTO extends SolicitudDTO {
 
     /**
      *
-     * @return
+     * @return servicio
      */
     public ServicioDTO getServicio() {
         return servicio;
@@ -89,7 +96,7 @@ public class SolicitudDetailDTO extends SolicitudDTO {
 
     /**
      *
-     * @param servicio
+     * @param servicio servicio que se quiere establecer
      */
     public void setServicio(ServicioDTO servicio) {
         this.servicio = servicio;
@@ -97,7 +104,7 @@ public class SolicitudDetailDTO extends SolicitudDTO {
 
     /**
      *
-     * @return
+     * @return factura
      */
     public FacturaDTO getFactura() {
         return factura;
@@ -105,7 +112,7 @@ public class SolicitudDetailDTO extends SolicitudDTO {
 
     /**
      *
-     * @param factura
+     * @param factura factura que se va establecer
      */
     public void setFactura(FacturaDTO factura) {
         this.factura = factura;
@@ -113,7 +120,7 @@ public class SolicitudDetailDTO extends SolicitudDTO {
 
     /**
      *
-     * @return
+     * @return cotizacion
      */
     public CotizacionDTO getCotizacion() {
         return cotizacion;
@@ -121,7 +128,7 @@ public class SolicitudDetailDTO extends SolicitudDTO {
 
     /**
      *
-     * @param cotizacion
+     * @param cotizacion cotizacion que se va establecer
      */
     public void setCotizacion(CotizacionDTO cotizacion) {
         this.cotizacion = cotizacion;
@@ -129,7 +136,7 @@ public class SolicitudDetailDTO extends SolicitudDTO {
 
     /**
      *
-     * @return
+     * @return contratista
      */
     public ContratistaDTO getContratista() {
         return contratista;
@@ -137,26 +144,41 @@ public class SolicitudDetailDTO extends SolicitudDTO {
 
     /**
      *
-     * @param contratista
+     * @param contratista contratista que se va establecer
      */
     public void setContratista(ContratistaDTO contratista) {
         this.contratista = contratista;
     }
 
-
+    /**
+     * 
+     * @return cliente
+     */
     public ClienteDTO getCliente() {
         return cliente;
     }
 
+    /**+
+     * 
+     * @param cliente cliebte que se quiere establecer
+     */
     public void setCliente(ClienteDTO cliente) {
         this.cliente = cliente;
     }
 
+    /**
+     * 
+     * @return string del obj de solicitud
+     */
     @Override
     public String toString() {
         return "SolicitudDetailDTO{" + "servicio=" + servicio + ", factura=" + factura + ", cotizacion=" + cotizacion + ", contratista=" + contratista  + ", cliente=" + cliente + '}';
     }
 
+    /**
+     * Metodo que conviert un obj de solicitud en una entidad del mismo
+     * @return entidad de solicitud
+     */
     @Override
     public SolicitudEntity toEntity() {
         //To change body of generated methods, choose Tools | Templates.

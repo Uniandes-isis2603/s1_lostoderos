@@ -52,8 +52,14 @@ import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
  */
 public class ContratistaDTO extends UsuarioDTO {
 
+    /**
+     * reputacion del contratista
+     */
     private String reputacion;
 
+    /**
+     * disponibilidad del contratista
+     */
     private Boolean disponibilidad;
 
     /**

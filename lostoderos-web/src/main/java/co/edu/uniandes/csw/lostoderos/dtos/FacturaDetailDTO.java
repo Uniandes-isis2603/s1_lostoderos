@@ -104,19 +104,34 @@ public class FacturaDetailDTO extends FacturaDTO {
         }
     }
 
+    /**
+     * 
+     * @return solicitud de la factura
+     */
     public SolicitudDTO getSolicitud() {
         return solicitud;
     }
 
+    /**
+     * 
+     * @param solicitud solicitud que se quiere establecer
+     */
     public void setSolicitud(SolicitudDTO solicitud) {
         this.solicitud = solicitud;
     }
 
-    
+    /**
+     * 
+     * @return pago de la factura
+     */
     public PagoDTO getPago() {
         return pago;
     }
 
+    /**
+     * 
+     * @param pago pago que se quiere establecer
+     */
     public void setPago(PagoDTO pago) {
         this.pago = pago;
     }
@@ -133,11 +148,9 @@ public class FacturaDetailDTO extends FacturaDTO {
         SolicitudEntity solE = facturaEntity.getSolicitud();
         if (pagoE != null) {
             facturaEntity.setPago(pagoE);
-            
         }
         if (solE != null) {
             facturaEntity.setSolicitud(solE);
-            
         }
         return facturaEntity;
     }

@@ -87,6 +87,10 @@ public class SolicitudDTO implements Serializable {
         // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
     }
 
+    /**
+     * Constructor de la solicitud
+     * @param entity entidad que se convierte en obj json
+     */
     public SolicitudDTO(SolicitudEntity entity) {
         if (entity != null) {
             this.cantidad_contratistas = entity.getCantidad_contratistas();
@@ -218,11 +222,19 @@ public class SolicitudDTO implements Serializable {
         this.tipo_servicio = tipo_servicio;
     }
 
+    /**
+     * 
+     * @return obj de solicitud en string
+     */
     @Override
     public String toString() {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Metodo que convierte un on¿bj json de solicitud a una entidad del mismo
+     * @return entidad de solicitud
+     */
     public SolicitudEntity toEntity() {
 
         SolicitudEntity entity = new SolicitudEntity();

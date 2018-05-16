@@ -138,10 +138,18 @@ public class ClienteDetailDTO extends ClienteDTO {
         }
     }
 
+    /**
+     * Solicitudes pertenecientes al cliente
+     * @return 
+     */
     public List<SolicitudDTO> getSolicitudes() {
         return solicitudes;
     }
 
+    /**
+     * 
+     * @param solicitudes 
+     */
     public void setSolicitudes(List<SolicitudDTO> solicitudes) {
         this.solicitudes = solicitudes;
     }

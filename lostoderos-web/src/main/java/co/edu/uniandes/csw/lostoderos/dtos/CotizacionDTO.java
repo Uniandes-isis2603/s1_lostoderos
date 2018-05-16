@@ -59,6 +59,10 @@ public class CotizacionDTO implements Serializable {
     private Integer valor;
 
     //constructores
+    /**
+     * Constructor de un obj json de contrato
+     * @param cotizacionEntity 
+     */
     public CotizacionDTO(CotizacionEntity cotizacionEntity) {
 
         this.id = cotizacionEntity.getId();
@@ -68,6 +72,9 @@ public class CotizacionDTO implements Serializable {
 
     }
 
+    /**
+     * Constructor vacio
+     */
     public CotizacionDTO() {
         // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
 
@@ -141,11 +148,19 @@ public class CotizacionDTO implements Serializable {
         this.valor = valor;
     }
 
+    /**
+     * metodo que convierte el obj en un string
+     * @return cadena con la informacion del obj
+     */
     @Override
     public String toString() {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * metodo que convierte el obj json en una entidad de cotizacion
+     * @return entidad formada por el obj
+     */
     public CotizacionEntity toEntity() {
 
         CotizacionEntity entity = new CotizacionEntity();
