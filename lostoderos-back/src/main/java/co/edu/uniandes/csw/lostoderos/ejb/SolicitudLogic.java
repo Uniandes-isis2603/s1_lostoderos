@@ -159,13 +159,14 @@ public class SolicitudLogic {
               //      e.setDisponibilidad(false);
                 //}
             //}
-                if(servicioP.getContratistas().isEmpty()){
+            if(entity.getContratista() == null){
+            if(servicioP.getContratistas().isEmpty()){
                 throw new BusinessLogicException("No existe un contratista disponible para la solicitud");
             }
             ContratistaEntity contratista = servicioP.getContratistas().get(0);
             entity.setContratista(contratista);
             contratista.setDisponibilidad(false);
-
+            }
    
             return persistence.create(entity);
             }
