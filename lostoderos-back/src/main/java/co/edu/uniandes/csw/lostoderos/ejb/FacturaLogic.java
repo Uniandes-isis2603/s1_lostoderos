@@ -30,7 +30,6 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import co.edu.uniandes.csw.lostoderos.persistence.FacturaPersistence;
-import co.edu.uniandes.csw.lostoderos.persistence.PagoPersistence;
 import java.util.List;
 import java.util.logging.Level;
 
