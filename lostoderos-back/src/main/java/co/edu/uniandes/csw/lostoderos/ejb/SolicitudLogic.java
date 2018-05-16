@@ -178,10 +178,11 @@ public class SolicitudLogic {
          * @return
          * @throws BusinessLogicException 
          */
-        public CotizacionEntity addCotizacion(CotizacionEntity cotizacion, Long solicitudId) throws BusinessLogicException{
+        public CotizacionEntity addCotizacion(Long cotizacionId, Long solicitudId) throws BusinessLogicException{
             
             LOGGER.log(Level.INFO, "Inicia el proceso de agregar una cotizacion a la entidad solicitud id = {0}", solicitudId);
             SolicitudEntity entity =getById(solicitudId);
+            CotizacionEntity cotizacion= cotizacionPersistence.find(cotizacionId);
             if(entity == null)
                 throw new BusinessLogicException("No existe esa solicitud");
             cotizacionPersistence.create(cotizacion);
