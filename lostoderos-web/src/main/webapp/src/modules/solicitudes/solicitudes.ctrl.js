@@ -12,7 +12,9 @@
             $http.get(solicitudContext).then(function (response) {
                 $scope.solicitudesRecords = response.data;
             });
+            
         }
+        
     ]);
 }
 )(window.angular);

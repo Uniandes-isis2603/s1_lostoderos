@@ -8,15 +8,24 @@
 (function (ng) {
     var mod = ng.module("solicitudModule");
     mod.constant("solicitudesContext", "api/solicitudes");
+    mod.constant("serviciosContext", "servicio")
     mod.controller('solicitudNewCtrl', ['$scope', '$http', 'solicitudesContext', '$state', '$rootScope',
-        
-        function ($scope, $http, solicitudesContext, $state, $rootScope) {
-            $rootScope.edit = false;
+        function ($scope, $http, serviciosContext, $state, solicitudesContext, $rootScope) {
+            
 
-            $scope.data = {};
+            $http.get(solicitudesContext).then(function (response) {
+                if (response.data !== "") {
+                    $scope.solicitudesRecords = response.data;
+                    solicitudes = $scope.solicitudesRecords;
+                } 
+                ;
+            });
+
+            //$scope.data = {};
 
             
             $scope.createSolicitud = function () {
+                $scope.data.cliente = {id: $rootScope.currentId};
                 $http.post(solicitudesContext, $scope.data).then(function (response) {
                     $state.go('solicitudesList', {solicitudId: response.data.id}, {reload: true});
                 });
