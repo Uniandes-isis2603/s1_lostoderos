@@ -14,6 +14,7 @@ import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import co.edu.uniandes.csw.lostoderos.entities.SolicitudEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.lostoderos.persistence.ServicioPersistence;
 import co.edu.uniandes.csw.lostoderos.persistence.SolicitudPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +98,7 @@ public class SolicitudLogicTest {
      * 
      */
     @Before
-    public void confifTest(){
+    public void configTest(){
         
         try{
             utx.begin();
@@ -137,11 +138,7 @@ public class SolicitudLogicTest {
             
             data.add(entity);
         }
-        for(int i=0; i<3; i++){
-            ServicioEntity entity= factory.manufacturePojo(ServicioEntity.class);
-            em.persist(entity);
-            servicios.add(entity);
-        }
+        
         for(int i=0; i<3; i++){
             ClienteEntity cliente= factory.manufacturePojo(ClienteEntity.class);
             em.persist(cliente);
@@ -174,6 +171,12 @@ public class SolicitudLogicTest {
         em.persist(calificacion);
         calificaciones.add(calificacion);
 
+        }
+        for(int i=0; i<3; i++){
+            ServicioEntity entity= factory.manufacturePojo(ServicioEntity.class);
+            entity.getContratistas().add(contratistas.get(0));
+            em.persist(entity);
+            servicios.add(entity);
         }
     }
     
@@ -211,11 +214,11 @@ public class SolicitudLogicTest {
         SolicitudEntity newEntity= factory.manufacturePojo(SolicitudEntity.class);
         ServicioEntity servicio = servicios.get(0);
         ClienteEntity cliente = clientes.get(0);
-        ContratistaEntity contratistaEntity = contratistas.get(0);
+        ContratistaEntity contratista = contratistas.get(0);
         
         newEntity.setServicio(servicio);
         newEntity.setCliente(cliente);
-        newEntity.setContratista(contratistaEntity);
+        newEntity.setContratista(contratista);
         
         SolicitudEntity result= solicitudLogic.crearSolicitud(newEntity);
         SolicitudEntity entity= em.find(SolicitudEntity.class, result.getId());
