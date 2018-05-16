@@ -7,6 +7,9 @@
                 url: '/calificaciones/list',
                 parent: 'contratistaDetail',
                 views: {
+                    'detailView':{
+                        templateUrl:'src/modules/contratistas/contratistas.detail.html'
+                    },
                     'listaView': {
                         templateUrl: basePath + 'calificaciones.list.html',
                         controller: 'calificacionesCtrl',

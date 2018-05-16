@@ -13,6 +13,9 @@
                     contratista = $scope.currentContratista;
                 });
             }
+            this.volver=function(){
+              $state.go('contratistasList',{reload:true});  
+            };
             
             this.tieneHojadevida=function(){
                 
