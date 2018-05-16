@@ -87,6 +87,7 @@ public class SolicitudLogic {
             if(servicio == null){
                 throw new BusinessLogicException("Servicio no encontrado");
             }
+            
             if(servicio.getId()== null){
                 throw new BusinessLogicException("id del servicio invalido");
             }

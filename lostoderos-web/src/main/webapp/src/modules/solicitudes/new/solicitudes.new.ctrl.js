@@ -8,11 +8,20 @@
 (function (ng) {
     var mod = ng.module("solicitudModule");
     mod.constant("solicitudesContext", "api/solicitudes");
-    mod.constant("serviciosContext", "servicio")
-    mod.controller('solicitudNewCtrl', ['$scope', '$http', 'solicitudesContext', '$state', '$rootScope',
-        function ($scope, $http, serviciosContext, $state, solicitudesContext, $rootScope) {
+    mod.constant("serviciosContext", "api/servicios");
+    mod.controller('solicitudNewCtrl', ['$scope', '$http', 'serviciosContext','solicitudesContext', '$state', '$rootScope',
+        function ($scope, $http, serviciosContext,  solicitudesContext, $state,$rootScope) {
             
-
+            var servicios = [];
+            
+            $http.get(serviciosContext).then(function (response) {
+                if (response.data !== "") {
+                    $scope.serviciosRecords = response.data;
+                    servicios = $scope.serviciosRecords;
+                } 
+                ;
+            });
+            
             $http.get(solicitudesContext).then(function (response) {
                 if (response.data !== "") {
                     $scope.solicitudesRecords = response.data;
@@ -22,13 +31,15 @@
             });
 
             //$scope.data = {};
-
-            
             $scope.createSolicitud = function () {
+                console.log($rootScope.currentId);
                 $scope.data.cliente = {id: $rootScope.currentId};
+                $scope.data.servicio={id:$scope.data.tipo_servicio};
+                
                 $http.post(solicitudesContext, $scope.data).then(function (response) {
                     $state.go('solicitudesList', {solicitudId: response.data.id}, {reload: true});
                 });
+                
             };
         }
     ]);
