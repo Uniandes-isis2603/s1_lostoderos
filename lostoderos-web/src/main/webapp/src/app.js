@@ -17,7 +17,8 @@
         'pagosModule',
         'solicitudModule',
         'iniciosesionModule',
-        'principalModule'
+        'principalModule',
+        'solicitudNuevaModule'
 
     ]);
     // Resuelve problemas de las promesas
@@ -30,8 +31,7 @@
             $transitions.onSuccess({to: '*'}, function (trans) {
 
                 var $state = trans.router.stateService;
-                var requireLogin = $state.current.data.requireLogin
-                var roles = $state.current.data.roles
+                var requireLogin = $state.current.data.requireLogin;
 
 
                 /**
@@ -44,7 +44,7 @@
                  */
                 $rootScope.isAuthenticated = function () {
 
-                    if (sessionStorage.getItem("username") != null) {
+                    if (sessionStorage.getItem("username") !== null) {
                         $rootScope.currentUser = sessionStorage.getItem("name");
                         $rootScope.currentUsername = sessionStorage.getItem("username");
                         $rootScope.currentDireccion = sessionStorage.getItem("direccion");
