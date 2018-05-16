@@ -126,7 +126,7 @@ public class HojaDeVidaResource {
      * </code>
      * </pre>
      *
-     * @param id Identificador de la hoja de vida.
+     * @param id_contratista Identificador del contratista.
      * @param hoja {@link HojaDeVidaDetailDTO} La hoja de vida que se desea
      * guardar.
      * @return JSON {@link HojaDeVidaDetailDTO} - La hoja de vida guardada.
@@ -135,9 +135,8 @@ public class HojaDeVidaResource {
      * id.
      */
     @PUT
-    @Path("{id: \\d+}")
-    public HojaDeVidaDetailDTO updateHojaDeVida(@PathParam("id") Long id, HojaDeVidaDetailDTO hoja) throws BusinessLogicException {
-        return new HojaDeVidaDetailDTO(hojaVidaLogic.update(id, hoja.toEntity()));
+    public HojaDeVidaDetailDTO updateHojaDeVida(@PathParam("id_contratista") Long id_contratista, HojaDeVidaDetailDTO hoja) throws BusinessLogicException {
+        return new HojaDeVidaDetailDTO(hojaVidaLogic.update(id_contratista, hoja.toEntity()));
     }
 
     /**

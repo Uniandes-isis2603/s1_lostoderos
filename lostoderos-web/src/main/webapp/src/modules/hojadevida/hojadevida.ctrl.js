@@ -16,18 +16,27 @@
             }
 
             $scope.updateHojadevida = function () {
-                $scope.data.contratista = $scope.hojadevida.contratista;
-                $scope.data.id=$scope.hojadevida.id;
-                $http.put(context+'/'+$scope.data.id, $scope.data).then(function (response) {
-                    $state.go('contratistaDetail', {contratistaId: response.data.contratista.id}, {reload: true});
+                $scope.data.contratista = {"id":$scope.currentContratista.id};
+                $http.put(context, $scope.data).then(function () {
+                    $state.go('contratistaDetail', {contratistaId: $scope.data.contratista.id}, {reload: true});
                 });
             };
             $scope.createHojadevida = function () {
+                $scope.data.contratista ={"id":$scope.currentContratista.id};
+                $http.post(context, $scope.data).then(function () {
+                    $state.go('contratistaDetail', {contratistaId: $scope.data.contratista.id}, {reload: true});
+                });
+            };
+            $scope.deleteHojadevida = function () {
                 $scope.data.contratista = $scope.hojadevida.contratista;
                 $scope.data.id=$scope.hojadevida.id;
-                $http.post(context, $scope.data).then(function (response) {
-                    $state.go('contratistaDetail', {contratistaId: response.data.contratista.id}, {reload: true});
+                $http.delete(context).then(function () {
+                    $state.go('contratistaDetail', {contratistaId: $scope.data.contratista.id}, {reload: true});
                 });
+            };
+            $scope.volver = function(){
+                $scope.data.contratista = $scope.hojadevida.contratista;
+                $state.go('contratistaDetail', {contratistaId: $scope.data.contratista.id}, {reload: true});
             };
         }
     ]);

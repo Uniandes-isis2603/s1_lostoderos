@@ -275,8 +275,8 @@
                         <div class="username">
                             <h2>{{currentContratista.nombre}}</h2>
                             <p><i class="glyphicon glyphicon-briefcase"></i> Contratista</p>
-                            <a ng-if="(isContratista() || hasPermissions()) && currentContratista.hojaVida !== null" ui-sref="hojadevida" target="_parent" class="btn-o">Hoja de vida</a>
-                            <a ng-if="(isContratista() || hasPermissions()) && currentContratista.contrato !== null" ui-sref="contrato" target="_parent" class="btn-o">Contrato</a>
+                            <a ng-if="(isContratista() || hasPermissions()) && isUsuarioId(currentContratista.id)"target="_parent" ><button ng-click="ctrl.tieneHojadevida()" class="btn-o">Hoja de vida</button></a>
+                            <a ng-if="(isContratista() || hasPermissions()) && currentContratista.contrato !== null && isUsuarioId(currentContratista.id)" ui-sref="contrato" target="_parent" class="btn-o">Contrato</a>
                         </div>
                     </div>
                 </li>
@@ -296,6 +296,7 @@
 
             </ul>
         </div>
+        <div class="col-sm-8" ui-view="createHojaView"></div>
         <div class="col-sm-8" ui-view="updateHojaView"></div>
         <div class="col-sm-8" ui-view="hojaView"></div>
         <div class="col-sm-8" ui-view="contratoView"></div>

@@ -2,7 +2,7 @@
     var app = angular.module('mainApp', [
         // External dependencies
         'ui.router',
-       'ui.bootstrap',
+        'ui.bootstrap',
         // Internal modules dependencies       
         'toderosModule',
         'contratistasModule',
@@ -23,15 +23,15 @@
     app.config(['$qProvider', function ($qProvider) {
             $qProvider.errorOnUnhandledRejections(false);
         }]);
-   
-     app.run(['$rootScope', '$transitions', function ($rootScope, $transitions) {
+
+    app.run(['$rootScope', '$transitions', function ($rootScope, $transitions) {
 
             $transitions.onSuccess({to: '*'}, function (trans) {
 
                 var $state = trans.router.stateService;
                 var requireLogin = $state.current.data.requireLogin
                 var roles = $state.current.data.roles
-               
+
 
                 /**
                  * @ngdoc function
@@ -42,7 +42,7 @@
                  * @returns {Boolean} Verdadero si está dentro de su cuenta.
                  */
                 $rootScope.isAuthenticated = function () {
-                    
+
                     if (sessionStorage.getItem("username") != null) {
                         $rootScope.currentUser = sessionStorage.getItem("name");
                         $rootScope.currentUsername = sessionStorage.getItem("username");
@@ -54,16 +54,38 @@
                         return false;
                     }
                 };
-                
-                $rootScope.isContratista = function(){
-                    if(($rootScope.isAuthenticated)&&(sessionStorage.getItem("rol") === "contratista")){
-                        return true;
+                /**
+                 * Se usa para comprobar qué elementos puede ver el usuario actual.
+                 * @param {type} id Identificador del usuario loggeado.
+                 * @returns {Boolean} True si es el mismo usuario, false en caso contrario.
+                 */
+                $rootScope.isUsuarioId = function (id) {
+                    if (id !== undefined && id !== null && $rootScope.isAuthenticated) {
+                        if (id.toString()===$rootScope.currentId.toString()) {
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
-                    else{
+
+
+
+                };
+                $rootScope.isContratista = function () {
+                    if (($rootScope.isAuthenticated) && (sessionStorage.getItem("rol") === "contratista")) {
+                        return true;
+                    } else {
                         return false;
                     }
                 };
-                
+                $rootScope.isCliente = function () {
+                    if (($rootScope.isAuthenticated) && (sessionStorage.getItem("rol") === "cliente")) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                };
+
                 /**
                  * @ngdoc function
                  * @name hasPermissions

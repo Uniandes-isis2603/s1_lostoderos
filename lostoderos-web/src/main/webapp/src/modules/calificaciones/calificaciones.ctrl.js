@@ -19,10 +19,8 @@
             }
             ;
             $scope.createCalificacion = function () {
-
                 $scope.data.contratista = {id: $scope.currentContratista.id};
                 $scope.data.cliente = {id: $rootScope.currentId};
-                
                 $http.post(calificacionesContext, $scope.data).then(function (response) {
                     $state.go('contratistaDetail', {contratistaId: response.data.contratista.id}, {reload: true});
                 });

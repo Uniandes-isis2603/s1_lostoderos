@@ -13,6 +13,16 @@
                     contratista = $scope.currentContratista;
                 });
             }
+            
+            this.tieneHojadevida=function(){
+                
+                if($scope.currentContratista.hojaVida!==null){
+                    $state.go('hojadevida', {contratistaId: $scope.currentContratista.id});
+                }
+                else{
+                    $state.go('createHojadevida', {contratistaId: $scope.currentContratista.id});
+                }
+            };
 
             this.calcularEstrellasContratista = function () {
                 if ($scope.currentContratista !== null && $scope.currentContratista !== undefined) {

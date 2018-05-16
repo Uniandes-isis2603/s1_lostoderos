@@ -48,5 +48,5 @@
 
     <li><a ui-sref="contratistaDetail"><div id="rating"></div></a></li>
     <li><a ui-sref="contratistaDetail">Total calificaciones: {{currentContratista.calificaciones.length}}</a></li>
-    <li><button ng-if="currentContratista.calificaciones.length>0" class="btn-o boton" ui-sref="calificacionesList({contratistaId:currentContratista.id})">Ver</button><button ng-if="isAuthenticated()" class="btn-o boton" ui-sref="createCalificacion">Calificar</button></li>
+    <li><button ng-if="currentContratista.calificaciones.length>0" class="btn-o boton" ui-sref="calificacionesList({contratistaId:currentContratista.id})">Ver</button><button ng-if="isAuthenticated() && isCliente()" class="btn-o boton" ui-sref="createCalificacion">Calificar</button></li>
 </ul>

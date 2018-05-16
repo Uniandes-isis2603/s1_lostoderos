@@ -87,7 +87,7 @@ public class HojaDeVidaLogic {
             throw new BusinessLogicException("El contratista que especificó no existe");
         }
         if (contratista.getHojaVida() == null) {
-            throw new BusinessLogicException("El contratista no cuenta con una hoja de vida. Cree primero la oja de vida para pdoer actualizarla.");
+            throw new BusinessLogicException("El contratista no cuenta con una hoja de vida. Cree primero la hoja de vida para pdoer actualizarla.");
         }
         entity.setId(contratista.getHojaVida().getId());
         entity.setContratista(contratista);
