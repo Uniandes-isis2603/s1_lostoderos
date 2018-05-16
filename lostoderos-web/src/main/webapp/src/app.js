@@ -8,7 +8,7 @@
         'contratistasModule',
         'clientesModule',
         'serviciosModule',
-        'contratosModule',
+        'contratoModule',
         'calificacionesModule',
         'facturasModule',
         'pagosModule',

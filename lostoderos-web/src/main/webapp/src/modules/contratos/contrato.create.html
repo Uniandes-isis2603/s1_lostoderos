@@ -1,0 +1,52 @@
+<style>
+    a {
+        color: whitesmoke;
+        
+    }
+    h4{
+        color:white;
+    }
+</style>
+<div class="container-fluid">
+    <form class="well form-horizontal" ng-submit="createContrato()" name="contrato"  style="background-color: #1c314c">
+        <fieldset>
+            <!-- Form Name -->
+            <legend>
+                <center>
+                    <h2><b style="color:white">Contrato</b></h2>
+                    <h4>No existe un contrato,¡Créalo!</h4>
+                </center>
+            </legend>
+            <br>
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Fecha Inicio</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input name="fechaInicio" class="form-control" ng-model="data.fechaInicio" type="date">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Descripción</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                        <input  name="descripcion" placeholder="Descripción"  class="form-control" ng-model="data.descripcion" type="text">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Select Basic -->
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4"><br>
+                    <button class="btn-o" type="submit" value="Save" >SUBMIT<span class="glyphicon glyphicon-send"></span></button>
+                    <a ui-sref="contrato"><button class="btn-o" >Cancelar</button></a>
+                </div>
+            </div>
+            
+        </fieldset>
+    </form>
+</div>

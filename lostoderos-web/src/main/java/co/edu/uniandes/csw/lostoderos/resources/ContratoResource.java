@@ -100,6 +100,9 @@ public class ContratoResource {
     @GET
     public ContratoDetailDTO getContrato(@PathParam("id_contratista") Long id_contratista) throws BusinessLogicException {
         ContratoEntity entity = contratoLogic.getContrato(id_contratista);
+        if(entity==null){
+            return null;
+        }
         return new ContratoDetailDTO(entity);
     }
 

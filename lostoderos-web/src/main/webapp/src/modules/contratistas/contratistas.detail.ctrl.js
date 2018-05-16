@@ -26,6 +26,17 @@
                     $state.go('createHojadevida', {contratistaId: $scope.currentContratista.id});
                 }
             };
+            
+            this.tieneContrato=function(){
+                console.log($scope.currentContratista.contrato);
+                if($scope.currentContratista.contrato!==undefined){
+                    
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            };
 
             this.calcularEstrellasContratista = function () {
                 if ($scope.currentContratista !== null && $scope.currentContratista !== undefined) {

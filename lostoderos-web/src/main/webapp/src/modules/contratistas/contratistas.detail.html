@@ -275,8 +275,10 @@
                         <div class="username">
                             <h2>{{currentContratista.nombre}}</h2>
                             <p><i class="glyphicon glyphicon-briefcase"></i> Contratista</p>
-                            <a ng-if="(isContratista() || hasPermissions()) && isUsuarioId(currentContratista.id)"target="_parent" ><button ng-click="ctrl.tieneHojadevida()" class="btn-o">Hoja de vida</button></a>
-                            <a ng-if="(isContratista() || hasPermissions()) && currentContratista.contrato !== null && isUsuarioId(currentContratista.id)" ui-sref="contrato" target="_parent" class="btn-o">Contrato</a>
+                            <a ng-if="(isContratista() && isUsuarioId(currentContratista.id))|| hasPermissions()"target="_parent" ><button ng-click="ctrl.tieneHojadevida()" class="btn-o">Hoja de vida</button></a>
+                            <a ng-show="((isContratista() && isUsuarioId(currentContratista.id))|| hasPermissions()) && ctrl.tieneContrato()" target="_parent"><button ui-sref="contrato({contratistaId:currentContratista.id})" class="btn-o">Contrato</button></a>
+                            
+                            <a ng-show="hasPermissions() && !ctrl.tieneContrato()" target="_parent"><button ui-sref="createContrato({contratistaId:currentContratista.id})" class="btn-o">Crear contrato</button></a>
                         </div>
                     </div>
                 </li>
@@ -303,6 +305,8 @@
         <div class="col-sm-8" ui-view="updateHojaView"></div>
         <div class="col-sm-8" ui-view="hojaView"></div>
         <div class="col-sm-8" ui-view="contratoView"></div>
+        <div class="col-sm-8" ui-view="createContratoView"></div>
+        <div class="col-sm-8" ui-view="updateContratoView"></div>
         <div class="col-sm-8" ui-view="listaView"></div>
         <div class="col-sm-8" ui-view="serviciosListView"></div>
         <div class="col-sm-8" ui-view="createCalificacionView"></div> 

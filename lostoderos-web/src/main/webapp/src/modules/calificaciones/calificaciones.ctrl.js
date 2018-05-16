@@ -11,7 +11,7 @@
     mod.controller('calificacionesCtrl', ['$scope', '$http', 'contratistasContext', '$state', 'calificacionesContext', '$rootScope',
         function ($scope, $http, contratistasContext, $state, calificacionesContext, $rootScope) {
             var context = calificacionesContext + '/contratista/'+ $state.params.contratistaId;
-            var calificaciones = [];           
+            var calificaciones = [];         
             $http.get(context).then(function (response) {
                 if (response.data !== "") {
                     $scope.calificacionesRecords = response.data;

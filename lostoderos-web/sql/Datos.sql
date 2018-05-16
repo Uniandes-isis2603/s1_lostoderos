@@ -21,9 +21,9 @@ insert into USUARIOENTITY (dtype ,nombre, correo, usuario, contrasena, disponibi
 insert into USUARIOENTITY (dtype,nombre, correo, usuario, contrasena, disponibilidad) values ('ContratistaEntity' , 'Karalynn Feveryear', 'kfeveryear9@fc2.com', 'kfeveryear9', 'ty4ew9k5fq', 1);
 
 insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('3/31/2018', 'sigma cum laude', 1);
-insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('2/31/2018', 'una descripcion', 2);
-insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('4/31/2018', ' Colibri', 3);
-insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('1/31/2018', 'iPhone 8', 4);
+insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('2/15/2018', 'una descripcion', 2);
+insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('4/15/2018', ' Colibri', 3);
+insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('1/15/2018', 'iPhone 8', 4);
 insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('3/12/2018', 'Uniandes', 5);
 insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('2/12/2018', 'Raberata ushna', 6);
 insert into CONTRATOENTITY(fechainicio, descripcion, contratista_id) values('4/12/2018', 'Pavarotti Lasso', 7);

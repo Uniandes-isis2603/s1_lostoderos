@@ -43,17 +43,15 @@
 <div class="row">
     <div  id="inner" class="col-sm-8">
     <div id="hd">
-        <h1 class="titulo">{{hojadevida.nombre}}</h1>
-        <h2 style="font-size:20px;color:white;">Contratista</h2>
+        <h1 class="titulo">{{contrato.contratista.nombre}}</h1>
+        <h2 style="font-size:20px;color:white;">Contrato</h2>
     </div>
     <div id="bd">
-        <h3><strong>Empleos: </strong>{{hojadevida.empleos}}</h3>
-        <h3><strong>Referencias: </strong>{{hojadevida.referencias}}</h3>
-        <h3><strong>Especialidad: </strong>{{hojadevida.especialidad}}</h3>
-        <h3><strong>Experiencia: </strong>{{hojadevida.experiencia}}</h3>
-        <a ui-sref="updateHojadevida"><button class="btn-o hoja"><i class="glyphicon glyphicon-pencil gly"></i>Editar</button></a>
-        <button ng-click="deleteHojadevida()" class="btn-o hoja"><i class="glyphicon glyphicon-trash gly"></i>Borrar</button>
-        <button ng-click="volver()" class="btn-o hoja">Cerrar</button>
+        <h3><strong>Fecha: </strong>{{contrato.fechaInicio}}</h3>
+        <h3><strong>Descripción: </strong>{{contrato.descripcion}}</h3>
+        <a ng-if="hasPermissions()" ui-sref="updateContrato"><button class="btn-o"><i class="glyphicon glyphicon-pencil gly"></i>Editar</button></a>
+        <button ng-click="deleteContrato()" class="btn-o"><i class="glyphicon glyphicon-trash gly"></i>Borrar</button>
+        <button ng-click="volver()" class="btn-o">Cerrar</button>
     </div>
 </div>
 </div>
