@@ -20,7 +20,15 @@ and open the template in the editor.
                     <div class="form-group row">
                         <div class="form-group col-md-12">
                             <label for="solicitudService" class="col-sm-4" style="">Tipo de servicio:</label>
-                            <input id="solicitudService" required ng-model="data.tipo_servicio" class="col-sm-6" style="margin-left: 0px"/>
+                        <select class="form-control" name="rol" ng-model="data.tipo_servicio" required="true">
+                            <option value="0">--- Escoje un Servicio ---</option> <!-- not selected / blank option -->
+                            <option value="1">Plomeria</option>
+                            <option value="2">Climatización</option>
+                            <option value="3">Pintura</option>
+                            <option value="4">Gas</option>
+                            <option value="5">Electricidad</option>
+                            <option value="6">Mudanza</option>
+                        </select>
                         </div>
                     </div>
                     </div>
@@ -71,6 +79,7 @@ and open the template in the editor.
                             <a class="btn btn-info" ui-sref="solicitudesList">Cancel</a>
                         </div>
                     </div>
+                    
                 </form>
 
             </div>
