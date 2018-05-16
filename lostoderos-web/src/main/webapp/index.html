@@ -197,7 +197,7 @@
 
     </head>
 
-    <body class="span4" background="data/images/fondotdv2.jpg" style="background-color: #3a5a8e">
+    <body class="span4" background="data/images/Background-TD4.jpg" style="background-color: #3a5a8e">
         <!-- "data/images/Background-TD4.jpg" -->
         <div class="container-fluid">
 
@@ -214,15 +214,15 @@
 
                                 <li class="nav-item"><a style=" font-size:1vw" ui-sref="serviciosList">Servicios</a></li>                              
 
-                                <li class="nav-item"><a style=" font-size:1vw" ui-sref="facturasList">Facturas</a></li>
+                                <li class="nav-item" ng-if="isAuthenticated() && hasPermissions()"><a style=" font-size:1vw" ui-sref="facturasList">Facturas</a></li>
 
-                                <li class="nav-item"><a style=" font-size:1vw" ui-sref="pagosList">Pagos</a></li>
+                                <li class="nav-item" ng-if="isAuthenticated() && hasPermissions()"><a style=" font-size:1vw" ui-sref="pagosList">Pagos</a></li>
 
                                 <li class="nav-item" ng-if="isAuthenticated() && hasPermissions()"><a style=" font-size:1vw" ui-sref="clientesList">Clientes</a></li>
 
-                                <li class="nav-item"><a style=" font-size:1vw" ui-sref="solicitudesList">Solicitudes</a></li>
+                                <li class="nav-item" ng-if="isAuthenticated() && hasPermissions()"><a style=" font-size:1vw" ui-sref="solicitudesList">Solicitudes</a></li>
 
-                                <li class="nav-item"><a style=" font-size:1vw" ui-sref="cotizacionesList">Cotizaciones</a></li>
+                                <li class="nav-item" ng-if="isAuthenticated() && isContratista()"><a style=" font-size:1vw" ui-sref="cotizacionesList">Cotizaciones</a></li>
                                 
                                 
 
