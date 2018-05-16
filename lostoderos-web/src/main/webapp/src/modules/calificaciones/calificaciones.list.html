@@ -4,6 +4,7 @@
     }
 </style>
 <div class="container-fluid ">
+    {{console.log(isAuthenticated() && hasPermissions())}}
     <div id="rating"></div>
     <div class="h-100 row align-items-center">
         <table class = "table table-bordered">
@@ -12,6 +13,7 @@
                     <th>Numero de estrellas</th>
                     <th>Cliente</th>
                     <th>Comentario</th>
+                    <th ng-if="isAuthenticated() && hasPermissions()">Borrar</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,6 +21,7 @@
                     <td class="filterable-cell">{{c.numEstrellas}}</td>
                     <td class="filterable-cell">{{c.cliente.nombre}}</td>
                     <td class="filterable-cell">{{c.comentario}}</td>
+                    <th ng-if="isAuthenticated() && hasPermissions()"><button ng-click="deleteCalificacion(c.id)" class="btn-o"><i class="glyphicon glyphicon-trash"></i></button></th>
                 </tr>
             </tbody>
 

@@ -293,9 +293,12 @@
                     <a ui-sref="serviciosContratista"><div class="link"><i class="glyphicon glyphicon-home"></i>Servicios</div></a>
                     <div ui-view="serviciosView"></div>
                 </li>
-
+                
+                    
             </ul>
+            <button style="margin-left:90px;" class="btn-o" ng-click="ctrl.volver()">Ver todos los contratistas</button>
         </div>
+        
         <div class="col-sm-8" ui-view="createHojaView"></div>
         <div class="col-sm-8" ui-view="updateHojaView"></div>
         <div class="col-sm-8" ui-view="hojaView"></div>

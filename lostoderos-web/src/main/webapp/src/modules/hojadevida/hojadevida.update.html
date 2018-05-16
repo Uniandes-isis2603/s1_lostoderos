@@ -5,7 +5,7 @@
     }
 </style>
 <div class="container-fluid">
-    <form class="well form-horizontal" action=" " method="put"  id="contact_form" style="background-color: #1c314c">
+    <form class="well form-horizontal" ng-submit="updateHojadevida()" name="hoja"  style="background-color: #1c314c">
         <fieldset>
             <!-- Form Name -->
             <legend>
@@ -15,11 +15,11 @@
             </legend>
             <br>
             <div class="form-group">
-                <label class="col-md-4 control-label" style="color:white">Nombre</label>  
+                <label class="col-md-4 control-label" style="color:white">Nombre*</label>  
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input  name="nombre" placeholder="{{hojadevida.nombre}}" class="form-control" required ng-model="data.nombre" type="text">
+                        <input  name="nombre" placeholder="{{hojadevida.nombre}}" class="form-control" required="true" ng-model="data.nombre" type="text">
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 <label class="col-md-4 control-label" style="color:white">Referencias</label>  
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
                         <input  name="referencias" placeholder="{{hojadevida.referencias}}" class="form-control" ng-model="data.referencias" type="text">
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                 <label class="col-md-4 control-label" style="color:white">Empleos</label>  
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
                         <input  name="empleos" placeholder="{{hojadevida.empleos}}" class="form-control" ng-model="data.empleos" type="text">
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                 <label class="col-md-4 control-label" style="color:white">Especialidad</label>  
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
                         <input  name="especialidad" placeholder="{{hojadevida.especialidad}}" class="form-control" ng-model="data.especialidad" type="text">
                     </div>
                 </div>
@@ -54,18 +54,23 @@
                 <label class="col-md-4 control-label" style="color:white">Experiencia</label>  
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
                         <input  name="experiencia" placeholder="{{hojadevida.experiencia}}" class="form-control" ng-model="data.experiencia" type="text">
                     </div>
                 </div>
+            </div>
+            <div  class="form-group row">
+                <div class="form-group col-sm-12" ng-if="!hoja.$valid">
+                    <label  class="col-md-12 control-label" style="text-align:center; color:white;">Debe llenar todos los campos requeridos*</label>  
+                </div> 
             </div>
             <!-- Select Basic -->
             <!-- Button -->
             <div class="form-group">
                 <label class="col-md-4 control-label"></label>
                 <div class="col-md-4"><br>
-                    <button ng-click="updateHojadevida()" class="btn-o hoja" >SUBMIT<span class="glyphicon glyphicon-send"></span></button>
-                    <button class="btn-o hoja" ><a ui-sref="hojadevida">Cancelar</a></button>
+                    <button ng-show="hoja.$valid" class="btn-o hoja" type="submit" value="Save" >SUBMIT<span class="glyphicon glyphicon-send"></span></button>
+                    <a ui-sref="hojadevida"><button class="btn-o hoja" >Cancelar</button></a>
                 </div>
             </div>
             

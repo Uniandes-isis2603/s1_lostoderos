@@ -106,7 +106,7 @@ public class HojaDeVidaResource {
     public HojaDeVidaDetailDTO getHojaDeVida(@PathParam("id_contratista") Long id_contratista) throws BusinessLogicException {
         HojaDeVidaEntity entity = hojaVidaLogic.findByIdContratista(id_contratista);
         if (entity == null) {
-            throw new BusinessLogicException("El contratista con id: " + id_contratista + " no tiene una hoja de vida.");
+            return null;
         }
         return new HojaDeVidaDetailDTO(entity);
     }
