@@ -62,10 +62,19 @@ import java.util.Date;
  */
 public class ClienteDTO extends UsuarioDTO {
 
+    /**
+     * fecha de nacimiento del cliente
+     */
     private Date fecha_nacimiento;
 
+    /**
+     * forma de pago que el cliente desea efectuar
+     */
     private String forma_pago;
 
+    /**
+     * direccion del cliente
+     */
     private String direccion;
 
     /**
@@ -149,6 +158,10 @@ public class ClienteDTO extends UsuarioDTO {
         return entity;
     }
 
+    /**
+     * Metodo que convierte el obj json en el front a una entidad de la misma
+     * @return 
+     */
     public ClienteEntity toEntity() {
         ClienteEntity entity = new ClienteEntity();
         super.toEntity(entity);

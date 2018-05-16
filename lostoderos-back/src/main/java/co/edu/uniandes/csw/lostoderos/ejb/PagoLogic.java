@@ -40,28 +40,24 @@ import javax.inject.Inject;
 public class PagoLogic {
     private static final Logger LOGGER = Logger.getLogger(FacturaLogic.class.getName());
 
+    /**
+     * atributo que modela el pago en la BD
+     */
     @Inject
     private PagoPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
-      /**
-     * Crea un pago en la persistencia.
-     * @param entity La entidad que representa el pago a persistir.
-     * @return La entiddad del pago luego de persistirla.
-     * @throws BusinessLogicException Si el pago a persistir ya existe.
-     */
+    /**
+    * Crea un pago en la persistencia.
+    * @param entity La entidad que representa el pago a persistir.
+    * @return La entiddad del pago luego de persistirla.
+    */
     public PagoEntity createPago(PagoEntity entity)  {
         LOGGER.info("Inicio de creación de la entidad pago");
         //TODO: NO hay ninguna regla de negocio? 
-     /**  if (persistence.find(entity.getId())!=null) {
-            throw new Exception("Ya existe el pago que se desea crear");
-
-        }
-        else{
-        */
-                    persistence.create(entity);
+     
+        persistence.create(entity);
         LOGGER.info("Creacion exitosa");
 
-        
         return entity;
     }
 /**
@@ -79,6 +75,7 @@ public class PagoLogic {
      * Obtener todos las pagos existentes en la base de datos.
      *
      * @return una lista de pagos.
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException si no hay pagos en en la base de datos
      */
     public List<PagoEntity> getPagos() throws BusinessLogicException {
         LOGGER.info("Inicia proceso de consultar todas los pagos");
@@ -90,8 +87,7 @@ public class PagoLogic {
         }
         else
         {
-                    return pagos;
-
+            return pagos;
         }
     }
 
@@ -134,6 +130,7 @@ public class PagoLogic {
      * Borrar un Pago
      *
      * @param id: id del pago a borrar
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException si no existe una entidad con ese id
      */
     public void deletePago(Long id) throws BusinessLogicException   {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar factura con id={0}", id);
@@ -144,11 +141,8 @@ public class PagoLogic {
         }
         else
         {
-                        persistence.delete(id);
-
+            persistence.delete(id);
         }
-        
-
             LOGGER.log(Level.INFO, "Termina proceso de borrar factura con id=", id);
         }
     

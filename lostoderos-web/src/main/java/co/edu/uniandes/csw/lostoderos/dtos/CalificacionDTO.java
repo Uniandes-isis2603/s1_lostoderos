@@ -62,6 +62,10 @@ public class CalificacionDTO implements Serializable {
         // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
     }
 
+    /**
+     * Constructor de calificaion
+     * @param entity entidad que pasa a ser dto que se muestra en el front
+     */
     public CalificacionDTO(CalificacionEntity entity) {
         if (entity != null) {
             this.id = entity.getId();
@@ -71,6 +75,10 @@ public class CalificacionDTO implements Serializable {
         }
     }
 
+    /**
+     * Metodo que convierte en una entidad a la calificacion que esta en el front
+     * @return entidad que fue transformada
+     */
     public CalificacionEntity toEntity() {
         CalificacionEntity entity = new CalificacionEntity();
         entity.setId(this.id);
@@ -82,7 +90,7 @@ public class CalificacionDTO implements Serializable {
     }
 
     /**
-     *
+     * Comentario de la calificacion
      * @return el comentario de la calificacion
      */
     public String getComentario() {
@@ -90,7 +98,7 @@ public class CalificacionDTO implements Serializable {
     }
 
     /**
-     *
+     * Tipo de servicio que fue ofrecido
      * @return el tipo de servicio que está siendo calificado
      */
     public String getTipoServicio() {
@@ -98,7 +106,7 @@ public class CalificacionDTO implements Serializable {
     }
 
     /**
-     *
+     * Estrellas obtenidas
      * @return el numero de estrellas dadas en la calificacion
      */
     public Integer getNumEstrellas() {
@@ -106,7 +114,7 @@ public class CalificacionDTO implements Serializable {
     }
 
     /**
-     *
+     * 
      * @param numEstrellas numero de estrellas para la calificacion
      */
     public void setNumEstrellas(Integer numEstrellas) {

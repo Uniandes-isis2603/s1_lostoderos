@@ -71,15 +71,11 @@
                 <a class="btn btn-danger" ui-sref="serviciosDelete({servicioId: currentServicio.id})">
                     <span class="glyphicon glyphicon-trash"></span> Eliminar Servicio</a>
             </div>
-            <div ng-if="isAuthenticated() && hasPermissions()" class="btn-group mr-2" role="group" aria-label="First group">
-                <a class="btn btn-warning" ui-sref="serviciosCreate">
-                    <span class="glyphicon glyphicon-plus-sign"></span> Agregar Contratista</a>
-            </div>
             <div class="btn-group mr-2" role="group" aria-label="First group">
                 <a class="btn btn-danger" ui-sref="serviciosList">
                     <span class="glyphicon glyphicon-arrow-left"></span>  Regresar</a>
             </div>
-            <div class="btn-group mr-2" role="group" aria-label="First group">
+            <div ng-if="(isAuthenticated() && hasPermissions())||(isAuthenticated() && !isContratista())" class="btn-group mr-2" role="group" aria-label="First group">
                 <a class="btn btn-warning" ui-sref="serviciosList">
                     <span class="glyphicon glyphicon-file"></span>  Solicitar Servicio</a>
             </div>

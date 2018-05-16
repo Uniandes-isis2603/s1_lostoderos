@@ -10,7 +10,6 @@ import co.edu.uniandes.csw.lostoderos.entities.ContratoEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.ContratistaPersistence;
 import co.edu.uniandes.csw.lostoderos.persistence.ContratoPersistence;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -32,6 +31,9 @@ public class ContratoLogic {
      */
     private ContratoPersistence persistence;
 
+    /**
+     * atributo que modela el contratista en la BD
+     */
     @Inject
     private ContratistaPersistence contratistaLogic;
 

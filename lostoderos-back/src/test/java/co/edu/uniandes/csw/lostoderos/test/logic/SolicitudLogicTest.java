@@ -232,7 +232,7 @@ public class SolicitudLogicTest {
         SolicitudEntity entity= data.get(0);
         CotizacionEntity cotizacion= cotizaciones.get(0);
         
-        CotizacionEntity result= solicitudLogic.addCotizacion(cotizacion, entity.getId());
+        CotizacionEntity result= solicitudLogic.addCotizacion(cotizacion.getId(), entity.getId());
         Assert.assertNotNull(result);
         Assert.assertNotNull(solicitudLogic.getById(entity.getId()).getCotizacion());
     }

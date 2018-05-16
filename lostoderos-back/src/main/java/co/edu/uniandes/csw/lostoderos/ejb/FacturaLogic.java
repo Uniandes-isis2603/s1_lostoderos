@@ -30,7 +30,6 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import co.edu.uniandes.csw.lostoderos.persistence.FacturaPersistence;
-import co.edu.uniandes.csw.lostoderos.persistence.PagoPersistence;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -41,18 +40,22 @@ import java.util.logging.Level;
 @Stateless
 
 public class FacturaLogic {
-       private static final Logger LOGGER = Logger.getLogger(FacturaLogic.class.getName());
+    
+    private static final Logger LOGGER = Logger.getLogger(FacturaLogic.class.getName());
 
+    /**
+     * atributo que modela las facturas en la BD
+     */
     @Inject
     private FacturaPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
-    
+    /**
+     * atributo que modela los clientes en la BD
+     */
     @Inject
     private ClientePersistence persistenceCliente;
 
-    @Inject
-    //TODO: Esta variable nunca se usa
-    private PagoPersistence pagoLogic;
+    
      /**
      * Crea una factura en la persistencia.
      * @param entity La entidad que representa la factura a persistir.
@@ -145,6 +148,7 @@ public class FacturaLogic {
      * Borrar una factura
      *
      * @param id: id de la factura a borrar
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException si no hay una entidad con ese id
      */
     public void deleteFactura(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar factura con id={0}", id);
@@ -160,7 +164,7 @@ public class FacturaLogic {
 
         } 
 
-        }
+    }
     
  
 

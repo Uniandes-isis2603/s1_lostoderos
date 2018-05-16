@@ -87,6 +87,9 @@ import java.util.List;
  */
 public class ServicioDetailDTO extends ServicioDTO {
 
+    /**
+     * Contratistas que van a prestar el servicio
+     */
     private List<ContratistaDTO> contratistas;
 
     /**
@@ -114,10 +117,18 @@ public class ServicioDetailDTO extends ServicioDTO {
         }
     }
 
+    /**
+     * 
+     * @return contratistas que prestan el servicio
+     */
     public List<ContratistaDTO> getContratistas() {
         return contratistas;
     }
 
+    /**
+     * 
+     * @param contratistas contratistas que se vana  cambiar
+     */
     public void setContratistas(List<ContratistaDTO> contratistas) {
         this.contratistas = contratistas;
     }

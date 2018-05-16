@@ -52,14 +52,29 @@ import java.util.List;
  */
 public class ContratistaDetailDTO extends ContratistaDTO {
 
+    /**
+     * servicios del contratista
+     */
     private List<ServicioDTO> servicios;
 
+    /**
+     * solicitudes del contratista
+     */
     private List<SolicitudDTO> solicitudes;
 
+    /**
+     * hoja de vida del contratista
+     */
     private HojaDeVidaDTO hojaVida;
 
+    /**
+     * calificaciones del contratista
+     */
     private List<CalificacionDTO> calificaciones;
 
+    /**
+     * contrato del contratista
+     */
     private ContratoDTO contrato;
 
     /**

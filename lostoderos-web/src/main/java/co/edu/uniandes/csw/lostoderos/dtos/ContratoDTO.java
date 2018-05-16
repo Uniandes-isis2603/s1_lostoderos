@@ -37,8 +37,14 @@ public class ContratoDTO implements Serializable {
      */
     private Long id;
     
+    /**
+     * fecha de inicio del contrato
+     */
     private Date fechaInicio;
     
+    /**
+     * descripcion del contrato
+     */
     private String descripcion;
 
     /**
