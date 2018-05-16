@@ -28,7 +28,7 @@
             };
             
             this.tieneContrato=function(){
-                console.log($scope.currentContratista.contrato);
+                
                 if($scope.currentContratista.contrato!==undefined){
                     
                     return true;

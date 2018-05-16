@@ -232,7 +232,8 @@
                                 <li><a style="color:whitesmoke; font-size:1vw" ui-sref="register"><span class="glyphicon glyphicon-log-in"></span> Registrarse  </a></li>
                             </ul>
                             <ul ng-if="isAuthenticated()" class="nav navbar-nav navbar-right">
-                                <li><a style="color:whitesmoke; font-size:1vw;" ui-sref="profile">{{currentUser}}</a></li>
+                                <li ng-if="!isContratista()"><a style="color:whitesmoke; font-size:1vw;" ui-sref="profile">{{currentUser}}</a></li>
+                                <li ng-if="isContratista()"><a style="color:whitesmoke; font-size:1vw;" ui-sref="contratistaDetail({contratistaId:currentId})">{{currentUser}}</a></li>
                                 <li><a style="color:whitesmoke; font-size:1vw;" ui-sref="logout">Logout</a></li>
                             </ul>
                         </div>
