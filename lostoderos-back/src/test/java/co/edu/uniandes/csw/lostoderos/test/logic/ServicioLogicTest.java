@@ -5,12 +5,17 @@
  */
 package co.edu.uniandes.csw.lostoderos.test.logic;
 
+import co.edu.uniandes.csw.lostoderos.ejb.ContratistaLogic;
 import co.edu.uniandes.csw.lostoderos.ejb.ServicioLogic;
+import co.edu.uniandes.csw.lostoderos.entities.ContratistaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.ServicioEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.lostoderos.persistence.ContratistaPersistence;
 import co.edu.uniandes.csw.lostoderos.persistence.ServicioPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -37,6 +42,9 @@ public class ServicioLogicTest
 
     @Inject
     private ServicioLogic servicioLogic;
+    
+    @Inject
+    private ContratistaPersistence contratistaP;
 
     @PersistenceContext
     private EntityManager em;
@@ -46,6 +54,8 @@ public class ServicioLogicTest
 
     private List<ServicioEntity> data = new ArrayList<ServicioEntity>();
 
+    private List<ContratistaEntity> contratistas= new ArrayList<ContratistaEntity>();
+    
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -91,6 +101,13 @@ public class ServicioLogicTest
      *
      */
     private void insertData() {
+        
+        for (int i = 0; i < 3; i++) {
+            ContratistaEntity entity1= factory.manufacturePojo(ContratistaEntity.class);
+            em.persist(entity1);
+            contratistaP.create(entity1);
+            contratistas.add(entity1);
+        }
         for (int i = 0; i < 3; i++) {
             
             ServicioEntity entity = factory.manufacturePojo(ServicioEntity.class);
@@ -98,7 +115,11 @@ public class ServicioLogicTest
             em.persist(entity);
             
             data.add(entity);
+            if(i == 0){
+                contratistas.get(i).setServicios(data);
+            }
         }
+        
     }
 
     /**
@@ -183,4 +204,39 @@ public class ServicioLogicTest
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
     }
+    
+    @Test
+    public void getContratistaTest() throws BusinessLogicException{
+        ServicioEntity entity= data.get(0);
+        ContratistaEntity contratista= contratistas.get(0);
+        
+        entity.getContratistas().add(contratista);
+        
+        
+        ContratistaEntity prueba= servicioLogic.getContratista(entity.getId(), contratista.getId());
+        System.out.println(prueba.getId());
+        
+        Assert.assertEquals(contratista, prueba);
+    }
+    
+    @Test
+    public void addContratistaTest() throws BusinessLogicException{
+        ServicioEntity entity= data.get(0);
+        ContratistaEntity contratista= contratistas.get(1);
+        ContratistaEntity response= servicioLogic.addContratista(entity.getId(), contratista.getId());
+        
+        Assert.assertNotNull(response);
+        Assert.assertEquals(contratista.getId(), response.getId());
+    }
+    
+    @Test
+    public void removeContratistaTestt(){
+        
+        try {
+            servicioLogic.removeContratista(data.get(0).getId(), contratistas.get(0).getId());
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(ServicioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }
