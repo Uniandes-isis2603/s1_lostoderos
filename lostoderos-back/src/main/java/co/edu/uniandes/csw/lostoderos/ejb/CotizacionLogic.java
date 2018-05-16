@@ -33,7 +33,9 @@ public class CotizacionLogic {
      */
     private CotizacionPersistence persistence;
     
-    
+    /**
+     * atributo que modela la cotización en la base de datos
+     */
     @Inject
     private ContratistaPersistence contratista;
     

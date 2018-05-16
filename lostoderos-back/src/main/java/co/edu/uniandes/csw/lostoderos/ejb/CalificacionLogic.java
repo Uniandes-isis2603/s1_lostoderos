@@ -35,17 +35,21 @@ public class CalificacionLogic {
      */
     private CalificacionPersistence persistence;
     
+    /**
+     * atibuto que controla el contratista en la BD
+     */
     @Inject
     private ContratistaPersistence contratistaPersistence;
     
+    /**
+     * atributo que modela el cliente en la BD
+     */
     @Inject
     private ClientePersistence clientePersistence;
     
     /**
      * metodo que crea la entidad de calificacion
      * @param entity entidad que se desea crear
-     * @param clienteId id del cliente
-     * @param contratistaId id del contratista
      * @return entidad creada
      * @throws BusinessLogicException si la entidad a crea ya existe
      */
@@ -100,6 +104,7 @@ public class CalificacionLogic {
     /**
      * Actualiza la entidad deseada
      * @param entity entidad que se desea actualizar
+     * @param calificacionId id de la calificacion que se va a actualizar
      * @return entidad actualizada
      * @throws BusinessLogicException si ya existe una entidad con el identificador
      */

@@ -25,9 +25,15 @@ public class HojaDeVidaLogic {
 
     private static final Logger LOGGER = Logger.getLogger(HojaDeVidaLogic.class.getName());
 
+    /**
+     * atributo que modela la hoja de vida en la BD
+     */
     @Inject
     private HojaDeVidaPersistence persistence;
 
+    /**
+     * atributo que modela el contratista en la BD
+     */
     @Inject
     private ContratistaLogic contratistaLogic;
 
