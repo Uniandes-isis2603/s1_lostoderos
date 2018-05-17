@@ -83,7 +83,7 @@ public class PagoResource {
        @POST
     public PagoDetailDTO create(@PathParam("facturaid") Long facturaid, PagoDTO pago) throws BusinessLogicException {
 
-        return new PagoDetailDTO(pagoLogic.create( pago.toEntity(),facturaid));
+        return new PagoDetailDTO(pagoLogic.createPago( pago.toEntity(),facturaid));
     }
 
   

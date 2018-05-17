@@ -160,5 +160,6 @@ public class PagoLogic {
             LOGGER.log(Level.INFO, "Termina proceso de borrar factura con id=", id);
         }
 
+  
    
 }
