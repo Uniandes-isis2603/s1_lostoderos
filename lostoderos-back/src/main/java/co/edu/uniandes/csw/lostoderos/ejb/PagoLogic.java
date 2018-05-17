@@ -41,6 +41,7 @@ import javax.persistence.metamodel.SingularAttribute;
  */
 @Stateless
 public class PagoLogic {
+
     private static final Logger LOGGER = Logger.getLogger(FacturaLogic.class.getName());
 
     /**
@@ -49,72 +50,26 @@ public class PagoLogic {
     @Inject
     private PagoPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
-     @Inject
+    @Inject
     private FacturaLogic facturaLogic;
 
     /**
-    * Crea un pago en la persistencia.
-    * @param entity La entidad que representa el pago a persistir.
-    * @return La entiddad del pago luego de persistirla.
-    */
-    public PagoEntity createPago(PagoEntity entity, Long idFactura) throws BusinessLogicException  {
+     * Crea un pago en la persistencia.
+     *
+     * @param entity La entidad que representa el pago a persistir.
+     * @return La entiddad del pago luego de persistirla.
+     */
+    public PagoEntity create(PagoEntity entity, Long idFactura) throws BusinessLogicException {
         LOGGER.info("Inicio de creación de la entidad pago");
-        //TODO: NO hay ninguna regla de negocio? 
         FacturaEntity factura = facturaLogic.getFactura(idFactura);
         if (factura == null) {
-                        throw new BusinessLogicException("El factura que especificó no existe");
+            throw new BusinessLogicException("El factura que especificó no existe");
 
         }
         entity.setFactura(factura);
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
-
         return entity;
-        
-        
-        
-    }
-        public PagoEntity createPago(PagoEntity entity)   {
-        LOGGER.info("Inicio de creación de la entidad pago");
-        //TODO: NO hay ninguna regla de negocio? 
-    
-        persistence.create(entity);
-        LOGGER.info("Creacion exitosa");
-
-        return entity;
-        
-        
-        
-    }
-/**
-     * consulta el pago con el id deseado
-     * @param id identificador que se desea consultar
-     * @return entidad con el id deseado
-     */
-    public PagoEntity getById(Long id){
-        
-        return persistence.find(id);
-    }
-    //TOD: debería haber getPagoBy algún concepto que permita filtar los pagos
-    /**
-     *
-     * Obtener todos las pagos existentes en la base de datos.
-     *
-     * @return una lista de pagos.
-     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException si no hay pagos en en la base de datos
-     */
-    public List<PagoEntity> getPagos() throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de consultar todas los pagos");
-        // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
-        List<PagoEntity> pagos = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todas los pagos");
-        if (pagos ==null) {
-            throw new BusinessLogicException("No hay pagos");
-        }
-        else
-        {
-            return pagos;
-        }
     }
 
     /**
@@ -124,54 +79,59 @@ public class PagoLogic {
      * @param id: id del pago para ser buscada.
      * @return pago solicitado por medio de su id.
      */
-    public PagoEntity getPago(Long id) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar pago con id={0}", id);
-        // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
-        PagoEntity pago = persistence.find(id);
-        if (pago == null) {
-            LOGGER.log(Level.SEVERE, "El pago con el id {0} no existe", id);
-        }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar pago con id={0}", id);
-        return pago;
+    public PagoEntity getPagoFactura(Long id_factura) {
+        LOGGER.info("Inicia proceso de búsqueda del pago");
+        PagoEntity entity = facturaLogic.getFactura(id_factura).getPago();
+        LOGGER.info("Termina proceso de búsqueda del pago");
+        return entity;
     }
 
     /**
      *
      * Actualizar un pago.
      *
-     * @param entity: pago con los cambios para ser actualizada, por
-     * ejemplo el nombre.
+     * @param entity: pago con los cambios para ser actualizada, por ejemplo el
+     * nombre.
      * @return pago con los cambios actualizados en la base de datos.
      * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
      */
-    public PagoEntity updatePago(PagoEntity entity) throws BusinessLogicException {
-    
-        if (persistence.find(entity.getId())== null) {
-            throw new BusinessLogicException("No existe el pago que se desea modificar");
+    public PagoEntity update(Long id_factura, PagoEntity entity) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar una hoja de vida");
+        //No existe ninguna regla de negocio para actualizar la hoja de vida.
+        FacturaEntity factura = facturaLogic.getFactura(id_factura);
+        if (factura == null) {
+            throw new BusinessLogicException("El contratista que especificó no existe");
         }
-        return persistence.update(entity);
+        if (factura.getPago() == null) {
+            throw new BusinessLogicException("El contratista no cuenta con una hoja de vida. Cree primero la hoja de vida para pdoer actualizarla.");
+        }
+        entity.setId(factura.getPago().getId());
+        entity.setFactura(factura);
+        PagoEntity newEntity = persistence.update(entity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar hoja de vida");
+        return newEntity;
     }
 
     /**
      * Borrar un Pago
      *
      * @param id: id del pago a borrar
-     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException si no existe una entidad con ese id
+     * @throws co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException
+     * si no existe una entidad con ese id
      */
-    public void deletePago(Long id) throws BusinessLogicException   {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar factura con id={0}", id);
-        // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
-        //TODO: qué pasa si no hay un pago con ese id?
-        if (persistence.find(id)== null) {
-            throw new BusinessLogicException("No existe el pago que se quiere borrar");
+    public void deletePago(Long id_factura) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar la hoja de vida de un contratista con id={0}", id_factura);
+        FacturaEntity factura = facturaLogic.getFactura(id_factura);
+        if (factura == null) {
+            throw new BusinessLogicException("No existe un contratista con id: " + id_factura);
         }
-        else
-        {
-            persistence.delete(id);
+        PagoEntity entity = factura.getPago();
+        if (entity == null) {
+            throw new BusinessLogicException("El contratista con id: " + id_factura + " no tiene una hoja de vida");
         }
-            LOGGER.log(Level.INFO, "Termina proceso de borrar factura con id=", id);
-        }
+        persistence.delete(entity.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de borrar la hoja de vida de un contratista con id={0}", id_factura);
 
-  
-   
+    }
+
 }

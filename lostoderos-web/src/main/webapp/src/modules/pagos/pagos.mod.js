@@ -1,6 +1,6 @@
 (function (ng) {
     
-    var mod = ng.module("pagosModule", ['ui.router']);
+    var mod = ng.module("pagosModule", ['ui.router','facturasModule']);
     
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             
@@ -35,7 +35,7 @@
                     roles: []
                 }
             }).state('pagosDetail',{
-                url: '/{pagoId:int}/detail',
+                url: '/pago',
                 parent:'pagos',
                 param: {pagoId: null},
                 views:{
@@ -54,14 +54,15 @@
                     roles: []
                 }
             }).state('createPagos',{
-                url:'/create',
-                parent:'pagos',
+                url:'/pago/create',
+                parent:'facturasDetail',
                 views:{
-                    
-                    
+                    'detailView':{
+                        templateUrl: 'src/modules/facturas/facturas.detail.html'
+                    },
                     'createPagosView':{
                         templateUrl:basePath+'pagos.create.html',
-                        controller: 'pagosNewCtrl',
+                        controller: 'pagosDetailCtrl',
                         controllerAs:'ctrl'
                     }
                 },

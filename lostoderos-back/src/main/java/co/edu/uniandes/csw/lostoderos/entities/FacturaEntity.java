@@ -22,22 +22,16 @@ public class FacturaEntity extends BaseEntity implements Serializable {
     private Integer total;
     private Integer subtotal;
     private String formaPago;
+    
     @PodamExclude
-    @OneToOne
+    @OneToOne( mappedBy = "factura", fetch = FetchType.LAZY)
     private PagoEntity pago;
     
     @PodamExclude
     @OneToOne( mappedBy = "factura", fetch = FetchType.LAZY)
     private SolicitudEntity solicitud;
     
-    
-    
-    /**
-     * construcor por defecto
-     */
-    public FacturaEntity() {
-
-    }
+   
 
     /**
      * @return el producto de la entidad Cliente

@@ -24,8 +24,9 @@ public class PagoEntity extends BaseEntity implements Serializable {
     private String descripcion;
     private Boolean comprobantePagoMedio;
     private Boolean comprobantePagoTotal;
+    
     @PodamExclude
-    @OneToOne( mappedBy = "pago", fetch = FetchType.LAZY)
+    @OneToOne
     private FacturaEntity factura;
 
     /**

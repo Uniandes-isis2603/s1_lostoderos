@@ -109,13 +109,6 @@ public class HojaDeVidaLogicTest {
         }        
     }
     
-    /* Se omite este Test porque si se coloca hace que las demás preubas no funcionan. Según
-    parece, es porque en el mismo método se crea la relación entre contratista y hoja de vida.
-     * Para probar que el método create de HojaDeVidaTest está bien, debe descomentar el test.
-    */
-    /*
-    
-    */
     @Test
     public void createTest()throws BusinessLogicException{
         HojaDeVidaEntity newEntity= factory.manufacturePojo(HojaDeVidaEntity.class);
