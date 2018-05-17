@@ -74,6 +74,18 @@ public class PagoLogic {
         
         
     }
+        public PagoEntity createPago(PagoEntity entity)   {
+        LOGGER.info("Inicio de creación de la entidad pago");
+        //TODO: NO hay ninguna regla de negocio? 
+    
+        persistence.create(entity);
+        LOGGER.info("Creacion exitosa");
+
+        return entity;
+        
+        
+        
+    }
 /**
      * consulta el pago con el id deseado
      * @param id identificador que se desea consultar
