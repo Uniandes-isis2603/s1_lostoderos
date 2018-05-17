@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.lostoderos.resources;
 import co.edu.uniandes.csw.lostoderos.dtos.PagoDTO;
 import co.edu.uniandes.csw.lostoderos.dtos.PagoDetailDTO;
 import co.edu.uniandes.csw.lostoderos.ejb.PagoLogic;
+import static co.edu.uniandes.csw.lostoderos.entities.BaseEntity_.id;
 import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,12 +46,18 @@ import javax.ws.rs.WebApplicationException;
  * @version 1.0
  */
 //@Path( "facturas/{id: \\d+}/pagos" )
-@Path( "pagos" )
+@Path("facturas/{facturaid\\d+}/pago")
 
 @Produces( "application/json" )
 @Consumes( "application/json" )
 @RequestScoped
 public class PagoResource {
+    
+      @Inject
+    PagoLogic pagoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+
+    private static final Logger LOGGER = Logger.getLogger(PagoPersistence.class.getName());
+
 /**
      * <h1>POST /api/pagos : Crear un pago.</h1>
      * 
@@ -73,18 +80,14 @@ public class PagoResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya esta el pago.
 
      */
-    
-    @Inject
-    PagoLogic pagoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+       @POST
+    public PagoDetailDTO create(@PathParam("facturaid") Long facturaid, PagoDTO pago) throws BusinessLogicException {
 
-    private static final Logger LOGGER = Logger.getLogger(PagoPersistence.class.getName());
+        return new PagoDetailDTO(pagoLogic.create( pago.toEntity(),facturaid));
+    }
 
-    @POST
-	public PagoDTO createPago( PagoDTO dto )  
-	{
-	        return new PagoDTO(pagoLogic.createPago(dto.toEntity()));
+  
 
-	}
          /**
      * <h1>GET /api/pagos : Obtener todas los pagos.</h1>
      * 

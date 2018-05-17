@@ -52,6 +52,8 @@ public class PagoPersistence {
         LOGGER.info("Pago creado");
         return entity;
     }
+    
+
 
     public PagoEntity update(PagoEntity entity) {
         LOGGER.log(Level.INFO, "Actualizando Pago con id={0}", entity.getId());

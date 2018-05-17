@@ -23,6 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.ejb;
 
+import co.edu.uniandes.csw.lostoderos.entities.BaseEntity;
+import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
 import co.edu.uniandes.csw.lostoderos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.lostoderos.persistence.PagoPersistence;
@@ -31,6 +33,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.metamodel.SingularAttribute;
 
 /**
  *
@@ -46,19 +49,30 @@ public class PagoLogic {
     @Inject
     private PagoPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
+     @Inject
+    private FacturaLogic facturaLogic;
+
     /**
     * Crea un pago en la persistencia.
     * @param entity La entidad que representa el pago a persistir.
     * @return La entiddad del pago luego de persistirla.
     */
-    public PagoEntity createPago(PagoEntity entity)  {
+    public PagoEntity createPago(PagoEntity entity, Long idFactura) throws BusinessLogicException  {
         LOGGER.info("Inicio de creación de la entidad pago");
         //TODO: NO hay ninguna regla de negocio? 
-     
+        FacturaEntity factura = facturaLogic.getFactura(idFactura);
+        if (factura == null) {
+                        throw new BusinessLogicException("El factura que especificó no existe");
+
+        }
+        entity.setFactura(factura);
         persistence.create(entity);
         LOGGER.info("Creacion exitosa");
 
         return entity;
+        
+        
+        
     }
 /**
      * consulta el pago con el id deseado
@@ -145,5 +159,6 @@ public class PagoLogic {
         }
             LOGGER.log(Level.INFO, "Termina proceso de borrar factura con id=", id);
         }
-    
+
+   
 }

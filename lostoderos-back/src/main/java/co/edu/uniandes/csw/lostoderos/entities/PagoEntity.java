@@ -7,6 +7,9 @@ package co.edu.uniandes.csw.lostoderos.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -21,6 +24,9 @@ public class PagoEntity extends BaseEntity implements Serializable {
     private String descripcion;
     private Boolean comprobantePagoMedio;
     private Boolean comprobantePagoTotal;
+    @PodamExclude
+    @OneToOne( mappedBy = "pago", fetch = FetchType.LAZY)
+    private FacturaEntity factura;
 
     /**
      * @param numTarjeta El nuevo numero de tarjeta de la entidad Todero
@@ -107,4 +113,13 @@ public class PagoEntity extends BaseEntity implements Serializable {
     public Boolean getComprobantePagoTotal() {
         return comprobantePagoTotal;
     }
+
+    public FacturaEntity getFactura() {
+        return factura;
+    }
+
+    public void setFactura(FacturaEntity factura) {
+        this.factura = factura;
+    }
+    
 }

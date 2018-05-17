@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.lostoderos.dtos;
 
+import co.edu.uniandes.csw.lostoderos.entities.FacturaEntity;
 import co.edu.uniandes.csw.lostoderos.entities.PagoEntity;
 
 /**
@@ -74,8 +75,17 @@ public class PagoDetailDTO extends PagoDTO {
      * objeto.
      *
      */
+    
+    private FacturaDTO factura;
+    
     public PagoDetailDTO(PagoEntity entity) {
-        super(entity);
+       super(entity);
+        if (entity != null) {
+            FacturaDTO fact = new FacturaDTO(entity.getFactura());
+            this.setFactura(fact);
+
+        }
+        
     }
 
     /**
@@ -83,6 +93,14 @@ public class PagoDetailDTO extends PagoDTO {
      */
     public PagoDetailDTO() {
         // El constructor está vació porque se recomienda tener un constructor vacio cuando la clase se representa en JSON.
+    }
+
+    public FacturaDTO getFactura() {
+        return factura;
+    }
+
+    public void setFactura(FacturaDTO factura) {
+        this.factura = factura;
     }
 
     /**
@@ -93,6 +111,10 @@ public class PagoDetailDTO extends PagoDTO {
     @Override
     public PagoEntity toEntity() {
         PagoEntity pagoEntity = super.toEntity();
+        FacturaEntity solE = pagoEntity.getFactura();
+        if (solE != null) {
+            pagoEntity.setFactura(solE);
+        }
         return pagoEntity;
     }
 
