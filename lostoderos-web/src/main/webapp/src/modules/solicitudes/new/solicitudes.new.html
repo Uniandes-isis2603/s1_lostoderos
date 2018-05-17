@@ -1,101 +1,121 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<div class="container-fluid" style="align-content: center; width: 700px">
-    <div  class="panel-group" style="align-content:center" >
-        <div class="panel panel-primary">
-            <div class="panel-heading"><label ng-if="!edit" id="createSolicitud">Crear solicitud</label>
-                <label ng-if="edit" id="editSolicitud">Editar solicitud</label></div>
-                <div class="panel-body" style="align-items: center">
-                <form name="solicitud">
-                    <div class="form-group row">
-                        <div class="form-group col-md-12">
-                            <label for="solicitudReq" class="col-sm-2">Requerimientos:</label>
-                            <textarea id="solicitudReq" required ng-model="data.requerimientos" class="col-sm-6" style="padding: 20px; margin-left: 93px"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-12">
-                            <label for="solicitudService" class="col-sm-4" style="">Tipo de servicio:</label>
-                        <select class="form-control" name="rol" ng-model="data.tipo_servicio" required="true">
-                            <option value="0">--- Escoje un Servicio ---</option> <!-- not selected / blank option -->
-                            <option value="1">Plomeria</option>
-                            <option value="2">Climatización</option>
-                            <option value="3">Pintura</option>
-                            <option value="4">Gas</option>
-                            <option value="5">Electricidad</option>
-                            <option value="6">Mudanza</option>
-                        </select>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-12">
-                            <label for="solicitudNumContratistas" class="col-sm-4" style="padding-left: 30px">Cantidad de contratistas:</label>
-                            <input type="number" id="solicitudNumContratistas" required ng-model="data.cantidad_contratistas" class="col-sm-6" style="margin-left: 10px"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-12">
-                            <label for="solicitudCodSeguridad" class="col-sm-4" style="padding-left: 30px">Codigo de seguridad:</label>
-                            <input id="solicitudCodSeguridad" required ng-model="data.cod_seguridad" class="col-sm-6" style="margin-left: 10px"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-12">
-                            <label for="solicitudDescription" class="col-sm-4" style="padding-left: 30px">Descripcion:</label>
-                            <textarea id="solicitudDescription" required ng-model="data.descripcion" class="col-sm-6" style="margin-left: 10px"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-12">
-                            <label for="solicitudFechaInicio" class="col-sm-4" style="padding-left: 30px"> Fecha de inicio:</label>
-                            <input type="date" id="solicitudFechaInicio" placeholder="DD/MM/YYYY" required ng-model="data.fecha_inicio" class="col-sm-6" style="margin-left: 10px"/>
-                        </div>
-                    </div>
-                    <move-lists ng-if="edit" selected="selectedItems" available="availableItems"></move-lists>
+<style>
+    a {
+        color: whitesmoke;
 
-                    <div class="form-group row">
-                        <div class="form-group col-sm-12"  style="padding: 40px" ng-if="!solicitud.$valid">
+    }
+    .btn-o {
+        
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 2px;
+        color: #ffffff !important;
+        display: inline-block;
+        font-family: open sans;
+        font-size: 15px !important;
+        font-weight: normal !important;
+        margin: 0 0 10px;
+        padding: 5px 11px;
+        text-decoration: none !important;
+        text-transform: uppercase;
 
-                            <div class="alert alert-warning">
-                                <strong>Warning!</strong><p>All inputs are required*</p>
-                            </div> 
-                        </div> 
-                    </div> 
-                    <!-- Button -->
-                    <div class="form-group">
-                        <label class="col-md-12 control-label"></label>
-                            <div class="col-md-12"><br>
-                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
-                            </div>
+        background-color: rgba(255, 255, 255, 0.1);
+        -webkit-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+    .btn-o:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+        color: #fff !important;
+    }
+    .btn-o:focus {
+        background:#b63b4d;
+        color: #fff;
+        border: 1px solid #b63b4d;
+    }
+</style>
+<div class="container-fluid">
+    <form class="well form-horizontal" ng-submit="createSolicitud()" name="solicitud"  style="background-color: #1c314c">
+        <fieldset>
+            <!-- Form Name -->
+            <legend>
+                <center>
+                    <h2><b style="color:white">Crear solicitud</b></h2>
+                </center>
+            </legend>
+            <br>
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Requerimientos*</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  name="requerimientos" placeholder="Requerimientos" class="form-control" required ng-model="data.requerimientos" type="text">
                     </div>
-                    <div class="form-group row">
-                        <div class="form-group col-sm-12">
-                            <input ng-show="solicitud.$valid" ng-click="createSolicitud()" value="Save" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="solicitudesList">Cancel</a>
-                        </div>
-                    </div>
-                    
-                </form>
-
-            </div>
-        </div>
-    </div>
-    <!--<div class="center-block well text-center" ng-if="isAuthenticated() && !hasPermissions()">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <h1 class="float-left display-3 mr-4">403 Forbidden</h1>
-                    <h4 >You do not have permission for this action.</h4>
-                    <p >Contact the administrator to obtain permission.</p>
                 </div>
             </div>
-        </div>
-    </div>-->
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Tipo de servicio*</label> 
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select class="form-control" name="tipo_servicio" ng-model="data.tipo_servicio" required="true">
+                            <option value="">Escoje</option> 
+                            <option ng-repeat="s in serviciosRecords" value="{{s.id}}">{{s.nombre}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Cantidad de contratistas*</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <input  name="cantidad_contratistas" placeholder="Cantidad de contratistas" class="form-control" required ng-model="data.cantidad_contratistas" type="number">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Código de seguridad*</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
+                        <input  name="cod_seguridad" placeholder="Código de seguridad" class="form-control" required ng-model="data.cod_seguridad" type="password">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Descripción*</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                        <input  name="descripcion" placeholder="Descripcion" class="form-control" required ng-model="data.descripcion" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="color:white">Fecha de inicio*</label>  
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input name="fecha_inicio" class="form-control" required ng-model="data.fecha_inicio" type="date">
+                    </div>
+                </div>
+            </div>
+            <div  class="form-group row">
+                <div class="form-group col-sm-12" ng-if="!solicitud.$valid">
+                    <label  class="col-md-12 control-label" style="text-align:center; color:white;">Debe llenar todos los campos requeridos*</label>  
+                </div> 
+            </div>
+            <!-- Select Basic -->
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4"><br>
+                    <button ng-show="solicitud.$valid" class="btn-o" type="submit" value="Save" >SUBMIT<span class="glyphicon glyphicon-send"></span></button>
+                    <a ui-sref="contratistaDetail"><button class="btn-o" >Cancelar</button></a>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
 </div>
-
-
