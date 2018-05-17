@@ -17,6 +17,10 @@
                         controller: 'pagosCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('pagosList', {
                 url: '/list',
@@ -25,6 +29,10 @@
                     'listView':{
                         templateUrl:basePath+'pagos.list.html'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('pagosDetail',{
                 url: '/{pagoId:int}/detail',
@@ -40,6 +48,10 @@
                         controller: 'pagosDetailCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('createPagos',{
                 url:'/create',
@@ -52,6 +64,10 @@
                         controller: 'pagosNewCtrl',
                         controllerAs:'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('pagosInfo',{
                 url:'info',
@@ -69,6 +85,10 @@
                         controller: 'pagosCtrl',
                         controllerAs:'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             });
             

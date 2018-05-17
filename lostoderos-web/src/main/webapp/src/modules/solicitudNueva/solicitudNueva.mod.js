@@ -22,6 +22,10 @@
                         controller: 'solicitudNuevaCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             });
         }
