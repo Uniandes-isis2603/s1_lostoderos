@@ -19,6 +19,21 @@
         background: rgb(205,149,87);
         border:none;
     }
+    .panel
+    {
+        background: #222;
+    }
+    .panel-body {
+        background: rgba(21,64,117,0.5);
+        border:none;
+    }
+
+    .panel >.panel-heading{
+        background-color: #f0ad4e;
+    }
+    a {
+        color: whitesmoke;
+    }
 </style>
 <div class="container-fluid">
     <div class="panel panel-default"> 
@@ -35,11 +50,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                                <td >{{currentFactura.ID}}</td>
-                                <td>{{currentFactura.producto}}</td>
-                                <td>{{currentFactura.formaPago}}</td>
-                                <td>{{currentFactura.subtotal}}</td>
-                                <td>{{currentFactura.total}}</td>
+                                <td style="color: white">{{currentFactura.ID}}</td>
+                                <td style="color: white">{{currentFactura.producto}}</td>
+                                <td style="color: white" >{{currentFactura.formaPago}}</td>
+                                <td style="color: white" >{{currentFactura.subtotal}}</td>
+                                <td style="color: white" >{{currentFactura.total}}</td>
 
                         </tbody>
                     </table>
@@ -58,17 +73,17 @@
                         <th>Descripcion</th>
                        
                     </tr>
-                    <h1>Pago:</h1>
+                    <h1 style="color: white" >Pago:</h1>
                 </thead>
                 <tbody>
                     <tr >
-                        <td>{{currentFactura.pago.ID}}</td>
-                        <td>{{currentFactura.pago.codigoTarjeta}}</td>
-                        <td>{{currentFactura.pago.numTarjeta}}</td>
-                        <td>{{currentFactura.pago.fechaTarjeta}}</td>
-                        <td>{{currentFactura.pago.comprobantePagoMedio}}</td>
-                        <td>{{currentFactura.pago.comprobantePagoTotal}}</td>
-                        <td>{{currentFactura.pago.descripcion}}</td>
+                        <td style="color: white" >{{currentFactura.pago.ID}}</td>
+                        <td style="color: white" >{{currentFactura.pago.codigoTarjeta}}</td>
+                        <td style="color: white" >{{currentFactura.pago.numTarjeta}}</td>
+                        <td style="color: white" >{{currentFactura.pago.fechaTarjeta}}</td>
+                        <td style="color: white" >{{currentFactura.pago.comprobantePagoMedio}}</td>
+                        <td style="color: white" >{{currentFactura.pago.comprobantePagoTotal}}</td>
+                        <td style="color: white" >{{currentFactura.pago.descripcion}}</td>
                         
                     </tr>
                 </tbody>
