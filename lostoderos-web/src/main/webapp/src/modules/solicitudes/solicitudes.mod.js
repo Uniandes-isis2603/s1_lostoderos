@@ -60,7 +60,8 @@
                 data: {
                     requireLogin: false,
                     roles: []
-                }}).state('solicitudesCreate', {
+                }
+            }).state('solicitudesCreate', {
                 url: '/create',
                 parent: 'solicitudes',
                 views: {

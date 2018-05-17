@@ -17,6 +17,10 @@
                         controller: 'facturasCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('facturasList', {
                 url: '/list',
@@ -25,6 +29,10 @@
                     'listView':{
                         templateUrl:basePath+'facturas.list.html'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('facturasDetail',{
                 url: '/{facturaId:int}/detail',
@@ -40,6 +48,10 @@
                         controller: 'facturasDetailCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('createFacturas',{
                 url:'/create',
@@ -52,6 +64,10 @@
                         controller: 'facturasNewCtrl',
                         controllerAs:'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             }).state('facturasInfo',{
                 url:'info',
@@ -69,6 +85,10 @@
                         controller: 'facturasCtrl',
                         controllerAs:'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             });
             

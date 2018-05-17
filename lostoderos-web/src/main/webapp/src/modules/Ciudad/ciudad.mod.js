@@ -23,6 +23,10 @@
                         controller: 'ciudadCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             });
         }

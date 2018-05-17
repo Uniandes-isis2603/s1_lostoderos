@@ -22,6 +22,10 @@
                         controller: 'principalCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: []
                 }
             });
         }
