@@ -1,28 +1,91 @@
 <style>
+    thead{
+        background: rgb(205,149,87); 
+        border:none;
+    }
+    th{
+        color:white;
+    }
     .br{
         margin-bottom: 15px;
     }
-    p{
-        font-size: 20px;
+    td{
+        color:black;
     }
-    .panel
-    {
-        background: white;
+    tabla1 td{
+        color:black;
+    }
+    button{
+        background: rgb(205,149,87);
+        border:none;
     }
 </style>
-<br>
+<div class="container-fluid">
+    <div class="panel panel-default"> 
+        <div class="panel-body">
+              <table id="tabla1" class ="table table-bordered">
+                        <thead>
+                            <tr class ="bg-ACTIVE">
+                                <th>ID</th>
+                                <th>Producto</th>
+                                <th>Forma de Pago</th>
+                                <th>SubTotal</th>
+                                <th>Total</th>
 
-    <div class="container">
-        <div class="row">
-            <nav  class="col-sm-3">
-                <ul  class="nav nav-pills nav-stacked">
-                    <li style="background: linear-gradient(45deg, rgba(21,64,117,1) 0%, rgba(252,208,141,1) 100%);" ><a style="color:white" ui-sref="pagoInfo">Información pago</a></li>
-                </ul>
-            </nav>
-            <div class="col-sm-9">
-                <div ui-view="infoPagoView"></div>
-                <div ui-view="createPagoView"></div>
-              
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <td >{{currentFactura.ID}}</td>
+                                <td>{{currentFactura.producto}}</td>
+                                <td>{{currentFactura.formaPago}}</td>
+                                <td>{{currentFactura.subtotal}}</td>
+                                <td>{{currentFactura.total}}</td>
+
+                        </tbody>
+                    </table>
+           
+         
+                <div >
+                    <table class ="table table-bordered">
+                            <thead>
+                    <tr class ="bg-ACTIVE">
+                        <th>Id</th>                        
+                        <th>Numero de Tarjeta</th>
+                        <th>Codigo de Tarjeta</th>
+                        <th>Fecha de Tarjeta</th>
+                        <th>Comprobante de Pago Medio</th>
+                        <th>Comprobante de Pago Total</th>
+                        <th>Descripcion</th>
+                       
+                    </tr>
+                    <h1>Pago:</h1>
+                </thead>
+                <tbody>
+                    <tr >
+                        <td>{{currentFactura.pago.ID}}</td>
+                        <td>{{currentFactura.pago.codigoTarjeta}}</td>
+                        <td>{{currentFactura.pago.numTarjeta}}</td>
+                        <td>{{currentFactura.pago.fechaTarjeta}}</td>
+                        <td>{{currentFactura.pago.comprobantePagoMedio}}</td>
+                        <td>{{currentFactura.pago.comprobantePagoTotal}}</td>
+                        <td>{{currentFactura.pago.descripcion}}</td>
+                        
+                    </tr>
+                </tbody>
+                        
+                    </table>
+                </div>
+                <br><br>
+          
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <a class="btn btn-danger" ui-sref="facturasList">
+                    <span class="glyphicon glyphicon-arrow-left"></span>  Regresar</a>
+            </div>
+                     <a class="btn btn-danger" ui-sref="createPagos({facturaId:currentFactura.ID})" class="btn-o">
+                    <span class="glyphicon"></span>Realizar Pago</a>           
+               
             </div>
         </div>
     </div>
+</div>
+</div>
