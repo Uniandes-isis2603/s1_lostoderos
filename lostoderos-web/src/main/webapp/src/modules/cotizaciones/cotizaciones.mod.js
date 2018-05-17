@@ -19,6 +19,10 @@
                 
                 url: '/cotizaciones/list',
                 abstract:true,
+                data: {
+                    requireLogin: false,
+                    roles: []
+                },
                  views: {
                     'mainView': {
                         templateUrl: basePath + 'cotizaciones.html',
@@ -29,6 +33,10 @@
             }).state('cotizacionesList', {
                 url: '/list',
                 parent:'cotizaciones',
+                data: {
+                    requireLogin: false,
+                    roles: []
+                },
                  views: {
                     'listView':{
                         templateUrl:basePath+'cotizaciones.list.html'
@@ -37,6 +45,10 @@
             }).state('cotizacionesCreate', {
                 url: '/create',
                 parent: 'cotizaciones',
+                data: {
+                    requireLogin: false,
+                    roles: []
+                },
                 views: {
                     'detailView': {
                         templateUrl: basePath + '/new/cotizaciones.new.html',

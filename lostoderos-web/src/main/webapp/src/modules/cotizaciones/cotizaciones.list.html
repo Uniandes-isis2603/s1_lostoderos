@@ -1,41 +1,82 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
-<div class="container-fluid ">
-            <div class="h-100 row align-items-center">
-        
-        
-        <input class="form-control" id="buscarId" type="text" placeholder="Cotizacion">
-        <table class = "table table-bordered">
-        <thead>
-        <tr class ="bg-ACTIVE">
-            
-            <th>ID </th>
-            <th>Servicio</th>
-            <th>Valor</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr style="color:#000000" class ="table table-striped" ng-repeat="x in cotizacionesRecords | orderBy : 'id'">
-                <td><!--<a ui-sref="contratistaDetail">-->{{x.id}}<!--</a>--></td>
-                <td>{{x.servicio}}</td>
-                <td>{{x.valor}}</td>
-            </tr>
-        </tbody>
-        
-    </table>
-        
-        <div class="btn-group mr-2" role="group" aria-label="First group">
-        <a class="btn btn-info" ui-sref="cotizacionesCreate">
-            <span class="glyphicon glyphicon-plus-sign"></span>Agregar</a>
-    </div>
-    </div>
+<style>
+    thead{
+        background: rgb(205,149,87); 
+        border:none;
+    }
+    th{
+        color:white;
+    }
+    .br{
+        margin-bottom: 15px;
+    }
+    button{
+        background: rgb(205,149,87);
+        border:none;
+    }
+    a{
+        color:white;
+    }
+    td{
+        color:white;
+    }
+    .glyphicon-star{
+        font-size: 25px;
+    }
+    .half {
+        position: relative;
+        color:yellow;
+    }
+    .half::before {
+        position: relative;
+        z-index: 9;
+        width: 47%;
+        display: block;
+        overflow: hidden;
+    }
+    .half::after {
+        content: '\e006';
+        position: absolute;
+        z-index: 8;
+        color: #bdc3c7;
+        top: 0;
+        left: 0;
+    }
+
+    .ratingNum{
+        font-size:25px;
+        margin-left: 15px;
+    }
+
+    .full{
+        color:yellow;
+    }
+    .empty{
+        color:#ccc;
+    }
     
-    
+</style>
+<div  class="container-fluid ">
+    <div class="row">
+        <div class="col-sm-12">
+            <table class ="table table-bordered">
+                <thead>
+                    <tr class ="bg-ACTIVE">
+                        <th>ID</th>
+                        <th>Servicio</th>
+                        <th>Valor</th>
+                        <th>Descripcion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="cotizacion in cotizacionesRecords| orderBy:'id'">
+                        <td>{{cotizacion.id}}</td>
+                        <td>{{cotizacion.servicio}}</td>
+                        <td>{{cotizacion.valor}}</td>
+                        <td>{{cotizacion.descripcion}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    
+</div>
     

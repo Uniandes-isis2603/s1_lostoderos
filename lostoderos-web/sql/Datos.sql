@@ -151,3 +151,10 @@ INSERT INTO USUARIOENTITY_SERVICIOENTITY (servicios_ID, contratistas_ID) VALUES 
 INSERT INTO USUARIOENTITY_SERVICIOENTITY (servicios_ID, contratistas_ID) VALUES (1, 5);
 
 
+Delete from cotizacionEntity;
+Insert into cotizacionEntity(servicio, valor, descripcion) values('Plomería',160000, 'Arreglar de tuberias del hogar por obstaculacion a causa de acumulacion de comida');
+Insert into cotizacionEntity(servicio, valor, descripcion) values('Climatizacion',170000, 'Arreglar de aire acondicionado en 4 habitaciones de una cas muy grande');
+Insert into cotizacionEntity(servicio, valor, descripcion) values('Pintura',50000, 'Pintar las paredes externas de una casa con alrededor 800 m2 de construccion');
+Insert into cotizacionEntity(servicio, valor, descripcion) values('Gas',200000, 'Arreglo de tuberias de gas del hogar');
+Insert into cotizacionEntity(servicio, valor, descripcion) values('Electricidad',5000000, 'Arreglo de corto circuito generado por un daño en una pared');
+Insert into cotizacionEntity(servicio, valor, descripcion) values('Mudanza',80000, 'Traslado de muebles y electrodómesticos junto con la instalación de estos a la carrera 5 #62-08');
