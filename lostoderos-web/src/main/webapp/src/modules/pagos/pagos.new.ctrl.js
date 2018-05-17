@@ -9,8 +9,18 @@
           
             $scope.createPago = function () {
                 $http.post(pagosContext, $scope.data).then(function (response) {
+                    
                     $state.go('pagosList', {pagoId: response.data.id}, {reload: true});
                 });
+            };
+            $scope.createPago = function () {
+                console.log($rootScope.currentId);
+                $scope.data.factura = {id: $rootScope.currentId};
+                
+                $http.post(pagosContext, $scope.data).then(function (response) {
+                    $state.go('pagosList', {pagoId: response.data.id}, {reload: true});
+                });
+                
             };
         }
     ]);

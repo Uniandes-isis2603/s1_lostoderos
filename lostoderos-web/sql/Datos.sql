@@ -63,10 +63,10 @@ insert into PAGOENTITY (ID, CODIGOTARJETA, COMPROBANTEPAGOMEDIO, COMPROBANTEPAGO
 insert into PAGOENTITY (ID, CODIGOTARJETA, COMPROBANTEPAGOMEDIO, COMPROBANTEPAGOTOTAL, DESCRIPCION, FECHATARJETA,NAME, NUMTARJETA) values (104, '547', 0, 0,  'pago de tarjeta con num 641',  '19/02/2018', null, '6413484641983');
 
 delete from FACTURAENTITY;
-insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('Efectivo', 'name','Plomeria',100, 110, null);
-insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('Efectivo', 'name','Plomeria',100, 110, null);
-insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('TarjetaCredito', 'ayuda','Limpieza',200, 110, null);
-insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('TarjetaDebito', 'ayuda','Lavanderia',200, 110, null);
+insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('Efectivo', 'name','Plomeria',100, 110, 100);
+insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('Efectivo', 'name','Plomeria',100, 110, 101);
+insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('TarjetaCredito', 'ayuda','Limpieza',200, 220, 103);
+insert into FACTURAENTITY (FORMAPAGO, NAME, PRODUCTO, SUBTOTAL, TOTAL, PAGO_ID) values ('TarjetaDebito', 'ayuda','Lavanderia',200, 220, 104);
 
 delete from calificacionentity;
 insert into CALIFICACIONENTITY (numEstrellas, tipoServicio, comentario, contratista_id, cliente_id) values (4, 'Gas', 'Donec vitae nisi.', 9, 21);

@@ -13,6 +13,7 @@
                     $state.go('pagosList');
                 });
             };
+            
         }
     ]);
 }
