@@ -158,6 +158,8 @@ Insert into cotizacionEntity(servicio, valor, descripcion) values('Pintura',5000
 Insert into cotizacionEntity(servicio, valor, descripcion) values('Gas',200000, 'Arreglo de tuberias de gas del hogar');
 Insert into cotizacionEntity(servicio, valor, descripcion) values('Electricidad',5000000, 'Arreglo de corto circuito generado por un daño en una pared');
 Insert into cotizacionEntity(servicio, valor, descripcion) values('Mudanza',80000, 'Traslado de muebles y electrodómesticos junto con la instalación de estos a la carrera 5 #62-08');
+
+Delete from SOLICITUDENTITY;
 INSERT INTO SOLICITUDENTITY ( cantidad_contratistas, cod_seguridad, descripcion, fecha_inicio, requerimientos, tipo_servicio, cliente_id, contratista_id, servicio_id) VALUES ( 1, 323, 'aqui va una descripcion detallada', '01/06/2018', 'plomeria', 2, 22, 4, 2)
 INSERT INTO SOLICITUDENTITY ( cantidad_contratistas, cod_seguridad, descripcion, fecha_inicio, requerimientos, tipo_servicio, cliente_id, contratista_id, servicio_id) VALUES ( 1, 485, 'aqui va una descripcion detallada', '08/08/2018', 'electricidad', 3, 18, 5, 3)
 
