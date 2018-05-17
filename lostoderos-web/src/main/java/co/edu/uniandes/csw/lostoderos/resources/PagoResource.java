@@ -47,7 +47,6 @@ import javax.ws.rs.WebApplicationException;
  */
 //@Path( "facturas/{id: \\d+}/pagos" )
 @Path("facturas/{id_factura:\\d+}/pago")
-
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
