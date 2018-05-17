@@ -151,3 +151,5 @@ INSERT INTO USUARIOENTITY_SERVICIOENTITY (servicios_ID, contratistas_ID) VALUES 
 INSERT INTO USUARIOENTITY_SERVICIOENTITY (servicios_ID, contratistas_ID) VALUES (1, 5);
 
 
+INSERT INTO SOLICITUDENTITY ( cantidad_contratistas, cod_seguridad, descripcion, fecha_inicio, requerimientos, tipo_servicio, cliente_id, contratista_id, servicio_id) VALUES ( 1, 323, 'aqui va una descripcion detallada', '01/06/2018', 'plomeria', 2, 22, 4, 2)
+INSERT INTO SOLICITUDENTITY ( cantidad_contratistas, cod_seguridad, descripcion, fecha_inicio, requerimientos, tipo_servicio, cliente_id, contratista_id, servicio_id) VALUES ( 1, 485, 'aqui va una descripcion detallada', '08/08/2018', 'electricidad', 3, 18, 5, 3)
